@@ -21,6 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <ssd1306.h>
+#include <fonts.h>
 
 /* USER CODE END Includes */
 
@@ -94,6 +97,13 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM11_Init();
   /* USER CODE BEGIN 2 */
+  ssd1306_Init(&hi2c1);
+  HAL_Delay(1000);
+
+  ssd1306_SetCursor(0, 0);
+  ssd1306_WriteString("Button Counter", Font_7x10, White);
+
+  ssd1306_UpdateScreen(&hi2c1);
 
   /* USER CODE END 2 */
 
