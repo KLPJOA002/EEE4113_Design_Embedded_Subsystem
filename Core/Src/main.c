@@ -18,10 +18,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "fatfs.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <string.h>
+#include <stdarg.h>
 #include <ssd1306.h>
 #include <fonts.h>
 
@@ -80,6 +83,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+
+
 /* USER CODE END 0 */
 
 /**
@@ -117,18 +122,40 @@ int main(void)
   MX_I2C2_Init();
   MX_I2C3_Init();
   MX_SPI1_Init();
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_TIM_Base_Start_IT(&LED_Tim); //Start the timer for the LED with interrupt mode
+  
 
-  ssd1306_Init(Oled_I2C); // Initilise the Oled module
-  HAL_Delay(1000);
+  //ssd1306_Init(Oled_I2C); // Initilise the Oled module
+  //HAL_Delay(1000);
 
-  ssd1306_SetCursor(0, 0);
-  ssd1306_WriteString("Button Counter", Font_7x10, White); //Write some text to the Oled module
+  //ssd1306_SetCursor(0, 0);
+  //ssd1306_WriteString("Button Counter", Font_7x10, White); //Write some text to the Oled module
 
-  ssd1306_UpdateScreen(Oled_I2C);
+  //ssd1306_UpdateScreen(Oled_I2C);
 
+  FATFS FatFs;
+  FIL fil;
+  FRESULT fres;
+  BYTE readBuf[30];
+
+    //Open the file system
+  fres = f_mount(&FatFs, "", 1); //1=mount now
+  if (fres != FR_OK) {
+    while(1);
+  }
+
+  fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+
+  strncpy((char*)readBuf,"a new file is made!",19);
+  UINT bytesWrote;
+  fres = f_write(&fil,readBuf,19,&bytesWrote);
+  
+
+  f_close(&fil);
+
+  HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -396,7 +423,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LED_Board_GPIO_Port, LED_Board_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : LED_Board_Pin */
   GPIO_InitStruct.Pin = LED_Board_Pin;
@@ -405,12 +432,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_Board_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : SPI1_CS_Pin */
-  GPIO_InitStruct.Pin = SPI1_CS_Pin;
+  /*Configure GPIO pin : SD_CS_Pin */
+  GPIO_InitStruct.Pin = SD_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  HAL_GPIO_Init(SPI1_CS_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(SD_CS_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
