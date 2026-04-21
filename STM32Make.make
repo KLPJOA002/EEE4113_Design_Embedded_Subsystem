@@ -75,6 +75,8 @@ endif
 ######################################
 # C sources
 C_SOURCES =  \
+Core/Src/SX1278.c \
+Core/Src/SX1278_hw.c \
 Core/Src/fonts.c \
 Core/Src/main.c \
 Core/Src/ssd1306.c \
