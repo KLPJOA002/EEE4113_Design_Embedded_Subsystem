@@ -126,34 +126,41 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   
+  //OLED CODE
 
-  //ssd1306_Init(Oled_I2C); // Initilise the Oled module
-  //HAL_Delay(1000);
+  // ssd1306_Init(Oled_I2C); // Initilise the Oled module
+  // HAL_Delay(1000);
 
-  //ssd1306_SetCursor(0, 0);
-  //ssd1306_WriteString("Button Counter", Font_7x10, White); //Write some text to the Oled module
+  // ssd1306_SetCursor(0, 0);
+  // ssd1306_WriteString("Button Counter", Font_7x10, White); //Write some text to the Oled module
 
-  //ssd1306_UpdateScreen(Oled_I2C);
+  // ssd1306_UpdateScreen(Oled_I2C);
 
-  FATFS FatFs;
-  FIL fil;
-  FRESULT fres;
-  BYTE readBuf[30];
 
-    //Open the file system
-  fres = f_mount(&FatFs, "", 1); //1=mount now
-  if (fres != FR_OK) {
-    while(1);
-  }
 
-  fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
-
-  strncpy((char*)readBuf,"a new file is made!",19);
-  UINT bytesWrote;
-  fres = f_write(&fil,readBuf,19,&bytesWrote);
+ //SD CARD CODE
   
 
-  f_close(&fil);
+  // FATFS FatFs;
+  // FIL fil;
+  // FRESULT fres;
+  // BYTE readBuf[30];
+
+ 
+  // fres = f_mount(&FatFs, "", 1); //1=mount now  //Open the file system
+  // if (fres != FR_OK) {
+  //   while(1);
+  // }
+
+  // fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+
+  // strncpy((char*)readBuf,"a new file is made!",19);
+  // UINT bytesWrote;
+  // fres = f_write(&fil,readBuf,19,&bytesWrote);
+  
+
+  // f_close(&fil);
+  
 
   HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
   /* USER CODE END 2 */
