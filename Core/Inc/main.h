@@ -61,6 +61,12 @@ void Error_Handler(void);
 #define LED_Board_GPIO_Port GPIOC
 #define SD_CS_Pin GPIO_PIN_4
 #define SD_CS_GPIO_Port GPIOA
+#define Lora_CS_Pin GPIO_PIN_12
+#define Lora_CS_GPIO_Port GPIOB
+#define Lora_IRQ_Pin GPIO_PIN_9
+#define Lora_IRQ_GPIO_Port GPIOA
+#define Lora_Reset_Pin GPIO_PIN_10
+#define Lora_Reset_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 #define SD_SPI_HANDLE hspi1

@@ -27,6 +27,7 @@
 #include <stdarg.h>
 #include <ssd1306.h>
 #include <fonts.h>
+#include <SX1278.h>
 
 /* USER CODE END Includes */
 
@@ -51,6 +52,7 @@ I2C_HandleTypeDef hi2c2;
 I2C_HandleTypeDef hi2c3;
 
 SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi2;
 DMA_HandleTypeDef hdma_spi1_rx;
 
 TIM_HandleTypeDef htim11;
@@ -61,6 +63,7 @@ I2C_HandleTypeDef *Oled_I2C = &hi2c2;
 I2C_HandleTypeDef *RTC_I2C = &hi2c3;
 
 SPI_HandleTypeDef *MicroSD_SPI = &hspi1;
+SPI_HandleTypeDef *Lora_SPI = &hspi2;
 
 
 TIM_HandleTypeDef *LED_Tim = &htim11;
@@ -76,13 +79,23 @@ static void MX_TIM11_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+SX1278_hw_t SX1278_hw;
+SX1278_t SX1278;
 
+int master;
+int ret;
+
+char Lora_buffer[512];
+
+int message;
+int message_length;
 
 
 /* USER CODE END 0 */
@@ -123,7 +136,22 @@ int main(void)
   MX_I2C3_Init();
   MX_SPI1_Init();
   MX_FATFS_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
+
+  	//initialize LoRa module
+	SX1278_hw.dio0.port = Lora_IRQ_GPIO_Port;
+	SX1278_hw.dio0.pin = Lora_IRQ_Pin;
+	SX1278_hw.nss.port = Lora_CS_GPIO_Port;
+	SX1278_hw.nss.pin = Lora_CS_Pin;
+	SX1278_hw.reset.port = Lora_Reset_GPIO_Port;
+	SX1278_hw.reset.pin = Lora_Reset_Pin;
+	SX1278_hw.spi = Lora_SPI;
+
+	SX1278.hw = &SX1278_hw;
+
+	SX1278_init(&SX1278, 433000000, SX1278_POWER_17DBM, SX1278_LORA_SF_7,
+	SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 10);
 
   
   //OLED CODE
@@ -170,6 +198,14 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    HAL_Delay(1000);
+    
+        message_length = sprintf(Lora_buffer, "Hello %d", message);
+    ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
+    
+    ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) Lora_buffer,
+        message_length, 2000);
+    message += 1;
 
     /* USER CODE BEGIN 3 */
   }
@@ -361,6 +397,44 @@ static void MX_SPI1_Init(void)
 }
 
 /**
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI2_Init(void)
+{
+
+  /* USER CODE BEGIN SPI2_Init 0 */
+
+  /* USER CODE END SPI2_Init 0 */
+
+  /* USER CODE BEGIN SPI2_Init 1 */
+
+  /* USER CODE END SPI2_Init 1 */
+  /* SPI2 parameter configuration*/
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI2_Init 2 */
+
+  /* USER CODE END SPI2_Init 2 */
+
+}
+
+/**
   * @brief TIM11 Initialization Function
   * @param None
   * @retval None
@@ -432,6 +506,12 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Lora_CS_GPIO_Port, Lora_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Lora_Reset_GPIO_Port, Lora_Reset_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : LED_Board_Pin */
   GPIO_InitStruct.Pin = LED_Board_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -445,6 +525,26 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(SD_CS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Lora_CS_Pin */
+  GPIO_InitStruct.Pin = Lora_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(Lora_CS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Lora_IRQ_Pin */
+  GPIO_InitStruct.Pin = Lora_IRQ_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(Lora_IRQ_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Lora_Reset_Pin */
+  GPIO_InitStruct.Pin = Lora_Reset_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(Lora_Reset_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
@@ -462,6 +562,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
     }
 }
+
 
 /* USER CODE END 4 */
 

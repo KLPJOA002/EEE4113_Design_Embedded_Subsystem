@@ -27,6 +27,7 @@
 #include <stdarg.h>
 #include <ssd1306.h>
 #include <fonts.h>
+#include <SX1278.h>
 
 /* USER CODE END Includes */
 
@@ -82,7 +83,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+SX1278_hw_t SX1278_hw;
+SX1278_t SX1278;
 
+int master;
+int ret;
+
+char Lora_buffer[512];
+
+int message;
+int message_length;
 
 
 /* USER CODE END 0 */
@@ -125,29 +135,44 @@ int main(void)
   MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
-
-  //ssd1306_Init(Oled_I2C); // Initilise the Oled module
-  //HAL_Delay(1000);
-
-  //ssd1306_SetCursor(0, 0);
-  //ssd1306_WriteString("Button Counter", Font_7x10, White); //Write some text to the Oled module
-
-  //ssd1306_UpdateScreen(Oled_I2C);
-
-  FATFS FatFs;
-  FIL fil;
-  FRESULT fres;
-  BYTE readBuf[30];
-
-  fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
   
-  strncpy((char*)readBuf,"a new file is made!",19);
-  UINT bytesWrote;
-  fres = f_write(&fil,readBuf,19,&bytesWrote);
+  //OLED CODE
 
-  f_close(&fil);
+  // ssd1306_Init(Oled_I2C); // Initilise the Oled module
+  // HAL_Delay(1000);
 
+  // ssd1306_SetCursor(0, 0);
+  // ssd1306_WriteString("Button Counter", Font_7x10, White); //Write some text to the Oled module
+
+  // ssd1306_UpdateScreen(Oled_I2C);
+
+
+
+ //SD CARD CODE
+  
+
+  // FATFS FatFs;
+  // FIL fil;
+  // FRESULT fres;
+  // BYTE readBuf[30];
+
+ 
+  // fres = f_mount(&FatFs, "", 1); //1=mount now  //Open the file system
+  // if (fres != FR_OK) {
+  //   while(1);
+  // }
+
+  // fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+
+  // strncpy((char*)readBuf,"a new file is made!",19);
+  // UINT bytesWrote;
+  // fres = f_write(&fil,readBuf,19,&bytesWrote);
+  
+
+  // f_close(&fil);
+  
+
+  HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -424,7 +449,7 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_Board_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : SPI1_CS_Pin */
+  /*Configure GPIO pin : SD_CS_Pin */
   GPIO_InitStruct.Pin = SD_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -447,6 +472,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
     }
 }
+
 
 /* USER CODE END 4 */
 
