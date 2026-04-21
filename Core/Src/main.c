@@ -200,7 +200,7 @@ int main(void)
     /* USER CODE END WHILE */
     HAL_Delay(1000);
     
-        message_length = sprintf(Lora_buffer, "Hello %d", message);
+    message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
     ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
     
     ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) Lora_buffer,

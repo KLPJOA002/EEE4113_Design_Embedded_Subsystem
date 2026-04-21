@@ -7,23 +7,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         0000398c  080001a0  080001a0  000011a0  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000080  08003b2c  08003b2c  00004b2c  2**2
+  2 .rodata       000000c0  08003b2c  08003b2c  00004b2c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08003bac  08003bac  0000507c  2**0
+  3 .ARM.extab    00000000  08003bec  08003bec  0000507c  2**0
                   CONTENTS, READONLY
-  4 .ARM          00000008  08003bac  08003bac  00004bac  2**2
+  4 .ARM          00000008  08003bec  08003bec  00004bec  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  08003bb4  08003bb4  0000507c  2**0
+  5 .preinit_array 00000000  08003bf4  08003bf4  0000507c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08003bb4  08003bb4  00004bb4  2**2
+  6 .init_array   00000004  08003bf4  08003bf4  00004bf4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  08003bb8  08003bb8  00004bb8  2**2
+  7 .fini_array   00000004  08003bf8  08003bf8  00004bf8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         0000007c  20000000  08003bbc  00005000  2**2
+  8 .data         0000007c  20000000  08003bfc  00005000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000724  20000080  08003c38  00005080  2**3
+  9 .bss          00000724  20000080  08003c78  00005080  2**3
                   ALLOC
- 10 ._user_heap_stack 00000604  200007a4  08003c38  000057a4  2**0
+ 10 ._user_heap_stack 00000604  200007a4  08003c78  000057a4  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0000507c  2**0
                   CONTENTS, READONLY
@@ -39,9 +39,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_rnglists 00000d9d  00000000  00000000  0002c220  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00014c62  00000000  00000000  0002cfbd  2**0
+ 18 .debug_line   00014c60  00000000  00000000  0002cfbd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000054d5  00000000  00000000  00041c1f  2**0
+ 19 .debug_str    000054d5  00000000  00000000  00041c1d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  20 .debug_frame  00003060  00000000  00000000  000470f4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -1579,7 +1579,7 @@ void Error_Handler(void)
     HAL_Delay(1000);
  8000b56:	f44f 707a 	mov.w	r0, #1000	@ 0x3e8
  8000b5a:	f000 f88d 	bl	8000c78 <HAL_Delay>
-        message_length = sprintf(Lora_buffer, "Hello %d", message);
+    message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
  8000b5e:	4c18      	ldr	r4, [pc, #96]	@ (8000bc0 <main+0xe8>)
  8000b60:	4f18      	ldr	r7, [pc, #96]	@ (8000bc4 <main+0xec>)
  8000b62:	6822      	ldr	r2, [r4, #0]
@@ -2041,7 +2041,7 @@ static uint32_t DMA_CalcBaseAndBitshift(DMA_HandleTypeDef *hdma)
  8000dc8:	e7f7      	b.n	8000dba <DMA_CalcBaseAndBitshift+0x22>
  8000dca:	bf00      	nop
  8000dcc:	aaaaaaab 	.word	0xaaaaaaab
- 8000dd0:	08003b58 	.word	0x08003b58
+ 8000dd0:	08003b98 	.word	0x08003b98
 
 08000dd4 <DMA_CheckFifoParam>:
   * @retval HAL status
@@ -4591,7 +4591,7 @@ __weak uint32_t HAL_RCC_GetSysClockFreq(void)
  8001d8e:	e7f6      	b.n	8001d7e <HAL_RCC_ClockConfig+0x13a>
  8001d90:	40023c00 	.word	0x40023c00
  8001d94:	40023800 	.word	0x40023800
- 8001d98:	08003b68 	.word	0x08003b68
+ 8001d98:	08003ba8 	.word	0x08003ba8
  8001d9c:	20000010 	.word	0x20000010
  8001da0:	2000000c 	.word	0x2000000c
 
@@ -4629,7 +4629,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8001dc4:	bd08      	pop	{r3, pc}
  8001dc6:	bf00      	nop
  8001dc8:	40023800 	.word	0x40023800
- 8001dcc:	08003b60 	.word	0x08003b60
+ 8001dcc:	08003ba0 	.word	0x08003ba0
 
 08001dd0 <HAL_RCC_CSSCallback>:
 __weak void HAL_RCC_CSSCallback(void)
@@ -7562,7 +7562,7 @@ LoopFillZerobss:
   ldr r1, =_edata
  8002f04:	2000007c 	.word	0x2000007c
   ldr r2, =_sidata
- 8002f08:	08003bbc 	.word	0x08003bbc
+ 8002f08:	08003bfc 	.word	0x08003bfc
   ldr r2, =_sbss
  8002f0c:	20000080 	.word	0x20000080
   ldr r4, =_ebss
@@ -7650,10 +7650,10 @@ Infinite_Loop:
  8002faa:	4798      	blx	r3
  8002fac:	3601      	adds	r6, #1
  8002fae:	e7f2      	b.n	8002f96 <__libc_init_array+0x1e>
- 8002fb0:	08003bb4 	.word	0x08003bb4
- 8002fb4:	08003bb4 	.word	0x08003bb4
- 8002fb8:	08003bb4 	.word	0x08003bb4
- 8002fbc:	08003bb8 	.word	0x08003bb8
+ 8002fb0:	08003bf4 	.word	0x08003bf4
+ 8002fb4:	08003bf4 	.word	0x08003bf4
+ 8002fb8:	08003bf4 	.word	0x08003bf4
+ 8002fbc:	08003bf8 	.word	0x08003bf8
 
 08002fc0 <__retarget_lock_acquire_recursive>:
  8002fc0:	4770      	bx	lr
@@ -8172,11 +8172,11 @@ Infinite_Loop:
  8003464:	4638      	mov	r0, r7
  8003466:	f000 f879 	bl	800355c <_printf_i>
  800346a:	e7ed      	b.n	8003448 <_svfiprintf_r+0x1c0>
- 800346c:	08003b78 	.word	0x08003b78
- 8003470:	08003b82 	.word	0x08003b82
+ 800346c:	08003bb8 	.word	0x08003bb8
+ 8003470:	08003bc2 	.word	0x08003bc2
  8003474:	00000000 	.word	0x00000000
  8003478:	080031d1 	.word	0x080031d1
- 800347c:	08003b7e 	.word	0x08003b7e
+ 800347c:	08003bbe 	.word	0x08003bbe
 
 08003480 <_printf_common>:
  8003480:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -8505,8 +8505,8 @@ Infinite_Loop:
  8003788:	2500      	movs	r5, #0
  800378a:	f104 0619 	add.w	r6, r4, #25
  800378e:	e7f5      	b.n	800377c <_printf_i+0x220>
- 8003790:	08003b89 	.word	0x08003b89
- 8003794:	08003b9a 	.word	0x08003b9a
+ 8003790:	08003bc9 	.word	0x08003bc9
+ 8003794:	08003bda 	.word	0x08003bda
 
 08003798 <memmove>:
  8003798:	4288      	cmp	r0, r1
