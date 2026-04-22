@@ -28,6 +28,7 @@
 #include <ssd1306.h>
 #include <fonts.h>
 #include <SX1278.h>
+#include <time.h>
 
 /* USER CODE END Includes */
 
@@ -38,6 +39,14 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define RTC_Addr 0x68 << 1 
+
+#define RTC_Year 0x06
+#define RTC_Month 0x05
+#define RTC_Day 0x04
+#define RTC_Hour 0x02
+#define RTC_Minute 0x01
+#define RTC_Second 0x00 
 
 /* USER CODE END PD */
 
@@ -58,9 +67,9 @@ DMA_HandleTypeDef hdma_spi1_rx;
 TIM_HandleTypeDef htim11;
 
 /* USER CODE BEGIN PV */
-I2C_HandleTypeDef *Atlas_I2C = &hi2c1;
-I2C_HandleTypeDef *Oled_I2C = &hi2c2;
-I2C_HandleTypeDef *RTC_I2C = &hi2c3;
+I2C_HandleTypeDef *Atlas_I2C = &hi2c3;
+I2C_HandleTypeDef *Oled_I2C = &hi2c1;
+I2C_HandleTypeDef *RTC_I2C = &hi2c2;
 
 SPI_HandleTypeDef *MicroSD_SPI = &hspi1;
 SPI_HandleTypeDef *Lora_SPI = &hspi2;
@@ -82,6 +91,12 @@ static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+static uint8_t bcdtodec(const uint8_t val);
+static uint8_t RTC_Get_Time(I2C_HandleTypeDef *hi2c);
+static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, 
+                           uint8_t hour, uint8_t min, uint8_t sec);
+
+static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18]);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -96,6 +111,8 @@ char Lora_buffer[512];
 
 int message;
 int message_length;
+
+
 
 
 /* USER CODE END 0 */
@@ -156,13 +173,11 @@ int main(void)
   
   //OLED CODE
 
-  // ssd1306_Init(Oled_I2C); // Initilise the Oled module
-  // HAL_Delay(1000);
-
-  // ssd1306_SetCursor(0, 0);
-  // ssd1306_WriteString("Button Counter", Font_7x10, White); //Write some text to the Oled module
-
-  // ssd1306_UpdateScreen(Oled_I2C);
+  ssd1306_Init(Oled_I2C); // Initilise the Oled module
+  HAL_Delay(1000);
+  ssd1306_SetCursor(0,20);
+  ssd1306_WriteString("testing",Font_7x10,White);
+  ssd1306_UpdateScreen(Oled_I2C);
 
 
 
@@ -191,6 +206,9 @@ int main(void)
   
 
   HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
+
+  uint32_t curr_time;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -198,14 +216,26 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    curr_time = RTC_Get_Time(RTC_I2C);
+
+    char buffer[18];
+    struct tm *tm_info;
+    time_t raw_time = (time_t)curr_time;
+
+    // 1. Break the timestamp down into the tm struct
+    tm_info = localtime(&raw_time);
+    strftime(buffer, sizeof(buffer), "%d/%m/%y %H:%M:%S", tm_info);
+
+    write_OLED(0,0,buffer);
+
     HAL_Delay(1000);
     
-    message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
-    ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
+    // message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
+    // ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
     
-    ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) Lora_buffer,
-        message_length, 2000);
-    message += 1;
+    // ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) Lora_buffer,
+    //     message_length, 2000);
+    // message += 1;
 
     /* USER CODE BEGIN 3 */
   }
@@ -554,15 +584,78 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (htim->Instance == TIM11)
-    {
-    	//Pattern = ~Pattern;
-    	//Pattern = TC74_ReadTemp();
-    	//GPIO_Write_func(Pattern);
-      HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
-    }
+  if (htim->Instance == TIM11)
+  {
+    //Pattern = ~Pattern;
+    //Pattern = TC74_ReadTemp();
+    //GPIO_Write_func(Pattern);
+    HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
+  }
 }
 
+
+//function to convert binary coded decimal to normal decimal value.
+static uint8_t bcdtodec(const uint8_t val)
+{
+  return ((val / 16 * 10) + (val % 16));
+}
+
+static uint8_t RTC_Get_Time(I2C_HandleTypeDef *hi2c)
+{
+  uint8_t Year;
+  uint8_t Month;
+  uint8_t Day;
+  uint8_t Hour;
+  uint8_t Minute;
+  uint8_t Second;
+
+  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Year,1,&Year,1,HAL_MAX_DELAY);
+  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Month,1,&Month,1,HAL_MAX_DELAY);
+  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Day,1,&Day,1,HAL_MAX_DELAY);
+  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Hour,1,&Hour,1,HAL_MAX_DELAY);
+  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Minute,1,&Minute,1,HAL_MAX_DELAY);
+  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Second,1,&Second,1,HAL_MAX_DELAY);
+
+  Year = bcdtodec(Year);
+  Month = bcdtodec(Month);
+  Day = bcdtodec(Day);
+  Hour = bcdtodec(Hour);
+  Minute = bcdtodec(Minute);
+  Second = bcdtodec(Second);
+  
+
+  return get_unix_timestamp(Year,Month&0x7F,Day,Hour&0x1F,Minute,Second);
+
+
+}
+
+static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, 
+                           uint8_t hour, uint8_t min, uint8_t sec) 
+{
+    struct tm t;
+    time_t t_of_day;
+
+    // Standard C struct tm requirements:
+    t.tm_year = year - 1900;  // Year since 1900
+    t.tm_mon = month - 1;     // Month, 0 - 11
+    t.tm_mday = day;          // Day of the month
+    t.tm_hour = hour;
+    t.tm_min = min;
+    t.tm_sec = sec;
+    t.tm_isdst = -1;          // Is Daylight Savings Time on? -1 = let the library decide
+
+    t_of_day = mktime(&t);
+
+    return (uint32_t)t_of_day;
+}
+
+static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18])
+{
+  ssd1306_SetCursor(pos_x*7, pos_y*10);
+  ssd1306_WriteString(text, Font_7x10, White); //Write some text to the Oled module
+
+  ssd1306_UpdateScreen(Oled_I2C);
+}
 
 /* USER CODE END 4 */
 
