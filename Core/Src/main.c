@@ -48,6 +48,9 @@
 #define RTC_Minute 0x01
 #define RTC_Second 0x00 
 
+#define RTC_MAGIC_REG  0x07   // DS3231 spare register (alarm/control area)
+#define RTC_MAGIC_VAL  0xAB   // arbitrary flag value
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -92,7 +95,9 @@ static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 static uint8_t bcdtodec(const uint8_t val);
-static uint8_t RTC_Get_Time(I2C_HandleTypeDef *hi2c);
+static uint8_t dectobcd(const uint8_t val);
+static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c);
+static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c);
 static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, 
                            uint8_t hour, uint8_t min, uint8_t sec);
 
@@ -112,7 +117,8 @@ char Lora_buffer[512];
 int message;
 int message_length;
 
-
+uint8_t count = 0b0;
+char count_buffer[4];
 
 
 /* USER CODE END 0 */
@@ -171,17 +177,19 @@ int main(void)
 	SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 10);
 
   
-  //OLED CODE
-
+  //Initilise OLED Screen
   ssd1306_Init(Oled_I2C); // Initilise the Oled module
-  HAL_Delay(1000);
-  ssd1306_SetCursor(0,20);
-  ssd1306_WriteString("testing",Font_7x10,White);
-  ssd1306_UpdateScreen(Oled_I2C);
+  // HAL_Delay(1000);
+  write_OLED(0,1,"A");
+  write_OLED(1,2,"B");
+  // ssd1306_SetCursor(0,20);
+  // ssd1306_WriteString("testing",Font_7x10,White);
+  // ssd1306_UpdateScreen(Oled_I2C);
 
+  //Initilise the RTC One time when the system is flashed with firmware
+  RTC_Set_Time_Once(RTC_I2C);
 
-
- //SD CARD CODE
+  //SD CARD CODE 
   
 
   // FATFS FatFs;
@@ -228,7 +236,12 @@ int main(void)
 
     write_OLED(0,0,buffer);
 
+    snprintf(count_buffer,sizeof(count_buffer),"%u",count);
+    count = (~count)&0b1;
+    write_OLED(17,5,count_buffer);
+
     HAL_Delay(1000);
+    //HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
     
     // message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
     // ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
@@ -600,33 +613,89 @@ static uint8_t bcdtodec(const uint8_t val)
   return ((val / 16 * 10) + (val % 16));
 }
 
-static uint8_t RTC_Get_Time(I2C_HandleTypeDef *hi2c)
+static uint8_t decimalbcd(uint8_t val)
 {
-  uint8_t Year;
-  uint8_t Month;
-  uint8_t Day;
-  uint8_t Hour;
-  uint8_t Minute;
-  uint8_t Second;
+    return ((val / 10) << 4) | (val % 10);
+}
 
-  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Year,1,&Year,1,HAL_MAX_DELAY);
-  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Month,1,&Month,1,HAL_MAX_DELAY);
-  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Day,1,&Day,1,HAL_MAX_DELAY);
-  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Hour,1,&Hour,1,HAL_MAX_DELAY);
-  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Minute,1,&Minute,1,HAL_MAX_DELAY);
-  HAL_I2C_Mem_Read(hi2c,RTC_Addr,RTC_Second,1,&Second,1,HAL_MAX_DELAY);
+static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c)
+{
+    uint8_t Year, Month, Day, Hour, Minute, Second;
 
-  Year = bcdtodec(Year);
-  Month = bcdtodec(Month);
-  Day = bcdtodec(Day);
-  Hour = bcdtodec(Hour);
-  Minute = bcdtodec(Minute);
-  Second = bcdtodec(Second);
-  
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Year,   1, &Year,   1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Month,  1, &Month,  1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Day,    1, &Day,    1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Hour,   1, &Hour,   1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Minute, 1, &Minute, 1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Second, 1, &Second, 1, HAL_MAX_DELAY);
 
-  return get_unix_timestamp(Year,Month&0x7F,Day,Hour&0x1F,Minute,Second);
+    // Mask status bits BEFORE BCD conversion
+    Year   = bcdtodec(Year);
+    Month  = bcdtodec(Month  & 0x1F); // mask century bit
+    Day    = bcdtodec(Day    & 0x3F);
+    Hour   = bcdtodec(Hour   & 0x3F); // mask 12/24hr bit
+    Minute = bcdtodec(Minute & 0x7F);
+    Second = bcdtodec(Second & 0x7F);
 
+    return get_unix_timestamp(2000 + Year, Month, Day, Hour, Minute, Second);
+}
 
+static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c)
+{
+    // Check if time has already been set
+    uint8_t magic = 0;
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_MAGIC_REG, 1, &magic, 1, HAL_MAX_DELAY);
+    
+    if (magic == RTC_MAGIC_VAL)
+        return; // Already set, skip
+
+    // Parse compile-time strings into numbers
+    // __DATE__ is "Mon DD YYYY" e.g. "Apr 22 2026"
+    // __TIME__ is "HH:MM:SS"   e.g. "14:30:00"
+
+    char date[] = __DATE__;
+    char time[] = __TIME__;
+
+    uint8_t day    = ((date[4] == ' ') ? 0 : (date[4] - '0')) * 10 + (date[5] - '0');
+    uint16_t year  = (date[7]-'0')*1000 + (date[8]-'0')*100 + (date[9]-'0')*10 + (date[10]-'0');
+    uint8_t hour   = (time[0]-'0')*10 + (time[1]-'0');
+    uint8_t minute = (time[3]-'0')*10 + (time[4]-'0');
+    uint8_t second = (time[6]-'0')*10 + (time[7]-'0');
+
+    // Parse month string
+    const char *months = "JanFebMarAprMayJunJulAugSepOctNovDec";
+    uint8_t month = 1;
+    for (int i = 0; i < 12; i++) {
+        if (strncmp(&months[i*3], date, 3) == 0) {
+            month = i + 1;
+            break;
+        }
+    }
+
+    // Write to DS3231 registers in BCD
+    uint8_t reg_val;
+
+    reg_val = decimalbcd(second);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Second, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(minute);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Minute, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(hour);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Hour, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(day);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Day, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(month);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Month, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(year % 100); // DS3231 only stores last 2 digits
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Year, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    // Write magic flag so we never set time again
+    reg_val = RTC_MAGIC_VAL;
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_MAGIC_REG, 1, &reg_val, 1, HAL_MAX_DELAY);
 }
 
 static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, 
