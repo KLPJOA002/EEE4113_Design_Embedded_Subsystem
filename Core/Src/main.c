@@ -93,15 +93,35 @@ static void MX_I2C3_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
+
+// ===============================
+// Timer Interrupt Handler
+// ===============================
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+
+// ===============================
+// Lora Functions
+// ===============================
+uint8_t LoRa_Init(SPI_HandleTypeDef *hspi);
+uint8_t LoRa_Detect(SX1278_t *module);
+uint8_t LoRa_TX(uint16_t message);
+uint8_t LoRa_RX();
+// ===============================
+// RTC Functions
+// ===============================
+
 static uint8_t bcdtodec(const uint8_t val);
 static uint8_t dectobcd(const uint8_t val);
 static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c);
 static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c);
-static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, 
-                           uint8_t hour, uint8_t min, uint8_t sec);
+static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec);
 
+// ===============================
+// OLED Functions
+// ===============================
 static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18]);
+
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -120,7 +140,16 @@ int message_length;
 uint8_t count = 0b0;
 char count_buffer[4];
 
+// ===============================
+// Flags
+// ===============================
+uint8_t LoRa_Connected = 0;
 
+uint8_t OLED_Connected = 0;
+
+uint8_t RTC_Connected = 0;
+
+uint8_t SD_Connected = 0;
 /* USER CODE END 0 */
 
 /**
@@ -162,30 +191,12 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
-  	//initialize LoRa module
-	SX1278_hw.dio0.port = Lora_IRQ_GPIO_Port;
-	SX1278_hw.dio0.pin = Lora_IRQ_Pin;
-	SX1278_hw.nss.port = Lora_CS_GPIO_Port;
-	SX1278_hw.nss.pin = Lora_CS_Pin;
-	SX1278_hw.reset.port = Lora_Reset_GPIO_Port;
-	SX1278_hw.reset.pin = Lora_Reset_Pin;
-	SX1278_hw.spi = Lora_SPI;
-
-	SX1278.hw = &SX1278_hw;
-
-	SX1278_init(&SX1278, 433000000, SX1278_POWER_17DBM, SX1278_LORA_SF_7,
-	SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 10);
-
+  //initialize LoRa module
+  LoRa_Init(Lora_SPI);
   
   //Initilise OLED Screen
   ssd1306_Init(Oled_I2C); // Initilise the Oled module
-  // HAL_Delay(1000);
-  write_OLED(0,1,"A");
-  write_OLED(1,2,"B");
-  // ssd1306_SetCursor(0,20);
-  // ssd1306_WriteString("testing",Font_7x10,White);
-  // ssd1306_UpdateScreen(Oled_I2C);
-
+ 
   //Initilise the RTC One time when the system is flashed with firmware
   RTC_Set_Time_Once(RTC_I2C);
 
@@ -240,15 +251,19 @@ int main(void)
     count = (~count)&0b1;
     write_OLED(17,5,count_buffer);
 
+    // HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+    
+    message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
+    ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
+    
+    ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) Lora_buffer,
+        message_length, 2000);
+    message += 1;
+
+    
+
     HAL_Delay(1000);
-    //HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
     
-    // message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
-    // ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
-    
-    // ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) Lora_buffer,
-    //     message_length, 2000);
-    // message += 1;
 
     /* USER CODE BEGIN 3 */
   }
@@ -604,6 +619,37 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     //GPIO_Write_func(Pattern);
     HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
   }
+}
+
+uint8_t LoRa_Init(SPI_HandleTypeDef *hspi)
+{
+
+    SX1278_hw.dio0.port = Lora_IRQ_GPIO_Port;
+    SX1278_hw.dio0.pin = Lora_IRQ_Pin;
+    SX1278_hw.nss.port = Lora_CS_GPIO_Port;
+    SX1278_hw.nss.pin = Lora_CS_Pin;
+    SX1278_hw.reset.port = Lora_Reset_GPIO_Port;
+    SX1278_hw.reset.pin = Lora_Reset_Pin;
+    SX1278_hw.spi = hspi;
+
+    SX1278.hw = &SX1278_hw;
+  if (LoRa_Detect(&SX1278))
+  {
+    SX1278_init(&SX1278, 433175000, SX1278_POWER_11DBM, SX1278_LORA_SF_7,
+    SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 100);
+
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
+}
+
+uint8_t LoRa_Detect(SX1278_t *module)
+{
+  uint8_t version = SX1278_SPIRead(module, REG_LR_VERSION);
+  return (version == 0x12) ? 1 : 0;
 }
 
 

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 1
   27:FATFS/Target/user_diskio.c ****  * the section contents can be deleted.
   28:FATFS/Target/user_diskio.c ****  */
   29:FATFS/Target/user_diskio.c **** /* USER CODE BEGIN 0 */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s 			page 2
 
 
   30:FATFS/Target/user_diskio.c **** /* USER CODE END 0 */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 1
   30              		.loc 1 83 1 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s 			page 3
 
 
   33              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 1
   69 0002 FFF7FEFF 		bl	USER_SPI_status
   70              	.LVL3:
  104:FATFS/Target/user_diskio.c ****   /* USER CODE END STATUS */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s 			page 4
 
 
  105:FATFS/Target/user_diskio.c **** }
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 1
  106              		.global	USER_write
  107              		.syntax unified
  108              		.thumb
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s 			page 5
 
 
  109              		.thumb_func
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 1
  151:FATFS/Target/user_diskio.c **** 
  152:FATFS/Target/user_diskio.c **** /**
  153:FATFS/Target/user_diskio.c ****   * @brief  I/O control operation
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s 			page 6
 
 
  154:FATFS/Target/user_diskio.c ****   * @param  pdrv: Physical drive number (0..)
@@ -354,24 +354,24 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 1
  179              		.file 3 "Middlewares/Third_Party/FatFs/src/diskio.h"
  180              		.file 4 "Middlewares/Third_Party/FatFs/src/ff_gen_drv.h"
  181              		.file 5 "FATFS/Target/user_diskio_spi.h"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 user_diskio.c
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:21     .text.USER_initialize:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:27     .text.USER_initialize:00000000 USER_initialize
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:49     .text.USER_status:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:55     .text.USER_status:00000000 USER_status
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:77     .text.USER_read:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:83     .text.USER_read:00000000 USER_read
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:105    .text.USER_write:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:111    .text.USER_write:00000000 USER_write
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:133    .text.USER_ioctl:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:139    .text.USER_ioctl:00000000 USER_ioctl
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:165    .data.USER_Driver:00000000 USER_Driver
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:162    .data.USER_Driver:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccWTTBsn.s:174    .data.Stat:00000000 Stat
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:21     .text.USER_initialize:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:27     .text.USER_initialize:00000000 USER_initialize
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:49     .text.USER_status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:55     .text.USER_status:00000000 USER_status
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:77     .text.USER_read:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:83     .text.USER_read:00000000 USER_read
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:105    .text.USER_write:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:111    .text.USER_write:00000000 USER_write
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:133    .text.USER_ioctl:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:139    .text.USER_ioctl:00000000 USER_ioctl
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:165    .data.USER_Driver:00000000 USER_Driver
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:162    .data.USER_Driver:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\cc0Fkpij.s:174    .data.Stat:00000000 Stat
 
 UNDEFINED SYMBOLS
 USER_SPI_initialize
