@@ -104,7 +104,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 // ===============================
 uint8_t LoRa_Init();
 uint8_t LoRa_Detect(SX1278_t *module);
-uint8_t LoRa_TX(uint16_t message);
+uint8_t LoRa_TX(char message[50]);
 void LoRa_RX();
 // ===============================
 // RTC Functions
@@ -132,7 +132,7 @@ SX1278_t SX1278;
 uint8_t master;
 uint8_t ret;
 
-uint16_t LoRa_RX_Buffer;
+char LoRa_RX_Buffer[50];
 uint8_t LoRa_RX_Length;
 
 uint8_t message;
@@ -239,6 +239,7 @@ int main(void)
 
   uint32_t curr_time;
   uint16_t Counter = 0;
+  char buffer[18];
 
   /* USER CODE END 2 */
 
@@ -247,33 +248,44 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    curr_time = RTC_Get_Time(RTC_I2C);
+    if (RTC_Connected)
+    {
+      curr_time = RTC_Get_Time(RTC_I2C);
 
-    char buffer[18];
-    struct tm *tm_info;
-    time_t raw_time = (time_t)curr_time;
+      struct tm *tm_info;
+      time_t raw_time = (time_t)curr_time;
 
-    // 1. Break the timestamp down into the tm struct
-    tm_info = localtime(&raw_time);
-    strftime(buffer, sizeof(buffer), "%d/%m/%y %H:%M:%S", tm_info);
+      // 1. Break the timestamp down into the tm struct
+      tm_info = localtime(&raw_time);
+      strftime(buffer, sizeof(buffer), "%d/%m/%y %H:%M:%S", tm_info);
 
-    write_OLED(0,0,buffer);
+      if (OLED_Connected)
+      {
+        write_OLED(0,0,buffer);
+      }
+    }
 
 
-
-    snprintf(count_buffer,sizeof(count_buffer),"%u",count);
-    count = (~count)&0b1;
-    write_OLED(17,5,count_buffer);
+    if (OLED_Connected)
+    {
+      snprintf(count_buffer,sizeof(count_buffer),"%u",count);
+      count = (~count)&0b1;
+      write_OLED(17,5,count_buffer);
+    }
 
     // HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 
     if (LoRa_Connected)
     {
-      LoRa_TX(Counter);
-      Counter++;
+      LoRa_TX( "testing" );
     }
     snprintf(buffer,sizeof(buffer), "LoRa:%u",LoRa_Connected);
     write_OLED(0,1,buffer);
+
+    if(LoRa_RX_Flag&OLED_Connected)
+    {
+      write_OLED(0,4,LoRa_RX_Buffer);
+    }
     
 
     HAL_Delay(1000);
@@ -684,10 +696,10 @@ uint8_t LoRa_Detect(SX1278_t *module)
 
 
 
-uint8_t LoRa_TX(uint16_t message)
+uint8_t LoRa_TX(char message[50])
 {
-
   //message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
+  message_length = sizeof(message);
   if (LoRa_Detect(&SX1278))
   {
     message_length = 2;
@@ -844,7 +856,13 @@ static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day,
 // ===============================================================================================
 // OLED Functions
 // ===============================================================================================
-
+/**
+  * @brief OLED Write Function
+  * @param uint8_t X_Position
+  * @param uint8_t Y_Position
+  * @param char text[18]
+  * @retval None
+  */
 static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18])
 {
   ssd1306_SetCursor(pos_x*7, pos_y*10);
