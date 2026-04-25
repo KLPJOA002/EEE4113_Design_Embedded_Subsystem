@@ -238,6 +238,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
 
   uint32_t curr_time;
+  uint16_t Counter = 0;
 
   /* USER CODE END 2 */
 
@@ -258,13 +259,21 @@ int main(void)
 
     write_OLED(0,0,buffer);
 
-    
+
 
     snprintf(count_buffer,sizeof(count_buffer),"%u",count);
     count = (~count)&0b1;
     write_OLED(17,5,count_buffer);
 
     // HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+
+    if (LoRa_Connected)
+    {
+      LoRa_TX(Counter);
+      Counter++;
+    }
+    snprintf(buffer,sizeof(buffer), "LoRa:%u",LoRa_Connected);
+    write_OLED(0,1,buffer);
     
 
     HAL_Delay(1000);
@@ -646,6 +655,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 // ===============================================================================================
 uint8_t LoRa_Init()
 {
+
+  SX1278_hw_init(&SX1278_hw);
+
+  // Step 2: perform a hard reset and wait for module to boot
+  SX1278_hw_Reset(&SX1278_hw);   // pulls reset low then high, waits 100ms internally
+  HAL_Delay(100);
   if (LoRa_Detect(&SX1278))
   {
     SX1278_init(&SX1278, 433175000, SX1278_POWER_11DBM, SX1278_LORA_SF_7,
