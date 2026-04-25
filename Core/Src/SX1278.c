@@ -68,7 +68,7 @@ void SX1278_config(SX1278_t *module) {
 	freq_reg[2] = (uint8_t) (freq >> 0);
 	SX1278_SPIBurstWrite(module, LR_RegFrMsb, (uint8_t*) freq_reg, 3); //setting  frequency parameter
 
-	SX1278_SPIWrite(module, RegSyncWord, 0x34);
+	SX1278_SPIWrite(module, RegSyncWord, 0x12);
 
 	//setting base parameter
 	SX1278_SPIWrite(module, LR_RegPaConfig, SX1278_Power[module->power]); //Setting output power parameter
