@@ -110,7 +110,7 @@ void LoRa_RX();
 // ===============================
 // RTC Functions
 // ===============================
-
+static uint8_t RTC_Detect();
 static uint8_t bcdtodec(const uint8_t val);
 static uint8_t dectobcd(const uint8_t val);
 static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c);
@@ -122,6 +122,12 @@ static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, ui
 // ===============================
 static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18]);
 
+// ===============================
+// SD Card Functions
+// ===============================
+static uint8_t SD_Detect();
+static uint8_t SD_Write();
+static uint8_t SD_Read();
 
 /* USER CODE END PFP */
 
@@ -152,7 +158,7 @@ uint8_t LoRa_RX_Counter = 0;
 
 uint8_t OLED_Connected = 0;
 
-uint8_t RTC_Connected = 1;
+uint8_t RTC_Connected = 0;
 
 uint8_t SD_Connected = 0;
 /* USER CODE END 0 */
@@ -212,7 +218,8 @@ int main(void)
   OLED_Connected = !ssd1306_Init(Oled_I2C); // Initilise the Oled module
  
   //Initilise the RTC One time when the system is flashed with firmware
-  RTC_Set_Time_Once(RTC_I2C);
+  RTC_Connected = RTC_Detect();
+  if (RTC_Connected) RTC_Set_Time_Once(RTC_I2C);
 
   //SD CARD CODE 
   
@@ -601,7 +608,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(Lora_CS_GPIO_Port, Lora_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(Lora_CS_GPIO_Port, Lora_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(Lora_Reset_GPIO_Port, Lora_Reset_Pin, GPIO_PIN_RESET);
@@ -612,6 +619,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_Board_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SD_CD_Pin */
+  GPIO_InitStruct.Pin = SD_CD_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(SD_CD_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : SD_CS_Pin */
   GPIO_InitStruct.Pin = SD_CS_Pin;
@@ -869,6 +882,15 @@ void LoRa_RX()
 // RTC Funtions
 // ===============================================================================================
 //function to convert binary coded decimal to normal decimal value.
+static uint8_t RTC_Detect()
+{
+  if (HAL_I2C_IsDeviceReady(RTC_I2C, RTC_Addr, 3, 100) == HAL_OK) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
 static uint8_t bcdtodec(const uint8_t val)
 {
   return ((val / 16 * 10) + (val % 16));
@@ -995,6 +1017,15 @@ static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18])
   ssd1306_WriteString(text, Font_7x10, White); //Write some text to the Oled module
 
   ssd1306_UpdateScreen(Oled_I2C);
+}
+
+// ===============================================================================================
+// SD Functions
+// ===============================================================================================
+
+static uint8_t SD_Detect()
+{
+  SD_Connected = HAL_GPIO_ReadPin(SD_CD_GPIO_Port,SD_CD_Pin);
 }
 
 /* USER CODE END 4 */
