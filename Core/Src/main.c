@@ -105,6 +105,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 uint8_t LoRa_Init();
 uint8_t LoRa_Detect(SX1278_t *module);
 uint8_t LoRa_TX(char message[50]);
+static void LoRa_ArmRX();
 void LoRa_RX();
 // ===============================
 // RTC Functions
@@ -146,6 +147,8 @@ char count_buffer[4];
 // ===============================
 uint8_t LoRa_Connected = 0;
 uint8_t LoRa_RX_Flag = 0;
+uint8_t LoRa_RX_Mode = 0;
+uint8_t LoRa_RX_Counter = 0;
 
 uint8_t OLED_Connected = 0;
 
@@ -206,7 +209,7 @@ int main(void)
   LoRa_Init();
   
   //Initilise OLED Screen
-  OLED_Connected = ~ssd1306_Init(Oled_I2C); // Initilise the Oled module
+  OLED_Connected = !ssd1306_Init(Oled_I2C); // Initilise the Oled module
  
   //Initilise the RTC One time when the system is flashed with firmware
   RTC_Set_Time_Once(RTC_I2C);
@@ -247,6 +250,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     if (RTC_Connected)
     {
       curr_time = RTC_Get_Time(RTC_I2C);
@@ -274,16 +278,23 @@ int main(void)
 
     // HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 
-    if (LoRa_Connected)
-    {
-      LoRa_TX("testing");
-    }
+    // if (LoRa_Connected)
+    // {
+    //   LoRa_TX("testing");
+    // }
     snprintf(buffer,sizeof(buffer), "LoRa:%u",LoRa_Connected);
     write_OLED(0,1,buffer);
 
-    if(LoRa_RX_Flag&OLED_Connected)
+    if(LoRa_RX_Flag&&OLED_Connected)
     {
+      write_OLED(0,4,"       ");
       write_OLED(0,4,LoRa_RX_Buffer);
+
+      snprintf(count_buffer,sizeof(count_buffer),"%u",LoRa_RX_Counter);
+      write_OLED(0,5,count_buffer);
+
+      LoRa_RX_Flag = 0;
+      LoRa_TX("ACK");
     }
     
 
@@ -681,7 +692,7 @@ uint8_t LoRa_Init()
     SX1278_init(&SX1278, 433175000, SX1278_POWER_11DBM, SX1278_LORA_SF_7,
     SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 100);
 
-    SX1278_LoRaEntryRx(&SX1278, 100, 2000);
+    LoRa_ArmRX();
 
     LoRa_Connected = 1;
     return 1;
@@ -700,54 +711,158 @@ uint8_t LoRa_Detect(SX1278_t *module)
 }
 
 
-
-uint8_t LoRa_TX(char message[50])
+uint8_t LoRa_TX(char *message)
 {
-  //message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
-  message_length = strlen(message);
+  uint8_t msg_len = strlen(message);
+  if (msg_len == 0 || msg_len > 50) return 0;
 
-  if (message_length == 0 || message_length > 50)
-    return 0;  // guard against empty or oversized messages
-
-  if (LoRa_Detect(&SX1278))
+  if (SX1278_LoRaEntryTx(&SX1278, msg_len, 2000))
   {
-    ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
-    if (ret)
-    {
-      ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) message, message_length, 2000);
-
-      SX1278_LoRaEntryRx(&SX1278, 100, 2000);
-
-      if(ret) return 1;
-      else return 0;
-    }
-    else return 0;
+    uint8_t result =  SX1278_LoRaTxPacket(&SX1278, (uint8_t*)message, msg_len, 2000);
+    LoRa_ArmRX();
+    return result;
   }
-  else
-  {
-    LoRa_Connected = 0;
-    return 0;
-  }
+  return 0;
 }
+
+// uint8_t LoRa_TX(char message[50])
+// {
+//   //message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
+//   message_length = strlen(message);
+
+//   if (message_length == 0 || message_length > 50)
+//     return 0;  // guard against empty or oversized messages
+
+//   if (LoRa_Detect(&SX1278))
+//   {
+//     ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
+//     if (ret)
+//     {
+//       ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) message, message_length, 2000);
+
+//       SX1278_LoRaEntryRx(&SX1278, 100, 2000);
+
+//       if(ret) return 1;
+//       else return 0;
+//     }
+//     else return 0;
+//   }
+//   else
+//   {
+//     LoRa_Connected = 0;
+//     return 0;
+//   }
+// }
+
+// uint8_t LoRa_TX(char message[50])
+// {
+//   uint8_t msg_len = strlen(message);
+
+//   if (msg_len == 0 || msg_len > 50)
+//     return 0;
+
+//   // Switch directly to TX mode without calling SX1278_LoRaEntryTx
+//   // which calls SX1278_config (15ms sleep + full reconfigure) every time
+//   SX1278_SPIWrite(&SX1278, REG_LR_PADAC, 0x87);              // TX power
+//   SX1278_SPIWrite(&SX1278, LR_RegHopPeriod, 0x00);           // no FHSS
+//   SX1278_SPIWrite(&SX1278, REG_LR_DIOMAPPING1, 0x41);        // DIO0 = TxDone
+//   SX1278_clearLoRaIrq(&SX1278);
+//   SX1278_SPIWrite(&SX1278, LR_RegIrqFlagsMask, 0xF7);        // unmask TxDone
+//   SX1278_SPIWrite(&SX1278, LR_RegPayloadLength, msg_len);
+
+//   // Point FIFO to TX base
+//   uint8_t addr = SX1278_SPIRead(&SX1278, LR_RegFifoTxBaseAddr);
+//   SX1278_SPIWrite(&SX1278, LR_RegFifoAddrPtr, addr);
+
+//   // Write payload to FIFO
+//   SX1278_SPIBurstWrite(&SX1278, 0x00, (uint8_t*)message, msg_len);
+
+//   // Fire TX
+//   SX1278_SPIWrite(&SX1278, LR_RegOpMode, 0x8b);
+
+//   // Wait for TxDone on DIO0 with timeout
+//   uint32_t timeout = 500;
+//   while (!SX1278_hw_GetDIO0(SX1278.hw))
+//   {
+//     if (--timeout == 0)
+//     {
+//       SX1278_hw_Reset(SX1278.hw);
+//       // Full reinit needed after reset
+//       SX1278_init(&SX1278, 433175000, SX1278_POWER_11DBM, SX1278_LORA_SF_7,
+//           SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 100);
+//       LoRa_ArmRX();
+//       return 0;
+//     }
+//     SX1278_hw_DelayMs(1);
+//   }
+
+//   SX1278_clearLoRaIrq(&SX1278);
+
+//   // Re-arm RX directly — no reconfigure
+//   LoRa_ArmRX();
+
+//   return 1;
+// }
+
+// static void LoRa_ArmRX()
+// {
+//     SX1278_SPIWrite(&SX1278, REG_LR_PADAC, 0x84);
+//     SX1278_SPIWrite(&SX1278, LR_RegHopPeriod, 0xFF);
+//     SX1278_SPIWrite(&SX1278, REG_LR_DIOMAPPING1, 0x01);        // DIO0 = RxDone
+//     SX1278_SPIWrite(&SX1278, LR_RegIrqFlagsMask, 0x3F);        // unmask RxDone
+//     SX1278_clearLoRaIrq(&SX1278);
+//     SX1278_SPIWrite(&SX1278, LR_RegPayloadLength, 100);
+//     uint8_t addr = SX1278_SPIRead(&SX1278, LR_RegFifoRxBaseAddr);
+//     SX1278_SPIWrite(&SX1278, LR_RegFifoAddrPtr, addr);
+//     SX1278_SPIWrite(&SX1278, LR_RegOpMode, 0x8d);              // continuous RX
+//     SX1278.status = RX;
+// }
+
+static void LoRa_ArmRX()
+{
+  SX1278_LoRaEntryRx(&SX1278, 100, 2000);
+}
+
+// void LoRa_RX()
+// {
+//   // Read packet out of the FIFO immediately
+//   LoRa_RX_Length = SX1278_LoRaRxPacket(&SX1278);
+
+//   if (LoRa_RX_Length > 0)
+//   {
+
+//     // Copy out of the module's internal buffer and null-terminate
+//     if (LoRa_RX_Length >= sizeof(LoRa_RX_Buffer)) LoRa_RX_Length = sizeof(LoRa_RX_Buffer) - 1;
+//     memcpy(LoRa_RX_Buffer, SX1278.rxBuffer, LoRa_RX_Length);
+//     LoRa_RX_Buffer[LoRa_RX_Length] = '\0';  // always null-terminate
+//     LoRa_RX_Flag = 1;  // signal main loop to process it
+//     LoRa_RX_Counter++;
+//   }
+
+//   // Re-arm the receiver for the next packet
+//   // Can't call SX1278_LoRaEntryRx here (it uses HAL_Delay)
+//   // Instead just reset the FIFO pointer and clear IRQ
+//   uint8_t addr = SX1278_SPIRead(&SX1278, LR_RegFifoRxBaseAddr);
+//   SX1278_SPIWrite(&SX1278, LR_RegFifoAddrPtr, addr);
+//   SX1278_clearLoRaIrq(&SX1278);
+
+//   LoRa_ArmRX();
+// }
 
 void LoRa_RX()
 {
-  // Read packet out of the FIFO immediately
-  LoRa_RX_Length = SX1278_LoRaRxPacket(&SX1278);
-
-  if (LoRa_RX_Length > 0)
-  {
-      // Copy out of the module's internal buffer
-      memcpy(LoRa_RX_Buffer, SX1278.rxBuffer, LoRa_RX_Length);
-      LoRa_RX_Flag = 1;  // signal main loop to process it
-  }
-
-  // Re-arm the receiver for the next packet
-  // Can't call SX1278_LoRaEntryRx here (it uses HAL_Delay)
-  // Instead just reset the FIFO pointer and clear IRQ
-  uint8_t addr = SX1278_SPIRead(&SX1278, LR_RegFifoRxBaseAddr);
-  SX1278_SPIWrite(&SX1278, LR_RegFifoAddrPtr, addr);
-  SX1278_clearLoRaIrq(&SX1278);
+    uint8_t len = SX1278_LoRaRxPacket(&SX1278);
+    if (len > 0)
+    {
+        if (len >= sizeof(LoRa_RX_Buffer))
+            len = sizeof(LoRa_RX_Buffer) - 1;
+        memcpy(LoRa_RX_Buffer, SX1278.rxBuffer, len);
+        LoRa_RX_Buffer[len] = '\0';
+        LoRa_RX_Length = len;
+        LoRa_RX_Flag = 1;
+        LoRa_RX_Counter++;
+    }
+    SX1278_clearLoRaIrq(&SX1278);
 }
 
 // ===============================================================================================
