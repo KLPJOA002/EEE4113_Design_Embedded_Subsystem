@@ -1,0 +1,106 @@
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"fatfs.c"
+  16              		.text
+  17              		.section	.text.MX_FATFS_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	MX_FATFS_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	MX_FATFS_Init:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 08B5     		push	{r3, lr}
+  28 0002 0349     		ldr	r1, .L3
+  29 0004 0348     		ldr	r0, .L3+4
+  30 0006 FFF7FEFF 		bl	FATFS_LinkDriver
+  31 000a 034B     		ldr	r3, .L3+8
+  32 000c 1870     		strb	r0, [r3]
+  33 000e 08BD     		pop	{r3, pc}
+  34              	.L4:
+  35              		.align	2
+  36              	.L3:
+  37 0010 00000000 		.word	USERPath
+  38 0014 00000000 		.word	USER_Driver
+  39 0018 00000000 		.word	retUSER
+  41              		.section	.text.get_fattime,"ax",%progbits
+  42              		.align	1
+  43              		.global	get_fattime
+  44              		.syntax unified
+  45              		.thumb
+  46              		.thumb_func
+  48              	get_fattime:
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		@ link register save eliminated.
+  52 0000 0020     		movs	r0, #0
+  53 0002 7047     		bx	lr
+  55              		.global	USERFile
+  56              		.section	.bss.USERFile,"aw",%nobits
+  57              		.align	2
+  60              	USERFile:
+  61 0000 00000000 		.space	560
+  61      00000000 
+  61      00000000 
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 2
+
+
+  61      00000000 
+  61      00000000 
+  62              		.global	USERFatFS
+  63              		.section	.bss.USERFatFS,"aw",%nobits
+  64              		.align	2
+  67              	USERFatFS:
+  68 0000 00000000 		.space	560
+  68      00000000 
+  68      00000000 
+  68      00000000 
+  68      00000000 
+  69              		.global	USERPath
+  70              		.section	.bss.USERPath,"aw",%nobits
+  71              		.align	2
+  74              	USERPath:
+  75 0000 00000000 		.space	4
+  76              		.global	retUSER
+  77              		.section	.bss.retUSER,"aw",%nobits
+  80              	retUSER:
+  81 0000 00       		.space	1
+  82              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fatfs.c
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:18     .text.MX_FATFS_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:24     .text.MX_FATFS_Init:00000000 MX_FATFS_Init
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:37     .text.MX_FATFS_Init:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:74     .bss.USERPath:00000000 USERPath
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:80     .bss.retUSER:00000000 retUSER
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:42     .text.get_fattime:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:48     .text.get_fattime:00000000 get_fattime
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:60     .bss.USERFile:00000000 USERFile
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:57     .bss.USERFile:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:67     .bss.USERFatFS:00000000 USERFatFS
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:64     .bss.USERFatFS:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:71     .bss.USERPath:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:81     .bss.retUSER:00000000 $d
+
+UNDEFINED SYMBOLS
+FATFS_LinkDriver
+USER_Driver

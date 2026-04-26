@@ -1,0 +1,111 @@
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cclVuKfy.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32f4xx_hal_i2c_ex.c"
+  16              		.text
+  17              		.section	.text.HAL_I2CEx_ConfigAnalogFilter,"ax",%progbits
+  18              		.align	1
+  19              		.global	HAL_I2CEx_ConfigAnalogFilter
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	HAL_I2CEx_ConfigAnalogFilter:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 90F83D30 		ldrb	r3, [r0, #61]	@ zero_extendqisi2
+  29 0004 DBB2     		uxtb	r3, r3
+  30 0006 202B     		cmp	r3, #32
+  31 0008 01D0     		beq	.L4
+  32 000a 0220     		movs	r0, #2
+  33 000c 7047     		bx	lr
+  34              	.L4:
+  35 000e 2423     		movs	r3, #36
+  36 0010 80F83D30 		strb	r3, [r0, #61]
+  37 0014 0268     		ldr	r2, [r0]
+  38 0016 1368     		ldr	r3, [r2]
+  39 0018 23F00103 		bic	r3, r3, #1
+  40 001c 1360     		str	r3, [r2]
+  41 001e 0268     		ldr	r2, [r0]
+  42 0020 536A     		ldr	r3, [r2, #36]
+  43 0022 23F01003 		bic	r3, r3, #16
+  44 0026 5362     		str	r3, [r2, #36]
+  45 0028 0268     		ldr	r2, [r0]
+  46 002a 536A     		ldr	r3, [r2, #36]
+  47 002c 0B43     		orrs	r3, r3, r1
+  48 002e 5362     		str	r3, [r2, #36]
+  49 0030 0268     		ldr	r2, [r0]
+  50 0032 1368     		ldr	r3, [r2]
+  51 0034 43F00103 		orr	r3, r3, #1
+  52 0038 1360     		str	r3, [r2]
+  53 003a 2023     		movs	r3, #32
+  54 003c 80F83D30 		strb	r3, [r0, #61]
+  55 0040 0020     		movs	r0, #0
+  56 0042 7047     		bx	lr
+  58              		.section	.text.HAL_I2CEx_ConfigDigitalFilter,"ax",%progbits
+  59              		.align	1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cclVuKfy.s 			page 2
+
+
+  60              		.global	HAL_I2CEx_ConfigDigitalFilter
+  61              		.syntax unified
+  62              		.thumb
+  63              		.thumb_func
+  65              	HAL_I2CEx_ConfigDigitalFilter:
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68              		@ link register save eliminated.
+  69 0000 90F83D30 		ldrb	r3, [r0, #61]	@ zero_extendqisi2
+  70 0004 DBB2     		uxtb	r3, r3
+  71 0006 202B     		cmp	r3, #32
+  72 0008 01D0     		beq	.L8
+  73 000a 0220     		movs	r0, #2
+  74 000c 7047     		bx	lr
+  75              	.L8:
+  76 000e 2423     		movs	r3, #36
+  77 0010 80F83D30 		strb	r3, [r0, #61]
+  78 0014 0268     		ldr	r2, [r0]
+  79 0016 1368     		ldr	r3, [r2]
+  80 0018 23F00103 		bic	r3, r3, #1
+  81 001c 1360     		str	r3, [r2]
+  82 001e 0268     		ldr	r2, [r0]
+  83 0020 536A     		ldr	r3, [r2, #36]
+  84 0022 9BB2     		uxth	r3, r3
+  85 0024 23F00F03 		bic	r3, r3, #15
+  86 0028 1943     		orrs	r1, r1, r3
+  87 002a 89B2     		uxth	r1, r1
+  88 002c 5162     		str	r1, [r2, #36]
+  89 002e 0268     		ldr	r2, [r0]
+  90 0030 1368     		ldr	r3, [r2]
+  91 0032 43F00103 		orr	r3, r3, #1
+  92 0036 1360     		str	r3, [r2]
+  93 0038 2023     		movs	r3, #32
+  94 003a 80F83D30 		strb	r3, [r0, #61]
+  95 003e 0020     		movs	r0, #0
+  96 0040 7047     		bx	lr
+  98              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cclVuKfy.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_i2c_ex.c
+C:\Users\joabk\AppData\Local\Temp\cclVuKfy.s:18     .text.HAL_I2CEx_ConfigAnalogFilter:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cclVuKfy.s:24     .text.HAL_I2CEx_ConfigAnalogFilter:00000000 HAL_I2CEx_ConfigAnalogFilter
+C:\Users\joabk\AppData\Local\Temp\cclVuKfy.s:59     .text.HAL_I2CEx_ConfigDigitalFilter:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cclVuKfy.s:65     .text.HAL_I2CEx_ConfigDigitalFilter:00000000 HAL_I2CEx_ConfigDigitalFilter
+
+NO UNDEFINED SYMBOLS

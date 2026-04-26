@@ -28,6 +28,7 @@
 #include <ssd1306.h>
 #include <fonts.h>
 #include <SX1278.h>
+#include <time.h>
 
 /* USER CODE END Includes */
 
@@ -38,6 +39,17 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define RTC_Addr 0x68 << 1 
+
+#define RTC_Year 0x06
+#define RTC_Month 0x05
+#define RTC_Day 0x04
+#define RTC_Hour 0x02
+#define RTC_Minute 0x01
+#define RTC_Second 0x00 
+
+#define RTC_MAGIC_REG  0x07   // DS3231 spare register (alarm/control area)
+#define RTC_MAGIC_VAL  0xAB   // arbitrary flag value
 
 /* USER CODE END PD */
 
@@ -52,16 +64,18 @@ I2C_HandleTypeDef hi2c2;
 I2C_HandleTypeDef hi2c3;
 
 SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi2;
 DMA_HandleTypeDef hdma_spi1_rx;
 
 TIM_HandleTypeDef htim11;
 
 /* USER CODE BEGIN PV */
-I2C_HandleTypeDef *Atlas_I2C = &hi2c1;
-I2C_HandleTypeDef *Oled_I2C = &hi2c2;
-I2C_HandleTypeDef *RTC_I2C = &hi2c3;
+I2C_HandleTypeDef *Atlas_I2C = &hi2c3;
+I2C_HandleTypeDef *Oled_I2C = &hi2c1;
+I2C_HandleTypeDef *RTC_I2C = &hi2c2;
 
 SPI_HandleTypeDef *MicroSD_SPI = &hspi1;
+SPI_HandleTypeDef *Lora_SPI = &hspi2;
 
 
 TIM_HandleTypeDef *LED_Tim = &htim11;
@@ -77,8 +91,37 @@ static void MX_TIM11_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
+
+// ===============================
+// Timer Interrupt Handler
+// ===============================
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+
+// ===============================
+// Lora Functions
+// ===============================
+uint8_t LoRa_Init();
+uint8_t LoRa_Detect(SX1278_t *module);
+uint8_t LoRa_TX(char message[50]);
+void LoRa_RX();
+// ===============================
+// RTC Functions
+// ===============================
+
+static uint8_t bcdtodec(const uint8_t val);
+static uint8_t dectobcd(const uint8_t val);
+static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c);
+static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c);
+static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec);
+
+// ===============================
+// OLED Functions
+// ===============================
+static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18]);
+
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -86,15 +129,29 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 SX1278_hw_t SX1278_hw;
 SX1278_t SX1278;
 
-int master;
-int ret;
+uint8_t master;
+uint8_t ret;
 
-char Lora_buffer[512];
+char LoRa_RX_Buffer[50];
+uint8_t LoRa_RX_Length;
 
-int message;
-int message_length;
+uint8_t message;
+uint8_t message_length;
 
+uint8_t count = 0b0;
+char count_buffer[4];
 
+// ===============================
+// Flags
+// ===============================
+uint8_t LoRa_Connected = 0;
+uint8_t LoRa_RX_Flag = 0;
+
+uint8_t OLED_Connected = 0;
+
+uint8_t RTC_Connected = 1;
+
+uint8_t SD_Connected = 0;
 /* USER CODE END 0 */
 
 /**
@@ -133,22 +190,28 @@ int main(void)
   MX_I2C3_Init();
   MX_SPI1_Init();
   MX_FATFS_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
+  //initialize LoRa module
+  SX1278_hw.dio0.port = Lora_IRQ_GPIO_Port;
+  SX1278_hw.dio0.pin = Lora_IRQ_Pin;
+  SX1278_hw.nss.port = Lora_CS_GPIO_Port;
+  SX1278_hw.nss.pin = Lora_CS_Pin;
+  SX1278_hw.reset.port = Lora_Reset_GPIO_Port;
+  SX1278_hw.reset.pin = Lora_Reset_Pin;
+  SX1278_hw.spi = Lora_SPI;
+
+  SX1278.hw = &SX1278_hw;
+  LoRa_Init();
   
-  //OLED CODE
+  //Initilise OLED Screen
+  OLED_Connected = ~ssd1306_Init(Oled_I2C); // Initilise the Oled module
+ 
+  //Initilise the RTC One time when the system is flashed with firmware
+  RTC_Set_Time_Once(RTC_I2C);
 
-  // ssd1306_Init(Oled_I2C); // Initilise the Oled module
-  // HAL_Delay(1000);
-
-  // ssd1306_SetCursor(0, 0);
-  // ssd1306_WriteString("Button Counter", Font_7x10, White); //Write some text to the Oled module
-
-  // ssd1306_UpdateScreen(Oled_I2C);
-
-
-
- //SD CARD CODE
+  //SD CARD CODE 
   
 
   // FATFS FatFs;
@@ -173,6 +236,11 @@ int main(void)
   
 
   HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
+
+  uint32_t curr_time;
+  uint16_t Counter = 0;
+  char buffer[18];
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -180,6 +248,48 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    if (RTC_Connected)
+    {
+      curr_time = RTC_Get_Time(RTC_I2C);
+
+      struct tm *tm_info;
+      time_t raw_time = (time_t)curr_time;
+
+      // 1. Break the timestamp down into the tm struct
+      tm_info = localtime(&raw_time);
+      strftime(buffer, sizeof(buffer), "%d/%m/%y %H:%M:%S", tm_info);
+
+      if (OLED_Connected)
+      {
+        write_OLED(0,0,buffer);
+      }
+    }
+
+
+    if (OLED_Connected)
+    {
+      snprintf(count_buffer,sizeof(count_buffer),"%u",count);
+      count = (~count)&0b1;
+      write_OLED(17,5,count_buffer);
+    }
+
+    // HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+
+    if (LoRa_Connected)
+    {
+      LoRa_TX("testing");
+    }
+    snprintf(buffer,sizeof(buffer), "LoRa:%u",LoRa_Connected);
+    write_OLED(0,1,buffer);
+
+    if(LoRa_RX_Flag&OLED_Connected)
+    {
+      write_OLED(0,4,LoRa_RX_Buffer);
+    }
+    
+
+    HAL_Delay(1000);
+    
 
     /* USER CODE BEGIN 3 */
   }
@@ -371,6 +481,44 @@ static void MX_SPI1_Init(void)
 }
 
 /**
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI2_Init(void)
+{
+
+  /* USER CODE BEGIN SPI2_Init 0 */
+
+  /* USER CODE END SPI2_Init 0 */
+
+  /* USER CODE BEGIN SPI2_Init 1 */
+
+  /* USER CODE END SPI2_Init 1 */
+  /* SPI2 parameter configuration*/
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI2_Init 2 */
+
+  /* USER CODE END SPI2_Init 2 */
+
+}
+
+/**
   * @brief TIM11 Initialization Function
   * @param None
   * @retval None
@@ -442,6 +590,12 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Lora_CS_GPIO_Port, Lora_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Lora_Reset_GPIO_Port, Lora_Reset_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : LED_Board_Pin */
   GPIO_InitStruct.Pin = LED_Board_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -456,23 +610,269 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(SD_CS_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : Lora_CS_Pin */
+  GPIO_InitStruct.Pin = Lora_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(Lora_CS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Lora_IRQ_Pin */
+  GPIO_InitStruct.Pin = Lora_IRQ_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(Lora_IRQ_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Lora_Reset_Pin */
+  GPIO_InitStruct.Pin = Lora_Reset_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(Lora_Reset_GPIO_Port, &GPIO_InitStruct);
+
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
+// ===============================================================================================
+// Timer Interrupt Handler
+// ===============================================================================================
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (htim->Instance == TIM11)
-    {
-    	//Pattern = ~Pattern;
-    	//Pattern = TC74_ReadTemp();
-    	//GPIO_Write_func(Pattern);
-      HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
-    }
+  if (htim->Instance == TIM11)
+  {
+    //Pattern = ~Pattern;
+    //Pattern = TC74_ReadTemp();
+    //GPIO_Write_func(Pattern);
+    HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
+  }
 }
 
+// ===============================================================================================
+// GPIO Interrupt Handler
+// ===============================================================================================
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if(GPIO_Pin == Lora_IRQ_Pin) // Check which pin triggered the interrupt
+  {
+    LoRa_RX();
+  }
+}
+
+// ===============================================================================================
+// Lora Functions
+// ===============================================================================================
+uint8_t LoRa_Init()
+{
+
+  SX1278_hw_init(&SX1278_hw);
+
+  // Step 2: perform a hard reset and wait for module to boot
+  SX1278_hw_Reset(&SX1278_hw);   // pulls reset low then high, waits 100ms internally
+  HAL_Delay(100);
+  if (LoRa_Detect(&SX1278))
+  {
+    SX1278_init(&SX1278, 433175000, SX1278_POWER_11DBM, SX1278_LORA_SF_7,
+    SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 100);
+
+    LoRa_Connected = 1;
+    return 1;
+  }
+  else
+  {
+    LoRa_Connected = 0;
+    return 0;
+  }
+}
+
+uint8_t LoRa_Detect(SX1278_t *module)
+{
+  uint8_t version = SX1278_SPIRead(module, REG_LR_VERSION);
+  return (version == 0x12) ? 1 : 0;
+}
+
+
+
+uint8_t LoRa_TX(char message[50])
+{
+  //message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
+  message_length = strlen(message);
+
+  if (message_length == 0 || message_length > 50)
+    return 0;  // guard against empty or oversized messages
+
+  if (LoRa_Detect(&SX1278))
+  {
+    ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
+    if (ret)
+    {
+      ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) message, message_length, 2000);
+      if(ret) return 1;
+      else return 0;
+    }
+    else return 0;
+  }
+  else
+  {
+    LoRa_Connected = 0;
+    return 0;
+  }
+}
+
+void LoRa_RX()
+{
+  // Read packet out of the FIFO immediately
+  LoRa_RX_Length = SX1278_LoRaRxPacket(&SX1278);
+
+  if (LoRa_RX_Length > 0)
+  {
+      // Copy out of the module's internal buffer
+      memcpy(LoRa_RX_Buffer, SX1278.rxBuffer, LoRa_RX_Length);
+      LoRa_RX_Flag = 1;  // signal main loop to process it
+  }
+
+  // Re-arm the receiver for the next packet
+  // Can't call SX1278_LoRaEntryRx here (it uses HAL_Delay)
+  // Instead just reset the FIFO pointer and clear IRQ
+  uint8_t addr = SX1278_SPIRead(&SX1278, LR_RegFifoRxBaseAddr);
+  SX1278_SPIWrite(&SX1278, LR_RegFifoAddrPtr, addr);
+  SX1278_clearLoRaIrq(&SX1278);
+}
+
+// ===============================================================================================
+// RTC Funtions
+// ===============================================================================================
+//function to convert binary coded decimal to normal decimal value.
+static uint8_t bcdtodec(const uint8_t val)
+{
+  return ((val / 16 * 10) + (val % 16));
+}
+
+static uint8_t decimalbcd(uint8_t val)
+{
+    return ((val / 10) << 4) | (val % 10);
+}
+
+static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c)
+{
+    uint8_t Year, Month, Day, Hour, Minute, Second;
+
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Year,   1, &Year,   1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Month,  1, &Month,  1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Day,    1, &Day,    1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Hour,   1, &Hour,   1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Minute, 1, &Minute, 1, HAL_MAX_DELAY);
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Second, 1, &Second, 1, HAL_MAX_DELAY);
+
+    // Mask status bits BEFORE BCD conversion
+    Year   = bcdtodec(Year);
+    Month  = bcdtodec(Month  & 0x1F); // mask century bit
+    Day    = bcdtodec(Day    & 0x3F);
+    Hour   = bcdtodec(Hour   & 0x3F); // mask 12/24hr bit
+    Minute = bcdtodec(Minute & 0x7F);
+    Second = bcdtodec(Second & 0x7F);
+
+    return get_unix_timestamp(2000 + Year, Month, Day, Hour, Minute, Second);
+}
+
+static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c)
+{
+    // Check if time has already been set
+    uint8_t magic = 0;
+    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_MAGIC_REG, 1, &magic, 1, HAL_MAX_DELAY);
+    
+    if (magic == RTC_MAGIC_VAL)
+        return; // Already set, skip
+
+    // Parse compile-time strings into numbers
+    // __DATE__ is "Mon DD YYYY" e.g. "Apr 22 2026"
+    // __TIME__ is "HH:MM:SS"   e.g. "14:30:00"
+
+    char date[] = __DATE__;
+    char time[] = __TIME__;
+
+    uint8_t day    = ((date[4] == ' ') ? 0 : (date[4] - '0')) * 10 + (date[5] - '0');
+    uint16_t year  = (date[7]-'0')*1000 + (date[8]-'0')*100 + (date[9]-'0')*10 + (date[10]-'0');
+    uint8_t hour   = (time[0]-'0')*10 + (time[1]-'0');
+    uint8_t minute = (time[3]-'0')*10 + (time[4]-'0');
+    uint8_t second = (time[6]-'0')*10 + (time[7]-'0');
+
+    // Parse month string
+    const char *months = "JanFebMarAprMayJunJulAugSepOctNovDec";
+    uint8_t month = 1;
+    for (int i = 0; i < 12; i++) {
+        if (strncmp(&months[i*3], date, 3) == 0) {
+            month = i + 1;
+            break;
+        }
+    }
+
+    // Write to DS3231 registers in BCD
+    uint8_t reg_val;
+
+    reg_val = decimalbcd(second);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Second, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(minute);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Minute, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(hour);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Hour, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(day);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Day, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(month);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Month, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(year % 100); // DS3231 only stores last 2 digits
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Year, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    // Write magic flag so we never set time again
+    reg_val = RTC_MAGIC_VAL;
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_MAGIC_REG, 1, &reg_val, 1, HAL_MAX_DELAY);
+}
+
+static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, 
+                           uint8_t hour, uint8_t min, uint8_t sec) 
+{
+    struct tm t;
+    time_t t_of_day;
+
+    // Standard C struct tm requirements:
+    t.tm_year = year - 1900;  // Year since 1900
+    t.tm_mon = month - 1;     // Month, 0 - 11
+    t.tm_mday = day;          // Day of the month
+    t.tm_hour = hour;
+    t.tm_min = min;
+    t.tm_sec = sec;
+    t.tm_isdst = -1;          // Is Daylight Savings Time on? -1 = let the library decide
+
+    t_of_day = mktime(&t);
+
+    return (uint32_t)t_of_day;
+}
+
+// ===============================================================================================
+// OLED Functions
+// ===============================================================================================
+/**
+  * @brief OLED Write Function
+  * @param uint8_t X_Position
+  * @param uint8_t Y_Position
+  * @param char text[18]
+  * @retval None
+  */
+static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18])
+{
+  ssd1306_SetCursor(pos_x*7, pos_y*10);
+  ssd1306_WriteString(text, Font_7x10, White); //Write some text to the Oled module
+
+  ssd1306_UpdateScreen(Oled_I2C);
+}
 
 /* USER CODE END 4 */
 

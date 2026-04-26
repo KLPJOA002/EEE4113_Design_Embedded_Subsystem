@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
   28:FATFS/Target/user_diskio_spi.c **** #include "user_diskio_spi.h"
   29:FATFS/Target/user_diskio_spi.c **** 
   30:FATFS/Target/user_diskio_spi.c **** //Make sure you set #define SD_SPI_HANDLE as some hspix in main.h
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 2
 
 
   31:FATFS/Target/user_diskio_spi.c **** //Make sure you set #define SD_CS_GPIO_Port as some GPIO port in main.h
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
   85:FATFS/Target/user_diskio_spi.c **** 
   86:FATFS/Target/user_diskio_spi.c **** uint32_t spiTimerTickStart;
   87:FATFS/Target/user_diskio_spi.c **** uint32_t spiTimerTickDelay;
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 3
 
 
   88:FATFS/Target/user_diskio_spi.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
   59              	.L4:
   60 0026 00BF     		.align	2
   61              	.L3:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 4
 
 
   62 0028 00000000 		.word	hspi1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
   81              		.cfi_def_cfa_offset 16
   82              		.cfi_offset 4, -16
   83              		.cfi_offset 5, -12
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 5
 
 
   84              		.cfi_offset 6, -8
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  123 0024 0020     		movne	r0, #0
  124 0026 0120     		moveq	r0, #1
  125 0028 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 6
 
 
  126              		.loc 1 163 1 view .LVU25
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  172              	.L10:
  121:FATFS/Target/user_diskio_spi.c **** 		*(buff+i) = xchg_spi(0xFF);
  173              		.loc 1 121 17 discriminator 1 view .LVU36
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 7
 
 
  174 0014 AC42     		cmp	r4, r5
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  214              	.L15:
  215 0014 00000240 		.word	1073872896
  216              		.cfi_endproc
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 8
 
 
  217              	.LFE140:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  256              		.loc 1 194 1 view .LVU52
  257 001e 2046     		mov	r0, r4
  258 0020 10BD     		pop	{r4, pc}
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 9
 
 
  259              	.L21:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  224:FATFS/Target/user_diskio_spi.c **** 
  225:FATFS/Target/user_diskio_spi.c **** 
  226:FATFS/Target/user_diskio_spi.c **** /*-----------------------------------------------------------------------*/
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 10
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 10
 
 
  227:FATFS/Target/user_diskio_spi.c **** /* Send a data packet to the MMC                                         */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  267:FATFS/Target/user_diskio_spi.c **** 
  268:FATFS/Target/user_diskio_spi.c **** 	if (cmd & 0x80) {	/* Send a CMD55 prior to ACMD<n> */
  297              		.loc 1 268 2 view .LVU59
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 11
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 11
 
 
  298              		.loc 1 268 5 is_stmt 0 view .LVU60
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  335 003a FFF7FEFF 		bl	xchg_spi
  336              	.LVL28:
  286:FATFS/Target/user_diskio_spi.c **** 	n = 0x01;							/* Dummy CRC + Stop */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 12
 
 
  337              		.loc 1 286 2 view .LVU72
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  377 0060 0C2C     		cmp	r4, #12
  378 0062 0DD0     		beq	.L36
  379              	.L29:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 13
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 13
 
 
  287:FATFS/Target/user_diskio_spi.c **** 	if (cmd == CMD8) n = 0x87;			/* Valid CRC for CMD8(0x1AA) */
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  424              		.align	1
  425              		.syntax unified
  426              		.thumb
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 14
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 14
 
 
  427              		.thumb_func
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  476              		.cfi_def_cfa_offset 16
  477              		.cfi_offset 3, -16
  478              		.cfi_offset 4, -12
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 15
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 15
 
 
  479              		.cfi_offset 5, -8
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  520 0030 FF20     		movs	r0, #255
  521 0032 FFF7FEFF 		bl	xchg_spi
  522              	.LVL55:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 16
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 16
 
 
  247:FATFS/Target/user_diskio_spi.c **** 		if ((resp & 0x1F) != 0x05) return 0;	/* Function fails if the data packet was not accepted */
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  568              	.LVL59:
   90:FATFS/Target/user_diskio_spi.c ****     spiTimerTickDelay = waitTicks;
  569              		.loc 1 90 23 discriminator 1 view .LVU131
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 17
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 17
 
 
  570 0008 024B     		ldr	r3, .L50
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  616              		.loc 1 96 1 view .LVU141
  617 0010 9842     		cmp	r0, r3
  618 0012 2CBF     		ite	cs
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 18
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 18
 
 
  619 0014 0020     		movcs	r0, #0
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  667              	.LVL66:
  215:FATFS/Target/user_diskio_spi.c **** 	if(token != 0xFE) return 0;		/* Function fails if invalid DataStart token or timeout */
  668              		.loc 1 215 27 is_stmt 1 discriminator 2 view .LVU150
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 19
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 19
 
 
  669 0014 FF28     		cmp	r0, #255
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  713              		.thumb
  714              		.thumb_func
  716              	USER_SPI_initialize:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 20
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 20
 
 
  717              	.LVL72:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  741              		.cfi_offset 14, -4
  742 0012 82B0     		sub	sp, sp, #8
  743              		.cfi_def_cfa_offset 24
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 21
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 21
 
 
  329:FATFS/Target/user_diskio_spi.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  791              		.loc 1 331 15 is_stmt 1 discriminator 2 view .LVU182
  792 0036 002C     		cmp	r4, #0
  793 0038 F8D1     		bne	.L67
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 22
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 22
 
 
  332:FATFS/Target/user_diskio_spi.c **** 
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  819              		.loc 1 360 3 is_stmt 1 view .LVU192
  820 0054 434B     		ldr	r3, .L97+4
  821 0056 1A68     		ldr	r2, [r3]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 23
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 23
 
 
  822 0058 1368     		ldr	r3, [r2]
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  864              	.LVL87:
  865              	.L71:
  337:FATFS/Target/user_diskio_spi.c **** 			if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				/* Is the card supports vcc of 2.7-3.6V? */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 24
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 24
 
 
  866              		.loc 1 337 28 is_stmt 1 discriminator 3 view .LVU204
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  906 00c6 FFF7FEFF 		bl	send_cmd
  907              	.LVL92:
  339:FATFS/Target/user_diskio_spi.c **** 				if (SPI_Timer_Status() && send_cmd(CMD58, 0) == 0) {		/* Check CCS bit in the OCR */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 25
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 25
 
 
  908              		.loc 1 339 31 discriminator 1 view .LVU219
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  950              	.L74:
  341:FATFS/Target/user_diskio_spi.c **** 					ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;	/* Card id SDv2 */
  951              		.loc 1 341 20 is_stmt 1 discriminator 2 view .LVU232
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 26
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 26
 
 
  952 00fa 032D     		cmp	r5, #3
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  352:FATFS/Target/user_diskio_spi.c **** 				ty = 0;
  993              		.loc 1 352 4 is_stmt 1 view .LVU246
  352:FATFS/Target/user_diskio_spi.c **** 				ty = 0;
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 27
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 27
 
 
  994              		.loc 1 352 9 is_stmt 0 view .LVU247
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1037 015a 88E7     		b	.L80
  1038              	.LVL113:
  1039              	.L81:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 28
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 28
 
 
  1040              		.cfi_def_cfa_offset 0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1081              	.LVL116:
  1082              		.loc 1 381 9 view .LVU266
  1083 0006 C0B2     		uxtb	r0, r0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 29
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 29
 
 
  1084 0008 7047     		bx	lr
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1122              		.cfi_offset 5, -8
  1123              		.cfi_offset 14, -4
  1124 0006 0D46     		mov	r5, r1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 30
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 30
 
 
  1125 0008 1C46     		mov	r4, r3
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  410:FATFS/Target/user_diskio_spi.c **** 			do {
  1167              		.loc 1 410 4 is_stmt 1 view .LVU290
  411:FATFS/Target/user_diskio_spi.c **** 				if (!rcvr_datablock(buff, 512)) break;
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 31
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 31
 
 
  1168              		.loc 1 411 5 view .LVU291
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  403:FATFS/Target/user_diskio_spi.c **** 			&& rcvr_datablock(buff, 512)) {
  1211              		.loc 1 403 8 view .LVU306
  1212 005c 1120     		movs	r0, #17
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 32
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 32
 
 
  1213              	.LVL133:
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1258              	.L113:
  398:FATFS/Target/user_diskio_spi.c **** 
  1259              		.loc 1 398 32 discriminator 1 view .LVU317
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 33
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 33
 
 
  1260 0080 0320     		movs	r0, #3
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1298 0008 1646     		mov	r6, r2
  1299 000a 1C46     		mov	r4, r3
  1300              		.loc 1 436 10 discriminator 2 view .LVU323
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 34
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 34
 
 
  1301 000c 002B     		cmp	r3, #0
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1341              		.loc 1 450 3 is_stmt 1 view .LVU340
  1342              		.loc 1 450 7 is_stmt 0 view .LVU341
  1343 003a 3146     		mov	r1, r6
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 35
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 35
 
 
  1344 003c 1920     		movs	r0, #25
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1388              	.L123:
  461:FATFS/Target/user_diskio_spi.c **** }
  1389              		.loc 1 461 1 view .LVU358
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 36
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 36
 
 
  1390 006a 70BD     		pop	{r4, r5, r6, pc}
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  455:FATFS/Target/user_diskio_spi.c **** 		}
  1432              		.loc 1 455 40 discriminator 1 view .LVU371
  1433 0092 0124     		movs	r4, #1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 37
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 37
 
 
  1434              	.LVL164:
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1480              		.cfi_endproc
  1481              	.LFE148:
  1483              		.section	.text.USER_SPI_ioctl,"ax",%progbits
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 38
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 38
 
 
  1484              		.align	1
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1518 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  1519              		.loc 1 482 5 view .LVU390
  1520 0012 13F0010F 		tst	r3, #1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 39
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 39
 
 
  1521 0016 40F0FE80 		bne	.L160
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1563              	.LVL180:
  1564              	.L146:
  493:FATFS/Target/user_diskio_spi.c **** 			if ((csd[0] >> 6) == 1) {	/* SDC ver 2.00 */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 40
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 40
 
 
  494:FATFS/Target/user_diskio_spi.c **** 				csize = csd[9] + ((WORD)csd[8] << 8) + ((DWORD)(csd[7] & 63) << 16) + 1;
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  545:FATFS/Target/user_diskio_spi.c **** 
  546:FATFS/Target/user_diskio_spi.c **** 	return res;
  1568              		.loc 1 546 2 view .LVU404
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 41
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 41
 
 
  1569              	.L145:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1609 0082 03F00603 		and	r3, r3, #6
  497:FATFS/Target/user_diskio_spi.c **** 				csize = (csd[8] >> 6) + ((WORD)csd[7] << 2) + ((WORD)(csd[6] & 3) << 10) + 1;
  1610              		.loc 1 497 48 view .LVU419
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 42
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 42
 
 
  1611 0086 1A44     		add	r2, r2, r3
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  494:FATFS/Target/user_diskio_spi.c **** 				*(DWORD*)buff = csize << 10;
  1649              		.loc 1 494 32 view .LVU436
  1650 00b0 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 43
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 43
 
 
  494:FATFS/Target/user_diskio_spi.c **** 				*(DWORD*)buff = csize << 10;
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1689 00da FFF7FEFF 		bl	send_cmd
  1690              	.LVL196:
  507:FATFS/Target/user_diskio_spi.c **** 				xchg_spi(0xFF);
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 44
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 44
 
 
  1691              		.loc 1 507 7 discriminator 1 view .LVU453
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1732 010a 1209     		lsrs	r2, r2, #4
  511:FATFS/Target/user_diskio_spi.c **** 					res = RES_OK;
  1733              		.loc 1 511 27 view .LVU467
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 45
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 45
 
 
  1734 010c 1023     		movs	r3, #16
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1775 0132 68D0     		beq	.L168
  517:FATFS/Target/user_diskio_spi.c **** 					*(DWORD*)buff = (((csd[10] & 63) << 1) + ((WORD)(csd[11] & 128) >> 7) + 1) << ((csd[13] >> 6) 
  1776              		.loc 1 517 5 is_stmt 1 view .LVU481
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 46
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 46
 
 
  517:FATFS/Target/user_diskio_spi.c **** 					*(DWORD*)buff = (((csd[10] & 63) << 1) + ((WORD)(csd[11] & 128) >> 7) + 1) << ((csd[13] >> 6) 
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  520:FATFS/Target/user_diskio_spi.c **** 				}
  1814              		.loc 1 520 65 view .LVU499
  1815 016a 9DF80B10 		ldrb	r1, [sp, #11]	@ zero_extendqisi2
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 47
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 47
 
 
  520:FATFS/Target/user_diskio_spi.c **** 				}
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1854              		.loc 1 530 12 is_stmt 0 view .LVU515
  1855 019a 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
  530:FATFS/Target/user_diskio_spi.c **** 		dp = buff; st = dp[0]; ed = dp[1];				/* Load sector block */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 48
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 48
 
 
  1856              		.loc 1 530 6 view .LVU516
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1894 01c0 FFF7FEFF 		bl	send_cmd
  1895              	.LVL220:
  535:FATFS/Target/user_diskio_spi.c **** 			res = RES_OK;	/* FatFs does not check result of this command */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 49
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 49
 
 
  1896              		.loc 1 535 6 discriminator 1 view .LVU533
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1938 01f0 0028     		cmp	r0, #0
  1939 01f2 7FF42AAF 		bne	.L146
  484:FATFS/Target/user_diskio_spi.c **** 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 50
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 50
 
 
  1940              		.loc 1 484 6 view .LVU546
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  1991 0000 00000000 		.space	4
  1992              		.global	spiTimerTickStart
  1993              		.section	.bss.spiTimerTickStart,"aw",%nobits
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 51
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 51
 
 
  1994              		.align	2
@@ -3022,67 +3022,67 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 1
  2018              		.file 9 "Middlewares/Third_Party/FatFs/src/integer.h"
  2019              		.file 10 "Middlewares/Third_Party/FatFs/src/diskio.h"
  2020              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 52
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 52
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 user_diskio_spi.c
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:21     .text.xchg_spi:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:26     .text.xchg_spi:00000000 xchg_spi
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:62     .text.xchg_spi:00000028 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:67     .text.wait_ready:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:72     .text.wait_ready:00000000 wait_ready
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:131    .text.rcvr_spi_multi:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:136    .text.rcvr_spi_multi:00000000 rcvr_spi_multi
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:184    .text.despiselect:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:189    .text.despiselect:00000000 despiselect
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:215    .text.despiselect:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:220    .text.spiselect:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:225    .text.spiselect:00000000 spiselect
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:270    .text.spiselect:0000002c $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:275    .text.send_cmd:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:280    .text.send_cmd:00000000 send_cmd
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:424    .text.xmit_spi_multi:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:429    .text.xmit_spi_multi:00000000 xmit_spi_multi
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:457    .text.xmit_spi_multi:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:462    .text.xmit_datablock:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:467    .text.xmit_datablock:00000000 xmit_datablock
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:546    .text.SPI_Timer_On:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:552    .text.SPI_Timer_On:00000000 SPI_Timer_On
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:583    .text.SPI_Timer_On:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1997   .bss.spiTimerTickStart:00000000 spiTimerTickStart
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1990   .bss.spiTimerTickDelay:00000000 spiTimerTickDelay
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:589    .text.SPI_Timer_Status:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:595    .text.SPI_Timer_Status:00000000 SPI_Timer_Status
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:625    .text.SPI_Timer_Status:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:631    .text.rcvr_datablock:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:636    .text.rcvr_datablock:00000000 rcvr_datablock
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:710    .text.USER_SPI_initialize:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:716    .text.USER_SPI_initialize:00000000 USER_SPI_initialize
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1053   .text.USER_SPI_initialize:00000160 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:2007   .data.Stat:00000000 Stat
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:2002   .bss.CardType:00000000 CardType
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1060   .text.USER_SPI_status:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1066   .text.USER_SPI_status:00000000 USER_SPI_status
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1095   .text.USER_SPI_status:00000010 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1100   .text.USER_SPI_read:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1106   .text.USER_SPI_read:00000000 USER_SPI_read
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1267   .text.USER_SPI_read:00000084 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1273   .text.USER_SPI_write:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1279   .text.USER_SPI_write:00000000 USER_SPI_write
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1478   .text.USER_SPI_write:000000a8 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1484   .text.USER_SPI_ioctl:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1490   .text.USER_SPI_ioctl:00000000 USER_SPI_ioctl
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1529   .text.USER_SPI_ioctl:00000024 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1534   .text.USER_SPI_ioctl:0000002e $t
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1980   .text.USER_SPI_ioctl:0000021c $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1987   .bss.spiTimerTickDelay:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:1994   .bss.spiTimerTickStart:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s:2003   .bss.CardType:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:21     .text.xchg_spi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:26     .text.xchg_spi:00000000 xchg_spi
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:62     .text.xchg_spi:00000028 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:67     .text.wait_ready:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:72     .text.wait_ready:00000000 wait_ready
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:131    .text.rcvr_spi_multi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:136    .text.rcvr_spi_multi:00000000 rcvr_spi_multi
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:184    .text.despiselect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:189    .text.despiselect:00000000 despiselect
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:215    .text.despiselect:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:220    .text.spiselect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:225    .text.spiselect:00000000 spiselect
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:270    .text.spiselect:0000002c $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:275    .text.send_cmd:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:280    .text.send_cmd:00000000 send_cmd
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:424    .text.xmit_spi_multi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:429    .text.xmit_spi_multi:00000000 xmit_spi_multi
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:457    .text.xmit_spi_multi:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:462    .text.xmit_datablock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:467    .text.xmit_datablock:00000000 xmit_datablock
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:546    .text.SPI_Timer_On:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:552    .text.SPI_Timer_On:00000000 SPI_Timer_On
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:583    .text.SPI_Timer_On:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1997   .bss.spiTimerTickStart:00000000 spiTimerTickStart
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1990   .bss.spiTimerTickDelay:00000000 spiTimerTickDelay
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:589    .text.SPI_Timer_Status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:595    .text.SPI_Timer_Status:00000000 SPI_Timer_Status
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:625    .text.SPI_Timer_Status:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:631    .text.rcvr_datablock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:636    .text.rcvr_datablock:00000000 rcvr_datablock
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:710    .text.USER_SPI_initialize:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:716    .text.USER_SPI_initialize:00000000 USER_SPI_initialize
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1053   .text.USER_SPI_initialize:00000160 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:2007   .data.Stat:00000000 Stat
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:2002   .bss.CardType:00000000 CardType
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1060   .text.USER_SPI_status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1066   .text.USER_SPI_status:00000000 USER_SPI_status
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1095   .text.USER_SPI_status:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1100   .text.USER_SPI_read:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1106   .text.USER_SPI_read:00000000 USER_SPI_read
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1267   .text.USER_SPI_read:00000084 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1273   .text.USER_SPI_write:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1279   .text.USER_SPI_write:00000000 USER_SPI_write
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1478   .text.USER_SPI_write:000000a8 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1484   .text.USER_SPI_ioctl:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1490   .text.USER_SPI_ioctl:00000000 USER_SPI_ioctl
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1529   .text.USER_SPI_ioctl:00000024 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1534   .text.USER_SPI_ioctl:0000002e $t
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1980   .text.USER_SPI_ioctl:0000021c $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1987   .bss.spiTimerTickDelay:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:1994   .bss.spiTimerTickStart:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s:2003   .bss.CardType:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_TransmitReceive
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEowGcn.s 			page 53
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccvXZY9c.s 			page 53
 
 
 hspi1

@@ -1,0 +1,1128 @@
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"user_diskio_spi.c"
+  16              		.text
+  17              		.section	.text.xchg_spi,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	xchg_spi:
+  24              		@ args = 0, pretend = 0, frame = 16
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 00B5     		push	{lr}
+  27 0002 87B0     		sub	sp, sp, #28
+  28 0004 8DF80F00 		strb	r0, [sp, #15]
+  29 0008 3223     		movs	r3, #50
+  30 000a 0093     		str	r3, [sp]
+  31 000c 0123     		movs	r3, #1
+  32 000e 0DF11702 		add	r2, sp, #23
+  33 0012 0DF10F01 		add	r1, sp, #15
+  34 0016 0448     		ldr	r0, .L3
+  35 0018 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+  36 001c 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+  37 0020 07B0     		add	sp, sp, #28
+  38              		@ sp needed
+  39 0022 5DF804FB 		ldr	pc, [sp], #4
+  40              	.L4:
+  41 0026 00BF     		.align	2
+  42              	.L3:
+  43 0028 00000000 		.word	hspi1
+  45              		.section	.text.wait_ready,"ax",%progbits
+  46              		.align	1
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	wait_ready:
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54 0000 70B5     		push	{r4, r5, r6, lr}
+  55 0002 0646     		mov	r6, r0
+  56 0004 FFF7FEFF 		bl	HAL_GetTick
+  57 0008 0546     		mov	r5, r0
+  58              	.L7:
+  59 000a FF20     		movs	r0, #255
+  60 000c FFF7FEFF 		bl	xchg_spi
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 2
+
+
+  61 0010 0446     		mov	r4, r0
+  62 0012 FF28     		cmp	r0, #255
+  63 0014 04D0     		beq	.L6
+  64 0016 FFF7FEFF 		bl	HAL_GetTick
+  65 001a 401B     		subs	r0, r0, r5
+  66 001c B042     		cmp	r0, r6
+  67 001e F4D3     		bcc	.L7
+  68              	.L6:
+  69 0020 FF2C     		cmp	r4, #255
+  70 0022 14BF     		ite	ne
+  71 0024 0020     		movne	r0, #0
+  72 0026 0120     		moveq	r0, #1
+  73 0028 70BD     		pop	{r4, r5, r6, pc}
+  75              		.section	.text.rcvr_spi_multi,"ax",%progbits
+  76              		.align	1
+  77              		.syntax unified
+  78              		.thumb
+  79              		.thumb_func
+  81              	rcvr_spi_multi:
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84 0000 70B5     		push	{r4, r5, r6, lr}
+  85 0002 0646     		mov	r6, r0
+  86 0004 0D46     		mov	r5, r1
+  87 0006 0024     		movs	r4, #0
+  88 0008 04E0     		b	.L10
+  89              	.L11:
+  90 000a FF20     		movs	r0, #255
+  91 000c FFF7FEFF 		bl	xchg_spi
+  92 0010 3055     		strb	r0, [r6, r4]
+  93 0012 0134     		adds	r4, r4, #1
+  94              	.L10:
+  95 0014 AC42     		cmp	r4, r5
+  96 0016 F8D3     		bcc	.L11
+  97 0018 70BD     		pop	{r4, r5, r6, pc}
+  99              		.section	.text.despiselect,"ax",%progbits
+ 100              		.align	1
+ 101              		.syntax unified
+ 102              		.thumb
+ 103              		.thumb_func
+ 105              	despiselect:
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108 0000 08B5     		push	{r3, lr}
+ 109 0002 0122     		movs	r2, #1
+ 110 0004 1021     		movs	r1, #16
+ 111 0006 0348     		ldr	r0, .L15
+ 112 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 113 000c FF20     		movs	r0, #255
+ 114 000e FFF7FEFF 		bl	xchg_spi
+ 115 0012 08BD     		pop	{r3, pc}
+ 116              	.L16:
+ 117              		.align	2
+ 118              	.L15:
+ 119 0014 00000240 		.word	1073872896
+ 121              		.section	.text.spiselect,"ax",%progbits
+ 122              		.align	1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 3
+
+
+ 123              		.syntax unified
+ 124              		.thumb
+ 125              		.thumb_func
+ 127              	spiselect:
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130 0000 10B5     		push	{r4, lr}
+ 131 0002 0022     		movs	r2, #0
+ 132 0004 1021     		movs	r1, #16
+ 133 0006 0948     		ldr	r0, .L22
+ 134 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 135 000c FF20     		movs	r0, #255
+ 136 000e FFF7FEFF 		bl	xchg_spi
+ 137 0012 4FF4FA70 		mov	r0, #500
+ 138 0016 FFF7FEFF 		bl	wait_ready
+ 139 001a 10B1     		cbz	r0, .L21
+ 140 001c 0124     		movs	r4, #1
+ 141              	.L17:
+ 142 001e 2046     		mov	r0, r4
+ 143 0020 10BD     		pop	{r4, pc}
+ 144              	.L21:
+ 145 0022 0446     		mov	r4, r0
+ 146 0024 FFF7FEFF 		bl	despiselect
+ 147 0028 F9E7     		b	.L17
+ 148              	.L23:
+ 149 002a 00BF     		.align	2
+ 150              	.L22:
+ 151 002c 00000240 		.word	1073872896
+ 153              		.section	.text.send_cmd,"ax",%progbits
+ 154              		.align	1
+ 155              		.syntax unified
+ 156              		.thumb
+ 157              		.thumb_func
+ 159              	send_cmd:
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162 0000 38B5     		push	{r3, r4, r5, lr}
+ 163 0002 0446     		mov	r4, r0
+ 164 0004 0D46     		mov	r5, r1
+ 165 0006 10F0800F 		tst	r0, #128
+ 166 000a 1DD1     		bne	.L35
+ 167              	.L25:
+ 168 000c 0C2C     		cmp	r4, #12
+ 169 000e 04D0     		beq	.L27
+ 170 0010 FFF7FEFF 		bl	despiselect
+ 171 0014 FFF7FEFF 		bl	spiselect
+ 172 0018 B0B3     		cbz	r0, .L31
+ 173              	.L27:
+ 174 001a 44F04000 		orr	r0, r4, #64
+ 175 001e FFF7FEFF 		bl	xchg_spi
+ 176 0022 280E     		lsrs	r0, r5, #24
+ 177 0024 FFF7FEFF 		bl	xchg_spi
+ 178 0028 C5F30740 		ubfx	r0, r5, #16, #8
+ 179 002c FFF7FEFF 		bl	xchg_spi
+ 180 0030 C5F30720 		ubfx	r0, r5, #8, #8
+ 181 0034 FFF7FEFF 		bl	xchg_spi
+ 182 0038 E8B2     		uxtb	r0, r5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 4
+
+
+ 183 003a FFF7FEFF 		bl	xchg_spi
+ 184 003e 64B1     		cbz	r4, .L32
+ 185 0040 082C     		cmp	r4, #8
+ 186 0042 1BD0     		beq	.L33
+ 187 0044 0120     		movs	r0, #1
+ 188 0046 09E0     		b	.L28
+ 189              	.L35:
+ 190 0048 00F07F04 		and	r4, r0, #127
+ 191 004c 0021     		movs	r1, #0
+ 192 004e 3720     		movs	r0, #55
+ 193 0050 FFF7D6FF 		bl	send_cmd
+ 194 0054 0128     		cmp	r0, #1
+ 195 0056 D9D9     		bls	.L25
+ 196 0058 0FE0     		b	.L26
+ 197              	.L32:
+ 198 005a 9520     		movs	r0, #149
+ 199              	.L28:
+ 200 005c FFF7FEFF 		bl	xchg_spi
+ 201 0060 0C2C     		cmp	r4, #12
+ 202 0062 0DD0     		beq	.L36
+ 203              	.L29:
+ 204 0064 0A24     		movs	r4, #10
+ 205              	.L30:
+ 206 0066 FF20     		movs	r0, #255
+ 207 0068 FFF7FEFF 		bl	xchg_spi
+ 208 006c 10F0800F 		tst	r0, #128
+ 209 0070 03D0     		beq	.L26
+ 210 0072 631E     		subs	r3, r4, #1
+ 211 0074 13F0FF04 		ands	r4, r3, #255
+ 212 0078 F5D1     		bne	.L30
+ 213              	.L26:
+ 214 007a 38BD     		pop	{r3, r4, r5, pc}
+ 215              	.L33:
+ 216 007c 8720     		movs	r0, #135
+ 217 007e EDE7     		b	.L28
+ 218              	.L36:
+ 219 0080 FF20     		movs	r0, #255
+ 220 0082 FFF7FEFF 		bl	xchg_spi
+ 221 0086 EDE7     		b	.L29
+ 222              	.L31:
+ 223 0088 FF20     		movs	r0, #255
+ 224 008a F6E7     		b	.L26
+ 226              		.section	.text.xmit_spi_multi,"ax",%progbits
+ 227              		.align	1
+ 228              		.syntax unified
+ 229              		.thumb
+ 230              		.thumb_func
+ 232              	xmit_spi_multi:
+ 233              		@ args = 0, pretend = 0, frame = 0
+ 234              		@ frame_needed = 0, uses_anonymous_args = 0
+ 235 0000 08B5     		push	{r3, lr}
+ 236 0002 4FF0FF33 		mov	r3, #-1
+ 237 0006 8AB2     		uxth	r2, r1
+ 238 0008 0146     		mov	r1, r0
+ 239 000a 0248     		ldr	r0, .L39
+ 240 000c FFF7FEFF 		bl	HAL_SPI_Transmit
+ 241 0010 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 5
+
+
+ 242              	.L40:
+ 243 0012 00BF     		.align	2
+ 244              	.L39:
+ 245 0014 00000000 		.word	hspi1
+ 247              		.section	.text.xmit_datablock,"ax",%progbits
+ 248              		.align	1
+ 249              		.syntax unified
+ 250              		.thumb
+ 251              		.thumb_func
+ 253              	xmit_datablock:
+ 254              		@ args = 0, pretend = 0, frame = 0
+ 255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256 0000 38B5     		push	{r3, r4, r5, lr}
+ 257 0002 0546     		mov	r5, r0
+ 258 0004 0C46     		mov	r4, r1
+ 259 0006 4FF4FA70 		mov	r0, #500
+ 260 000a FFF7FEFF 		bl	wait_ready
+ 261 000e 00B9     		cbnz	r0, .L46
+ 262              	.L41:
+ 263 0010 38BD     		pop	{r3, r4, r5, pc}
+ 264              	.L46:
+ 265 0012 2046     		mov	r0, r4
+ 266 0014 FFF7FEFF 		bl	xchg_spi
+ 267 0018 FD2C     		cmp	r4, #253
+ 268 001a 01D1     		bne	.L47
+ 269 001c 0120     		movs	r0, #1
+ 270 001e F7E7     		b	.L41
+ 271              	.L47:
+ 272 0020 4FF40071 		mov	r1, #512
+ 273 0024 2846     		mov	r0, r5
+ 274 0026 FFF7FEFF 		bl	xmit_spi_multi
+ 275 002a FF20     		movs	r0, #255
+ 276 002c FFF7FEFF 		bl	xchg_spi
+ 277 0030 FF20     		movs	r0, #255
+ 278 0032 FFF7FEFF 		bl	xchg_spi
+ 279 0036 FF20     		movs	r0, #255
+ 280 0038 FFF7FEFF 		bl	xchg_spi
+ 281 003c 00F01F00 		and	r0, r0, #31
+ 282 0040 0528     		cmp	r0, #5
+ 283 0042 01D1     		bne	.L44
+ 284 0044 0120     		movs	r0, #1
+ 285 0046 E3E7     		b	.L41
+ 286              	.L44:
+ 287 0048 0020     		movs	r0, #0
+ 288 004a E1E7     		b	.L41
+ 290              		.section	.text.SPI_Timer_On,"ax",%progbits
+ 291              		.align	1
+ 292              		.global	SPI_Timer_On
+ 293              		.syntax unified
+ 294              		.thumb
+ 295              		.thumb_func
+ 297              	SPI_Timer_On:
+ 298              		@ args = 0, pretend = 0, frame = 0
+ 299              		@ frame_needed = 0, uses_anonymous_args = 0
+ 300 0000 10B5     		push	{r4, lr}
+ 301 0002 0446     		mov	r4, r0
+ 302 0004 FFF7FEFF 		bl	HAL_GetTick
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 6
+
+
+ 303 0008 024B     		ldr	r3, .L50
+ 304 000a 1860     		str	r0, [r3]
+ 305 000c 024B     		ldr	r3, .L50+4
+ 306 000e 1C60     		str	r4, [r3]
+ 307 0010 10BD     		pop	{r4, pc}
+ 308              	.L51:
+ 309 0012 00BF     		.align	2
+ 310              	.L50:
+ 311 0014 00000000 		.word	spiTimerTickStart
+ 312 0018 00000000 		.word	spiTimerTickDelay
+ 314              		.section	.text.SPI_Timer_Status,"ax",%progbits
+ 315              		.align	1
+ 316              		.global	SPI_Timer_Status
+ 317              		.syntax unified
+ 318              		.thumb
+ 319              		.thumb_func
+ 321              	SPI_Timer_Status:
+ 322              		@ args = 0, pretend = 0, frame = 0
+ 323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 324 0000 08B5     		push	{r3, lr}
+ 325 0002 FFF7FEFF 		bl	HAL_GetTick
+ 326 0006 054B     		ldr	r3, .L54
+ 327 0008 1B68     		ldr	r3, [r3]
+ 328 000a C01A     		subs	r0, r0, r3
+ 329 000c 044B     		ldr	r3, .L54+4
+ 330 000e 1B68     		ldr	r3, [r3]
+ 331 0010 9842     		cmp	r0, r3
+ 332 0012 2CBF     		ite	cs
+ 333 0014 0020     		movcs	r0, #0
+ 334 0016 0120     		movcc	r0, #1
+ 335 0018 08BD     		pop	{r3, pc}
+ 336              	.L55:
+ 337 001a 00BF     		.align	2
+ 338              	.L54:
+ 339 001c 00000000 		.word	spiTimerTickStart
+ 340 0020 00000000 		.word	spiTimerTickDelay
+ 342              		.section	.text.rcvr_datablock,"ax",%progbits
+ 343              		.align	1
+ 344              		.syntax unified
+ 345              		.thumb
+ 346              		.thumb_func
+ 348              	rcvr_datablock:
+ 349              		@ args = 0, pretend = 0, frame = 0
+ 350              		@ frame_needed = 0, uses_anonymous_args = 0
+ 351 0000 70B5     		push	{r4, r5, r6, lr}
+ 352 0002 0546     		mov	r5, r0
+ 353 0004 0E46     		mov	r6, r1
+ 354 0006 C820     		movs	r0, #200
+ 355 0008 FFF7FEFF 		bl	SPI_Timer_On
+ 356              	.L58:
+ 357 000c FF20     		movs	r0, #255
+ 358 000e FFF7FEFF 		bl	xchg_spi
+ 359 0012 0446     		mov	r4, r0
+ 360 0014 FF28     		cmp	r0, #255
+ 361 0016 03D1     		bne	.L57
+ 362 0018 FFF7FEFF 		bl	SPI_Timer_Status
+ 363 001c 0028     		cmp	r0, #0
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 7
+
+
+ 364 001e F5D1     		bne	.L58
+ 365              	.L57:
+ 366 0020 FE2C     		cmp	r4, #254
+ 367 0022 01D0     		beq	.L62
+ 368 0024 0020     		movs	r0, #0
+ 369              	.L56:
+ 370 0026 70BD     		pop	{r4, r5, r6, pc}
+ 371              	.L62:
+ 372 0028 3146     		mov	r1, r6
+ 373 002a 2846     		mov	r0, r5
+ 374 002c FFF7FEFF 		bl	rcvr_spi_multi
+ 375 0030 FF20     		movs	r0, #255
+ 376 0032 FFF7FEFF 		bl	xchg_spi
+ 377 0036 FF20     		movs	r0, #255
+ 378 0038 FFF7FEFF 		bl	xchg_spi
+ 379 003c 0120     		movs	r0, #1
+ 380 003e F2E7     		b	.L56
+ 382              		.section	.text.USER_SPI_initialize,"ax",%progbits
+ 383              		.align	1
+ 384              		.global	USER_SPI_initialize
+ 385              		.syntax unified
+ 386              		.thumb
+ 387              		.thumb_func
+ 389              	USER_SPI_initialize:
+ 390              		@ args = 0, pretend = 0, frame = 8
+ 391              		@ frame_needed = 0, uses_anonymous_args = 0
+ 392 0000 0028     		cmp	r0, #0
+ 393 0002 40F0AB80 		bne	.L81
+ 394 0006 564B     		ldr	r3, .L97
+ 395 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 396 000a 13F0020F 		tst	r3, #2
+ 397 000e 09D1     		bne	.L91
+ 398 0010 70B5     		push	{r4, r5, r6, lr}
+ 399 0012 82B0     		sub	sp, sp, #8
+ 400 0014 534B     		ldr	r3, .L97+4
+ 401 0016 1A68     		ldr	r2, [r3]
+ 402 0018 1368     		ldr	r3, [r2]
+ 403 001a 43F03803 		orr	r3, r3, #56
+ 404 001e 1360     		str	r3, [r2]
+ 405 0020 0A24     		movs	r4, #10
+ 406 0022 08E0     		b	.L66
+ 407              	.L91:
+ 408 0024 4E4B     		ldr	r3, .L97
+ 409 0026 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 410 0028 C0B2     		uxtb	r0, r0
+ 411 002a 7047     		bx	lr
+ 412              	.L67:
+ 413 002c FF20     		movs	r0, #255
+ 414 002e FFF7FEFF 		bl	xchg_spi
+ 415 0032 013C     		subs	r4, r4, #1
+ 416 0034 E4B2     		uxtb	r4, r4
+ 417              	.L66:
+ 418 0036 002C     		cmp	r4, #0
+ 419 0038 F8D1     		bne	.L67
+ 420 003a 0021     		movs	r1, #0
+ 421 003c 0846     		mov	r0, r1
+ 422 003e FFF7FEFF 		bl	send_cmd
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 8
+
+
+ 423 0042 0546     		mov	r5, r0
+ 424 0044 0128     		cmp	r0, #1
+ 425 0046 17D0     		beq	.L92
+ 426              	.L68:
+ 427 0048 474B     		ldr	r3, .L97+8
+ 428 004a 1C70     		strb	r4, [r3]
+ 429 004c FFF7FEFF 		bl	despiselect
+ 430 0050 002C     		cmp	r4, #0
+ 431 0052 7FD0     		beq	.L79
+ 432 0054 434B     		ldr	r3, .L97+4
+ 433 0056 1A68     		ldr	r2, [r3]
+ 434 0058 1368     		ldr	r3, [r2]
+ 435 005a 23F03803 		bic	r3, r3, #56
+ 436 005e 43F01003 		orr	r3, r3, #16
+ 437 0062 1360     		str	r3, [r2]
+ 438 0064 3E4A     		ldr	r2, .L97
+ 439 0066 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 440 0068 03F0FE03 		and	r3, r3, #254
+ 441 006c 1370     		strb	r3, [r2]
+ 442              	.L80:
+ 443 006e 3C4B     		ldr	r3, .L97
+ 444 0070 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 445 0072 C0B2     		uxtb	r0, r0
+ 446 0074 02B0     		add	sp, sp, #8
+ 447              		@ sp needed
+ 448 0076 70BD     		pop	{r4, r5, r6, pc}
+ 449              	.L92:
+ 450 0078 4FF47A70 		mov	r0, #1000
+ 451 007c FFF7FEFF 		bl	SPI_Timer_On
+ 452 0080 4FF4D571 		mov	r1, #426
+ 453 0084 0820     		movs	r0, #8
+ 454 0086 FFF7FEFF 		bl	send_cmd
+ 455 008a 0128     		cmp	r0, #1
+ 456 008c 3ED1     		bne	.L93
+ 457 008e 2546     		mov	r5, r4
+ 458 0090 09E0     		b	.L69
+ 459              	.L71:
+ 460 0092 FF20     		movs	r0, #255
+ 461 0094 FFF7FEFF 		bl	xchg_spi
+ 462 0098 05F10803 		add	r3, r5, #8
+ 463 009c 6B44     		add	r3, sp, r3
+ 464 009e 03F8040C 		strb	r0, [r3, #-4]
+ 465 00a2 0135     		adds	r5, r5, #1
+ 466 00a4 EDB2     		uxtb	r5, r5
+ 467              	.L69:
+ 468 00a6 032D     		cmp	r5, #3
+ 469 00a8 F3D9     		bls	.L71
+ 470 00aa 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 471 00ae 012B     		cmp	r3, #1
+ 472 00b0 CAD1     		bne	.L68
+ 473 00b2 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 474 00b6 AA2B     		cmp	r3, #170
+ 475 00b8 C6D1     		bne	.L68
+ 476              	.L73:
+ 477 00ba FFF7FEFF 		bl	SPI_Timer_Status
+ 478 00be 30B1     		cbz	r0, .L72
+ 479 00c0 4FF08041 		mov	r1, #1073741824
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 9
+
+
+ 480 00c4 A920     		movs	r0, #169
+ 481 00c6 FFF7FEFF 		bl	send_cmd
+ 482 00ca 0028     		cmp	r0, #0
+ 483 00cc F5D1     		bne	.L73
+ 484              	.L72:
+ 485 00ce FFF7FEFF 		bl	SPI_Timer_Status
+ 486 00d2 08B9     		cbnz	r0, .L94
+ 487 00d4 0446     		mov	r4, r0
+ 488 00d6 B7E7     		b	.L68
+ 489              	.L94:
+ 490 00d8 0021     		movs	r1, #0
+ 491 00da 3A20     		movs	r0, #58
+ 492 00dc FFF7FEFF 		bl	send_cmd
+ 493 00e0 0546     		mov	r5, r0
+ 494 00e2 50B1     		cbz	r0, .L74
+ 495 00e4 B0E7     		b	.L68
+ 496              	.L75:
+ 497 00e6 FF20     		movs	r0, #255
+ 498 00e8 FFF7FEFF 		bl	xchg_spi
+ 499 00ec 05F10803 		add	r3, r5, #8
+ 500 00f0 6B44     		add	r3, sp, r3
+ 501 00f2 03F8040C 		strb	r0, [r3, #-4]
+ 502 00f6 0135     		adds	r5, r5, #1
+ 503 00f8 EDB2     		uxtb	r5, r5
+ 504              	.L74:
+ 505 00fa 032D     		cmp	r5, #3
+ 506 00fc F3D9     		bls	.L75
+ 507 00fe 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 508 0102 13F0400F 		tst	r3, #64
+ 509 0106 23D0     		beq	.L84
+ 510 0108 0C24     		movs	r4, #12
+ 511 010a 9DE7     		b	.L68
+ 512              	.L93:
+ 513 010c 0021     		movs	r1, #0
+ 514 010e A920     		movs	r0, #169
+ 515 0110 FFF7FEFF 		bl	send_cmd
+ 516 0114 0128     		cmp	r0, #1
+ 517 0116 0ED9     		bls	.L95
+ 518 0118 2E46     		mov	r6, r5
+ 519              	.L78:
+ 520 011a FFF7FEFF 		bl	SPI_Timer_Status
+ 521 011e 28B1     		cbz	r0, .L77
+ 522 0120 0021     		movs	r1, #0
+ 523 0122 2846     		mov	r0, r5
+ 524 0124 FFF7FEFF 		bl	send_cmd
+ 525 0128 0028     		cmp	r0, #0
+ 526 012a F6D1     		bne	.L78
+ 527              	.L77:
+ 528 012c FFF7FEFF 		bl	SPI_Timer_Status
+ 529 0130 20B9     		cbnz	r0, .L96
+ 530 0132 0446     		mov	r4, r0
+ 531 0134 88E7     		b	.L68
+ 532              	.L95:
+ 533 0136 0226     		movs	r6, #2
+ 534 0138 A925     		movs	r5, #169
+ 535 013a EEE7     		b	.L78
+ 536              	.L96:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 10
+
+
+ 537 013c 4FF40071 		mov	r1, #512
+ 538 0140 1020     		movs	r0, #16
+ 539 0142 FFF7FEFF 		bl	send_cmd
+ 540 0146 0028     		cmp	r0, #0
+ 541 0148 7FF47EAF 		bne	.L68
+ 542 014c 3446     		mov	r4, r6
+ 543 014e 7BE7     		b	.L68
+ 544              	.L84:
+ 545 0150 0424     		movs	r4, #4
+ 546 0152 79E7     		b	.L68
+ 547              	.L79:
+ 548 0154 024B     		ldr	r3, .L97
+ 549 0156 0122     		movs	r2, #1
+ 550 0158 1A70     		strb	r2, [r3]
+ 551 015a 88E7     		b	.L80
+ 552              	.L81:
+ 553 015c 0120     		movs	r0, #1
+ 554 015e 7047     		bx	lr
+ 555              	.L98:
+ 556              		.align	2
+ 557              	.L97:
+ 558 0160 00000000 		.word	Stat
+ 559 0164 00000000 		.word	hspi1
+ 560 0168 00000000 		.word	CardType
+ 562              		.section	.text.USER_SPI_status,"ax",%progbits
+ 563              		.align	1
+ 564              		.global	USER_SPI_status
+ 565              		.syntax unified
+ 566              		.thumb
+ 567              		.thumb_func
+ 569              	USER_SPI_status:
+ 570              		@ args = 0, pretend = 0, frame = 0
+ 571              		@ frame_needed = 0, uses_anonymous_args = 0
+ 572              		@ link register save eliminated.
+ 573 0000 18B9     		cbnz	r0, .L101
+ 574 0002 034B     		ldr	r3, .L102
+ 575 0004 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 576 0006 C0B2     		uxtb	r0, r0
+ 577 0008 7047     		bx	lr
+ 578              	.L101:
+ 579 000a 0120     		movs	r0, #1
+ 580 000c 7047     		bx	lr
+ 581              	.L103:
+ 582 000e 00BF     		.align	2
+ 583              	.L102:
+ 584 0010 00000000 		.word	Stat
+ 586              		.section	.text.USER_SPI_read,"ax",%progbits
+ 587              		.align	1
+ 588              		.global	USER_SPI_read
+ 589              		.syntax unified
+ 590              		.thumb
+ 591              		.thumb_func
+ 593              	USER_SPI_read:
+ 594              		@ args = 0, pretend = 0, frame = 0
+ 595              		@ frame_needed = 0, uses_anonymous_args = 0
+ 596 0000 0028     		cmp	r0, #0
+ 597 0002 39D1     		bne	.L111
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 11
+
+
+ 598 0004 38B5     		push	{r3, r4, r5, lr}
+ 599 0006 0D46     		mov	r5, r1
+ 600 0008 1C46     		mov	r4, r3
+ 601 000a 002B     		cmp	r3, #0
+ 602 000c 36D0     		beq	.L112
+ 603 000e 1D4B     		ldr	r3, .L120
+ 604 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 605 0012 13F0010F 		tst	r3, #1
+ 606 0016 33D1     		bne	.L113
+ 607 0018 1B4B     		ldr	r3, .L120+4
+ 608 001a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 609 001c 13F0080F 		tst	r3, #8
+ 610 0020 00D1     		bne	.L106
+ 611 0022 5202     		lsls	r2, r2, #9
+ 612              	.L106:
+ 613 0024 012C     		cmp	r4, #1
+ 614 0026 18D0     		beq	.L119
+ 615 0028 1146     		mov	r1, r2
+ 616 002a 1220     		movs	r0, #18
+ 617 002c FFF7FEFF 		bl	send_cmd
+ 618 0030 68B9     		cbnz	r0, .L108
+ 619              	.L110:
+ 620 0032 4FF40071 		mov	r1, #512
+ 621 0036 2846     		mov	r0, r5
+ 622 0038 FFF7FEFF 		bl	rcvr_datablock
+ 623 003c 18B1     		cbz	r0, .L109
+ 624 003e 05F50075 		add	r5, r5, #512
+ 625 0042 013C     		subs	r4, r4, #1
+ 626 0044 F5D1     		bne	.L110
+ 627              	.L109:
+ 628 0046 0021     		movs	r1, #0
+ 629 0048 0C20     		movs	r0, #12
+ 630 004a FFF7FEFF 		bl	send_cmd
+ 631              	.L108:
+ 632 004e FFF7FEFF 		bl	despiselect
+ 633 0052 201E     		subs	r0, r4, #0
+ 634 0054 18BF     		it	ne
+ 635 0056 0120     		movne	r0, #1
+ 636              	.L105:
+ 637 0058 38BD     		pop	{r3, r4, r5, pc}
+ 638              	.L119:
+ 639 005a 1146     		mov	r1, r2
+ 640 005c 1120     		movs	r0, #17
+ 641 005e FFF7FEFF 		bl	send_cmd
+ 642 0062 0028     		cmp	r0, #0
+ 643 0064 F3D1     		bne	.L108
+ 644 0066 4FF40071 		mov	r1, #512
+ 645 006a 2846     		mov	r0, r5
+ 646 006c FFF7FEFF 		bl	rcvr_datablock
+ 647 0070 0028     		cmp	r0, #0
+ 648 0072 ECD0     		beq	.L108
+ 649 0074 0024     		movs	r4, #0
+ 650 0076 EAE7     		b	.L108
+ 651              	.L111:
+ 652 0078 0420     		movs	r0, #4
+ 653 007a 7047     		bx	lr
+ 654              	.L112:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 12
+
+
+ 655 007c 0420     		movs	r0, #4
+ 656 007e EBE7     		b	.L105
+ 657              	.L113:
+ 658 0080 0320     		movs	r0, #3
+ 659 0082 E9E7     		b	.L105
+ 660              	.L121:
+ 661              		.align	2
+ 662              	.L120:
+ 663 0084 00000000 		.word	Stat
+ 664 0088 00000000 		.word	CardType
+ 666              		.section	.text.USER_SPI_write,"ax",%progbits
+ 667              		.align	1
+ 668              		.global	USER_SPI_write
+ 669              		.syntax unified
+ 670              		.thumb
+ 671              		.thumb_func
+ 673              	USER_SPI_write:
+ 674              		@ args = 0, pretend = 0, frame = 0
+ 675              		@ frame_needed = 0, uses_anonymous_args = 0
+ 676 0000 0028     		cmp	r0, #0
+ 677 0002 48D1     		bne	.L130
+ 678 0004 70B5     		push	{r4, r5, r6, lr}
+ 679 0006 0D46     		mov	r5, r1
+ 680 0008 1646     		mov	r6, r2
+ 681 000a 1C46     		mov	r4, r3
+ 682 000c 002B     		cmp	r3, #0
+ 683 000e 44D0     		beq	.L131
+ 684 0010 254B     		ldr	r3, .L142
+ 685 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 686 0014 13F0010F 		tst	r3, #1
+ 687 0018 41D1     		bne	.L132
+ 688 001a 234B     		ldr	r3, .L142
+ 689 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 690 001e 13F0040F 		tst	r3, #4
+ 691 0022 3ED1     		bne	.L133
+ 692 0024 214B     		ldr	r3, .L142+4
+ 693 0026 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 694 0028 13F0080F 		tst	r3, #8
+ 695 002c 00D1     		bne	.L124
+ 696 002e 5602     		lsls	r6, r2, #9
+ 697              	.L124:
+ 698 0030 012C     		cmp	r4, #1
+ 699 0032 1BD0     		beq	.L140
+ 700 0034 13F0060F 		tst	r3, #6
+ 701 0038 26D1     		bne	.L141
+ 702              	.L127:
+ 703 003a 3146     		mov	r1, r6
+ 704 003c 1920     		movs	r0, #25
+ 705 003e FFF7FEFF 		bl	send_cmd
+ 706 0042 68B9     		cbnz	r0, .L126
+ 707              	.L129:
+ 708 0044 FC21     		movs	r1, #252
+ 709 0046 2846     		mov	r0, r5
+ 710 0048 FFF7FEFF 		bl	xmit_datablock
+ 711 004c 18B1     		cbz	r0, .L128
+ 712 004e 05F50075 		add	r5, r5, #512
+ 713 0052 013C     		subs	r4, r4, #1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 13
+
+
+ 714 0054 F6D1     		bne	.L129
+ 715              	.L128:
+ 716 0056 FD21     		movs	r1, #253
+ 717 0058 0020     		movs	r0, #0
+ 718 005a FFF7FEFF 		bl	xmit_datablock
+ 719 005e C0B1     		cbz	r0, .L135
+ 720              	.L126:
+ 721 0060 FFF7FEFF 		bl	despiselect
+ 722 0064 201E     		subs	r0, r4, #0
+ 723 0066 18BF     		it	ne
+ 724 0068 0120     		movne	r0, #1
+ 725              	.L123:
+ 726 006a 70BD     		pop	{r4, r5, r6, pc}
+ 727              	.L140:
+ 728 006c 3146     		mov	r1, r6
+ 729 006e 1820     		movs	r0, #24
+ 730 0070 FFF7FEFF 		bl	send_cmd
+ 731 0074 0028     		cmp	r0, #0
+ 732 0076 F3D1     		bne	.L126
+ 733 0078 FE21     		movs	r1, #254
+ 734 007a 2846     		mov	r0, r5
+ 735 007c FFF7FEFF 		bl	xmit_datablock
+ 736 0080 0028     		cmp	r0, #0
+ 737 0082 EDD0     		beq	.L126
+ 738 0084 0024     		movs	r4, #0
+ 739 0086 EBE7     		b	.L126
+ 740              	.L141:
+ 741 0088 2146     		mov	r1, r4
+ 742 008a 9720     		movs	r0, #151
+ 743 008c FFF7FEFF 		bl	send_cmd
+ 744 0090 D3E7     		b	.L127
+ 745              	.L135:
+ 746 0092 0124     		movs	r4, #1
+ 747 0094 E4E7     		b	.L126
+ 748              	.L130:
+ 749 0096 0420     		movs	r0, #4
+ 750 0098 7047     		bx	lr
+ 751              	.L131:
+ 752 009a 0420     		movs	r0, #4
+ 753 009c E5E7     		b	.L123
+ 754              	.L132:
+ 755 009e 0320     		movs	r0, #3
+ 756 00a0 E3E7     		b	.L123
+ 757              	.L133:
+ 758 00a2 0220     		movs	r0, #2
+ 759 00a4 E1E7     		b	.L123
+ 760              	.L143:
+ 761 00a6 00BF     		.align	2
+ 762              	.L142:
+ 763 00a8 00000000 		.word	Stat
+ 764 00ac 00000000 		.word	CardType
+ 766              		.section	.text.USER_SPI_ioctl,"ax",%progbits
+ 767              		.align	1
+ 768              		.global	USER_SPI_ioctl
+ 769              		.syntax unified
+ 770              		.thumb
+ 771              		.thumb_func
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 14
+
+
+ 773              	USER_SPI_ioctl:
+ 774              		@ args = 0, pretend = 0, frame = 16
+ 775              		@ frame_needed = 0, uses_anonymous_args = 0
+ 776 0000 70B5     		push	{r4, r5, r6, lr}
+ 777 0002 84B0     		sub	sp, sp, #16
+ 778 0004 0028     		cmp	r0, #0
+ 779 0006 40F00481 		bne	.L159
+ 780 000a 0D46     		mov	r5, r1
+ 781 000c 1646     		mov	r6, r2
+ 782 000e 834B     		ldr	r3, .L184
+ 783 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 784 0012 13F0010F 		tst	r3, #1
+ 785 0016 40F0FE80 		bne	.L160
+ 786 001a 0429     		cmp	r1, #4
+ 787 001c 00F2ED80 		bhi	.L161
+ 788 0020 DFE811F0 		tbh	[pc, r1, lsl #1]
+ 789              	.L148:
+ 790 0024 0500     		.2byte	(.L151-.L148)/2
+ 791 0026 0C00     		.2byte	(.L150-.L148)/2
+ 792 0028 EB00     		.2byte	(.L161-.L148)/2
+ 793 002a 5400     		.2byte	(.L149-.L148)/2
+ 794 002c AF00     		.2byte	(.L147-.L148)/2
+ 795              		.p2align 1
+ 796              	.L151:
+ 797 002e FFF7FEFF 		bl	spiselect
+ 798 0032 0028     		cmp	r0, #0
+ 799 0034 40F0E380 		bne	.L162
+ 800 0038 0124     		movs	r4, #1
+ 801 003a 06E0     		b	.L146
+ 802              	.L150:
+ 803 003c 0021     		movs	r1, #0
+ 804 003e 0920     		movs	r0, #9
+ 805 0040 FFF7FEFF 		bl	send_cmd
+ 806 0044 0446     		mov	r4, r0
+ 807 0046 28B1     		cbz	r0, .L176
+ 808 0048 2C46     		mov	r4, r5
+ 809              	.L146:
+ 810 004a FFF7FEFF 		bl	despiselect
+ 811              	.L145:
+ 812 004e 2046     		mov	r0, r4
+ 813 0050 04B0     		add	sp, sp, #16
+ 814              		@ sp needed
+ 815 0052 70BD     		pop	{r4, r5, r6, pc}
+ 816              	.L176:
+ 817 0054 1021     		movs	r1, #16
+ 818 0056 6846     		mov	r0, sp
+ 819 0058 FFF7FEFF 		bl	rcvr_datablock
+ 820 005c 0028     		cmp	r0, #0
+ 821 005e 00F0D080 		beq	.L164
+ 822 0062 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
+ 823 0066 9B09     		lsrs	r3, r3, #6
+ 824 0068 012B     		cmp	r3, #1
+ 825 006a 1FD0     		beq	.L177
+ 826 006c 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 827 0070 02F00F02 		and	r2, r2, #15
+ 828 0074 9DF80A30 		ldrb	r3, [sp, #10]	@ zero_extendqisi2
+ 829 0078 02EBD312 		add	r2, r2, r3, lsr #7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 15
+
+
+ 830 007c 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 831 0080 5B00     		lsls	r3, r3, #1
+ 832 0082 03F00603 		and	r3, r3, #6
+ 833 0086 1A44     		add	r2, r2, r3
+ 834 0088 9DF80810 		ldrb	r1, [sp, #8]	@ zero_extendqisi2
+ 835 008c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 836 0090 9B00     		lsls	r3, r3, #2
+ 837 0092 03EB9113 		add	r3, r3, r1, lsr #6
+ 838 0096 9DF80610 		ldrb	r1, [sp, #6]	@ zero_extendqisi2
+ 839 009a 8902     		lsls	r1, r1, #10
+ 840 009c 01F44061 		and	r1, r1, #3072
+ 841 00a0 0B44     		add	r3, r3, r1
+ 842 00a2 0133     		adds	r3, r3, #1
+ 843 00a4 073A     		subs	r2, r2, #7
+ 844 00a6 9340     		lsls	r3, r3, r2
+ 845 00a8 3360     		str	r3, [r6]
+ 846 00aa CEE7     		b	.L146
+ 847              	.L177:
+ 848 00ac 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 849 00b0 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
+ 850 00b4 03EB0223 		add	r3, r3, r2, lsl #8
+ 851 00b8 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 852 00bc 1204     		lsls	r2, r2, #16
+ 853 00be 02F47C12 		and	r2, r2, #4128768
+ 854 00c2 1344     		add	r3, r3, r2
+ 855 00c4 0133     		adds	r3, r3, #1
+ 856 00c6 9B02     		lsls	r3, r3, #10
+ 857 00c8 3360     		str	r3, [r6]
+ 858 00ca BEE7     		b	.L146
+ 859              	.L149:
+ 860 00cc 544B     		ldr	r3, .L184+4
+ 861 00ce 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 862 00d0 13F0040F 		tst	r3, #4
+ 863 00d4 20D0     		beq	.L153
+ 864 00d6 0021     		movs	r1, #0
+ 865 00d8 8D20     		movs	r0, #141
+ 866 00da FFF7FEFF 		bl	send_cmd
+ 867 00de 08B1     		cbz	r0, .L178
+ 868 00e0 0124     		movs	r4, #1
+ 869 00e2 B2E7     		b	.L146
+ 870              	.L178:
+ 871 00e4 FF20     		movs	r0, #255
+ 872 00e6 FFF7FEFF 		bl	xchg_spi
+ 873 00ea 1021     		movs	r1, #16
+ 874 00ec 6846     		mov	r0, sp
+ 875 00ee FFF7FEFF 		bl	rcvr_datablock
+ 876 00f2 78B9     		cbnz	r0, .L166
+ 877 00f4 0124     		movs	r4, #1
+ 878 00f6 A8E7     		b	.L146
+ 879              	.L155:
+ 880 00f8 FF20     		movs	r0, #255
+ 881 00fa FFF7FEFF 		bl	xchg_spi
+ 882 00fe 013C     		subs	r4, r4, #1
+ 883 0100 E4B2     		uxtb	r4, r4
+ 884              	.L154:
+ 885 0102 002C     		cmp	r4, #0
+ 886 0104 F8D1     		bne	.L155
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 16
+
+
+ 887 0106 9DF80A20 		ldrb	r2, [sp, #10]	@ zero_extendqisi2
+ 888 010a 1209     		lsrs	r2, r2, #4
+ 889 010c 1023     		movs	r3, #16
+ 890 010e 9340     		lsls	r3, r3, r2
+ 891 0110 3360     		str	r3, [r6]
+ 892 0112 9AE7     		b	.L146
+ 893              	.L166:
+ 894 0114 3024     		movs	r4, #48
+ 895 0116 F4E7     		b	.L154
+ 896              	.L153:
+ 897 0118 0021     		movs	r1, #0
+ 898 011a 0920     		movs	r0, #9
+ 899 011c FFF7FEFF 		bl	send_cmd
+ 900 0120 0546     		mov	r5, r0
+ 901 0122 08B1     		cbz	r0, .L179
+ 902 0124 0124     		movs	r4, #1
+ 903 0126 90E7     		b	.L146
+ 904              	.L179:
+ 905 0128 1021     		movs	r1, #16
+ 906 012a 6846     		mov	r0, sp
+ 907 012c FFF7FEFF 		bl	rcvr_datablock
+ 908 0130 0028     		cmp	r0, #0
+ 909 0132 68D0     		beq	.L168
+ 910 0134 3A4B     		ldr	r3, .L184+4
+ 911 0136 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 912 0138 14F00204 		ands	r4, r4, #2
+ 913 013c 11D0     		beq	.L156
+ 914 013e 9DF80A30 		ldrb	r3, [sp, #10]	@ zero_extendqisi2
+ 915 0142 5B00     		lsls	r3, r3, #1
+ 916 0144 03F07E03 		and	r3, r3, #126
+ 917 0148 9DF80B20 		ldrb	r2, [sp, #11]	@ zero_extendqisi2
+ 918 014c 03EBD213 		add	r3, r3, r2, lsr #7
+ 919 0150 0133     		adds	r3, r3, #1
+ 920 0152 9DF80D20 		ldrb	r2, [sp, #13]	@ zero_extendqisi2
+ 921 0156 9209     		lsrs	r2, r2, #6
+ 922 0158 013A     		subs	r2, r2, #1
+ 923 015a 9340     		lsls	r3, r3, r2
+ 924 015c 3360     		str	r3, [r6]
+ 925 015e 2C46     		mov	r4, r5
+ 926 0160 73E7     		b	.L146
+ 927              	.L156:
+ 928 0162 9DF80A20 		ldrb	r2, [sp, #10]	@ zero_extendqisi2
+ 929 0166 C2F38402 		ubfx	r2, r2, #2, #5
+ 930 016a 9DF80B10 		ldrb	r1, [sp, #11]	@ zero_extendqisi2
+ 931 016e CB00     		lsls	r3, r1, #3
+ 932 0170 03F01803 		and	r3, r3, #24
+ 933 0174 03EB5113 		add	r3, r3, r1, lsr #5
+ 934 0178 0133     		adds	r3, r3, #1
+ 935 017a 02FB0333 		mla	r3, r2, r3, r3
+ 936 017e 3360     		str	r3, [r6]
+ 937 0180 63E7     		b	.L146
+ 938              	.L147:
+ 939 0182 274B     		ldr	r3, .L184+4
+ 940 0184 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 941 0186 13F0060F 		tst	r3, #6
+ 942 018a 01D1     		bne	.L180
+ 943 018c 0124     		movs	r4, #1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 17
+
+
+ 944 018e 5CE7     		b	.L146
+ 945              	.L180:
+ 946 0190 6A46     		mov	r2, sp
+ 947 0192 0B21     		movs	r1, #11
+ 948 0194 FFF7FEFF 		bl	USER_SPI_ioctl
+ 949 0198 B8BB     		cbnz	r0, .L170
+ 950 019a 9DF80030 		ldrb	r3, [sp]	@ zero_extendqisi2
+ 951 019e 9B09     		lsrs	r3, r3, #6
+ 952 01a0 04D1     		bne	.L157
+ 953 01a2 9DF80A30 		ldrb	r3, [sp, #10]	@ zero_extendqisi2
+ 954 01a6 13F0400F 		tst	r3, #64
+ 955 01aa 30D0     		beq	.L171
+ 956              	.L157:
+ 957 01ac 3168     		ldr	r1, [r6]
+ 958 01ae 7468     		ldr	r4, [r6, #4]
+ 959 01b0 1B4B     		ldr	r3, .L184+4
+ 960 01b2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 961 01b4 13F0080F 		tst	r3, #8
+ 962 01b8 01D1     		bne	.L158
+ 963 01ba 4902     		lsls	r1, r1, #9
+ 964 01bc 6402     		lsls	r4, r4, #9
+ 965              	.L158:
+ 966 01be 2020     		movs	r0, #32
+ 967 01c0 FFF7FEFF 		bl	send_cmd
+ 968 01c4 08B1     		cbz	r0, .L181
+ 969 01c6 0124     		movs	r4, #1
+ 970 01c8 3FE7     		b	.L146
+ 971              	.L181:
+ 972 01ca 2146     		mov	r1, r4
+ 973 01cc 2120     		movs	r0, #33
+ 974 01ce FFF7FEFF 		bl	send_cmd
+ 975 01d2 08B1     		cbz	r0, .L182
+ 976 01d4 0124     		movs	r4, #1
+ 977 01d6 38E7     		b	.L146
+ 978              	.L182:
+ 979 01d8 0021     		movs	r1, #0
+ 980 01da 2620     		movs	r0, #38
+ 981 01dc FFF7FEFF 		bl	send_cmd
+ 982 01e0 0446     		mov	r4, r0
+ 983 01e2 08B1     		cbz	r0, .L183
+ 984 01e4 0124     		movs	r4, #1
+ 985 01e6 30E7     		b	.L146
+ 986              	.L183:
+ 987 01e8 47F23050 		movw	r0, #30000
+ 988 01ec FFF7FEFF 		bl	wait_ready
+ 989 01f0 0028     		cmp	r0, #0
+ 990 01f2 7FF42AAF 		bne	.L146
+ 991 01f6 0124     		movs	r4, #1
+ 992 01f8 27E7     		b	.L146
+ 993              	.L161:
+ 994 01fa 0424     		movs	r4, #4
+ 995 01fc 25E7     		b	.L146
+ 996              	.L162:
+ 997 01fe 2C46     		mov	r4, r5
+ 998 0200 23E7     		b	.L146
+ 999              	.L164:
+ 1000 0202 2C46     		mov	r4, r5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 18
+
+
+ 1001 0204 21E7     		b	.L146
+ 1002              	.L168:
+ 1003 0206 0124     		movs	r4, #1
+ 1004 0208 1FE7     		b	.L146
+ 1005              	.L170:
+ 1006 020a 0124     		movs	r4, #1
+ 1007 020c 1DE7     		b	.L146
+ 1008              	.L171:
+ 1009 020e 0124     		movs	r4, #1
+ 1010 0210 1BE7     		b	.L146
+ 1011              	.L159:
+ 1012 0212 0424     		movs	r4, #4
+ 1013 0214 1BE7     		b	.L145
+ 1014              	.L160:
+ 1015 0216 0324     		movs	r4, #3
+ 1016 0218 19E7     		b	.L145
+ 1017              	.L185:
+ 1018 021a 00BF     		.align	2
+ 1019              	.L184:
+ 1020 021c 00000000 		.word	Stat
+ 1021 0220 00000000 		.word	CardType
+ 1023              		.global	spiTimerTickDelay
+ 1024              		.section	.bss.spiTimerTickDelay,"aw",%nobits
+ 1025              		.align	2
+ 1028              	spiTimerTickDelay:
+ 1029 0000 00000000 		.space	4
+ 1030              		.global	spiTimerTickStart
+ 1031              		.section	.bss.spiTimerTickStart,"aw",%nobits
+ 1032              		.align	2
+ 1035              	spiTimerTickStart:
+ 1036 0000 00000000 		.space	4
+ 1037              		.section	.bss.CardType,"aw",%nobits
+ 1040              	CardType:
+ 1041 0000 00       		.space	1
+ 1042              		.section	.data.Stat,"aw"
+ 1045              	Stat:
+ 1046 0000 01       		.byte	1
+ 1047              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 user_diskio_spi.c
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:18     .text.xchg_spi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:23     .text.xchg_spi:00000000 xchg_spi
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:43     .text.xchg_spi:00000028 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:46     .text.wait_ready:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:51     .text.wait_ready:00000000 wait_ready
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:76     .text.rcvr_spi_multi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:81     .text.rcvr_spi_multi:00000000 rcvr_spi_multi
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:100    .text.despiselect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:105    .text.despiselect:00000000 despiselect
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:119    .text.despiselect:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:122    .text.spiselect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:127    .text.spiselect:00000000 spiselect
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:151    .text.spiselect:0000002c $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:154    .text.send_cmd:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:159    .text.send_cmd:00000000 send_cmd
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:227    .text.xmit_spi_multi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:232    .text.xmit_spi_multi:00000000 xmit_spi_multi
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:245    .text.xmit_spi_multi:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:248    .text.xmit_datablock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:253    .text.xmit_datablock:00000000 xmit_datablock
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:291    .text.SPI_Timer_On:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:297    .text.SPI_Timer_On:00000000 SPI_Timer_On
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:311    .text.SPI_Timer_On:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1035   .bss.spiTimerTickStart:00000000 spiTimerTickStart
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1028   .bss.spiTimerTickDelay:00000000 spiTimerTickDelay
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:315    .text.SPI_Timer_Status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:321    .text.SPI_Timer_Status:00000000 SPI_Timer_Status
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:339    .text.SPI_Timer_Status:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:343    .text.rcvr_datablock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:348    .text.rcvr_datablock:00000000 rcvr_datablock
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:383    .text.USER_SPI_initialize:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:389    .text.USER_SPI_initialize:00000000 USER_SPI_initialize
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:558    .text.USER_SPI_initialize:00000160 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1045   .data.Stat:00000000 Stat
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1040   .bss.CardType:00000000 CardType
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:563    .text.USER_SPI_status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:569    .text.USER_SPI_status:00000000 USER_SPI_status
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:584    .text.USER_SPI_status:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:587    .text.USER_SPI_read:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:593    .text.USER_SPI_read:00000000 USER_SPI_read
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:663    .text.USER_SPI_read:00000084 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:667    .text.USER_SPI_write:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:673    .text.USER_SPI_write:00000000 USER_SPI_write
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:763    .text.USER_SPI_write:000000a8 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:767    .text.USER_SPI_ioctl:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:773    .text.USER_SPI_ioctl:00000000 USER_SPI_ioctl
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:790    .text.USER_SPI_ioctl:00000024 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:795    .text.USER_SPI_ioctl:0000002e $t
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1020   .text.USER_SPI_ioctl:0000021c $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1025   .bss.spiTimerTickDelay:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1032   .bss.spiTimerTickStart:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1041   .bss.CardType:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_TransmitReceive
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 20
+
+
+hspi1
+HAL_GetTick
+HAL_GPIO_WritePin
+HAL_SPI_Transmit

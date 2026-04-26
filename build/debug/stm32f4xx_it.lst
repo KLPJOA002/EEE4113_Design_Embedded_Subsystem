@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
   28:Core/Src/stm32f4xx_it.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32f4xx_it.c **** 
   30:Core/Src/stm32f4xx_it.c **** /* USER CODE END TD */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 2
 
 
   31:Core/Src/stm32f4xx_it.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
   38              		.loc 1 75 3 view .LVU1
   39 0002 FFF7FEFF 		bl	HAL_RCC_NMI_IRQHandler
   40              	.LVL0:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 3
 
 
   41              	.L2:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
   76              		.thumb
   77              		.thumb_func
   79              	MemManage_Handler:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 4
 
 
   80              	.LFB136:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
  120:Core/Src/stm32f4xx_it.c ****   /* USER CODE END BusFault_IRQn 0 */
  121:Core/Src/stm32f4xx_it.c ****   while (1)
  111              		.loc 1 121 3 view .LVU14
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 5
 
 
  122:Core/Src/stm32f4xx_it.c ****   {
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
  149              	.LFB139:
  141:Core/Src/stm32f4xx_it.c **** }
  142:Core/Src/stm32f4xx_it.c **** 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 6
 
 
  143:Core/Src/stm32f4xx_it.c **** /**
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
  182              		.syntax unified
  183              		.thumb
  184              		.thumb_func
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 7
 
 
  186              	PendSV_Handler:
@@ -418,20 +418,20 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
  192:Core/Src/stm32f4xx_it.c **** 
  193:Core/Src/stm32f4xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
  194:Core/Src/stm32f4xx_it.c **** }
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 8
 
 
  218              		.loc 1 194 1 is_stmt 0 view .LVU29
  219 0006 08BD     		pop	{r3, pc}
  220              		.cfi_endproc
  221              	.LFE142:
- 223              		.section	.text.TIM1_TRG_COM_TIM11_IRQHandler,"ax",%progbits
+ 223              		.section	.text.EXTI9_5_IRQHandler,"ax",%progbits
  224              		.align	1
- 225              		.global	TIM1_TRG_COM_TIM11_IRQHandler
+ 225              		.global	EXTI9_5_IRQHandler
  226              		.syntax unified
  227              		.thumb
  228              		.thumb_func
- 230              	TIM1_TRG_COM_TIM11_IRQHandler:
+ 230              	EXTI9_5_IRQHandler:
  231              	.LFB143:
  195:Core/Src/stm32f4xx_it.c **** 
  196:Core/Src/stm32f4xx_it.c **** /******************************************************************************/
@@ -442,9 +442,9 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
  201:Core/Src/stm32f4xx_it.c **** /******************************************************************************/
  202:Core/Src/stm32f4xx_it.c **** 
  203:Core/Src/stm32f4xx_it.c **** /**
- 204:Core/Src/stm32f4xx_it.c ****   * @brief This function handles TIM1 trigger and commutation interrupts and TIM11 global interrupt
+ 204:Core/Src/stm32f4xx_it.c ****   * @brief This function handles EXTI line[9:5] interrupts.
  205:Core/Src/stm32f4xx_it.c ****   */
- 206:Core/Src/stm32f4xx_it.c **** void TIM1_TRG_COM_TIM11_IRQHandler(void)
+ 206:Core/Src/stm32f4xx_it.c **** void EXTI9_5_IRQHandler(void)
  207:Core/Src/stm32f4xx_it.c **** {
  232              		.loc 1 207 1 is_stmt 1 view -0
  233              		.cfi_startproc
@@ -454,114 +454,159 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 1
  237              		.cfi_def_cfa_offset 8
  238              		.cfi_offset 3, -8
  239              		.cfi_offset 14, -4
- 208:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM1_TRG_COM_TIM11_IRQn 0 */
+ 208:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI9_5_IRQn 0 */
  209:Core/Src/stm32f4xx_it.c **** 
- 210:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM1_TRG_COM_TIM11_IRQn 0 */
- 211:Core/Src/stm32f4xx_it.c ****   HAL_TIM_IRQHandler(&htim11);
+ 210:Core/Src/stm32f4xx_it.c ****   /* USER CODE END EXTI9_5_IRQn 0 */
+ 211:Core/Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(Lora_IRQ_Pin);
  240              		.loc 1 211 3 view .LVU31
- 241 0002 0248     		ldr	r0, .L19
- 242 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 241 0002 4FF40070 		mov	r0, #512
+ 242 0006 FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
  243              	.LVL2:
- 212:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM1_TRG_COM_TIM11_IRQn 1 */
+ 212:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI9_5_IRQn 1 */
  213:Core/Src/stm32f4xx_it.c **** 
- 214:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM1_TRG_COM_TIM11_IRQn 1 */
+ 214:Core/Src/stm32f4xx_it.c ****   /* USER CODE END EXTI9_5_IRQn 1 */
  215:Core/Src/stm32f4xx_it.c **** }
  244              		.loc 1 215 1 is_stmt 0 view .LVU32
- 245 0008 08BD     		pop	{r3, pc}
- 246              	.L20:
- 247 000a 00BF     		.align	2
- 248              	.L19:
- 249 000c 00000000 		.word	htim11
- 250              		.cfi_endproc
- 251              	.LFE143:
- 253              		.section	.text.DMA2_Stream0_IRQHandler,"ax",%progbits
- 254              		.align	1
- 255              		.global	DMA2_Stream0_IRQHandler
- 256              		.syntax unified
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 9
+ 245 000a 08BD     		pop	{r3, pc}
+ 246              		.cfi_endproc
+ 247              	.LFE143:
+ 249              		.section	.text.TIM1_TRG_COM_TIM11_IRQHandler,"ax",%progbits
+ 250              		.align	1
+ 251              		.global	TIM1_TRG_COM_TIM11_IRQHandler
+ 252              		.syntax unified
+ 253              		.thumb
+ 254              		.thumb_func
+ 256              	TIM1_TRG_COM_TIM11_IRQHandler:
+ 257              	.LFB144:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 9
 
 
- 257              		.thumb
- 258              		.thumb_func
- 260              	DMA2_Stream0_IRQHandler:
- 261              	.LFB144:
  216:Core/Src/stm32f4xx_it.c **** 
  217:Core/Src/stm32f4xx_it.c **** /**
- 218:Core/Src/stm32f4xx_it.c ****   * @brief This function handles DMA2 stream0 global interrupt.
+ 218:Core/Src/stm32f4xx_it.c ****   * @brief This function handles TIM1 trigger and commutation interrupts and TIM11 global interrupt
  219:Core/Src/stm32f4xx_it.c ****   */
- 220:Core/Src/stm32f4xx_it.c **** void DMA2_Stream0_IRQHandler(void)
+ 220:Core/Src/stm32f4xx_it.c **** void TIM1_TRG_COM_TIM11_IRQHandler(void)
  221:Core/Src/stm32f4xx_it.c **** {
- 262              		.loc 1 221 1 is_stmt 1 view -0
- 263              		.cfi_startproc
- 264              		@ args = 0, pretend = 0, frame = 0
- 265              		@ frame_needed = 0, uses_anonymous_args = 0
- 266 0000 08B5     		push	{r3, lr}
- 267              		.cfi_def_cfa_offset 8
- 268              		.cfi_offset 3, -8
- 269              		.cfi_offset 14, -4
- 222:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
+ 258              		.loc 1 221 1 is_stmt 1 view -0
+ 259              		.cfi_startproc
+ 260              		@ args = 0, pretend = 0, frame = 0
+ 261              		@ frame_needed = 0, uses_anonymous_args = 0
+ 262 0000 08B5     		push	{r3, lr}
+ 263              		.cfi_def_cfa_offset 8
+ 264              		.cfi_offset 3, -8
+ 265              		.cfi_offset 14, -4
+ 222:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM1_TRG_COM_TIM11_IRQn 0 */
  223:Core/Src/stm32f4xx_it.c **** 
- 224:Core/Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream0_IRQn 0 */
- 225:Core/Src/stm32f4xx_it.c ****   HAL_DMA_IRQHandler(&hdma_spi1_rx);
- 270              		.loc 1 225 3 view .LVU34
- 271 0002 0248     		ldr	r0, .L23
- 272 0004 FFF7FEFF 		bl	HAL_DMA_IRQHandler
- 273              	.LVL3:
- 226:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream0_IRQn 1 */
+ 224:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM1_TRG_COM_TIM11_IRQn 0 */
+ 225:Core/Src/stm32f4xx_it.c ****   HAL_TIM_IRQHandler(&htim11);
+ 266              		.loc 1 225 3 view .LVU34
+ 267 0002 0248     		ldr	r0, .L21
+ 268 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 269              	.LVL3:
+ 226:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM1_TRG_COM_TIM11_IRQn 1 */
  227:Core/Src/stm32f4xx_it.c **** 
- 228:Core/Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream0_IRQn 1 */
+ 228:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM1_TRG_COM_TIM11_IRQn 1 */
  229:Core/Src/stm32f4xx_it.c **** }
- 274              		.loc 1 229 1 is_stmt 0 view .LVU35
- 275 0008 08BD     		pop	{r3, pc}
- 276              	.L24:
- 277 000a 00BF     		.align	2
- 278              	.L23:
- 279 000c 00000000 		.word	hdma_spi1_rx
- 280              		.cfi_endproc
- 281              	.LFE144:
- 283              		.text
- 284              	.Letext0:
- 285              		.file 2 "C:/Users/joabk/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
- 286              		.file 3 "C:/Users/joabk/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
- 287              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 288              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 289              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 290              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 291              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 292              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s 			page 10
+ 270              		.loc 1 229 1 is_stmt 0 view .LVU35
+ 271 0008 08BD     		pop	{r3, pc}
+ 272              	.L22:
+ 273 000a 00BF     		.align	2
+ 274              	.L21:
+ 275 000c 00000000 		.word	htim11
+ 276              		.cfi_endproc
+ 277              	.LFE144:
+ 279              		.section	.text.DMA2_Stream0_IRQHandler,"ax",%progbits
+ 280              		.align	1
+ 281              		.global	DMA2_Stream0_IRQHandler
+ 282              		.syntax unified
+ 283              		.thumb
+ 284              		.thumb_func
+ 286              	DMA2_Stream0_IRQHandler:
+ 287              	.LFB145:
+ 230:Core/Src/stm32f4xx_it.c **** 
+ 231:Core/Src/stm32f4xx_it.c **** /**
+ 232:Core/Src/stm32f4xx_it.c ****   * @brief This function handles DMA2 stream0 global interrupt.
+ 233:Core/Src/stm32f4xx_it.c ****   */
+ 234:Core/Src/stm32f4xx_it.c **** void DMA2_Stream0_IRQHandler(void)
+ 235:Core/Src/stm32f4xx_it.c **** {
+ 288              		.loc 1 235 1 is_stmt 1 view -0
+ 289              		.cfi_startproc
+ 290              		@ args = 0, pretend = 0, frame = 0
+ 291              		@ frame_needed = 0, uses_anonymous_args = 0
+ 292 0000 08B5     		push	{r3, lr}
+ 293              		.cfi_def_cfa_offset 8
+ 294              		.cfi_offset 3, -8
+ 295              		.cfi_offset 14, -4
+ 236:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 10
+
+
+ 237:Core/Src/stm32f4xx_it.c **** 
+ 238:Core/Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream0_IRQn 0 */
+ 239:Core/Src/stm32f4xx_it.c ****   HAL_DMA_IRQHandler(&hdma_spi1_rx);
+ 296              		.loc 1 239 3 view .LVU37
+ 297 0002 0248     		ldr	r0, .L25
+ 298 0004 FFF7FEFF 		bl	HAL_DMA_IRQHandler
+ 299              	.LVL4:
+ 240:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream0_IRQn 1 */
+ 241:Core/Src/stm32f4xx_it.c **** 
+ 242:Core/Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream0_IRQn 1 */
+ 243:Core/Src/stm32f4xx_it.c **** }
+ 300              		.loc 1 243 1 is_stmt 0 view .LVU38
+ 301 0008 08BD     		pop	{r3, pc}
+ 302              	.L26:
+ 303 000a 00BF     		.align	2
+ 304              	.L25:
+ 305 000c 00000000 		.word	hdma_spi1_rx
+ 306              		.cfi_endproc
+ 307              	.LFE145:
+ 309              		.text
+ 310              	.Letext0:
+ 311              		.file 2 "C:/Users/joabk/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 312              		.file 3 "C:/Users/joabk/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 313              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 314              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 315              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 316              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 317              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 318              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 319              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_it.c
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:21     .text.NMI_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:27     .text.NMI_Handler:00000000 NMI_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:50     .text.HardFault_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:56     .text.HardFault_Handler:00000000 HardFault_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:73     .text.MemManage_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:79     .text.MemManage_Handler:00000000 MemManage_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:96     .text.BusFault_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:102    .text.BusFault_Handler:00000000 BusFault_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:119    .text.UsageFault_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:125    .text.UsageFault_Handler:00000000 UsageFault_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:142    .text.SVC_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:148    .text.SVC_Handler:00000000 SVC_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:161    .text.DebugMon_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:167    .text.DebugMon_Handler:00000000 DebugMon_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:180    .text.PendSV_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:186    .text.PendSV_Handler:00000000 PendSV_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:199    .text.SysTick_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:205    .text.SysTick_Handler:00000000 SysTick_Handler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:224    .text.TIM1_TRG_COM_TIM11_IRQHandler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:230    .text.TIM1_TRG_COM_TIM11_IRQHandler:00000000 TIM1_TRG_COM_TIM11_IRQHandler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:249    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000c $d
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:254    .text.DMA2_Stream0_IRQHandler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:260    .text.DMA2_Stream0_IRQHandler:00000000 DMA2_Stream0_IRQHandler
-C:\Users\joabk\AppData\Local\Temp\ccNlFlZ7.s:279    .text.DMA2_Stream0_IRQHandler:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:21     .text.NMI_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:27     .text.NMI_Handler:00000000 NMI_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:50     .text.HardFault_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:56     .text.HardFault_Handler:00000000 HardFault_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:73     .text.MemManage_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:79     .text.MemManage_Handler:00000000 MemManage_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:96     .text.BusFault_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:102    .text.BusFault_Handler:00000000 BusFault_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:119    .text.UsageFault_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:125    .text.UsageFault_Handler:00000000 UsageFault_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:142    .text.SVC_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:148    .text.SVC_Handler:00000000 SVC_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:161    .text.DebugMon_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:167    .text.DebugMon_Handler:00000000 DebugMon_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:180    .text.PendSV_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:186    .text.PendSV_Handler:00000000 PendSV_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:199    .text.SysTick_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:205    .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:224    .text.EXTI9_5_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:230    .text.EXTI9_5_IRQHandler:00000000 EXTI9_5_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:250    .text.TIM1_TRG_COM_TIM11_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:256    .text.TIM1_TRG_COM_TIM11_IRQHandler:00000000 TIM1_TRG_COM_TIM11_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:275    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:280    .text.DMA2_Stream0_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:286    .text.DMA2_Stream0_IRQHandler:00000000 DMA2_Stream0_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\cc5HegT2.s:305    .text.DMA2_Stream0_IRQHandler:0000000c $d
 
 UNDEFINED SYMBOLS
 HAL_RCC_NMI_IRQHandler
 HAL_IncTick
+HAL_GPIO_EXTI_IRQHandler
 HAL_TIM_IRQHandler
 htim11
 HAL_DMA_IRQHandler

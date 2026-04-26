@@ -149,7 +149,7 @@ uint8_t LoRa_RX_Flag = 0;
 
 uint8_t OLED_Connected = 0;
 
-uint8_t RTC_Connected = 0;
+uint8_t RTC_Connected = 1;
 
 uint8_t SD_Connected = 0;
 /* USER CODE END 0 */
@@ -206,7 +206,7 @@ int main(void)
   LoRa_Init();
   
   //Initilise OLED Screen
-  ssd1306_Init(Oled_I2C); // Initilise the Oled module
+  OLED_Connected = ~ssd1306_Init(Oled_I2C); // Initilise the Oled module
  
   //Initilise the RTC One time when the system is flashed with firmware
   RTC_Set_Time_Once(RTC_I2C);
@@ -247,7 +247,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
     if (RTC_Connected)
     {
       curr_time = RTC_Get_Time(RTC_I2C);
@@ -277,7 +276,7 @@ int main(void)
 
     if (LoRa_Connected)
     {
-      LoRa_TX( "testing" );
+      LoRa_TX("testing");
     }
     snprintf(buffer,sizeof(buffer), "LoRa:%u",LoRa_Connected);
     write_OLED(0,1,buffer);
@@ -289,7 +288,7 @@ int main(void)
     
 
     HAL_Delay(1000);
-    
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -630,6 +629,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(Lora_Reset_GPIO_Port, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
   /* USER CODE END MX_GPIO_Init_2 */
@@ -678,6 +681,8 @@ uint8_t LoRa_Init()
     SX1278_init(&SX1278, 433175000, SX1278_POWER_11DBM, SX1278_LORA_SF_7,
     SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 100);
 
+    SX1278_LoRaEntryRx(&SX1278, 100, 2000);
+
     LoRa_Connected = 1;
     return 1;
   }
@@ -699,14 +704,20 @@ uint8_t LoRa_Detect(SX1278_t *module)
 uint8_t LoRa_TX(char message[50])
 {
   //message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
-  message_length = sizeof(message);
+  message_length = strlen(message);
+
+  if (message_length == 0 || message_length > 50)
+    return 0;  // guard against empty or oversized messages
+
   if (LoRa_Detect(&SX1278))
   {
-    message_length = 2;
     ret = SX1278_LoRaEntryTx(&SX1278, message_length, 2000);
     if (ret)
     {
-      ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) &message, message_length, 2000);
+      ret = SX1278_LoRaTxPacket(&SX1278, (uint8_t*) message, message_length, 2000);
+
+      SX1278_LoRaEntryRx(&SX1278, 100, 2000);
+
       if(ret) return 1;
       else return 0;
     }
