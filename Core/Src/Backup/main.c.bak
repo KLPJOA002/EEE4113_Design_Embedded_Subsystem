@@ -620,6 +620,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_Board_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : SD_CD_Pin */
+  GPIO_InitStruct.Pin = SD_CD_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(SD_CD_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pin : SD_CS_Pin */
   GPIO_InitStruct.Pin = SD_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -1011,6 +1017,15 @@ static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18])
   ssd1306_WriteString(text, Font_7x10, White); //Write some text to the Oled module
 
   ssd1306_UpdateScreen(Oled_I2C);
+}
+
+// ===============================================================================================
+// SD Functions
+// ===============================================================================================
+
+static uint8_t SD_Detect()
+{
+  SD_Connected = HAL_GPIO_ReadPin(SD_CD_GPIO_Port,SD_CD_Pin);
 }
 
 /* USER CODE END 4 */

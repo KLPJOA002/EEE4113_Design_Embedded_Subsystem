@@ -51,6 +51,11 @@
 #define RTC_MAGIC_REG  0x07   // DS3231 spare register (alarm/control area)
 #define RTC_MAGIC_VAL  0xAB   // arbitrary flag value
 
+#define DO_1_Addr 0x61 << 1
+#define RTD_1_Addr 0x66 << 1
+#define DO_2_Addr 0x62 << 1
+#define RTD_2_Addr 0x67 << 1
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -67,6 +72,7 @@ SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 DMA_HandleTypeDef hdma_spi1_rx;
 
+TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim11;
 
 /* USER CODE BEGIN PV */
@@ -92,6 +98,7 @@ static void MX_I2C2_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
+static void MX_TIM10_Init(void);
 /* USER CODE BEGIN PFP */
 
 // ===============================
@@ -129,6 +136,9 @@ static uint8_t SD_Detect();
 static uint8_t SD_Write();
 static uint8_t SD_Read();
 
+
+static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -148,6 +158,10 @@ uint8_t message_length;
 uint8_t count = 0b0;
 char count_buffer[4];
 
+char Atlas_Buffer_1[17];
+char Atlas_Buffer_2[17];
+char Atlas_Buffer_3[17];
+char Atlas_Buffer_4[17];
 // ===============================
 // Flags
 // ===============================
@@ -161,6 +175,8 @@ uint8_t OLED_Connected = 0;
 uint8_t RTC_Connected = 0;
 
 uint8_t SD_Connected = 0;
+
+uint8_t Atlas_Send_live = 0;
 /* USER CODE END 0 */
 
 /**
@@ -200,6 +216,7 @@ int main(void)
   MX_SPI1_Init();
   MX_FATFS_Init();
   MX_SPI2_Init();
+  MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
 
   //initialize LoRa module
@@ -297,15 +314,32 @@ int main(void)
       write_OLED(0,4,"       ");
       write_OLED(0,4,LoRa_RX_Buffer);
 
-      snprintf(count_buffer,sizeof(count_buffer),"%u",LoRa_RX_Counter);
-      write_OLED(0,5,count_buffer);
+      if(strncmp(LoRa_RX_Buffer,"CMD:BATTERY\n"))
+      {
+        LoRa_TX("TYPE:3,BOUY:0,BAT:3.99");
+      }
+      else
+      {
+        LoRa_TX("Something Else");
+      }
+
+      //snprintf(count_buffer,sizeof(count_buffer),"%u",LoRa_RX_Counter);
+      //write_OLED(0,5,count_buffer);
 
       LoRa_RX_Flag = 0;
-      LoRa_TX("ACK");
+      //LoRa_TX("ACK");
+    }
+
+    if(OLED_Connected)
+    {
+      Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
+      Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
+      write_OLED(0,2,Atlas_Buffer_1);
+      write_OLED(0,3,Atlas_Buffer_2);
     }
     
 
-    HAL_Delay(1000);
+    HAL_Delay(5000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -536,6 +570,37 @@ static void MX_SPI2_Init(void)
 }
 
 /**
+  * @brief TIM10 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM10_Init(void)
+{
+
+  /* USER CODE BEGIN TIM10_Init 0 */
+
+  /* USER CODE END TIM10_Init 0 */
+
+  /* USER CODE BEGIN TIM10_Init 1 */
+
+  /* USER CODE END TIM10_Init 1 */
+  htim10.Instance = TIM10;
+  htim10.Init.Prescaler = 24999;
+  htim10.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim10.Init.Period = 29999;
+  htim10.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim10.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim10) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM10_Init 2 */
+
+  /* USER CODE END TIM10_Init 2 */
+
+}
+
+/**
   * @brief TIM11 Initialization Function
   * @param None
   * @retval None
@@ -675,6 +740,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     //GPIO_Write_func(Pattern);
     HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
   }
+
 }
 
 // ===============================================================================================
@@ -873,7 +939,7 @@ void LoRa_RX()
         LoRa_RX_Buffer[len] = '\0';
         LoRa_RX_Length = len;
         LoRa_RX_Flag = 1;
-        LoRa_RX_Counter++;
+        //LoRa_RX_Counter++;
     }
     SX1278_clearLoRaIrq(&SX1278);
 }
@@ -1028,6 +1094,38 @@ static uint8_t SD_Detect()
   SD_Connected = HAL_GPIO_ReadPin(SD_CD_GPIO_Port,SD_CD_Pin);
 }
 
+// ===============================================================================================
+// Atlas Functions
+// ===============================================================================================
+
+static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr)
+{
+    char tx_cmd[] = "R";
+    HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)tx_cmd, strlen(tx_cmd), HAL_MAX_DELAY);
+
+    HAL_Delay(600);
+
+    uint8_t raw[17];  // 1 byte response code + up to 16 bytes data
+    uint8_t retries = 0;
+
+    do {
+        HAL_I2C_Master_Receive(Atlas_I2C, device_addr, raw, sizeof(raw), 100);
+
+        if (raw[0] != 254) break;  // 254 = still processing, anything else = done
+
+        retries++;
+        HAL_Delay(20);
+    } while (retries < 10);
+
+    // raw[0] is the response code, raw[1...] is the ASCII string
+    if (raw[0] == 1) {
+        memcpy(Output_buffer, (char*)&raw[1], sizeof(raw) - 1);
+        Output_buffer[sizeof(raw) - 1] = '\0';
+        return 1;  // success
+    }
+
+    return 0;  // error
+}
 /* USER CODE END 4 */
 
 /**
