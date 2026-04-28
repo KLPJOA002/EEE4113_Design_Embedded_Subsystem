@@ -85,6 +85,7 @@ SPI_HandleTypeDef *Lora_SPI = &hspi2;
 
 
 TIM_HandleTypeDef *LED_Tim = &htim11;
+TIM_HandleTypeDef *Live_Tim = &htim10;
 
 /* USER CODE END PV */
 
@@ -151,6 +152,9 @@ uint8_t ret;
 
 char LoRa_RX_Buffer[50];
 uint8_t LoRa_RX_Length;
+
+char LoRa_TX_Buffer[100];
+uint8_t LoRa_TX_Buffer_Length;
 
 uint8_t message;
 uint8_t message_length;
@@ -263,6 +267,7 @@ int main(void)
   
 
   HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
+  HAL_TIM_Base_Start_IT(Live_Tim);
 
   uint32_t curr_time;
   uint16_t Counter = 0;
@@ -314,13 +319,17 @@ int main(void)
       write_OLED(0,4,"       ");
       write_OLED(0,4,LoRa_RX_Buffer);
 
-      if(strncmp(LoRa_RX_Buffer,"CMD:BATTERY\n"))
+      if(strcmp(LoRa_RX_Buffer,"CMD:BATTERY")==0)
       {
         LoRa_TX("TYPE:3,BOUY:0,BAT:3.99");
       }
+      else if (strcmp(LoRa_RX_Buffer,"CMD:DATADUMP")==0)
+      {
+        LoRa_TX("DataDUmp Respond");
+      }
       else
       {
-        LoRa_TX("Something Else");
+        LoRa_TX("Other one");
       }
 
       //snprintf(count_buffer,sizeof(count_buffer),"%u",LoRa_RX_Counter);
@@ -338,6 +347,18 @@ int main(void)
       write_OLED(0,3,Atlas_Buffer_2);
     }
     
+    if (Atlas_Send_live)
+    {
+      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BOUY:0,CHAMBER:1,DO:%s,RTD:%s", Atlas_Buffer_1,Atlas_Buffer_2); // Convert object to C-string
+      // LoRa_TX_Buffer = "TYPE:1,BOUY:0,CHAMBER:0,DO:";
+      // strncat(LoRa_TX_Buffer, Atlas_Buffer_1, sizeof(buffer) - strlen(buffer) - 1);
+      LoRa_TX(LoRa_TX_Buffer);
+      snprintf(count_buffer,sizeof(count_buffer),"%u",count);
+      //count = (~count)&0b1;
+      write_OLED(15,5,count_buffer);
+
+      Atlas_Send_live=0;
+    }
 
     HAL_Delay(5000);
     /* USER CODE END WHILE */
@@ -740,7 +761,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     //GPIO_Write_func(Pattern);
     HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
   }
-
+  if (htim->Instance == TIM10)
+  {
+    Atlas_Send_live = 1;
+  }
 }
 
 // ===============================================================================================
