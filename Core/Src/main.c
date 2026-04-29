@@ -113,6 +113,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 uint8_t LoRa_Init();
 uint8_t LoRa_Detect(SX1278_t *module);
 uint8_t LoRa_TX(char message[50]);
+uint8_t LoRa_TX_Continuous(char message[50]);
 static void LoRa_ArmRX();
 void LoRa_RX();
 // ===============================
@@ -316,20 +317,22 @@ int main(void)
 
     if(LoRa_RX_Flag&&OLED_Connected)
     {
-      write_OLED(0,4,"       ");
+      write_OLED(0,4,"                ");
       write_OLED(0,4,LoRa_RX_Buffer);
 
       if(strcmp(LoRa_RX_Buffer,"CMD:BATTERY")==0)
       {
-        LoRa_TX("TYPE:3,BOUY:0,BAT:3.99");
+        LoRa_TX("TYPE:3,BUOY:0,BAT:3.99");
       }
       else if (strcmp(LoRa_RX_Buffer,"CMD:DATADUMP")==0)
       {
-        LoRa_TX("DataDUmp Respond");
+        LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:0,DO:9999,RTD:9999");
+        LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:1,DO:8888,RTD:8888");
+        LoRa_TX("TYPE:4,BUOY:0,COUNT:2");
       }
-      else
+      else if (strcmp(LoRa_RX_Buffer,"CMD:SYNC")==0)
       {
-        LoRa_TX("Other one");
+        LoRa_TX("Sync_ACK");
       }
 
       //snprintf(count_buffer,sizeof(count_buffer),"%u",LoRa_RX_Counter);
@@ -349,9 +352,9 @@ int main(void)
     
     if (Atlas_Send_live)
     {
-      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BOUY:0,CHAMBER:1,DO:%s,RTD:%s", Atlas_Buffer_1,Atlas_Buffer_2); // Convert object to C-string
-      // LoRa_TX_Buffer = "TYPE:1,BOUY:0,CHAMBER:0,DO:";
-      // strncat(LoRa_TX_Buffer, Atlas_Buffer_1, sizeof(buffer) - strlen(buffer) - 1);
+      snprintf(LoRa_TX_Buffer,sizeof(LoRa_TX_Buffer),"TYPE:1,BUOY:0,CHAMBER:0,DO:7777,RTD:7777");
+      LoRa_TX_Continuous(LoRa_TX_Buffer);
+      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:0,CHAMBER:1,DO:%s,RTD:%s", Atlas_Buffer_1,Atlas_Buffer_2); // Convert object to C-string
       LoRa_TX(LoRa_TX_Buffer);
       snprintf(count_buffer,sizeof(count_buffer),"%u",count);
       //count = (~count)&0b1;
@@ -828,6 +831,20 @@ uint8_t LoRa_TX(char *message)
   return 0;
 }
 
+uint8_t LoRa_TX_Continuous(char *message)
+{
+  uint8_t msg_len = strlen(message);
+  if (msg_len == 0 || msg_len > 50) return 0;
+
+  if (SX1278_LoRaEntryTx(&SX1278, msg_len, 2000))
+  {
+    uint8_t result =  SX1278_LoRaTxPacket(&SX1278, (uint8_t*)message, msg_len, 2000);
+    //LoRa_ArmRX();
+    return result;
+  }
+  return 0;
+}
+
 // uint8_t LoRa_TX(char message[50])
 // {
 //   //message_length = sprintf(Lora_buffer, "Hello May, Chamber ID:0001, DO: 21.5, RTD: 31.0, DO: 22.5, RTD: 22.0. %d", message);
@@ -1013,7 +1030,7 @@ static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c)
     return get_unix_timestamp(2000 + Year, Month, Day, Hour, Minute, Second);
 }
 
-static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c)
+static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c,char *Time)
 {
     // Check if time has already been set
     uint8_t magic = 0;
@@ -1026,24 +1043,32 @@ static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c)
     // __DATE__ is "Mon DD YYYY" e.g. "Apr 22 2026"
     // __TIME__ is "HH:MM:SS"   e.g. "14:30:00"
 
-    char date[] = __DATE__;
-    char time[] = __TIME__;
+    // __DATE__ is "YYYY:MM:DD:HH:MM:SS"
 
-    uint8_t day    = ((date[4] == ' ') ? 0 : (date[4] - '0')) * 10 + (date[5] - '0');
-    uint16_t year  = (date[7]-'0')*1000 + (date[8]-'0')*100 + (date[9]-'0')*10 + (date[10]-'0');
-    uint8_t hour   = (time[0]-'0')*10 + (time[1]-'0');
-    uint8_t minute = (time[3]-'0')*10 + (time[4]-'0');
-    uint8_t second = (time[6]-'0')*10 + (time[7]-'0');
+    uint16_t year = (Time[0]-'0')*1000 + (Time[1]-'0')*100 + (Time[2]-'0')*10 + (Time[3]-'0');
+    uint8_t month = (Time[5]-'0')*10 + (Time[6]-'0');
+    uint8_t day = (Time[8]-'0')*10 + (Time[9]-'0');
+    uint8_t hour = (Time[11]-'0')*10 + (Time[12]-'0');
+    uint8_t minute = (Time[14]-'0')*10 + (Time[15]-'0');
+    uint8_t second = (Time[17]-'0')*10 + (Time[18]-'0');
+    // char date[] = __DATE__;
+    // char time[] = __TIME__;
 
-    // Parse month string
-    const char *months = "JanFebMarAprMayJunJulAugSepOctNovDec";
-    uint8_t month = 1;
-    for (int i = 0; i < 12; i++) {
-        if (strncmp(&months[i*3], date, 3) == 0) {
-            month = i + 1;
-            break;
-        }
-    }
+    // uint8_t day    = ((date[4] == ' ') ? 0 : (date[4] - '0')) * 10 + (date[5] - '0');
+    // uint16_t year  = (date[7]-'0')*1000 + (date[8]-'0')*100 + (date[9]-'0')*10 + (date[10]-'0');
+    // uint8_t hour   = (time[0]-'0')*10 + (time[1]-'0');
+    // uint8_t minute = (time[3]-'0')*10 + (time[4]-'0');
+    // uint8_t second = (time[6]-'0')*10 + (time[7]-'0');
+
+    // // Parse month string
+    // const char *months = "JanFebMarAprMayJunJulAugSepOctNovDec";
+    // uint8_t month = 1;
+    // for (int i = 0; i < 12; i++) {
+    //     if (strncmp(&months[i*3], date, 3) == 0) {
+    //         month = i + 1;
+    //         break;
+    //     }
+    // }
 
     // Write to DS3231 registers in BCD
     uint8_t reg_val;
