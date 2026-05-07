@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
   28:Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32f4xx_hal_msp.c **** 
   30:Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END TD */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 2
 
 
   31:Core/Src/stm32f4xx_hal_msp.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
   43 0008 5A6C     		ldr	r2, [r3, #68]
   44 000a 42F48042 		orr	r2, r2, #16384
   45 000e 5A64     		str	r2, [r3, #68]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 3
 
 
   46              		.loc 1 70 3 view .LVU4
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
   81:Core/Src/stm32f4xx_hal_msp.c ****   * @brief I2C MSP Initialization
   82:Core/Src/stm32f4xx_hal_msp.c ****   * This function configures the hardware resources used in this example
   83:Core/Src/stm32f4xx_hal_msp.c ****   * @param hi2c: I2C handle pointer
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 4
 
 
   84:Core/Src/stm32f4xx_hal_msp.c ****   * @retval None
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  108:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_I2C1_CLK_ENABLE();
  109:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN I2C1_MspInit 1 */
  110:Core/Src/stm32f4xx_hal_msp.c **** 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 5
 
 
  111:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END I2C1_MspInit 1 */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  153:Core/Src/stm32f4xx_hal_msp.c ****     PA8     ------> I2C3_SCL
  154:Core/Src/stm32f4xx_hal_msp.c ****     PB4     ------> I2C3_SDA
  155:Core/Src/stm32f4xx_hal_msp.c ****     */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 6
 
 
  156:Core/Src/stm32f4xx_hal_msp.c ****     GPIO_InitStruct.Pin = GPIO_PIN_8;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  160              		.loc 1 95 5 view .LVU31
  100:Core/Src/stm32f4xx_hal_msp.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
  161              		.loc 1 100 5 view .LVU32
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 7
 
 
  100:Core/Src/stm32f4xx_hal_msp.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  200              		.loc 1 108 5 view .LVU48
  201 0070 D9E7     		b	.L5
  202              	.LVL5:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 8
 
 
  203              	.L11:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  241 00a2 07A9     		add	r1, sp, #28
  242 00a4 3046     		mov	r0, r6
  243              	.LVL6:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 9
 
 
  129:Core/Src/stm32f4xx_hal_msp.c **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  281              		.loc 1 139 5 view .LVU81
  282 00d4 039B     		ldr	r3, [sp, #12]
  283              	.LBE7:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 10
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 10
 
 
  139:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN I2C2_MspInit 1 */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  323              		.loc 1 156 25 is_stmt 0 view .LVU96
  324 0104 4FF48073 		mov	r3, #256
  325 0108 0793     		str	r3, [sp, #28]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 11
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 11
 
 
  157:Core/Src/stm32f4xx_hal_msp.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  361 0128 0923     		movs	r3, #9
  362 012a 0B93     		str	r3, [sp, #44]
  168:Core/Src/stm32f4xx_hal_msp.c **** 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 12
 
 
  363              		.loc 1 168 5 is_stmt 1 view .LVU116
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  183:Core/Src/stm32f4xx_hal_msp.c ****   * @retval None
  184:Core/Src/stm32f4xx_hal_msp.c ****   */
  185:Core/Src/stm32f4xx_hal_msp.c **** void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 13
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 13
 
 
  186:Core/Src/stm32f4xx_hal_msp.c **** {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  219:Core/Src/stm32f4xx_hal_msp.c ****     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_10);
  220:Core/Src/stm32f4xx_hal_msp.c **** 
  221:Core/Src/stm32f4xx_hal_msp.c ****     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_3);
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 14
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 14
 
 
  222:Core/Src/stm32f4xx_hal_msp.c **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  201:Core/Src/stm32f4xx_hal_msp.c **** 
  453              		.loc 1 201 5 is_stmt 1 view .LVU137
  454 002e 8021     		movs	r1, #128
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 15
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 15
 
 
  455 0030 2046     		mov	r0, r4
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  501              	.L24:
  502 007a 00BF     		.align	2
  503              	.L23:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 16
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 16
 
 
  504 007c 00540040 		.word	1073763328
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  260:Core/Src/stm32f4xx_hal_msp.c ****   {
  261:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN SPI1_MspInit 0 */
  262:Core/Src/stm32f4xx_hal_msp.c **** 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 17
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 17
 
 
  263:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END SPI1_MspInit 0 */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  310:Core/Src/stm32f4xx_hal_msp.c **** 
  311:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
  312:Core/Src/stm32f4xx_hal_msp.c ****     /**SPI2 GPIO Configuration
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 18
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 18
 
 
  313:Core/Src/stm32f4xx_hal_msp.c ****     PB13     ------> SPI2_SCK
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  586              	.LBB12:
  267:Core/Src/stm32f4xx_hal_msp.c ****     /**SPI1 GPIO Configuration
  587              		.loc 1 267 5 view .LVU165
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 19
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 19
 
 
  588 003c 0295     		str	r5, [sp, #8]
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  282:Core/Src/stm32f4xx_hal_msp.c ****     hdma_spi1_rx.Init.Channel = DMA_CHANNEL_3;
  626              		.loc 1 282 27 is_stmt 0 view .LVU182
  627 0068 2248     		ldr	r0, .L33+16
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 20
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 20
 
 
  628 006a 234B     		ldr	r3, .L33+20
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  662              	.LVL32:
  292:Core/Src/stm32f4xx_hal_msp.c ****     {
  663              		.loc 1 292 8 discriminator 1 view .LVU203
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 21
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 21
 
 
  664 008c 18B9     		cbnz	r0, .L32
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  704 00b6 1A6B     		ldr	r2, [r3, #48]
  705 00b8 42F00202 		orr	r2, r2, #2
  706 00bc 1A63     		str	r2, [r3, #48]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 22
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 22
 
 
  311:Core/Src/stm32f4xx_hal_msp.c ****     /**SPI2 GPIO Configuration
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  747 00f0 00000240 		.word	1073872896
  748 00f4 00000000 		.word	hdma_spi1_rx
  749 00f8 10640240 		.word	1073898512
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 23
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 23
 
 
  750 00fc 00040240 		.word	1073873920
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  356:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN SPI1_MspDeInit 1 */
  357:Core/Src/stm32f4xx_hal_msp.c **** 
  358:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END SPI1_MspDeInit 1 */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 24
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 24
 
 
  359:Core/Src/stm32f4xx_hal_msp.c ****   }
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  808              	.LVL42:
  809 002e EFE7     		b	.L35
  810              	.LVL43:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 25
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 25
 
 
  811              	.L40:
@@ -1488,325 +1488,429 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 1
  389:Core/Src/stm32f4xx_hal_msp.c **** {
  846              		.loc 1 389 1 is_stmt 1 view -0
  847              		.cfi_startproc
- 848              		@ args = 0, pretend = 0, frame = 8
+ 848              		@ args = 0, pretend = 0, frame = 16
  849              		@ frame_needed = 0, uses_anonymous_args = 0
  850              		.loc 1 389 1 is_stmt 0 view .LVU251
  851 0000 00B5     		push	{lr}
  852              		.cfi_def_cfa_offset 4
  853              		.cfi_offset 14, -4
- 854 0002 83B0     		sub	sp, sp, #12
- 855              		.cfi_def_cfa_offset 16
- 390:Core/Src/stm32f4xx_hal_msp.c ****   if(htim_base->Instance==TIM10)
+ 854 0002 85B0     		sub	sp, sp, #20
+ 855              		.cfi_def_cfa_offset 24
+ 390:Core/Src/stm32f4xx_hal_msp.c ****   if(htim_base->Instance==TIM9)
  856              		.loc 1 390 3 is_stmt 1 view .LVU252
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 26
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 26
 
 
  857              		.loc 1 390 15 is_stmt 0 view .LVU253
  858 0004 0368     		ldr	r3, [r0]
  859              		.loc 1 390 5 view .LVU254
- 860 0006 184A     		ldr	r2, .L49
+ 860 0006 244A     		ldr	r2, .L51
  861 0008 9342     		cmp	r3, r2
- 862 000a 05D0     		beq	.L47
+ 862 000a 08D0     		beq	.L48
  391:Core/Src/stm32f4xx_hal_msp.c ****   {
- 392:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspInit 0 */
+ 392:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM9_MspInit 0 */
  393:Core/Src/stm32f4xx_hal_msp.c **** 
- 394:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM10_MspInit 0 */
+ 394:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM9_MspInit 0 */
  395:Core/Src/stm32f4xx_hal_msp.c ****     /* Peripheral clock enable */
- 396:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM10_CLK_ENABLE();
- 397:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
- 398:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_SetPriority(TIM1_UP_TIM10_IRQn, 0, 0);
- 399:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
- 400:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspInit 1 */
+ 396:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM9_CLK_ENABLE();
+ 397:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM9 interrupt Init */
+ 398:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_SetPriority(TIM1_BRK_TIM9_IRQn, 0, 0);
+ 399:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_BRK_TIM9_IRQn);
+ 400:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM9_MspInit 1 */
  401:Core/Src/stm32f4xx_hal_msp.c **** 
- 402:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM10_MspInit 1 */
+ 402:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM9_MspInit 1 */
  403:Core/Src/stm32f4xx_hal_msp.c ****   }
- 404:Core/Src/stm32f4xx_hal_msp.c ****   else if(htim_base->Instance==TIM11)
+ 404:Core/Src/stm32f4xx_hal_msp.c ****   else if(htim_base->Instance==TIM10)
  863              		.loc 1 404 8 is_stmt 1 view .LVU255
  864              		.loc 1 404 10 is_stmt 0 view .LVU256
- 865 000c 174A     		ldr	r2, .L49+4
+ 865 000c 234A     		ldr	r2, .L51+4
  866 000e 9342     		cmp	r3, r2
- 867 0010 16D0     		beq	.L48
- 868              	.LVL47:
- 869              	.L43:
+ 867 0010 19D0     		beq	.L49
  405:Core/Src/stm32f4xx_hal_msp.c ****   {
- 406:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspInit 0 */
+ 406:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspInit 0 */
  407:Core/Src/stm32f4xx_hal_msp.c **** 
- 408:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM11_MspInit 0 */
+ 408:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM10_MspInit 0 */
  409:Core/Src/stm32f4xx_hal_msp.c ****     /* Peripheral clock enable */
- 410:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM11_CLK_ENABLE();
- 411:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
- 412:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_SetPriority(TIM1_TRG_COM_TIM11_IRQn, 0, 0);
- 413:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_TRG_COM_TIM11_IRQn);
- 414:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspInit 1 */
+ 410:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM10_CLK_ENABLE();
+ 411:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
+ 412:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_SetPriority(TIM1_UP_TIM10_IRQn, 0, 0);
+ 413:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
+ 414:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspInit 1 */
  415:Core/Src/stm32f4xx_hal_msp.c **** 
- 416:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM11_MspInit 1 */
+ 416:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM10_MspInit 1 */
  417:Core/Src/stm32f4xx_hal_msp.c ****   }
- 418:Core/Src/stm32f4xx_hal_msp.c **** 
- 419:Core/Src/stm32f4xx_hal_msp.c **** }
- 870              		.loc 1 419 1 view .LVU257
- 871 0012 03B0     		add	sp, sp, #12
- 872              		.cfi_remember_state
- 873              		.cfi_def_cfa_offset 4
- 874              		@ sp needed
- 875 0014 5DF804FB 		ldr	pc, [sp], #4
- 876              	.LVL48:
- 877              	.L47:
- 878              		.cfi_restore_state
- 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
- 879              		.loc 1 396 5 is_stmt 1 view .LVU258
- 880              	.LBB15:
- 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
- 881              		.loc 1 396 5 view .LVU259
- 882 0018 0021     		movs	r1, #0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 27
+ 418:Core/Src/stm32f4xx_hal_msp.c ****   else if(htim_base->Instance==TIM11)
+ 868              		.loc 1 418 8 is_stmt 1 view .LVU257
+ 869              		.loc 1 418 10 is_stmt 0 view .LVU258
+ 870 0012 234A     		ldr	r2, .L51+8
+ 871 0014 9342     		cmp	r3, r2
+ 872 0016 2AD0     		beq	.L50
+ 873              	.LVL47:
+ 874              	.L43:
+ 419:Core/Src/stm32f4xx_hal_msp.c ****   {
+ 420:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspInit 0 */
+ 421:Core/Src/stm32f4xx_hal_msp.c **** 
+ 422:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM11_MspInit 0 */
+ 423:Core/Src/stm32f4xx_hal_msp.c ****     /* Peripheral clock enable */
+ 424:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM11_CLK_ENABLE();
+ 425:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
+ 426:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_SetPriority(TIM1_TRG_COM_TIM11_IRQn, 0, 0);
+ 427:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_TRG_COM_TIM11_IRQn);
+ 428:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspInit 1 */
+ 429:Core/Src/stm32f4xx_hal_msp.c **** 
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 27
 
 
- 883 001a 0091     		str	r1, [sp]
- 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
- 884              		.loc 1 396 5 view .LVU260
- 885 001c 144B     		ldr	r3, .L49+8
- 886 001e 5A6C     		ldr	r2, [r3, #68]
- 887 0020 42F40032 		orr	r2, r2, #131072
- 888 0024 5A64     		str	r2, [r3, #68]
- 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
- 889              		.loc 1 396 5 view .LVU261
- 890 0026 5B6C     		ldr	r3, [r3, #68]
- 891 0028 03F40033 		and	r3, r3, #131072
- 892 002c 0093     		str	r3, [sp]
- 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
- 893              		.loc 1 396 5 view .LVU262
- 894 002e 009B     		ldr	r3, [sp]
- 895              	.LBE15:
- 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
- 896              		.loc 1 396 5 view .LVU263
- 398:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
- 897              		.loc 1 398 5 view .LVU264
- 898 0030 0A46     		mov	r2, r1
- 899 0032 1920     		movs	r0, #25
- 900              	.LVL49:
- 398:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
- 901              		.loc 1 398 5 is_stmt 0 view .LVU265
- 902 0034 FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 903              	.LVL50:
- 399:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspInit 1 */
- 904              		.loc 1 399 5 is_stmt 1 view .LVU266
- 905 0038 1920     		movs	r0, #25
- 906 003a FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 907              	.LVL51:
- 908 003e E8E7     		b	.L43
- 909              	.LVL52:
- 910              	.L48:
- 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
- 911              		.loc 1 410 5 view .LVU267
- 912              	.LBB16:
- 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
- 913              		.loc 1 410 5 view .LVU268
- 914 0040 0021     		movs	r1, #0
- 915 0042 0191     		str	r1, [sp, #4]
- 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
- 916              		.loc 1 410 5 view .LVU269
- 917 0044 0A4B     		ldr	r3, .L49+8
- 918 0046 5A6C     		ldr	r2, [r3, #68]
- 919 0048 42F48022 		orr	r2, r2, #262144
- 920 004c 5A64     		str	r2, [r3, #68]
- 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
- 921              		.loc 1 410 5 view .LVU270
- 922 004e 5B6C     		ldr	r3, [r3, #68]
- 923 0050 03F48023 		and	r3, r3, #262144
- 924 0054 0193     		str	r3, [sp, #4]
- 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
- 925              		.loc 1 410 5 view .LVU271
- 926 0056 019B     		ldr	r3, [sp, #4]
- 927              	.LBE16:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 28
-
-
- 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
- 928              		.loc 1 410 5 view .LVU272
- 412:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_TRG_COM_TIM11_IRQn);
- 929              		.loc 1 412 5 view .LVU273
- 930 0058 0A46     		mov	r2, r1
- 931 005a 1A20     		movs	r0, #26
- 932              	.LVL53:
- 412:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_TRG_COM_TIM11_IRQn);
- 933              		.loc 1 412 5 is_stmt 0 view .LVU274
- 934 005c FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 935              	.LVL54:
- 413:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspInit 1 */
- 936              		.loc 1 413 5 is_stmt 1 view .LVU275
- 937 0060 1A20     		movs	r0, #26
- 938 0062 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 939              	.LVL55:
- 940              		.loc 1 419 1 is_stmt 0 view .LVU276
- 941 0066 D4E7     		b	.L43
- 942              	.L50:
- 943              		.align	2
- 944              	.L49:
- 945 0068 00440140 		.word	1073824768
- 946 006c 00480140 		.word	1073825792
- 947 0070 00380240 		.word	1073887232
- 948              		.cfi_endproc
- 949              	.LFE139:
- 951              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
- 952              		.align	1
- 953              		.global	HAL_TIM_Base_MspDeInit
- 954              		.syntax unified
- 955              		.thumb
- 956              		.thumb_func
- 958              	HAL_TIM_Base_MspDeInit:
- 959              	.LVL56:
- 960              	.LFB140:
- 420:Core/Src/stm32f4xx_hal_msp.c **** 
- 421:Core/Src/stm32f4xx_hal_msp.c **** /**
- 422:Core/Src/stm32f4xx_hal_msp.c ****   * @brief TIM_Base MSP De-Initialization
- 423:Core/Src/stm32f4xx_hal_msp.c ****   * This function freeze the hardware resources used in this example
- 424:Core/Src/stm32f4xx_hal_msp.c ****   * @param htim_base: TIM_Base handle pointer
- 425:Core/Src/stm32f4xx_hal_msp.c ****   * @retval None
- 426:Core/Src/stm32f4xx_hal_msp.c ****   */
- 427:Core/Src/stm32f4xx_hal_msp.c **** void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
- 428:Core/Src/stm32f4xx_hal_msp.c **** {
- 961              		.loc 1 428 1 is_stmt 1 view -0
- 962              		.cfi_startproc
- 963              		@ args = 0, pretend = 0, frame = 0
- 964              		@ frame_needed = 0, uses_anonymous_args = 0
- 965              		.loc 1 428 1 is_stmt 0 view .LVU278
- 966 0000 08B5     		push	{r3, lr}
- 967              		.cfi_def_cfa_offset 8
- 968              		.cfi_offset 3, -8
- 969              		.cfi_offset 14, -4
- 429:Core/Src/stm32f4xx_hal_msp.c ****   if(htim_base->Instance==TIM10)
- 970              		.loc 1 429 3 is_stmt 1 view .LVU279
- 971              		.loc 1 429 15 is_stmt 0 view .LVU280
- 972 0002 0368     		ldr	r3, [r0]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 29
-
-
- 973              		.loc 1 429 5 view .LVU281
- 974 0004 0D4A     		ldr	r2, .L57
- 975 0006 9342     		cmp	r3, r2
- 976 0008 03D0     		beq	.L55
- 430:Core/Src/stm32f4xx_hal_msp.c ****   {
- 431:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspDeInit 0 */
+ 430:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM11_MspInit 1 */
+ 431:Core/Src/stm32f4xx_hal_msp.c ****   }
  432:Core/Src/stm32f4xx_hal_msp.c **** 
- 433:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM10_MspDeInit 0 */
- 434:Core/Src/stm32f4xx_hal_msp.c ****     /* Peripheral clock disable */
- 435:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM10_CLK_DISABLE();
- 436:Core/Src/stm32f4xx_hal_msp.c **** 
- 437:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt DeInit */
- 438:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_DisableIRQ(TIM1_UP_TIM10_IRQn);
- 439:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspDeInit 1 */
- 440:Core/Src/stm32f4xx_hal_msp.c **** 
- 441:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM10_MspDeInit 1 */
- 442:Core/Src/stm32f4xx_hal_msp.c ****   }
- 443:Core/Src/stm32f4xx_hal_msp.c ****   else if(htim_base->Instance==TIM11)
- 977              		.loc 1 443 8 is_stmt 1 view .LVU282
- 978              		.loc 1 443 10 is_stmt 0 view .LVU283
- 979 000a 0D4A     		ldr	r2, .L57+4
- 980 000c 9342     		cmp	r3, r2
- 981 000e 0AD0     		beq	.L56
- 982              	.LVL57:
- 983              	.L51:
+ 433:Core/Src/stm32f4xx_hal_msp.c **** }
+ 875              		.loc 1 433 1 view .LVU259
+ 876 0018 05B0     		add	sp, sp, #20
+ 877              		.cfi_remember_state
+ 878              		.cfi_def_cfa_offset 4
+ 879              		@ sp needed
+ 880 001a 5DF804FB 		ldr	pc, [sp], #4
+ 881              	.LVL48:
+ 882              	.L48:
+ 883              		.cfi_restore_state
+ 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM9 interrupt Init */
+ 884              		.loc 1 396 5 is_stmt 1 view .LVU260
+ 885              	.LBB15:
+ 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM9 interrupt Init */
+ 886              		.loc 1 396 5 view .LVU261
+ 887 001e 0021     		movs	r1, #0
+ 888 0020 0191     		str	r1, [sp, #4]
+ 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM9 interrupt Init */
+ 889              		.loc 1 396 5 view .LVU262
+ 890 0022 204B     		ldr	r3, .L51+12
+ 891 0024 5A6C     		ldr	r2, [r3, #68]
+ 892 0026 42F48032 		orr	r2, r2, #65536
+ 893 002a 5A64     		str	r2, [r3, #68]
+ 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM9 interrupt Init */
+ 894              		.loc 1 396 5 view .LVU263
+ 895 002c 5B6C     		ldr	r3, [r3, #68]
+ 896 002e 03F48033 		and	r3, r3, #65536
+ 897 0032 0193     		str	r3, [sp, #4]
+ 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM9 interrupt Init */
+ 898              		.loc 1 396 5 view .LVU264
+ 899 0034 019B     		ldr	r3, [sp, #4]
+ 900              	.LBE15:
+ 396:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM9 interrupt Init */
+ 901              		.loc 1 396 5 view .LVU265
+ 398:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_BRK_TIM9_IRQn);
+ 902              		.loc 1 398 5 view .LVU266
+ 903 0036 0A46     		mov	r2, r1
+ 904 0038 1820     		movs	r0, #24
+ 905              	.LVL49:
+ 398:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_BRK_TIM9_IRQn);
+ 906              		.loc 1 398 5 is_stmt 0 view .LVU267
+ 907 003a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 908              	.LVL50:
+ 399:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM9_MspInit 1 */
+ 909              		.loc 1 399 5 is_stmt 1 view .LVU268
+ 910 003e 1820     		movs	r0, #24
+ 911 0040 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 912              	.LVL51:
+ 913 0044 E8E7     		b	.L43
+ 914              	.LVL52:
+ 915              	.L49:
+ 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
+ 916              		.loc 1 410 5 view .LVU269
+ 917              	.LBB16:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 28
+
+
+ 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
+ 918              		.loc 1 410 5 view .LVU270
+ 919 0046 0021     		movs	r1, #0
+ 920 0048 0291     		str	r1, [sp, #8]
+ 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
+ 921              		.loc 1 410 5 view .LVU271
+ 922 004a 164B     		ldr	r3, .L51+12
+ 923 004c 5A6C     		ldr	r2, [r3, #68]
+ 924 004e 42F40032 		orr	r2, r2, #131072
+ 925 0052 5A64     		str	r2, [r3, #68]
+ 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
+ 926              		.loc 1 410 5 view .LVU272
+ 927 0054 5B6C     		ldr	r3, [r3, #68]
+ 928 0056 03F40033 		and	r3, r3, #131072
+ 929 005a 0293     		str	r3, [sp, #8]
+ 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
+ 930              		.loc 1 410 5 view .LVU273
+ 931 005c 029B     		ldr	r3, [sp, #8]
+ 932              	.LBE16:
+ 410:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt Init */
+ 933              		.loc 1 410 5 view .LVU274
+ 412:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
+ 934              		.loc 1 412 5 view .LVU275
+ 935 005e 0A46     		mov	r2, r1
+ 936 0060 1920     		movs	r0, #25
+ 937              	.LVL53:
+ 412:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
+ 938              		.loc 1 412 5 is_stmt 0 view .LVU276
+ 939 0062 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 940              	.LVL54:
+ 413:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspInit 1 */
+ 941              		.loc 1 413 5 is_stmt 1 view .LVU277
+ 942 0066 1920     		movs	r0, #25
+ 943 0068 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 944              	.LVL55:
+ 945 006c D4E7     		b	.L43
+ 946              	.LVL56:
+ 947              	.L50:
+ 424:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
+ 948              		.loc 1 424 5 view .LVU278
+ 949              	.LBB17:
+ 424:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
+ 950              		.loc 1 424 5 view .LVU279
+ 951 006e 0021     		movs	r1, #0
+ 952 0070 0391     		str	r1, [sp, #12]
+ 424:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
+ 953              		.loc 1 424 5 view .LVU280
+ 954 0072 0C4B     		ldr	r3, .L51+12
+ 955 0074 5A6C     		ldr	r2, [r3, #68]
+ 956 0076 42F48022 		orr	r2, r2, #262144
+ 957 007a 5A64     		str	r2, [r3, #68]
+ 424:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
+ 958              		.loc 1 424 5 view .LVU281
+ 959 007c 5B6C     		ldr	r3, [r3, #68]
+ 960 007e 03F48023 		and	r3, r3, #262144
+ 961 0082 0393     		str	r3, [sp, #12]
+ 424:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 29
+
+
+ 962              		.loc 1 424 5 view .LVU282
+ 963 0084 039B     		ldr	r3, [sp, #12]
+ 964              	.LBE17:
+ 424:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt Init */
+ 965              		.loc 1 424 5 view .LVU283
+ 426:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_TRG_COM_TIM11_IRQn);
+ 966              		.loc 1 426 5 view .LVU284
+ 967 0086 0A46     		mov	r2, r1
+ 968 0088 1A20     		movs	r0, #26
+ 969              	.LVL57:
+ 426:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_EnableIRQ(TIM1_TRG_COM_TIM11_IRQn);
+ 970              		.loc 1 426 5 is_stmt 0 view .LVU285
+ 971 008a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 972              	.LVL58:
+ 427:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspInit 1 */
+ 973              		.loc 1 427 5 is_stmt 1 view .LVU286
+ 974 008e 1A20     		movs	r0, #26
+ 975 0090 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 976              	.LVL59:
+ 977              		.loc 1 433 1 is_stmt 0 view .LVU287
+ 978 0094 C0E7     		b	.L43
+ 979              	.L52:
+ 980 0096 00BF     		.align	2
+ 981              	.L51:
+ 982 0098 00400140 		.word	1073823744
+ 983 009c 00440140 		.word	1073824768
+ 984 00a0 00480140 		.word	1073825792
+ 985 00a4 00380240 		.word	1073887232
+ 986              		.cfi_endproc
+ 987              	.LFE139:
+ 989              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
+ 990              		.align	1
+ 991              		.global	HAL_TIM_Base_MspDeInit
+ 992              		.syntax unified
+ 993              		.thumb
+ 994              		.thumb_func
+ 996              	HAL_TIM_Base_MspDeInit:
+ 997              	.LVL60:
+ 998              	.LFB140:
+ 434:Core/Src/stm32f4xx_hal_msp.c **** 
+ 435:Core/Src/stm32f4xx_hal_msp.c **** /**
+ 436:Core/Src/stm32f4xx_hal_msp.c ****   * @brief TIM_Base MSP De-Initialization
+ 437:Core/Src/stm32f4xx_hal_msp.c ****   * This function freeze the hardware resources used in this example
+ 438:Core/Src/stm32f4xx_hal_msp.c ****   * @param htim_base: TIM_Base handle pointer
+ 439:Core/Src/stm32f4xx_hal_msp.c ****   * @retval None
+ 440:Core/Src/stm32f4xx_hal_msp.c ****   */
+ 441:Core/Src/stm32f4xx_hal_msp.c **** void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
+ 442:Core/Src/stm32f4xx_hal_msp.c **** {
+ 999              		.loc 1 442 1 is_stmt 1 view -0
+ 1000              		.cfi_startproc
+ 1001              		@ args = 0, pretend = 0, frame = 0
+ 1002              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1003              		.loc 1 442 1 is_stmt 0 view .LVU289
+ 1004 0000 08B5     		push	{r3, lr}
+ 1005              		.cfi_def_cfa_offset 8
+ 1006              		.cfi_offset 3, -8
+ 1007              		.cfi_offset 14, -4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 30
+
+
+ 443:Core/Src/stm32f4xx_hal_msp.c ****   if(htim_base->Instance==TIM9)
+ 1008              		.loc 1 443 3 is_stmt 1 view .LVU290
+ 1009              		.loc 1 443 15 is_stmt 0 view .LVU291
+ 1010 0002 0368     		ldr	r3, [r0]
+ 1011              		.loc 1 443 5 view .LVU292
+ 1012 0004 134A     		ldr	r2, .L61
+ 1013 0006 9342     		cmp	r3, r2
+ 1014 0008 06D0     		beq	.L58
  444:Core/Src/stm32f4xx_hal_msp.c ****   {
- 445:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspDeInit 0 */
+ 445:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM9_MspDeInit 0 */
  446:Core/Src/stm32f4xx_hal_msp.c **** 
- 447:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM11_MspDeInit 0 */
+ 447:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM9_MspDeInit 0 */
  448:Core/Src/stm32f4xx_hal_msp.c ****     /* Peripheral clock disable */
- 449:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM11_CLK_DISABLE();
+ 449:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM9_CLK_DISABLE();
  450:Core/Src/stm32f4xx_hal_msp.c **** 
- 451:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt DeInit */
- 452:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_DisableIRQ(TIM1_TRG_COM_TIM11_IRQn);
- 453:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspDeInit 1 */
+ 451:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM9 interrupt DeInit */
+ 452:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_DisableIRQ(TIM1_BRK_TIM9_IRQn);
+ 453:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM9_MspDeInit 1 */
  454:Core/Src/stm32f4xx_hal_msp.c **** 
- 455:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM11_MspDeInit 1 */
+ 455:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM9_MspDeInit 1 */
  456:Core/Src/stm32f4xx_hal_msp.c ****   }
- 457:Core/Src/stm32f4xx_hal_msp.c **** 
- 458:Core/Src/stm32f4xx_hal_msp.c **** }
- 984              		.loc 1 458 1 view .LVU284
- 985 0010 08BD     		pop	{r3, pc}
- 986              	.LVL58:
- 987              	.L55:
- 435:Core/Src/stm32f4xx_hal_msp.c **** 
- 988              		.loc 1 435 5 is_stmt 1 view .LVU285
- 989 0012 02F57442 		add	r2, r2, #62464
- 990 0016 536C     		ldr	r3, [r2, #68]
- 991 0018 23F40033 		bic	r3, r3, #131072
- 992 001c 5364     		str	r3, [r2, #68]
- 438:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspDeInit 1 */
- 993              		.loc 1 438 5 view .LVU286
- 994 001e 1920     		movs	r0, #25
- 995              	.LVL59:
- 438:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspDeInit 1 */
- 996              		.loc 1 438 5 is_stmt 0 view .LVU287
- 997 0020 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 30
+ 457:Core/Src/stm32f4xx_hal_msp.c ****   else if(htim_base->Instance==TIM10)
+ 1015              		.loc 1 457 8 is_stmt 1 view .LVU293
+ 1016              		.loc 1 457 10 is_stmt 0 view .LVU294
+ 1017 000a 134A     		ldr	r2, .L61+4
+ 1018 000c 9342     		cmp	r3, r2
+ 1019 000e 0DD0     		beq	.L59
+ 458:Core/Src/stm32f4xx_hal_msp.c ****   {
+ 459:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspDeInit 0 */
+ 460:Core/Src/stm32f4xx_hal_msp.c **** 
+ 461:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM10_MspDeInit 0 */
+ 462:Core/Src/stm32f4xx_hal_msp.c ****     /* Peripheral clock disable */
+ 463:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM10_CLK_DISABLE();
+ 464:Core/Src/stm32f4xx_hal_msp.c **** 
+ 465:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM10 interrupt DeInit */
+ 466:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_DisableIRQ(TIM1_UP_TIM10_IRQn);
+ 467:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspDeInit 1 */
+ 468:Core/Src/stm32f4xx_hal_msp.c **** 
+ 469:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM10_MspDeInit 1 */
+ 470:Core/Src/stm32f4xx_hal_msp.c ****   }
+ 471:Core/Src/stm32f4xx_hal_msp.c ****   else if(htim_base->Instance==TIM11)
+ 1020              		.loc 1 471 8 is_stmt 1 view .LVU295
+ 1021              		.loc 1 471 10 is_stmt 0 view .LVU296
+ 1022 0010 124A     		ldr	r2, .L61+8
+ 1023 0012 9342     		cmp	r3, r2
+ 1024 0014 14D0     		beq	.L60
+ 1025              	.LVL61:
+ 1026              	.L53:
+ 472:Core/Src/stm32f4xx_hal_msp.c ****   {
+ 473:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspDeInit 0 */
+ 474:Core/Src/stm32f4xx_hal_msp.c **** 
+ 475:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM11_MspDeInit 0 */
+ 476:Core/Src/stm32f4xx_hal_msp.c ****     /* Peripheral clock disable */
+ 477:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_TIM11_CLK_DISABLE();
+ 478:Core/Src/stm32f4xx_hal_msp.c **** 
+ 479:Core/Src/stm32f4xx_hal_msp.c ****     /* TIM11 interrupt DeInit */
+ 480:Core/Src/stm32f4xx_hal_msp.c ****     HAL_NVIC_DisableIRQ(TIM1_TRG_COM_TIM11_IRQn);
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 31
 
 
- 998              	.LVL60:
- 999 0024 F4E7     		b	.L51
- 1000              	.LVL61:
- 1001              	.L56:
+ 481:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspDeInit 1 */
+ 482:Core/Src/stm32f4xx_hal_msp.c **** 
+ 483:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE END TIM11_MspDeInit 1 */
+ 484:Core/Src/stm32f4xx_hal_msp.c ****   }
+ 485:Core/Src/stm32f4xx_hal_msp.c **** 
+ 486:Core/Src/stm32f4xx_hal_msp.c **** }
+ 1027              		.loc 1 486 1 view .LVU297
+ 1028 0016 08BD     		pop	{r3, pc}
+ 1029              	.LVL62:
+ 1030              	.L58:
  449:Core/Src/stm32f4xx_hal_msp.c **** 
- 1002              		.loc 1 449 5 is_stmt 1 view .LVU288
- 1003 0026 02F57042 		add	r2, r2, #61440
- 1004 002a 536C     		ldr	r3, [r2, #68]
- 1005 002c 23F48023 		bic	r3, r3, #262144
- 1006 0030 5364     		str	r3, [r2, #68]
- 452:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspDeInit 1 */
- 1007              		.loc 1 452 5 view .LVU289
- 1008 0032 1A20     		movs	r0, #26
- 1009              	.LVL62:
- 452:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspDeInit 1 */
- 1010              		.loc 1 452 5 is_stmt 0 view .LVU290
- 1011 0034 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
- 1012              	.LVL63:
- 1013              		.loc 1 458 1 view .LVU291
- 1014 0038 EAE7     		b	.L51
- 1015              	.L58:
- 1016 003a 00BF     		.align	2
- 1017              	.L57:
- 1018 003c 00440140 		.word	1073824768
- 1019 0040 00480140 		.word	1073825792
- 1020              		.cfi_endproc
- 1021              	.LFE140:
- 1023              		.text
- 1024              	.Letext0:
- 1025              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 1026              		.file 3 "C:/Users/joabk/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
- 1027              		.file 4 "C:/Users/joabk/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
- 1028              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 1029              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 1030              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 1031              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
- 1032              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 1033              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 1034              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 1035              		.file 12 "Core/Inc/main.h"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s 			page 31
+ 1031              		.loc 1 449 5 is_stmt 1 view .LVU298
+ 1032 0018 02F57842 		add	r2, r2, #63488
+ 1033 001c 536C     		ldr	r3, [r2, #68]
+ 1034 001e 23F48033 		bic	r3, r3, #65536
+ 1035 0022 5364     		str	r3, [r2, #68]
+ 452:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM9_MspDeInit 1 */
+ 1036              		.loc 1 452 5 view .LVU299
+ 1037 0024 1820     		movs	r0, #24
+ 1038              	.LVL63:
+ 452:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM9_MspDeInit 1 */
+ 1039              		.loc 1 452 5 is_stmt 0 view .LVU300
+ 1040 0026 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 1041              	.LVL64:
+ 1042 002a F4E7     		b	.L53
+ 1043              	.LVL65:
+ 1044              	.L59:
+ 463:Core/Src/stm32f4xx_hal_msp.c **** 
+ 1045              		.loc 1 463 5 is_stmt 1 view .LVU301
+ 1046 002c 02F57442 		add	r2, r2, #62464
+ 1047 0030 536C     		ldr	r3, [r2, #68]
+ 1048 0032 23F40033 		bic	r3, r3, #131072
+ 1049 0036 5364     		str	r3, [r2, #68]
+ 466:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspDeInit 1 */
+ 1050              		.loc 1 466 5 view .LVU302
+ 1051 0038 1920     		movs	r0, #25
+ 1052              	.LVL66:
+ 466:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM10_MspDeInit 1 */
+ 1053              		.loc 1 466 5 is_stmt 0 view .LVU303
+ 1054 003a FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 1055              	.LVL67:
+ 1056 003e EAE7     		b	.L53
+ 1057              	.LVL68:
+ 1058              	.L60:
+ 477:Core/Src/stm32f4xx_hal_msp.c **** 
+ 1059              		.loc 1 477 5 is_stmt 1 view .LVU304
+ 1060 0040 02F57042 		add	r2, r2, #61440
+ 1061 0044 536C     		ldr	r3, [r2, #68]
+ 1062 0046 23F48023 		bic	r3, r3, #262144
+ 1063 004a 5364     		str	r3, [r2, #68]
+ 480:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspDeInit 1 */
+ 1064              		.loc 1 480 5 view .LVU305
+ 1065 004c 1A20     		movs	r0, #26
+ 1066              	.LVL69:
+ 480:Core/Src/stm32f4xx_hal_msp.c ****     /* USER CODE BEGIN TIM11_MspDeInit 1 */
+ 1067              		.loc 1 480 5 is_stmt 0 view .LVU306
+ 1068 004e FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 32
+
+
+ 1069              	.LVL70:
+ 1070              		.loc 1 486 1 view .LVU307
+ 1071 0052 E0E7     		b	.L53
+ 1072              	.L62:
+ 1073              		.align	2
+ 1074              	.L61:
+ 1075 0054 00400140 		.word	1073823744
+ 1076 0058 00440140 		.word	1073824768
+ 1077 005c 00480140 		.word	1073825792
+ 1078              		.cfi_endproc
+ 1079              	.LFE140:
+ 1081              		.text
+ 1082              	.Letext0:
+ 1083              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 1084              		.file 3 "C:/Users/joabk/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 1085              		.file 4 "C:/Users/joabk/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 1086              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1087              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1088              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1089              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 1090              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 1091              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 1092              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 1093              		.file 12 "Core/Inc/main.h"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s 			page 33
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_msp.c
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:21     .text.HAL_MspInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:27     .text.HAL_MspInit:00000000 HAL_MspInit
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:78     .text.HAL_MspInit:00000034 $d
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:83     .text.HAL_I2C_MspInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:89     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:389    .text.HAL_I2C_MspInit:0000014c $d
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:399    .text.HAL_I2C_MspDeInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:405    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:504    .text.HAL_I2C_MspDeInit:0000007c $d
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:513    .text.HAL_SPI_MspInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:519    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:744    .text.HAL_SPI_MspInit:000000e4 $d
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:755    .text.HAL_SPI_MspDeInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:761    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:829    .text.HAL_SPI_MspDeInit:00000048 $d
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:837    .text.HAL_TIM_Base_MspInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:843    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:945    .text.HAL_TIM_Base_MspInit:00000068 $d
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:952    .text.HAL_TIM_Base_MspDeInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:958    .text.HAL_TIM_Base_MspDeInit:00000000 HAL_TIM_Base_MspDeInit
-C:\Users\joabk\AppData\Local\Temp\ccdoPe6x.s:1018   .text.HAL_TIM_Base_MspDeInit:0000003c $d
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:21     .text.HAL_MspInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:27     .text.HAL_MspInit:00000000 HAL_MspInit
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:78     .text.HAL_MspInit:00000034 $d
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:83     .text.HAL_I2C_MspInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:89     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:389    .text.HAL_I2C_MspInit:0000014c $d
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:399    .text.HAL_I2C_MspDeInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:405    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:504    .text.HAL_I2C_MspDeInit:0000007c $d
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:513    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:519    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:744    .text.HAL_SPI_MspInit:000000e4 $d
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:755    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:761    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:829    .text.HAL_SPI_MspDeInit:00000048 $d
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:837    .text.HAL_TIM_Base_MspInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:843    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:982    .text.HAL_TIM_Base_MspInit:00000098 $d
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:990    .text.HAL_TIM_Base_MspDeInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:996    .text.HAL_TIM_Base_MspDeInit:00000000 HAL_TIM_Base_MspDeInit
+C:\Users\joabk\AppData\Local\Temp\ccYLDPml.s:1075   .text.HAL_TIM_Base_MspDeInit:00000054 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_Init

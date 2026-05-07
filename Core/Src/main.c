@@ -72,6 +72,7 @@ SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 DMA_HandleTypeDef hdma_spi1_rx;
 
+TIM_HandleTypeDef htim9;
 TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim11;
 
@@ -86,6 +87,7 @@ SPI_HandleTypeDef *Lora_SPI = &hspi2;
 
 TIM_HandleTypeDef *LED_Tim = &htim11;
 TIM_HandleTypeDef *Live_Tim = &htim10;
+TIM_HandleTypeDef *Measure_Tim = &htim9;
 
 /* USER CODE END PV */
 
@@ -100,6 +102,7 @@ static void MX_I2C3_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_TIM10_Init(void);
+static void MX_TIM9_Init(void);
 /* USER CODE BEGIN PFP */
 
 // ===============================
@@ -124,6 +127,7 @@ static uint8_t bcdtodec(const uint8_t val);
 static uint8_t dectobcd(const uint8_t val);
 static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c);
 static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c);
+static void RTC_Set_Time(I2C_HandleTypeDef *hi2c,char *Time);
 static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec);
 
 // ===============================
@@ -145,11 +149,12 @@ static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+// ===============================
+// Lora Variables
+// ===============================
 SX1278_hw_t SX1278_hw;
 SX1278_t SX1278;
-
-uint8_t master;
-uint8_t ret;
 
 char LoRa_RX_Buffer[50];
 uint8_t LoRa_RX_Length;
@@ -157,31 +162,66 @@ uint8_t LoRa_RX_Length;
 char LoRa_TX_Buffer[100];
 uint8_t LoRa_TX_Buffer_Length;
 
-uint8_t message;
-uint8_t message_length;
+//uint8_t master;
+//uint8_t ret;
 
-uint8_t count = 0b0;
-char count_buffer[4];
+//uint8_t message;
+//uint8_t message_length;
 
+
+// ===============================
+// Atlas Variables
+// ===============================
 char Atlas_Buffer_1[17];
 char Atlas_Buffer_2[17];
 char Atlas_Buffer_3[17];
 char Atlas_Buffer_4[17];
+
 // ===============================
+// General Variables
+// ===============================
+//uint8_t count = 0;
+char mode_buffer[3];
+uint8_t Mode_Changed = 0;
+uint8_t Mode = 0;
+uint8_t Buoy_ID = 0;
+char connected_buffer[20];
+
+// ====================================================================================================
 // Flags
+// ====================================================================================================
+
+// ===============================
+// Lora Flags
 // ===============================
 uint8_t LoRa_Connected = 0;
 uint8_t LoRa_RX_Flag = 0;
 uint8_t LoRa_RX_Mode = 0;
 uint8_t LoRa_RX_Counter = 0;
 
+// ===============================
+// OLED Flags
+// ===============================
 uint8_t OLED_Connected = 0;
 
+// ===============================
+// RTC Flags
+// ===============================
 uint8_t RTC_Connected = 0;
+uint8_t RTC_Update_Oled = 0;
 
+// ===============================
+// SD Flags
+// ===============================
 uint8_t SD_Connected = 0;
 
+// ===============================
+// Atlas Flags
+// ===============================
+uint8_t Atlas_Connected = 0;
 uint8_t Atlas_Send_live = 0;
+uint8_t Atlas_measure = 0;
+
 /* USER CODE END 0 */
 
 /**
@@ -222,6 +262,7 @@ int main(void)
   MX_FATFS_Init();
   MX_SPI2_Init();
   MX_TIM10_Init();
+  MX_TIM9_Init();
   /* USER CODE BEGIN 2 */
 
   //initialize LoRa module
@@ -241,7 +282,7 @@ int main(void)
  
   //Initilise the RTC One time when the system is flashed with firmware
   RTC_Connected = RTC_Detect();
-  if (RTC_Connected) RTC_Set_Time_Once(RTC_I2C);
+  //if (RTC_Connected) RTC_Set_Time_Once(RTC_I2C);
 
   //SD CARD CODE 
   
@@ -268,11 +309,12 @@ int main(void)
   
 
   HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
-  HAL_TIM_Base_Start_IT(Live_Tim);
+  HAL_TIM_Base_Start_IT(Live_Tim); 
+  HAL_TIM_Base_Start_IT(Measure_Tim);
 
   uint32_t curr_time;
-  uint16_t Counter = 0;
-  char buffer[18];
+  //uint16_t Counter = 0;
+  char time_buffer[18];
 
   /* USER CODE END 2 */
 
@@ -281,7 +323,10 @@ int main(void)
   while (1)
   {
 
-    if (RTC_Connected)
+// ====================================================================================================
+// Update RTC OLED Display
+// ====================================================================================================
+    if (RTC_Connected&&RTC_Update_Oled)
     {
       curr_time = RTC_Get_Time(RTC_I2C);
 
@@ -290,80 +335,130 @@ int main(void)
 
       // 1. Break the timestamp down into the tm struct
       tm_info = localtime(&raw_time);
-      strftime(buffer, sizeof(buffer), "%d/%m/%y %H:%M:%S", tm_info);
+      strftime(time_buffer, sizeof(time_buffer), "%d/%m/%y %H:%M:%S", tm_info);
+    }
 
-      if (OLED_Connected)
+    if (OLED_Connected&&RTC_Update_Oled)
+    {
+      write_OLED(0,0,time_buffer);
+
+      snprintf(connected_buffer,sizeof(connected_buffer), "L:%u,R:%u,A:%u,S:%u",LoRa_Connected,RTC_Connected,Atlas_Connected,SD_Connected);
+      write_OLED(0,1,connected_buffer);
+
+      write_OLED(0,2,Atlas_Buffer_1);
+      write_OLED(7,2,Atlas_Buffer_2);
+      write_OLED(0,3,Atlas_Buffer_3);
+      write_OLED(7,3,Atlas_Buffer_4);
+
+
+      RTC_Update_Oled = 0;
+    }
+
+
+// ====================================================================================================
+// Display the current mode on the OLED if present.
+// ====================================================================================================
+    if (OLED_Connected)
+    {
+      switch (Mode) {
+        case 1:
+          snprintf(mode_buffer,sizeof(mode_buffer),"MR");
+          Mode = 0;
+          Mode_Changed = 1;
+          break;
+        case 2:
+          snprintf(mode_buffer,sizeof(mode_buffer),"TX");
+          Mode = 0;
+          Mode_Changed = 1;
+          break;
+        case 3:
+          snprintf(mode_buffer,sizeof(mode_buffer),"ST");
+          Mode = 0;
+          Mode_Changed = 1;
+          break;
+        default:
+          snprintf(mode_buffer,sizeof(mode_buffer),"NA");
+          Mode = 0;
+      }
+
+      if (Mode_Changed)
       {
-        write_OLED(0,0,buffer);
+        write_OLED(15,5,mode_buffer);
+        Mode_Changed = 0;
       }
     }
 
 
-    if (OLED_Connected)
-    {
-      snprintf(count_buffer,sizeof(count_buffer),"%u",count);
-      count = (~count)&0b1;
-      write_OLED(17,5,count_buffer);
-    }
 
-    // HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-
-    // if (LoRa_Connected)
-    // {
-    //   LoRa_TX("testing");
-    // }
-    snprintf(buffer,sizeof(buffer), "LoRa:%u",LoRa_Connected);
-    write_OLED(0,1,buffer);
 
     if(LoRa_RX_Flag&&OLED_Connected)
     {
-      write_OLED(0,4,"                ");
+      //clear the OLED screen to display the new RX
+      write_OLED(0,4,"                  ");
       write_OLED(0,4,LoRa_RX_Buffer);
+    }
 
+    if(LoRa_RX_Flag)
+    {
+      //Check the rx buffer to see if command sent, and respond accordingly
       if(strcmp(LoRa_RX_Buffer,"CMD:BATTERY")==0)
       {
         LoRa_TX("TYPE:3,BUOY:0,BAT:3.99");
+        Mode = 2;
       }
       else if (strcmp(LoRa_RX_Buffer,"CMD:DATADUMP")==0)
       {
-        LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:0,DO:9999,RTD:9999");
-        LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:1,DO:8888,RTD:8888");
+        LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:0,DO:9999,RTD:9999,TS:3999_01_01_12_30_10");
+        LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:1,DO:8888,RTD:8888,TS:3999_01_01_12_30_10");
         LoRa_TX("TYPE:4,BUOY:0,COUNT:2");
+        Mode = 2;
       }
-      else if (strcmp(LoRa_RX_Buffer,"CMD:SYNC")==0)
+      else if (strncmp(LoRa_RX_Buffer,"CMD:SYNC",8)==0)
       {
+        char time[19];
+        memcpy(time,LoRa_RX_Buffer+12,19);
+        RTC_Set_Time(RTC_I2C,time);
         LoRa_TX("Sync_ACK");
+        Mode = 2;
       }
-
-      //snprintf(count_buffer,sizeof(count_buffer),"%u",LoRa_RX_Counter);
-      //write_OLED(0,5,count_buffer);
-
       LoRa_RX_Flag = 0;
-      //LoRa_TX("ACK");
+
     }
 
-    if(OLED_Connected)
+    if(Atlas_measure)
     {
       Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
       Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
-      write_OLED(0,2,Atlas_Buffer_1);
-      write_OLED(0,3,Atlas_Buffer_2);
+      Atlas_Read_Val(Atlas_Buffer_3,DO_2_Addr);
+      Atlas_Read_Val(Atlas_Buffer_4,RTD_2_Addr);
+
+      Atlas_measure = 0;
+      Mode = 1;
     }
     
     if (Atlas_Send_live)
     {
-      snprintf(LoRa_TX_Buffer,sizeof(LoRa_TX_Buffer),"TYPE:1,BUOY:0,CHAMBER:0,DO:7777,RTD:7777");
+      //  // 1. Get and convert the timestamp
+      // curr_time = RTC_Get_Time(RTC_I2C);
+      // time_t raw_time = (time_t)curr_time;
+      // struct tm *tm_info = localtime(&raw_time);
+
+      // // 2. Format the timestamp into its own time_buffer using strftime
+      // char ts_buffer[20];
+      // strftime(ts_buffer, sizeof(ts_buffer), "%y_%m_%d_%H_%M_%S", tm_info);
+
+      // 3. Build and send the header packet with the timestamp
+      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:0,CHAMBER:0,DO:%s,RTD:%s", Atlas_Buffer_1,Atlas_Buffer_2);
       LoRa_TX_Continuous(LoRa_TX_Buffer);
-      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:0,CHAMBER:1,DO:%s,RTD:%s", Atlas_Buffer_1,Atlas_Buffer_2); // Convert object to C-string
+
+      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:0,CHAMBER:1,DO:%s,RTD:%s", Atlas_Buffer_3,Atlas_Buffer_4); // Convert object to C-string
       LoRa_TX(LoRa_TX_Buffer);
-      snprintf(count_buffer,sizeof(count_buffer),"%u",count);
-      //count = (~count)&0b1;
-      write_OLED(15,5,count_buffer);
+      Mode = 2;
 
       Atlas_Send_live=0;
     }
 
-    HAL_Delay(5000);
+    //HAL_Delay(5000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -594,6 +689,44 @@ static void MX_SPI2_Init(void)
 }
 
 /**
+  * @brief TIM9 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM9_Init(void)
+{
+
+  /* USER CODE BEGIN TIM9_Init 0 */
+
+  /* USER CODE END TIM9_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+
+  /* USER CODE BEGIN TIM9_Init 1 */
+
+  /* USER CODE END TIM9_Init 1 */
+  htim9.Instance = TIM9;
+  htim9.Init.Prescaler = 24999;
+  htim9.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim9.Init.Period = 4999;
+  htim9.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim9.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim9) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim9, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM9_Init 2 */
+
+  /* USER CODE END TIM9_Init 2 */
+
+}
+
+/**
   * @brief TIM10 Initialization Function
   * @param None
   * @retval None
@@ -759,14 +892,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM11)
   {
-    //Pattern = ~Pattern;
-    //Pattern = TC74_ReadTemp();
-    //GPIO_Write_func(Pattern);
     HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
+    RTC_Update_Oled = 1;
   }
   if (htim->Instance == TIM10)
   {
     Atlas_Send_live = 1;
+  }
+  if (htim->Instance == TIM9)
+  {
+    Atlas_measure = 1;
   }
 }
 
@@ -792,10 +927,10 @@ uint8_t LoRa_Init()
 
   // Step 2: perform a hard reset and wait for module to boot
   SX1278_hw_Reset(&SX1278_hw);   // pulls reset low then high, waits 100ms internally
-  HAL_Delay(100);
+  HAL_Delay(100);         
   if (LoRa_Detect(&SX1278))
   {
-    SX1278_init(&SX1278, 433175000, SX1278_POWER_11DBM, SX1278_LORA_SF_7,
+    SX1278_init(&SX1278, 433175000, SX1278_POWER_17DBM, SX1278_LORA_SF_10,
     SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 100);
 
     LoRa_ArmRX();
@@ -820,7 +955,7 @@ uint8_t LoRa_Detect(SX1278_t *module)
 uint8_t LoRa_TX(char *message)
 {
   uint8_t msg_len = strlen(message);
-  if (msg_len == 0 || msg_len > 50) return 0;
+  if (msg_len == 0 || msg_len > 100) return 0;
 
   if (SX1278_LoRaEntryTx(&SX1278, msg_len, 2000))
   {
@@ -834,7 +969,7 @@ uint8_t LoRa_TX(char *message)
 uint8_t LoRa_TX_Continuous(char *message)
 {
   uint8_t msg_len = strlen(message);
-  if (msg_len == 0 || msg_len > 50) return 0;
+  if (msg_len == 0 || msg_len > 100) return 0;
 
   if (SX1278_LoRaEntryTx(&SX1278, msg_len, 2000))
   {
@@ -951,7 +1086,7 @@ static void LoRa_ArmRX()
 //   if (LoRa_RX_Length > 0)
 //   {
 
-//     // Copy out of the module's internal buffer and null-terminate
+//     // Copy out of the module's internal time_buffer and null-terminate
 //     if (LoRa_RX_Length >= sizeof(LoRa_RX_Buffer)) LoRa_RX_Length = sizeof(LoRa_RX_Buffer) - 1;
 //     memcpy(LoRa_RX_Buffer, SX1278.rxBuffer, LoRa_RX_Length);
 //     LoRa_RX_Buffer[LoRa_RX_Length] = '\0';  // always null-terminate
@@ -1030,7 +1165,7 @@ static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c)
     return get_unix_timestamp(2000 + Year, Month, Day, Hour, Minute, Second);
 }
 
-static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c,char *Time)
+static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c)
 {
     // Check if time has already been set
     uint8_t magic = 0;
@@ -1042,7 +1177,53 @@ static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c,char *Time)
     // Parse compile-time strings into numbers
     // __DATE__ is "Mon DD YYYY" e.g. "Apr 22 2026"
     // __TIME__ is "HH:MM:SS"   e.g. "14:30:00"
+    char date[] = __DATE__;
+    char time[] = __TIME__;
 
+    uint8_t day    = ((date[4] == ' ') ? 0 : (date[4] - '0')) * 10 + (date[5] - '0');
+    uint16_t year  = (date[7]-'0')*1000 + (date[8]-'0')*100 + (date[9]-'0')*10 + (date[10]-'0');
+    uint8_t hour   = (time[0]-'0')*10 + (time[1]-'0');
+    uint8_t minute = (time[3]-'0')*10 + (time[4]-'0');
+    uint8_t second = (time[6]-'0')*10 + (time[7]-'0');
+
+    // Parse month string
+    const char *months = "JanFebMarAprMayJunJulAugSepOctNovDec";
+    uint8_t month = 1;
+    for (int i = 0; i < 12; i++) {
+        if (strncmp(&months[i*3], date, 3) == 0) {
+            month = i + 1;
+            break;
+        }
+    }
+
+    // Write to DS3231 registers in BCD
+    uint8_t reg_val;
+
+    reg_val = decimalbcd(second);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Second, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(minute);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Minute, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(hour);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Hour, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(day);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Day, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(month);
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Month, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    reg_val = decimalbcd(year % 100); // DS3231 only stores last 2 digits
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_Year, 1, &reg_val, 1, HAL_MAX_DELAY);
+
+    // Write magic flag so we never set time again
+    reg_val = RTC_MAGIC_VAL;
+    HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_MAGIC_REG, 1, &reg_val, 1, HAL_MAX_DELAY);
+}
+
+static void RTC_Set_Time(I2C_HandleTypeDef *hi2c,char *Time)
+{
     // __DATE__ is "YYYY:MM:DD:HH:MM:SS"
 
     uint16_t year = (Time[0]-'0')*1000 + (Time[1]-'0')*100 + (Time[2]-'0')*10 + (Time[3]-'0');
@@ -1051,24 +1232,6 @@ static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c,char *Time)
     uint8_t hour = (Time[11]-'0')*10 + (Time[12]-'0');
     uint8_t minute = (Time[14]-'0')*10 + (Time[15]-'0');
     uint8_t second = (Time[17]-'0')*10 + (Time[18]-'0');
-    // char date[] = __DATE__;
-    // char time[] = __TIME__;
-
-    // uint8_t day    = ((date[4] == ' ') ? 0 : (date[4] - '0')) * 10 + (date[5] - '0');
-    // uint16_t year  = (date[7]-'0')*1000 + (date[8]-'0')*100 + (date[9]-'0')*10 + (date[10]-'0');
-    // uint8_t hour   = (time[0]-'0')*10 + (time[1]-'0');
-    // uint8_t minute = (time[3]-'0')*10 + (time[4]-'0');
-    // uint8_t second = (time[6]-'0')*10 + (time[7]-'0');
-
-    // // Parse month string
-    // const char *months = "JanFebMarAprMayJunJulAugSepOctNovDec";
-    // uint8_t month = 1;
-    // for (int i = 0; i < 12; i++) {
-    //     if (strncmp(&months[i*3], date, 3) == 0) {
-    //         month = i + 1;
-    //         break;
-    //     }
-    // }
 
     // Write to DS3231 registers in BCD
     uint8_t reg_val;
