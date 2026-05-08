@@ -142,7 +142,12 @@ static uint8_t SD_Detect();
 static uint8_t SD_Write();
 static uint8_t SD_Read();
 
-
+// ===============================
+// Atlas scientific Functions
+// ===============================
+static uint8_t Atlas_Detect(uint16_t device_addr);
+static void Atlas_Wake(uint16_t device_addr);
+static void Atlas_Sleep(uint16_t device_addr);
 static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr);
 
 /* USER CODE END PFP */
@@ -218,7 +223,11 @@ uint8_t SD_Connected = 0;
 // ===============================
 // Atlas Flags
 // ===============================
-uint8_t Atlas_Connected = 0;
+uint8_t Atlas1_Connected = 0;
+uint8_t Atlas2_Connected = 0;
+uint8_t Atlas3_Connected = 0;
+uint8_t Atlas4_Connected = 0;
+
 uint8_t Atlas_Send_live = 0;
 uint8_t Atlas_measure = 0;
 
@@ -284,6 +293,11 @@ int main(void)
   RTC_Connected = RTC_Detect();
   //if (RTC_Connected) RTC_Set_Time_Once(RTC_I2C);
 
+  Atlas1_Connected = Atlas_Detect(DO_1_Addr);
+  Atlas2_Connected = Atlas_Detect(RTD_1_Addr);
+  Atlas3_Connected = Atlas_Detect(DO_2_Addr);
+  Atlas4_Connected = Atlas_Detect(RTD_2_Addr);
+
   //SD CARD CODE 
   
 
@@ -342,7 +356,7 @@ int main(void)
     {
       write_OLED(0,0,time_buffer);
 
-      snprintf(connected_buffer,sizeof(connected_buffer), "L:%u,R:%u,A:%u,S:%u",LoRa_Connected,RTC_Connected,Atlas_Connected,SD_Connected);
+      snprintf(connected_buffer,sizeof(connected_buffer), "L:%u,R:%u,A:%u%u%u%u,S:%u",LoRa_Connected,RTC_Connected,Atlas1_Connected,Atlas2_Connected,Atlas3_Connected,Atlas4_Connected,SD_Connected);
       write_OLED(0,1,connected_buffer);
 
       write_OLED(0,2,Atlas_Buffer_1);
@@ -425,12 +439,27 @@ int main(void)
 
     }
 
+// ====================================================================================================
+// Read the atlas sensors and send live readings
+// ====================================================================================================
     if(Atlas_measure)
-    {
-      Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
-      Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
-      Atlas_Read_Val(Atlas_Buffer_3,DO_2_Addr);
-      Atlas_Read_Val(Atlas_Buffer_4,RTD_2_Addr);
+    {  
+      Atlas_Wake(DO_1_Addr);
+      Atlas_Wake(RTD_1_Addr);
+      Atlas_Wake(DO_2_Addr);
+      Atlas_Wake(RTD_2_Addr);
+
+      HAL_Delay(500);
+
+      if (Atlas1_Connected) Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
+      if (Atlas2_Connected) Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
+      if (Atlas3_Connected) Atlas_Read_Val(Atlas_Buffer_3,DO_2_Addr);
+      if (Atlas4_Connected) Atlas_Read_Val(Atlas_Buffer_4,RTD_2_Addr);
+
+      Atlas_Sleep(DO_1_Addr);
+      Atlas_Sleep(RTD_1_Addr);
+      Atlas_Sleep(DO_2_Addr);
+      Atlas_Sleep(RTD_2_Addr);
 
       Atlas_measure = 0;
       Mode = 1;
@@ -1309,6 +1338,25 @@ static uint8_t SD_Detect()
 // ===============================================================================================
 // Atlas Functions
 // ===============================================================================================
+static uint8_t Atlas_Detect(uint16_t device_addr)
+{
+    return (HAL_I2C_IsDeviceReady(Atlas_I2C, device_addr, 1, 10) == HAL_OK) ? 1 : 0;
+}
+
+static void Atlas_Sleep(uint16_t device_addr)
+{
+    char cmd[] = "Sleep";
+    HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)cmd, strlen(cmd), HAL_MAX_DELAY);
+    // Datasheet explicitly says: do NOT try to read a response after this
+}
+
+static void Atlas_Wake(uint16_t device_addr)
+{
+    // Send "R" — this wakes the device AND queues a reading in one shot.
+    // The device needs ~600ms to wake + take the reading before you read back.
+    char cmd[] = "R";
+    HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)cmd, strlen(cmd), HAL_MAX_DELAY);
+}
 
 static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr)
 {
