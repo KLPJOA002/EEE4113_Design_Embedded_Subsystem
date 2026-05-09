@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
   57              		.thumb_func
   59              	FLASH_Program_Word:
   60              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 2
 
 
   61              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  119 0004 22F44072 		bic	r2, r2, #768
  120 0008 1A61     		str	r2, [r3, #16]
  121 000a 1A69     		ldr	r2, [r3, #16]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 3
 
 
  122 000c 1A61     		str	r2, [r3, #16]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  178              	.L17:
  179 004e 144B     		ldr	r3, .L21
  180 0050 DB68     		ldr	r3, [r3, #12]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 4
 
 
  181 0052 13F0800F 		tst	r3, #128
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  237 000a 45F08075 		orr	r5, r5, #16777216
  238 000e 2561     		str	r5, [r4, #16]
  239 0010 2569     		ldr	r5, [r4, #16]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 5
 
 
  240 0012 45F00075 		orr	r5, r5, #33554432
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  299              		.section	.text.HAL_FLASH_IRQHandler,"ax",%progbits
  300              		.align	1
  301              		.global	HAL_FLASH_IRQHandler
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 6
 
 
  302              		.syntax unified
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  357 0064 1A70     		strb	r2, [r3]
  358              	.L41:
  359 0066 204B     		ldr	r3, .L52+4
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 7
 
 
  360 0068 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  414 00dc 1869     		ldr	r0, [r3, #16]
  415 00de FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
  416 00e2 BDE7     		b	.L45
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 8
 
 
  417              	.L53:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  475 000a 0020     		movs	r0, #0
  476 000c 7047     		bx	lr
  477              	.L63:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 9
 
 
  478 000e 00BF     		.align	2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  537              		.global	HAL_FLASH_GetError
  538              		.syntax unified
  539              		.thumb
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 10
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 10
 
 
  540              		.thumb_func
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  597 0044 13F4F97F 		tst	r3, #498
  598 0048 01D1     		bne	.L85
  599 004a 0020     		movs	r0, #0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 11
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 11
 
 
  600              	.L79:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  656 004c 1A76     		strb	r2, [r3, #24]
  657              	.L89:
  658 004e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 12
 
 
  659              	.L97:
@@ -718,73 +718,73 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 1
  718 0010 01000000 		.word	1
  719 0014 00000000 		.word	0
  720 0018 00       		.byte	0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 13
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 13
 
 
  721 0019 000000   		.space	3
  722 001c 00000000 		.word	0
  723              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 14
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_flash.c
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:18     .text.FLASH_Program_DoubleWord:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:23     .text.FLASH_Program_DoubleWord:00000000 FLASH_Program_DoubleWord
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:51     .text.FLASH_Program_DoubleWord:0000002c $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:54     .text.FLASH_Program_Word:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:59     .text.FLASH_Program_Word:00000000 FLASH_Program_Word
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:78     .text.FLASH_Program_Word:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:81     .text.FLASH_Program_HalfWord:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:86     .text.FLASH_Program_HalfWord:00000000 FLASH_Program_HalfWord
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:105    .text.FLASH_Program_HalfWord:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:108    .text.FLASH_Program_Byte:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:113    .text.FLASH_Program_Byte:00000000 FLASH_Program_Byte
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:131    .text.FLASH_Program_Byte:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:134    .text.FLASH_SetErrorCode:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:139    .text.FLASH_SetErrorCode:00000000 FLASH_SetErrorCode
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:219    .text.FLASH_SetErrorCode:000000a0 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:711    .data.pFlash:00000000 pFlash
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:223    .text.HAL_FLASH_Program_IT:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:229    .text.HAL_FLASH_Program_IT:00000000 HAL_FLASH_Program_IT
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:270    .text.HAL_FLASH_Program_IT:0000004c $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:274    .text.HAL_FLASH_EndOfOperationCallback:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:280    .text.HAL_FLASH_EndOfOperationCallback:00000000 HAL_FLASH_EndOfOperationCallback
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:287    .text.HAL_FLASH_OperationErrorCallback:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:293    .text.HAL_FLASH_OperationErrorCallback:00000000 HAL_FLASH_OperationErrorCallback
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:300    .text.HAL_FLASH_IRQHandler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:306    .text.HAL_FLASH_IRQHandler:00000000 HAL_FLASH_IRQHandler
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:420    .text.HAL_FLASH_IRQHandler:000000e4 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:424    .text.HAL_FLASH_Unlock:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:430    .text.HAL_FLASH_Unlock:00000000 HAL_FLASH_Unlock
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:457    .text.HAL_FLASH_Unlock:00000028 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:461    .text.HAL_FLASH_Lock:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:467    .text.HAL_FLASH_Lock:00000000 HAL_FLASH_Lock
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:480    .text.HAL_FLASH_Lock:00000010 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:483    .text.HAL_FLASH_OB_Unlock:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:489    .text.HAL_FLASH_OB_Unlock:00000000 HAL_FLASH_OB_Unlock
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:510    .text.HAL_FLASH_OB_Unlock:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:514    .text.HAL_FLASH_OB_Lock:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:520    .text.HAL_FLASH_OB_Lock:00000000 HAL_FLASH_OB_Lock
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:533    .text.HAL_FLASH_OB_Lock:00000010 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:536    .text.HAL_FLASH_GetError:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:542    .text.HAL_FLASH_GetError:00000000 HAL_FLASH_GetError
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:552    .text.HAL_FLASH_GetError:00000008 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:555    .text.FLASH_WaitForLastOperation:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:561    .text.FLASH_WaitForLastOperation:00000000 FLASH_WaitForLastOperation
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:609    .text.FLASH_WaitForLastOperation:00000058 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:613    .text.HAL_FLASH_Program:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:619    .text.HAL_FLASH_Program:00000000 HAL_FLASH_Program
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:680    .text.HAL_FLASH_Program:00000074 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:684    .text.HAL_FLASH_OB_Launch:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:690    .text.HAL_FLASH_OB_Launch:00000000 HAL_FLASH_OB_Launch
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:704    .text.HAL_FLASH_OB_Launch:00000018 $d
-C:\Users\joabk\AppData\Local\Temp\ccl547pk.s:708    .data.pFlash:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:18     .text.FLASH_Program_DoubleWord:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:23     .text.FLASH_Program_DoubleWord:00000000 FLASH_Program_DoubleWord
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:51     .text.FLASH_Program_DoubleWord:0000002c $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:54     .text.FLASH_Program_Word:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:59     .text.FLASH_Program_Word:00000000 FLASH_Program_Word
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:78     .text.FLASH_Program_Word:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:81     .text.FLASH_Program_HalfWord:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:86     .text.FLASH_Program_HalfWord:00000000 FLASH_Program_HalfWord
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:105    .text.FLASH_Program_HalfWord:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:108    .text.FLASH_Program_Byte:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:113    .text.FLASH_Program_Byte:00000000 FLASH_Program_Byte
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:131    .text.FLASH_Program_Byte:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:134    .text.FLASH_SetErrorCode:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:139    .text.FLASH_SetErrorCode:00000000 FLASH_SetErrorCode
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:219    .text.FLASH_SetErrorCode:000000a0 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:711    .data.pFlash:00000000 pFlash
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:223    .text.HAL_FLASH_Program_IT:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:229    .text.HAL_FLASH_Program_IT:00000000 HAL_FLASH_Program_IT
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:270    .text.HAL_FLASH_Program_IT:0000004c $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:274    .text.HAL_FLASH_EndOfOperationCallback:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:280    .text.HAL_FLASH_EndOfOperationCallback:00000000 HAL_FLASH_EndOfOperationCallback
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:287    .text.HAL_FLASH_OperationErrorCallback:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:293    .text.HAL_FLASH_OperationErrorCallback:00000000 HAL_FLASH_OperationErrorCallback
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:300    .text.HAL_FLASH_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:306    .text.HAL_FLASH_IRQHandler:00000000 HAL_FLASH_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:420    .text.HAL_FLASH_IRQHandler:000000e4 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:424    .text.HAL_FLASH_Unlock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:430    .text.HAL_FLASH_Unlock:00000000 HAL_FLASH_Unlock
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:457    .text.HAL_FLASH_Unlock:00000028 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:461    .text.HAL_FLASH_Lock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:467    .text.HAL_FLASH_Lock:00000000 HAL_FLASH_Lock
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:480    .text.HAL_FLASH_Lock:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:483    .text.HAL_FLASH_OB_Unlock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:489    .text.HAL_FLASH_OB_Unlock:00000000 HAL_FLASH_OB_Unlock
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:510    .text.HAL_FLASH_OB_Unlock:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:514    .text.HAL_FLASH_OB_Lock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:520    .text.HAL_FLASH_OB_Lock:00000000 HAL_FLASH_OB_Lock
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:533    .text.HAL_FLASH_OB_Lock:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:536    .text.HAL_FLASH_GetError:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:542    .text.HAL_FLASH_GetError:00000000 HAL_FLASH_GetError
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:552    .text.HAL_FLASH_GetError:00000008 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:555    .text.FLASH_WaitForLastOperation:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:561    .text.FLASH_WaitForLastOperation:00000000 FLASH_WaitForLastOperation
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:609    .text.FLASH_WaitForLastOperation:00000058 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:613    .text.HAL_FLASH_Program:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:619    .text.HAL_FLASH_Program:00000000 HAL_FLASH_Program
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:680    .text.HAL_FLASH_Program:00000074 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:684    .text.HAL_FLASH_OB_Launch:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:690    .text.HAL_FLASH_OB_Launch:00000000 HAL_FLASH_OB_Launch
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:704    .text.HAL_FLASH_OB_Launch:00000018 $d
+C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s:708    .data.pFlash:00000000 $d
 
 UNDEFINED SYMBOLS
 FLASH_Erase_Sector
 FLASH_FlushCaches
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccl547pk.s 			page 15
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccAhzp2W.s 			page 15
 
 
 HAL_GetTick

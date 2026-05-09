@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
   58 000e 2030     		adds	r0, r0, #32
   59 0010 034A     		ldr	r2, .L7
   60 0012 42F82030 		str	r3, [r2, r0, lsl #2]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 2
 
 
   61              		.syntax unified
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  119 0004 00F16040 		add	r0, r0, #-536870912
  120 0008 00F56140 		add	r0, r0, #57600
  121 000c 90F80003 		ldrb	r0, [r0, #768]	@ zero_extendqisi2
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 3
 
 
  122 0010 0009     		lsrs	r0, r0, #4
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  180 000e 28BF     		it	cs
  181 0010 4FF0040C 		movcs	ip, #4
  182 0014 0C1D     		adds	r4, r1, #4
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 4
 
 
  183 0016 062C     		cmp	r4, #6
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  239              	.L29:
  240 001c 00ED00E0 		.word	-536810240
  241 0020 0400FA05 		.word	100270084
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 5
 
 
  243              		.section	.text.HAL_NVIC_SetPriorityGrouping,"ax",%progbits
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  301              		.thumb_func
  303              	HAL_NVIC_EnableIRQ:
  304              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 6
 
 
  305              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  365              	.L48:
  366              		.align	2
  367              	.L47:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 7
 
 
  368 0024 00ED00E0 		.word	-536810240
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  426              	.L54:
  427              		.align	2
  428              	.L53:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 8
 
 
  429 001c 00ED00E0 		.word	-536810240
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  489 0008 D2F8A030 		ldr	r3, [r2, #160]
  490 000c 23F00103 		bic	r3, r3, #1
  491 0010 C2F8A030 		str	r3, [r2, #160]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 9
 
 
  492 0014 4368     		ldr	r3, [r0, #4]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  550              		@ frame_needed = 0, uses_anonymous_args = 0
  551              		@ link register save eliminated.
  552 0000 024B     		ldr	r3, .L66
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 10
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 10
 
 
  553 0002 D868     		ldr	r0, [r3, #12]
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  612              		.syntax unified
  613              		.thumb
  614              		.thumb_func
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 11
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 11
 
 
  616              	HAL_NVIC_GetPendingIRQ:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  674              		@ frame_needed = 0, uses_anonymous_args = 0
  675              		@ link register save eliminated.
  676 0000 0028     		cmp	r0, #0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 12
 
 
  677 0002 0BDB     		blt	.L85
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  736              		.thumb
  737              		.thumb_func
  739              	HAL_SYSTICK_IRQHandler:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 13
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 13
 
 
  740              		@ args = 0, pretend = 0, frame = 0
@@ -727,87 +727,87 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 1
  743 0002 FFF7FEFF 		bl	HAL_SYSTICK_Callback
  744 0006 08BD     		pop	{r3, pc}
  746              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 14
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_cortex.c
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:18     .text.__NVIC_EnableIRQ:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:23     .text.__NVIC_EnableIRQ:00000000 __NVIC_EnableIRQ
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:40     .text.__NVIC_EnableIRQ:00000018 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:43     .text.__NVIC_DisableIRQ:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:48     .text.__NVIC_DisableIRQ:00000000 __NVIC_DisableIRQ
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:75     .text.__NVIC_DisableIRQ:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:78     .text.__NVIC_SetPriority:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:83     .text.__NVIC_SetPriority:00000000 __NVIC_SetPriority
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:105    .text.__NVIC_SetPriority:00000024 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:108    .text.__NVIC_GetPriority:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:113    .text.__NVIC_GetPriority:00000000 __NVIC_GetPriority
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:133    .text.__NVIC_GetPriority:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:136    .text.NVIC_EncodePriority:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:141    .text.NVIC_EncodePriority:00000000 NVIC_EncodePriority
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:168    .text.NVIC_DecodePriority:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:173    .text.NVIC_DecodePriority:00000000 NVIC_DecodePriority
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:201    .text.__NVIC_SystemReset:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:206    .text.__NVIC_SystemReset:00000000 __NVIC_SystemReset
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:240    .text.__NVIC_SystemReset:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:244    .text.HAL_NVIC_SetPriorityGrouping:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:250    .text.HAL_NVIC_SetPriorityGrouping:00000000 HAL_NVIC_SetPriorityGrouping
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:269    .text.HAL_NVIC_SetPriorityGrouping:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:272    .text.HAL_NVIC_SetPriority:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:278    .text.HAL_NVIC_SetPriority:00000000 HAL_NVIC_SetPriority
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:294    .text.HAL_NVIC_SetPriority:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:297    .text.HAL_NVIC_EnableIRQ:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:303    .text.HAL_NVIC_EnableIRQ:00000000 HAL_NVIC_EnableIRQ
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:311    .text.HAL_NVIC_DisableIRQ:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:317    .text.HAL_NVIC_DisableIRQ:00000000 HAL_NVIC_DisableIRQ
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:325    .text.HAL_NVIC_SystemReset:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:331    .text.HAL_NVIC_SystemReset:00000000 HAL_NVIC_SystemReset
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:339    .text.HAL_SYSTICK_Config:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:345    .text.HAL_SYSTICK_Config:00000000 HAL_SYSTICK_Config
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:368    .text.HAL_SYSTICK_Config:00000024 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:371    .text.HAL_MPU_Disable:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:377    .text.HAL_MPU_Disable:00000000 HAL_MPU_Disable
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:397    .text.HAL_MPU_Disable:00000018 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:400    .text.HAL_MPU_Enable:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:406    .text.HAL_MPU_Enable:00000000 HAL_MPU_Enable
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:429    .text.HAL_MPU_Enable:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:432    .text.HAL_MPU_EnableRegion:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:438    .text.HAL_MPU_EnableRegion:00000000 HAL_MPU_EnableRegion
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:451    .text.HAL_MPU_EnableRegion:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:454    .text.HAL_MPU_DisableRegion:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:460    .text.HAL_MPU_DisableRegion:00000000 HAL_MPU_DisableRegion
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:473    .text.HAL_MPU_DisableRegion:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:476    .text.HAL_MPU_ConfigRegion:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:482    .text.HAL_MPU_ConfigRegion:00000000 HAL_MPU_ConfigRegion
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:517    .text.HAL_MPU_ConfigRegion:00000054 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:520    .text.HAL_CORTEX_ClearEvent:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:526    .text.HAL_CORTEX_ClearEvent:00000000 HAL_CORTEX_ClearEvent
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:542    .text.HAL_NVIC_GetPriorityGrouping:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:548    .text.HAL_NVIC_GetPriorityGrouping:00000000 HAL_NVIC_GetPriorityGrouping
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:559    .text.HAL_NVIC_GetPriorityGrouping:0000000c $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:562    .text.HAL_NVIC_GetPriority:00000000 $t
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s 			page 15
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:18     .text.__NVIC_EnableIRQ:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:23     .text.__NVIC_EnableIRQ:00000000 __NVIC_EnableIRQ
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:40     .text.__NVIC_EnableIRQ:00000018 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:43     .text.__NVIC_DisableIRQ:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:48     .text.__NVIC_DisableIRQ:00000000 __NVIC_DisableIRQ
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:75     .text.__NVIC_DisableIRQ:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:78     .text.__NVIC_SetPriority:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:83     .text.__NVIC_SetPriority:00000000 __NVIC_SetPriority
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:105    .text.__NVIC_SetPriority:00000024 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:108    .text.__NVIC_GetPriority:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:113    .text.__NVIC_GetPriority:00000000 __NVIC_GetPriority
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:133    .text.__NVIC_GetPriority:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:136    .text.NVIC_EncodePriority:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:141    .text.NVIC_EncodePriority:00000000 NVIC_EncodePriority
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:168    .text.NVIC_DecodePriority:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:173    .text.NVIC_DecodePriority:00000000 NVIC_DecodePriority
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:201    .text.__NVIC_SystemReset:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:206    .text.__NVIC_SystemReset:00000000 __NVIC_SystemReset
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:240    .text.__NVIC_SystemReset:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:244    .text.HAL_NVIC_SetPriorityGrouping:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:250    .text.HAL_NVIC_SetPriorityGrouping:00000000 HAL_NVIC_SetPriorityGrouping
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:269    .text.HAL_NVIC_SetPriorityGrouping:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:272    .text.HAL_NVIC_SetPriority:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:278    .text.HAL_NVIC_SetPriority:00000000 HAL_NVIC_SetPriority
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:294    .text.HAL_NVIC_SetPriority:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:297    .text.HAL_NVIC_EnableIRQ:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:303    .text.HAL_NVIC_EnableIRQ:00000000 HAL_NVIC_EnableIRQ
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:311    .text.HAL_NVIC_DisableIRQ:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:317    .text.HAL_NVIC_DisableIRQ:00000000 HAL_NVIC_DisableIRQ
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:325    .text.HAL_NVIC_SystemReset:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:331    .text.HAL_NVIC_SystemReset:00000000 HAL_NVIC_SystemReset
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:339    .text.HAL_SYSTICK_Config:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:345    .text.HAL_SYSTICK_Config:00000000 HAL_SYSTICK_Config
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:368    .text.HAL_SYSTICK_Config:00000024 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:371    .text.HAL_MPU_Disable:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:377    .text.HAL_MPU_Disable:00000000 HAL_MPU_Disable
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:397    .text.HAL_MPU_Disable:00000018 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:400    .text.HAL_MPU_Enable:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:406    .text.HAL_MPU_Enable:00000000 HAL_MPU_Enable
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:429    .text.HAL_MPU_Enable:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:432    .text.HAL_MPU_EnableRegion:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:438    .text.HAL_MPU_EnableRegion:00000000 HAL_MPU_EnableRegion
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:451    .text.HAL_MPU_EnableRegion:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:454    .text.HAL_MPU_DisableRegion:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:460    .text.HAL_MPU_DisableRegion:00000000 HAL_MPU_DisableRegion
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:473    .text.HAL_MPU_DisableRegion:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:476    .text.HAL_MPU_ConfigRegion:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:482    .text.HAL_MPU_ConfigRegion:00000000 HAL_MPU_ConfigRegion
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:517    .text.HAL_MPU_ConfigRegion:00000054 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:520    .text.HAL_CORTEX_ClearEvent:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:526    .text.HAL_CORTEX_ClearEvent:00000000 HAL_CORTEX_ClearEvent
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:542    .text.HAL_NVIC_GetPriorityGrouping:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:548    .text.HAL_NVIC_GetPriorityGrouping:00000000 HAL_NVIC_GetPriorityGrouping
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:559    .text.HAL_NVIC_GetPriorityGrouping:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:562    .text.HAL_NVIC_GetPriority:00000000 $t
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s 			page 15
 
 
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:568    .text.HAL_NVIC_GetPriority:00000000 HAL_NVIC_GetPriority
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:583    .text.HAL_NVIC_SetPendingIRQ:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:589    .text.HAL_NVIC_SetPendingIRQ:00000000 HAL_NVIC_SetPendingIRQ
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:607    .text.HAL_NVIC_SetPendingIRQ:00000018 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:610    .text.HAL_NVIC_GetPendingIRQ:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:616    .text.HAL_NVIC_GetPendingIRQ:00000000 HAL_NVIC_GetPendingIRQ
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:636    .text.HAL_NVIC_GetPendingIRQ:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:639    .text.HAL_NVIC_ClearPendingIRQ:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:645    .text.HAL_NVIC_ClearPendingIRQ:00000000 HAL_NVIC_ClearPendingIRQ
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:663    .text.HAL_NVIC_ClearPendingIRQ:00000018 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:666    .text.HAL_NVIC_GetActive:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:672    .text.HAL_NVIC_GetActive:00000000 HAL_NVIC_GetActive
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:692    .text.HAL_NVIC_GetActive:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:695    .text.HAL_SYSTICK_CLKSourceConfig:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:701    .text.HAL_SYSTICK_CLKSourceConfig:00000000 HAL_SYSTICK_CLKSourceConfig
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:720    .text.HAL_SYSTICK_Callback:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:726    .text.HAL_SYSTICK_Callback:00000000 HAL_SYSTICK_Callback
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:733    .text.HAL_SYSTICK_IRQHandler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccauAnKk.s:739    .text.HAL_SYSTICK_IRQHandler:00000000 HAL_SYSTICK_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:568    .text.HAL_NVIC_GetPriority:00000000 HAL_NVIC_GetPriority
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:583    .text.HAL_NVIC_SetPendingIRQ:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:589    .text.HAL_NVIC_SetPendingIRQ:00000000 HAL_NVIC_SetPendingIRQ
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:607    .text.HAL_NVIC_SetPendingIRQ:00000018 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:610    .text.HAL_NVIC_GetPendingIRQ:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:616    .text.HAL_NVIC_GetPendingIRQ:00000000 HAL_NVIC_GetPendingIRQ
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:636    .text.HAL_NVIC_GetPendingIRQ:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:639    .text.HAL_NVIC_ClearPendingIRQ:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:645    .text.HAL_NVIC_ClearPendingIRQ:00000000 HAL_NVIC_ClearPendingIRQ
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:663    .text.HAL_NVIC_ClearPendingIRQ:00000018 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:666    .text.HAL_NVIC_GetActive:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:672    .text.HAL_NVIC_GetActive:00000000 HAL_NVIC_GetActive
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:692    .text.HAL_NVIC_GetActive:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:695    .text.HAL_SYSTICK_CLKSourceConfig:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:701    .text.HAL_SYSTICK_CLKSourceConfig:00000000 HAL_SYSTICK_CLKSourceConfig
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:720    .text.HAL_SYSTICK_Callback:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:726    .text.HAL_SYSTICK_Callback:00000000 HAL_SYSTICK_Callback
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:733    .text.HAL_SYSTICK_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccma3dZH.s:739    .text.HAL_SYSTICK_IRQHandler:00000000 HAL_SYSTICK_IRQHandler
 
 NO UNDEFINED SYMBOLS

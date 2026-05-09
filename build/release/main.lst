@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -17,1321 +17,2711 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 1
   14              		.eabi_attribute 18, 4
   15              		.file	"main.c"
   16              		.text
-  17              		.section	.text.decimalbcd,"ax",%progbits
+  17              		.section	.text.bcdtodec,"ax",%progbits
   18              		.align	1
   19              		.syntax unified
   20              		.thumb
   21              		.thumb_func
-  23              	decimalbcd:
+  23              	bcdtodec:
   24              		@ args = 0, pretend = 0, frame = 0
   25              		@ frame_needed = 0, uses_anonymous_args = 0
   26              		@ link register save eliminated.
-  27 0000 064B     		ldr	r3, .L2
-  28 0002 A3FB0023 		umull	r2, r3, r3, r0
-  29 0006 DA08     		lsrs	r2, r3, #3
-  30 0008 1346     		mov	r3, r2
-  31 000a 02EB8202 		add	r2, r2, r2, lsl #2
-  32 000e A0EB4200 		sub	r0, r0, r2, lsl #1
-  33 0012 40EA0310 		orr	r0, r0, r3, lsl #4
-  34 0016 C0B2     		uxtb	r0, r0
-  35 0018 7047     		bx	lr
-  36              	.L3:
-  37 001a 00BF     		.align	2
-  38              	.L2:
-  39 001c CDCCCCCC 		.word	-858993459
-  41              		.section	.text.MX_GPIO_Init,"ax",%progbits
-  42              		.align	1
-  43              		.syntax unified
-  44              		.thumb
-  45              		.thumb_func
-  47              	MX_GPIO_Init:
-  48              		@ args = 0, pretend = 0, frame = 40
-  49              		@ frame_needed = 0, uses_anonymous_args = 0
-  50 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
-  51 0004 8AB0     		sub	sp, sp, #40
-  52 0006 0024     		movs	r4, #0
-  53 0008 0594     		str	r4, [sp, #20]
-  54 000a 0694     		str	r4, [sp, #24]
-  55 000c 0794     		str	r4, [sp, #28]
-  56 000e 0894     		str	r4, [sp, #32]
-  57 0010 0994     		str	r4, [sp, #36]
-  58 0012 0194     		str	r4, [sp, #4]
-  59 0014 424B     		ldr	r3, .L6
-  60 0016 1A6B     		ldr	r2, [r3, #48]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 2
+  27 0000 00F00F03 		and	r3, r0, #15
+  28 0004 0009     		lsrs	r0, r0, #4
+  29 0006 00EB8000 		add	r0, r0, r0, lsl #2
+  30 000a 03EB4000 		add	r0, r3, r0, lsl #1
+  31 000e C0B2     		uxtb	r0, r0
+  32 0010 7047     		bx	lr
+  34              		.section	.text.decimalbcd,"ax",%progbits
+  35              		.align	1
+  36              		.syntax unified
+  37              		.thumb
+  38              		.thumb_func
+  40              	decimalbcd:
+  41              		@ args = 0, pretend = 0, frame = 0
+  42              		@ frame_needed = 0, uses_anonymous_args = 0
+  43              		@ link register save eliminated.
+  44 0000 064B     		ldr	r3, .L3
+  45 0002 A3FB0023 		umull	r2, r3, r3, r0
+  46 0006 DA08     		lsrs	r2, r3, #3
+  47 0008 1346     		mov	r3, r2
+  48 000a 02EB8202 		add	r2, r2, r2, lsl #2
+  49 000e A0EB4200 		sub	r0, r0, r2, lsl #1
+  50 0012 40EA0310 		orr	r0, r0, r3, lsl #4
+  51 0016 C0B2     		uxtb	r0, r0
+  52 0018 7047     		bx	lr
+  53              	.L4:
+  54 001a 00BF     		.align	2
+  55              	.L3:
+  56 001c CDCCCCCC 		.word	-858993459
+  58              		.section	.text.MX_GPIO_Init,"ax",%progbits
+  59              		.align	1
+  60              		.syntax unified
+  61              		.thumb
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 2
 
 
-  61 0018 42F00402 		orr	r2, r2, #4
-  62 001c 1A63     		str	r2, [r3, #48]
-  63 001e 1A6B     		ldr	r2, [r3, #48]
-  64 0020 02F00402 		and	r2, r2, #4
-  65 0024 0192     		str	r2, [sp, #4]
-  66 0026 019A     		ldr	r2, [sp, #4]
-  67 0028 0294     		str	r4, [sp, #8]
-  68 002a 1A6B     		ldr	r2, [r3, #48]
-  69 002c 42F08002 		orr	r2, r2, #128
-  70 0030 1A63     		str	r2, [r3, #48]
-  71 0032 1A6B     		ldr	r2, [r3, #48]
-  72 0034 02F08002 		and	r2, r2, #128
-  73 0038 0292     		str	r2, [sp, #8]
-  74 003a 029A     		ldr	r2, [sp, #8]
-  75 003c 0394     		str	r4, [sp, #12]
-  76 003e 1A6B     		ldr	r2, [r3, #48]
-  77 0040 42F00102 		orr	r2, r2, #1
-  78 0044 1A63     		str	r2, [r3, #48]
-  79 0046 1A6B     		ldr	r2, [r3, #48]
-  80 0048 02F00102 		and	r2, r2, #1
-  81 004c 0392     		str	r2, [sp, #12]
-  82 004e 039A     		ldr	r2, [sp, #12]
-  83 0050 0494     		str	r4, [sp, #16]
-  84 0052 1A6B     		ldr	r2, [r3, #48]
-  85 0054 42F00202 		orr	r2, r2, #2
-  86 0058 1A63     		str	r2, [r3, #48]
-  87 005a 1B6B     		ldr	r3, [r3, #48]
-  88 005c 03F00203 		and	r3, r3, #2
-  89 0060 0493     		str	r3, [sp, #16]
-  90 0062 049B     		ldr	r3, [sp, #16]
-  91 0064 DFF8C480 		ldr	r8, .L6+12
-  92 0068 2246     		mov	r2, r4
-  93 006a 4FF40051 		mov	r1, #8192
-  94 006e 4046     		mov	r0, r8
-  95 0070 FFF7FEFF 		bl	HAL_GPIO_WritePin
-  96 0074 2B4D     		ldr	r5, .L6+4
-  97 0076 0122     		movs	r2, #1
-  98 0078 1021     		movs	r1, #16
-  99 007a 2846     		mov	r0, r5
- 100 007c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 101 0080 294F     		ldr	r7, .L6+8
- 102 0082 2246     		mov	r2, r4
- 103 0084 4FF48051 		mov	r1, #4096
- 104 0088 3846     		mov	r0, r7
- 105 008a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 106 008e 2246     		mov	r2, r4
- 107 0090 4FF48061 		mov	r1, #1024
- 108 0094 2846     		mov	r0, r5
- 109 0096 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 110 009a 4FF40053 		mov	r3, #8192
- 111 009e 0593     		str	r3, [sp, #20]
- 112 00a0 0126     		movs	r6, #1
- 113 00a2 0696     		str	r6, [sp, #24]
- 114 00a4 0794     		str	r4, [sp, #28]
- 115 00a6 0894     		str	r4, [sp, #32]
- 116 00a8 05A9     		add	r1, sp, #20
- 117 00aa 4046     		mov	r0, r8
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 3
+  62              		.thumb_func
+  64              	MX_GPIO_Init:
+  65              		@ args = 0, pretend = 0, frame = 40
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  68 0004 8AB0     		sub	sp, sp, #40
+  69 0006 0024     		movs	r4, #0
+  70 0008 0594     		str	r4, [sp, #20]
+  71 000a 0694     		str	r4, [sp, #24]
+  72 000c 0794     		str	r4, [sp, #28]
+  73 000e 0894     		str	r4, [sp, #32]
+  74 0010 0994     		str	r4, [sp, #36]
+  75 0012 0194     		str	r4, [sp, #4]
+  76 0014 464B     		ldr	r3, .L7
+  77 0016 1A6B     		ldr	r2, [r3, #48]
+  78 0018 42F00402 		orr	r2, r2, #4
+  79 001c 1A63     		str	r2, [r3, #48]
+  80 001e 1A6B     		ldr	r2, [r3, #48]
+  81 0020 02F00402 		and	r2, r2, #4
+  82 0024 0192     		str	r2, [sp, #4]
+  83 0026 019A     		ldr	r2, [sp, #4]
+  84 0028 0294     		str	r4, [sp, #8]
+  85 002a 1A6B     		ldr	r2, [r3, #48]
+  86 002c 42F08002 		orr	r2, r2, #128
+  87 0030 1A63     		str	r2, [r3, #48]
+  88 0032 1A6B     		ldr	r2, [r3, #48]
+  89 0034 02F08002 		and	r2, r2, #128
+  90 0038 0292     		str	r2, [sp, #8]
+  91 003a 029A     		ldr	r2, [sp, #8]
+  92 003c 0394     		str	r4, [sp, #12]
+  93 003e 1A6B     		ldr	r2, [r3, #48]
+  94 0040 42F00102 		orr	r2, r2, #1
+  95 0044 1A63     		str	r2, [r3, #48]
+  96 0046 1A6B     		ldr	r2, [r3, #48]
+  97 0048 02F00102 		and	r2, r2, #1
+  98 004c 0392     		str	r2, [sp, #12]
+  99 004e 039A     		ldr	r2, [sp, #12]
+ 100 0050 0494     		str	r4, [sp, #16]
+ 101 0052 1A6B     		ldr	r2, [r3, #48]
+ 102 0054 42F00202 		orr	r2, r2, #2
+ 103 0058 1A63     		str	r2, [r3, #48]
+ 104 005a 1B6B     		ldr	r3, [r3, #48]
+ 105 005c 03F00203 		and	r3, r3, #2
+ 106 0060 0493     		str	r3, [sp, #16]
+ 107 0062 049B     		ldr	r3, [sp, #16]
+ 108 0064 DFF8D480 		ldr	r8, .L7+12
+ 109 0068 2246     		mov	r2, r4
+ 110 006a 4FF40051 		mov	r1, #8192
+ 111 006e 4046     		mov	r0, r8
+ 112 0070 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 113 0074 2F4D     		ldr	r5, .L7+4
+ 114 0076 0122     		movs	r2, #1
+ 115 0078 1021     		movs	r1, #16
+ 116 007a 2846     		mov	r0, r5
+ 117 007c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 118 0080 2D4F     		ldr	r7, .L7+8
+ 119 0082 0122     		movs	r2, #1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 3
 
 
- 118 00ac FFF7FEFF 		bl	HAL_GPIO_Init
- 119 00b0 1023     		movs	r3, #16
- 120 00b2 0593     		str	r3, [sp, #20]
- 121 00b4 0696     		str	r6, [sp, #24]
- 122 00b6 0794     		str	r4, [sp, #28]
- 123 00b8 4FF00208 		mov	r8, #2
- 124 00bc CDF82080 		str	r8, [sp, #32]
- 125 00c0 05A9     		add	r1, sp, #20
- 126 00c2 2846     		mov	r0, r5
- 127 00c4 FFF7FEFF 		bl	HAL_GPIO_Init
- 128 00c8 4FF48053 		mov	r3, #4096
- 129 00cc 0593     		str	r3, [sp, #20]
- 130 00ce 0696     		str	r6, [sp, #24]
- 131 00d0 0794     		str	r4, [sp, #28]
- 132 00d2 CDF82080 		str	r8, [sp, #32]
- 133 00d6 05A9     		add	r1, sp, #20
- 134 00d8 3846     		mov	r0, r7
- 135 00da FFF7FEFF 		bl	HAL_GPIO_Init
- 136 00de 4FF40073 		mov	r3, #512
- 137 00e2 0593     		str	r3, [sp, #20]
- 138 00e4 4FF48813 		mov	r3, #1114112
- 139 00e8 0693     		str	r3, [sp, #24]
- 140 00ea 0794     		str	r4, [sp, #28]
- 141 00ec 05A9     		add	r1, sp, #20
- 142 00ee 2846     		mov	r0, r5
- 143 00f0 FFF7FEFF 		bl	HAL_GPIO_Init
- 144 00f4 4FF48063 		mov	r3, #1024
- 145 00f8 0593     		str	r3, [sp, #20]
- 146 00fa 0696     		str	r6, [sp, #24]
- 147 00fc 0794     		str	r4, [sp, #28]
- 148 00fe 0894     		str	r4, [sp, #32]
- 149 0100 05A9     		add	r1, sp, #20
- 150 0102 2846     		mov	r0, r5
- 151 0104 FFF7FEFF 		bl	HAL_GPIO_Init
- 152 0108 2246     		mov	r2, r4
- 153 010a 2146     		mov	r1, r4
- 154 010c 1720     		movs	r0, #23
- 155 010e FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 156 0112 1720     		movs	r0, #23
- 157 0114 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 158 0118 0AB0     		add	sp, sp, #40
- 159              		@ sp needed
- 160 011a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 161              	.L7:
- 162 011e 00BF     		.align	2
- 163              	.L6:
- 164 0120 00380240 		.word	1073887232
- 165 0124 00000240 		.word	1073872896
- 166 0128 00040240 		.word	1073873920
- 167 012c 00080240 		.word	1073874944
- 169              		.section	.text.MX_DMA_Init,"ax",%progbits
- 170              		.align	1
- 171              		.syntax unified
- 172              		.thumb
- 173              		.thumb_func
- 175              	MX_DMA_Init:
- 176              		@ args = 0, pretend = 0, frame = 8
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 4
+ 120 0084 4FF48051 		mov	r1, #4096
+ 121 0088 3846     		mov	r0, r7
+ 122 008a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 123 008e 2246     		mov	r2, r4
+ 124 0090 4FF48061 		mov	r1, #1024
+ 125 0094 2846     		mov	r0, r5
+ 126 0096 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 127 009a 4FF40053 		mov	r3, #8192
+ 128 009e 0593     		str	r3, [sp, #20]
+ 129 00a0 0126     		movs	r6, #1
+ 130 00a2 0696     		str	r6, [sp, #24]
+ 131 00a4 0794     		str	r4, [sp, #28]
+ 132 00a6 0894     		str	r4, [sp, #32]
+ 133 00a8 05A9     		add	r1, sp, #20
+ 134 00aa 4046     		mov	r0, r8
+ 135 00ac FFF7FEFF 		bl	HAL_GPIO_Init
+ 136 00b0 0823     		movs	r3, #8
+ 137 00b2 0593     		str	r3, [sp, #20]
+ 138 00b4 0694     		str	r4, [sp, #24]
+ 139 00b6 0796     		str	r6, [sp, #28]
+ 140 00b8 05A9     		add	r1, sp, #20
+ 141 00ba 2846     		mov	r0, r5
+ 142 00bc FFF7FEFF 		bl	HAL_GPIO_Init
+ 143 00c0 1023     		movs	r3, #16
+ 144 00c2 0593     		str	r3, [sp, #20]
+ 145 00c4 0696     		str	r6, [sp, #24]
+ 146 00c6 0794     		str	r4, [sp, #28]
+ 147 00c8 4FF00208 		mov	r8, #2
+ 148 00cc CDF82080 		str	r8, [sp, #32]
+ 149 00d0 05A9     		add	r1, sp, #20
+ 150 00d2 2846     		mov	r0, r5
+ 151 00d4 FFF7FEFF 		bl	HAL_GPIO_Init
+ 152 00d8 4FF48053 		mov	r3, #4096
+ 153 00dc 0593     		str	r3, [sp, #20]
+ 154 00de 0696     		str	r6, [sp, #24]
+ 155 00e0 0794     		str	r4, [sp, #28]
+ 156 00e2 CDF82080 		str	r8, [sp, #32]
+ 157 00e6 05A9     		add	r1, sp, #20
+ 158 00e8 3846     		mov	r0, r7
+ 159 00ea FFF7FEFF 		bl	HAL_GPIO_Init
+ 160 00ee 4FF40073 		mov	r3, #512
+ 161 00f2 0593     		str	r3, [sp, #20]
+ 162 00f4 4FF48813 		mov	r3, #1114112
+ 163 00f8 0693     		str	r3, [sp, #24]
+ 164 00fa 0794     		str	r4, [sp, #28]
+ 165 00fc 05A9     		add	r1, sp, #20
+ 166 00fe 2846     		mov	r0, r5
+ 167 0100 FFF7FEFF 		bl	HAL_GPIO_Init
+ 168 0104 4FF48063 		mov	r3, #1024
+ 169 0108 0593     		str	r3, [sp, #20]
+ 170 010a 0696     		str	r6, [sp, #24]
+ 171 010c 0794     		str	r4, [sp, #28]
+ 172 010e 0894     		str	r4, [sp, #32]
+ 173 0110 05A9     		add	r1, sp, #20
+ 174 0112 2846     		mov	r0, r5
+ 175 0114 FFF7FEFF 		bl	HAL_GPIO_Init
+ 176 0118 2246     		mov	r2, r4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 4
 
 
- 177              		@ frame_needed = 0, uses_anonymous_args = 0
- 178 0000 00B5     		push	{lr}
- 179 0002 83B0     		sub	sp, sp, #12
- 180 0004 0021     		movs	r1, #0
- 181 0006 0191     		str	r1, [sp, #4]
- 182 0008 094B     		ldr	r3, .L10
- 183 000a 1A6B     		ldr	r2, [r3, #48]
- 184 000c 42F48002 		orr	r2, r2, #4194304
- 185 0010 1A63     		str	r2, [r3, #48]
- 186 0012 1B6B     		ldr	r3, [r3, #48]
- 187 0014 03F48003 		and	r3, r3, #4194304
- 188 0018 0193     		str	r3, [sp, #4]
- 189 001a 019B     		ldr	r3, [sp, #4]
- 190 001c 0A46     		mov	r2, r1
- 191 001e 3820     		movs	r0, #56
- 192 0020 FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 193 0024 3820     		movs	r0, #56
- 194 0026 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 195 002a 03B0     		add	sp, sp, #12
- 196              		@ sp needed
- 197 002c 5DF804FB 		ldr	pc, [sp], #4
- 198              	.L11:
- 199              		.align	2
- 200              	.L10:
- 201 0030 00380240 		.word	1073887232
- 203              		.section	.rodata.RTC_Set_Time_Once.str1.4,"aMS",%progbits,1
- 204              		.align	2
- 205              	.LC2:
- 206 0000 4A616E46 		.ascii	"JanFebMarAprMayJunJulAugSepOctNovDec\000"
- 206      65624D61 
- 206      72417072 
- 206      4D61794A 
- 206      756E4A75 
- 207 0025 000000   		.align	2
- 208              	.LC0:
- 209 0028 41707220 		.ascii	"Apr 26 2026\000"
- 209      32362032 
- 209      30323600 
- 210              		.align	2
- 211              	.LC1:
- 212 0034 31323A31 		.ascii	"12:16:41\000"
- 212      363A3431 
- 212      00
- 213              		.section	.text.RTC_Set_Time_Once,"ax",%progbits
- 214              		.align	1
- 215              		.syntax unified
- 216              		.thumb
- 217              		.thumb_func
- 219              	RTC_Set_Time_Once:
- 220              		@ args = 0, pretend = 0, frame = 32
- 221              		@ frame_needed = 0, uses_anonymous_args = 0
- 222 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
- 223 0004 8DB0     		sub	sp, sp, #52
- 224 0006 0646     		mov	r6, r0
- 225 0008 0023     		movs	r3, #0
- 226 000a 8DF82F30 		strb	r3, [sp, #47]
- 227 000e 4FF0FF33 		mov	r3, #-1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 5
+ 177 011a 2146     		mov	r1, r4
+ 178 011c 1720     		movs	r0, #23
+ 179 011e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 180 0122 1720     		movs	r0, #23
+ 181 0124 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 182 0128 0AB0     		add	sp, sp, #40
+ 183              		@ sp needed
+ 184 012a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 185              	.L8:
+ 186 012e 00BF     		.align	2
+ 187              	.L7:
+ 188 0130 00380240 		.word	1073887232
+ 189 0134 00000240 		.word	1073872896
+ 190 0138 00040240 		.word	1073873920
+ 191 013c 00080240 		.word	1073874944
+ 193              		.section	.text.MX_DMA_Init,"ax",%progbits
+ 194              		.align	1
+ 195              		.syntax unified
+ 196              		.thumb
+ 197              		.thumb_func
+ 199              	MX_DMA_Init:
+ 200              		@ args = 0, pretend = 0, frame = 8
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202 0000 00B5     		push	{lr}
+ 203 0002 83B0     		sub	sp, sp, #12
+ 204 0004 0021     		movs	r1, #0
+ 205 0006 0191     		str	r1, [sp, #4]
+ 206 0008 094B     		ldr	r3, .L11
+ 207 000a 1A6B     		ldr	r2, [r3, #48]
+ 208 000c 42F48002 		orr	r2, r2, #4194304
+ 209 0010 1A63     		str	r2, [r3, #48]
+ 210 0012 1B6B     		ldr	r3, [r3, #48]
+ 211 0014 03F48003 		and	r3, r3, #4194304
+ 212 0018 0193     		str	r3, [sp, #4]
+ 213 001a 019B     		ldr	r3, [sp, #4]
+ 214 001c 0A46     		mov	r2, r1
+ 215 001e 3820     		movs	r0, #56
+ 216 0020 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 217 0024 3820     		movs	r0, #56
+ 218 0026 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 219 002a 03B0     		add	sp, sp, #12
+ 220              		@ sp needed
+ 221 002c 5DF804FB 		ldr	pc, [sp], #4
+ 222              	.L12:
+ 223              		.align	2
+ 224              	.L11:
+ 225 0030 00380240 		.word	1073887232
+ 227              		.section	.text.RTC_Detect,"ax",%progbits
+ 228              		.align	1
+ 229              		.syntax unified
+ 230              		.thumb
+ 231              		.thumb_func
+ 233              	RTC_Detect:
+ 234              		@ args = 0, pretend = 0, frame = 0
+ 235              		@ frame_needed = 0, uses_anonymous_args = 0
+ 236 0000 08B5     		push	{r3, lr}
+ 237 0002 6423     		movs	r3, #100
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 5
 
 
- 228 0012 0293     		str	r3, [sp, #8]
- 229 0014 0123     		movs	r3, #1
- 230 0016 0193     		str	r3, [sp, #4]
- 231 0018 0DF12F02 		add	r2, sp, #47
- 232 001c 0092     		str	r2, [sp]
- 233 001e 0722     		movs	r2, #7
- 234 0020 D021     		movs	r1, #208
- 235 0022 FFF7FEFF 		bl	HAL_I2C_Mem_Read
- 236 0026 9DF82F30 		ldrb	r3, [sp, #47]	@ zero_extendqisi2
- 237 002a AB2B     		cmp	r3, #171
- 238 002c 00F08880 		beq	.L12
- 239 0030 454A     		ldr	r2, .L21
- 240 0032 08AB     		add	r3, sp, #32
- 241 0034 07CA     		ldm	r2, {r0, r1, r2}
- 242 0036 83E80700 		stm	r3, {r0, r1, r2}
- 243 003a 444A     		ldr	r2, .L21+4
- 244 003c 05AB     		add	r3, sp, #20
- 245 003e 07CA     		ldm	r2, {r0, r1, r2}
- 246 0040 03C3     		stmia	r3!, {r0, r1}
- 247 0042 1A70     		strb	r2, [r3]
- 248 0044 0024     		movs	r4, #0
- 249 0046 00E0     		b	.L15
- 250              	.L16:
- 251 0048 0134     		adds	r4, r4, #1
- 252              	.L15:
- 253 004a 0B2C     		cmp	r4, #11
- 254 004c 0DDC     		bgt	.L20
- 255 004e 04EB4400 		add	r0, r4, r4, lsl #1
- 256 0052 0322     		movs	r2, #3
- 257 0054 08A9     		add	r1, sp, #32
- 258 0056 3E4B     		ldr	r3, .L21+8
- 259 0058 1844     		add	r0, r0, r3
- 260 005a FFF7FEFF 		bl	strncmp
- 261 005e 0028     		cmp	r0, #0
- 262 0060 F2D1     		bne	.L16
- 263 0062 E4B2     		uxtb	r4, r4
- 264 0064 0134     		adds	r4, r4, #1
- 265 0066 E4B2     		uxtb	r4, r4
- 266 0068 00E0     		b	.L17
- 267              	.L20:
- 268 006a 0124     		movs	r4, #1
- 269              	.L17:
- 270 006c 2920     		movs	r0, #41
- 271 006e FFF7FEFF 		bl	decimalbcd
- 272 0072 8DF81300 		strb	r0, [sp, #19]
- 273 0076 4FF0FF38 		mov	r8, #-1
- 274 007a CDF80880 		str	r8, [sp, #8]
- 275 007e 0125     		movs	r5, #1
- 276 0080 0195     		str	r5, [sp, #4]
- 277 0082 0DF11307 		add	r7, sp, #19
- 278 0086 0097     		str	r7, [sp]
- 279 0088 2B46     		mov	r3, r5
- 280 008a 0022     		movs	r2, #0
- 281 008c D021     		movs	r1, #208
- 282 008e 3046     		mov	r0, r6
- 283 0090 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 284 0094 1020     		movs	r0, #16
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 6
+ 238 0004 0322     		movs	r2, #3
+ 239 0006 D021     		movs	r1, #208
+ 240 0008 0448     		ldr	r0, .L17
+ 241 000a 0068     		ldr	r0, [r0]
+ 242 000c FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
+ 243 0010 08B9     		cbnz	r0, .L15
+ 244 0012 0120     		movs	r0, #1
+ 245              	.L14:
+ 246 0014 08BD     		pop	{r3, pc}
+ 247              	.L15:
+ 248 0016 0020     		movs	r0, #0
+ 249 0018 FCE7     		b	.L14
+ 250              	.L18:
+ 251 001a 00BF     		.align	2
+ 252              	.L17:
+ 253 001c 00000000 		.word	RTC_I2C
+ 255              		.section	.text.Atlas_Detect,"ax",%progbits
+ 256              		.align	1
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 261              	Atlas_Detect:
+ 262              		@ args = 0, pretend = 0, frame = 0
+ 263              		@ frame_needed = 0, uses_anonymous_args = 0
+ 264 0000 08B5     		push	{r3, lr}
+ 265 0002 0146     		mov	r1, r0
+ 266 0004 0A23     		movs	r3, #10
+ 267 0006 0122     		movs	r2, #1
+ 268 0008 0348     		ldr	r0, .L21
+ 269 000a 0068     		ldr	r0, [r0]
+ 270 000c FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
+ 271 0010 B0FA80F0 		clz	r0, r0
+ 272 0014 4009     		lsrs	r0, r0, #5
+ 273 0016 08BD     		pop	{r3, pc}
+ 274              	.L22:
+ 275              		.align	2
+ 276              	.L21:
+ 277 0018 00000000 		.word	Atlas_I2C
+ 279              		.section	.text.SD_Detect,"ax",%progbits
+ 280              		.align	1
+ 281              		.syntax unified
+ 282              		.thumb
+ 283              		.thumb_func
+ 285              	SD_Detect:
+ 286              		@ args = 0, pretend = 0, frame = 0
+ 287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 288 0000 08B5     		push	{r3, lr}
+ 289 0002 0821     		movs	r1, #8
+ 290 0004 0248     		ldr	r0, .L25
+ 291 0006 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 292 000a 024B     		ldr	r3, .L25+4
+ 293 000c 1870     		strb	r0, [r3]
+ 294 000e 08BD     		pop	{r3, pc}
+ 295              	.L26:
+ 296              		.align	2
+ 297              	.L25:
+ 298 0010 00000240 		.word	1073872896
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 6
 
 
- 285 0096 FFF7FEFF 		bl	decimalbcd
- 286 009a 8DF81300 		strb	r0, [sp, #19]
- 287 009e CDF80880 		str	r8, [sp, #8]
- 288 00a2 0195     		str	r5, [sp, #4]
- 289 00a4 0097     		str	r7, [sp]
- 290 00a6 2B46     		mov	r3, r5
- 291 00a8 2A46     		mov	r2, r5
- 292 00aa D021     		movs	r1, #208
- 293 00ac 3046     		mov	r0, r6
- 294 00ae FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 295 00b2 0C20     		movs	r0, #12
- 296 00b4 FFF7FEFF 		bl	decimalbcd
- 297 00b8 8DF81300 		strb	r0, [sp, #19]
- 298 00bc CDF80880 		str	r8, [sp, #8]
- 299 00c0 0195     		str	r5, [sp, #4]
- 300 00c2 0097     		str	r7, [sp]
- 301 00c4 2B46     		mov	r3, r5
- 302 00c6 0222     		movs	r2, #2
- 303 00c8 D021     		movs	r1, #208
- 304 00ca 3046     		mov	r0, r6
- 305 00cc FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 306 00d0 1A20     		movs	r0, #26
- 307 00d2 FFF7FEFF 		bl	decimalbcd
- 308 00d6 8146     		mov	r9, r0
- 309 00d8 8DF81300 		strb	r0, [sp, #19]
- 310 00dc CDF80880 		str	r8, [sp, #8]
- 311 00e0 0195     		str	r5, [sp, #4]
- 312 00e2 0097     		str	r7, [sp]
- 313 00e4 2B46     		mov	r3, r5
- 314 00e6 0422     		movs	r2, #4
- 315 00e8 D021     		movs	r1, #208
- 316 00ea 3046     		mov	r0, r6
- 317 00ec FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 318 00f0 2046     		mov	r0, r4
- 319 00f2 FFF7FEFF 		bl	decimalbcd
- 320 00f6 8DF81300 		strb	r0, [sp, #19]
- 321 00fa CDF80880 		str	r8, [sp, #8]
- 322 00fe 0195     		str	r5, [sp, #4]
- 323 0100 0097     		str	r7, [sp]
- 324 0102 2B46     		mov	r3, r5
- 325 0104 0522     		movs	r2, #5
- 326 0106 D021     		movs	r1, #208
- 327 0108 3046     		mov	r0, r6
- 328 010a FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 329 010e 8DF81390 		strb	r9, [sp, #19]
- 330 0112 CDF80880 		str	r8, [sp, #8]
- 331 0116 0195     		str	r5, [sp, #4]
- 332 0118 0097     		str	r7, [sp]
- 333 011a 2B46     		mov	r3, r5
- 334 011c 0622     		movs	r2, #6
- 335 011e D021     		movs	r1, #208
- 336 0120 3046     		mov	r0, r6
- 337 0122 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 338 0126 AB23     		movs	r3, #171
- 339 0128 8DF81330 		strb	r3, [sp, #19]
- 340 012c CDF80880 		str	r8, [sp, #8]
- 341 0130 0195     		str	r5, [sp, #4]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 7
+ 299 0014 00000000 		.word	SD_Connected
+ 301              		.section	.text.get_unix_timestamp,"ax",%progbits
+ 302              		.align	1
+ 303              		.syntax unified
+ 304              		.thumb
+ 305              		.thumb_func
+ 307              	get_unix_timestamp:
+ 308              		@ args = 8, pretend = 0, frame = 40
+ 309              		@ frame_needed = 0, uses_anonymous_args = 0
+ 310 0000 00B5     		push	{lr}
+ 311 0002 8BB0     		sub	sp, sp, #44
+ 312 0004 A0F26C70 		subw	r0, r0, #1900
+ 313 0008 0690     		str	r0, [sp, #24]
+ 314 000a 0139     		subs	r1, r1, #1
+ 315 000c 0591     		str	r1, [sp, #20]
+ 316 000e 0492     		str	r2, [sp, #16]
+ 317 0010 0393     		str	r3, [sp, #12]
+ 318 0012 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
+ 319 0016 0293     		str	r3, [sp, #8]
+ 320 0018 9DF83430 		ldrb	r3, [sp, #52]	@ zero_extendqisi2
+ 321 001c 0193     		str	r3, [sp, #4]
+ 322 001e 4FF0FF33 		mov	r3, #-1
+ 323 0022 0993     		str	r3, [sp, #36]
+ 324 0024 01A8     		add	r0, sp, #4
+ 325 0026 FFF7FEFF 		bl	mktime
+ 326 002a 0BB0     		add	sp, sp, #44
+ 327              		@ sp needed
+ 328 002c 5DF804FB 		ldr	pc, [sp], #4
+ 330              		.section	.text.RTC_Get_Time,"ax",%progbits
+ 331              		.align	1
+ 332              		.syntax unified
+ 333              		.thumb
+ 334              		.thumb_func
+ 336              	RTC_Get_Time:
+ 337              		@ args = 0, pretend = 0, frame = 8
+ 338              		@ frame_needed = 0, uses_anonymous_args = 0
+ 339 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 340 0004 86B0     		sub	sp, sp, #24
+ 341 0006 0546     		mov	r5, r0
+ 342 0008 4FF0FF36 		mov	r6, #-1
+ 343 000c 0296     		str	r6, [sp, #8]
+ 344 000e 0124     		movs	r4, #1
+ 345 0010 0194     		str	r4, [sp, #4]
+ 346 0012 0DF11703 		add	r3, sp, #23
+ 347 0016 0093     		str	r3, [sp]
+ 348 0018 2346     		mov	r3, r4
+ 349 001a 0622     		movs	r2, #6
+ 350 001c D021     		movs	r1, #208
+ 351 001e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 352 0022 0296     		str	r6, [sp, #8]
+ 353 0024 0194     		str	r4, [sp, #4]
+ 354 0026 0DF11603 		add	r3, sp, #22
+ 355 002a 0093     		str	r3, [sp]
+ 356 002c 2346     		mov	r3, r4
+ 357 002e 0522     		movs	r2, #5
+ 358 0030 D021     		movs	r1, #208
+ 359 0032 2846     		mov	r0, r5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 7
 
 
- 342 0132 0097     		str	r7, [sp]
- 343 0134 2B46     		mov	r3, r5
- 344 0136 0722     		movs	r2, #7
- 345 0138 D021     		movs	r1, #208
- 346 013a 3046     		mov	r0, r6
- 347 013c FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 348              	.L12:
- 349 0140 0DB0     		add	sp, sp, #52
- 350              		@ sp needed
- 351 0142 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
- 352              	.L22:
- 353 0146 00BF     		.align	2
- 354              	.L21:
- 355 0148 28000000 		.word	.LC0
- 356 014c 34000000 		.word	.LC1
- 357 0150 00000000 		.word	.LC2
- 359              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
- 360              		.align	1
- 361              		.global	HAL_TIM_PeriodElapsedCallback
- 362              		.syntax unified
- 363              		.thumb
- 364              		.thumb_func
- 366              	HAL_TIM_PeriodElapsedCallback:
- 367              		@ args = 0, pretend = 0, frame = 0
- 368              		@ frame_needed = 0, uses_anonymous_args = 0
- 369 0000 08B5     		push	{r3, lr}
- 370 0002 0268     		ldr	r2, [r0]
- 371 0004 044B     		ldr	r3, .L27
- 372 0006 9A42     		cmp	r2, r3
- 373 0008 00D0     		beq	.L26
- 374              	.L23:
- 375 000a 08BD     		pop	{r3, pc}
- 376              	.L26:
- 377 000c 4FF40051 		mov	r1, #8192
- 378 0010 0248     		ldr	r0, .L27+4
- 379 0012 FFF7FEFF 		bl	HAL_GPIO_TogglePin
- 380 0016 F8E7     		b	.L23
- 381              	.L28:
- 382              		.align	2
- 383              	.L27:
- 384 0018 00480140 		.word	1073825792
- 385 001c 00080240 		.word	1073874944
- 387              		.section	.text.LoRa_Detect,"ax",%progbits
- 388              		.align	1
- 389              		.global	LoRa_Detect
- 390              		.syntax unified
- 391              		.thumb
- 392              		.thumb_func
- 394              	LoRa_Detect:
- 395              		@ args = 0, pretend = 0, frame = 0
- 396              		@ frame_needed = 0, uses_anonymous_args = 0
- 397 0000 08B5     		push	{r3, lr}
- 398 0002 4221     		movs	r1, #66
- 399 0004 FFF7FEFF 		bl	SX1278_SPIRead
- 400 0008 1228     		cmp	r0, #18
- 401 000a 14BF     		ite	ne
- 402 000c 0020     		movne	r0, #0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 8
+ 360 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 361 0038 0296     		str	r6, [sp, #8]
+ 362 003a 0194     		str	r4, [sp, #4]
+ 363 003c 0DF11503 		add	r3, sp, #21
+ 364 0040 0093     		str	r3, [sp]
+ 365 0042 2346     		mov	r3, r4
+ 366 0044 0422     		movs	r2, #4
+ 367 0046 D021     		movs	r1, #208
+ 368 0048 2846     		mov	r0, r5
+ 369 004a FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 370 004e 0296     		str	r6, [sp, #8]
+ 371 0050 0194     		str	r4, [sp, #4]
+ 372 0052 05AB     		add	r3, sp, #20
+ 373 0054 0093     		str	r3, [sp]
+ 374 0056 2346     		mov	r3, r4
+ 375 0058 0222     		movs	r2, #2
+ 376 005a D021     		movs	r1, #208
+ 377 005c 2846     		mov	r0, r5
+ 378 005e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 379 0062 0296     		str	r6, [sp, #8]
+ 380 0064 0194     		str	r4, [sp, #4]
+ 381 0066 0DF11303 		add	r3, sp, #19
+ 382 006a 0093     		str	r3, [sp]
+ 383 006c 2346     		mov	r3, r4
+ 384 006e 2246     		mov	r2, r4
+ 385 0070 D021     		movs	r1, #208
+ 386 0072 2846     		mov	r0, r5
+ 387 0074 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 388 0078 0296     		str	r6, [sp, #8]
+ 389 007a 0194     		str	r4, [sp, #4]
+ 390 007c 0DF11203 		add	r3, sp, #18
+ 391 0080 0093     		str	r3, [sp]
+ 392 0082 2346     		mov	r3, r4
+ 393 0084 0022     		movs	r2, #0
+ 394 0086 D021     		movs	r1, #208
+ 395 0088 2846     		mov	r0, r5
+ 396 008a FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 397 008e 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+ 398 0092 FFF7FEFF 		bl	bcdtodec
+ 399 0096 0446     		mov	r4, r0
+ 400 0098 8DF81700 		strb	r0, [sp, #23]
+ 401 009c 9DF81600 		ldrb	r0, [sp, #22]	@ zero_extendqisi2
+ 402 00a0 00F01F00 		and	r0, r0, #31
+ 403 00a4 FFF7FEFF 		bl	bcdtodec
+ 404 00a8 0546     		mov	r5, r0
+ 405 00aa 8DF81600 		strb	r0, [sp, #22]
+ 406 00ae 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
+ 407 00b2 00F03F00 		and	r0, r0, #63
+ 408 00b6 FFF7FEFF 		bl	bcdtodec
+ 409 00ba 0646     		mov	r6, r0
+ 410 00bc 8DF81500 		strb	r0, [sp, #21]
+ 411 00c0 9DF81400 		ldrb	r0, [sp, #20]	@ zero_extendqisi2
+ 412 00c4 00F03F00 		and	r0, r0, #63
+ 413 00c8 FFF7FEFF 		bl	bcdtodec
+ 414 00cc 0746     		mov	r7, r0
+ 415 00ce 8DF81400 		strb	r0, [sp, #20]
+ 416 00d2 9DF81300 		ldrb	r0, [sp, #19]	@ zero_extendqisi2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 8
 
 
- 403 000e 0120     		moveq	r0, #1
- 404 0010 08BD     		pop	{r3, pc}
- 406              		.section	.text.LoRa_Init,"ax",%progbits
- 407              		.align	1
- 408              		.global	LoRa_Init
- 409              		.syntax unified
- 410              		.thumb
- 411              		.thumb_func
- 413              	LoRa_Init:
- 414              		@ args = 0, pretend = 0, frame = 0
- 415              		@ frame_needed = 0, uses_anonymous_args = 0
- 416 0000 70B5     		push	{r4, r5, r6, lr}
- 417 0002 86B0     		sub	sp, sp, #24
- 418 0004 1A4C     		ldr	r4, .L36+8
- 419 0006 2046     		mov	r0, r4
- 420 0008 FFF7FEFF 		bl	SX1278_hw_init
- 421 000c 2046     		mov	r0, r4
- 422 000e FFF7FEFF 		bl	SX1278_hw_Reset
- 423 0012 6420     		movs	r0, #100
- 424 0014 FFF7FEFF 		bl	HAL_Delay
- 425 0018 1648     		ldr	r0, .L36+12
- 426 001a FFF7FEFF 		bl	LoRa_Detect
- 427 001e 20B9     		cbnz	r0, .L35
- 428 0020 154B     		ldr	r3, .L36+16
- 429 0022 0022     		movs	r2, #0
- 430 0024 1A70     		strb	r2, [r3]
- 431              	.L33:
- 432 0026 06B0     		add	sp, sp, #24
+ 417 00d6 00F07F00 		and	r0, r0, #127
+ 418 00da FFF7FEFF 		bl	bcdtodec
+ 419 00de 8046     		mov	r8, r0
+ 420 00e0 8DF81300 		strb	r0, [sp, #19]
+ 421 00e4 9DF81200 		ldrb	r0, [sp, #18]	@ zero_extendqisi2
+ 422 00e8 00F07F00 		and	r0, r0, #127
+ 423 00ec FFF7FEFF 		bl	bcdtodec
+ 424 00f0 8DF81200 		strb	r0, [sp, #18]
+ 425 00f4 0190     		str	r0, [sp, #4]
+ 426 00f6 CDF80080 		str	r8, [sp]
+ 427 00fa 3B46     		mov	r3, r7
+ 428 00fc 3246     		mov	r2, r6
+ 429 00fe 2946     		mov	r1, r5
+ 430 0100 04F5FA60 		add	r0, r4, #2000
+ 431 0104 FFF7FEFF 		bl	get_unix_timestamp
+ 432 0108 06B0     		add	sp, sp, #24
  433              		@ sp needed
- 434 0028 70BD     		pop	{r4, r5, r6, pc}
- 435              	.L35:
- 436 002a 124D     		ldr	r5, .L36+12
- 437 002c 6426     		movs	r6, #100
- 438 002e 0596     		str	r6, [sp, #20]
- 439 0030 0023     		movs	r3, #0
- 440 0032 0493     		str	r3, [sp, #16]
- 441 0034 0393     		str	r3, [sp, #12]
- 442 0036 0723     		movs	r3, #7
- 443 0038 0293     		str	r3, [sp, #8]
- 444 003a 0124     		movs	r4, #1
- 445 003c 0194     		str	r4, [sp, #4]
- 446 003e 0323     		movs	r3, #3
- 447 0040 0093     		str	r3, [sp]
- 448 0042 09A3     		adr	r3, .L36
- 449 0044 D3E90023 		ldrd	r2, [r3]
- 450 0048 2846     		mov	r0, r5
- 451 004a FFF7FEFF 		bl	SX1278_init
- 452 004e 4FF4FA62 		mov	r2, #2000
- 453 0052 3146     		mov	r1, r6
- 454 0054 2846     		mov	r0, r5
- 455 0056 FFF7FEFF 		bl	SX1278_LoRaEntryRx
- 456 005a 074B     		ldr	r3, .L36+16
- 457 005c 1C70     		strb	r4, [r3]
- 458 005e 2046     		mov	r0, r4
- 459 0060 E1E7     		b	.L33
- 460              	.L37:
- 461 0062 00BFAFF3 		.align	3
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 9
+ 434 010a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 436              		.section	.text.write_OLED,"ax",%progbits
+ 437              		.align	1
+ 438              		.syntax unified
+ 439              		.thumb
+ 440              		.thumb_func
+ 442              	write_OLED:
+ 443              		@ args = 0, pretend = 0, frame = 0
+ 444              		@ frame_needed = 0, uses_anonymous_args = 0
+ 445 0000 10B5     		push	{r4, lr}
+ 446 0002 1446     		mov	r4, r2
+ 447 0004 01EB8101 		add	r1, r1, r1, lsl #2
+ 448 0008 4900     		lsls	r1, r1, #1
+ 449 000a C0EBC000 		rsb	r0, r0, r0, lsl #3
+ 450 000e 01F0FE01 		and	r1, r1, #254
+ 451 0012 C0B2     		uxtb	r0, r0
+ 452 0014 FFF7FEFF 		bl	ssd1306_SetCursor
+ 453 0018 054A     		ldr	r2, .L33
+ 454 001a 0123     		movs	r3, #1
+ 455 001c 06CA     		ldm	r2, {r1, r2}
+ 456 001e 2046     		mov	r0, r4
+ 457 0020 FFF7FEFF 		bl	ssd1306_WriteString
+ 458 0024 034B     		ldr	r3, .L33+4
+ 459 0026 1868     		ldr	r0, [r3]
+ 460 0028 FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 461 002c 10BD     		pop	{r4, pc}
+ 462              	.L34:
+ 463 002e 00BF     		.align	2
+ 464              	.L33:
+ 465 0030 00000000 		.word	Font_7x10
+ 466 0034 00000000 		.word	Oled_I2C
+ 468              		.section	.text.RTC_Set_Time,"ax",%progbits
+ 469              		.align	1
+ 470              		.syntax unified
+ 471              		.thumb
+ 472              		.thumb_func
+ 474              	RTC_Set_Time:
+ 475              		@ args = 0, pretend = 0, frame = 16
+ 476              		@ frame_needed = 0, uses_anonymous_args = 0
+ 477 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 9
 
 
- 461      0080
- 462              	.L36:
- 463 0068 D8B9D119 		.word	433175000
- 464 006c 00000000 		.word	0
- 465 0070 00000000 		.word	SX1278_hw
- 466 0074 00000000 		.word	SX1278
- 467 0078 00000000 		.word	LoRa_Connected
- 469              		.section	.text.LoRa_TX,"ax",%progbits
- 470              		.align	1
- 471              		.global	LoRa_TX
- 472              		.syntax unified
- 473              		.thumb
- 474              		.thumb_func
- 476              	LoRa_TX:
- 477              		@ args = 0, pretend = 0, frame = 0
- 478              		@ frame_needed = 0, uses_anonymous_args = 0
- 479 0000 38B5     		push	{r3, r4, r5, lr}
- 480 0002 0446     		mov	r4, r0
- 481 0004 FFF7FEFF 		bl	strlen
- 482 0008 C3B2     		uxtb	r3, r0
- 483 000a 194A     		ldr	r2, .L45
- 484 000c 1370     		strb	r3, [r2]
- 485 000e 013B     		subs	r3, r3, #1
- 486 0010 DBB2     		uxtb	r3, r3
- 487 0012 312B     		cmp	r3, #49
- 488 0014 01D9     		bls	.L43
- 489 0016 0020     		movs	r0, #0
- 490              	.L39:
- 491 0018 38BD     		pop	{r3, r4, r5, pc}
- 492              	.L43:
- 493 001a 1648     		ldr	r0, .L45+4
- 494 001c FFF7FEFF 		bl	LoRa_Detect
- 495 0020 18B9     		cbnz	r0, .L44
- 496 0022 154B     		ldr	r3, .L45+8
- 497 0024 0022     		movs	r2, #0
- 498 0026 1A70     		strb	r2, [r3]
- 499 0028 F6E7     		b	.L39
- 500              	.L44:
- 501 002a 4FF4FA62 		mov	r2, #2000
- 502 002e 104B     		ldr	r3, .L45
- 503 0030 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
- 504 0032 1048     		ldr	r0, .L45+4
- 505 0034 FFF7FEFF 		bl	SX1278_LoRaEntryTx
- 506 0038 C0B2     		uxtb	r0, r0
- 507 003a 104B     		ldr	r3, .L45+12
- 508 003c 1870     		strb	r0, [r3]
- 509 003e 0028     		cmp	r0, #0
- 510 0040 EAD0     		beq	.L39
- 511 0042 0C4D     		ldr	r5, .L45+4
- 512 0044 4FF4FA63 		mov	r3, #2000
- 513 0048 094A     		ldr	r2, .L45
- 514 004a 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
- 515 004c 2146     		mov	r1, r4
- 516 004e 2846     		mov	r0, r5
- 517 0050 FFF7FEFF 		bl	SX1278_LoRaTxPacket
- 518 0054 094C     		ldr	r4, .L45+12
- 519 0056 2070     		strb	r0, [r4]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 10
+ 478 0004 89B0     		sub	sp, sp, #36
+ 479 0006 0646     		mov	r6, r0
+ 480 0008 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 481 000a 303A     		subs	r2, r2, #48
+ 482 000c 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 483 000e 303B     		subs	r3, r3, #48
+ 484 0010 C2EB4210 		rsb	r0, r2, r2, lsl #5
+ 485 0014 02EB8002 		add	r2, r2, r0, lsl #2
+ 486 0018 03EB8303 		add	r3, r3, r3, lsl #2
+ 487 001c 03EB8304 		add	r4, r3, r3, lsl #2
+ 488 0020 A400     		lsls	r4, r4, #2
+ 489 0022 04EBC204 		add	r4, r4, r2, lsl #3
+ 490 0026 A4B2     		uxth	r4, r4
+ 491 0028 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ 492 002a 303B     		subs	r3, r3, #48
+ 493 002c 03EB8303 		add	r3, r3, r3, lsl #2
+ 494 0030 04EB4304 		add	r4, r4, r3, lsl #1
+ 495 0034 A4B2     		uxth	r4, r4
+ 496 0036 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 497 0038 1C44     		add	r4, r4, r3
+ 498 003a A4B2     		uxth	r4, r4
+ 499 003c 303C     		subs	r4, r4, #48
+ 500 003e A4B2     		uxth	r4, r4
+ 501 0040 4A79     		ldrb	r2, [r1, #5]	@ zero_extendqisi2
+ 502 0042 8B79     		ldrb	r3, [r1, #6]	@ zero_extendqisi2
+ 503 0044 303A     		subs	r2, r2, #48
+ 504 0046 02EB8202 		add	r2, r2, r2, lsl #2
+ 505 004a 03EB4203 		add	r3, r3, r2, lsl #1
+ 506 004e DBB2     		uxtb	r3, r3
+ 507 0050 303B     		subs	r3, r3, #48
+ 508 0052 DBB2     		uxtb	r3, r3
+ 509 0054 0593     		str	r3, [sp, #20]
+ 510 0056 0B7A     		ldrb	r3, [r1, #8]	@ zero_extendqisi2
+ 511 0058 4F7A     		ldrb	r7, [r1, #9]	@ zero_extendqisi2
+ 512 005a 303B     		subs	r3, r3, #48
+ 513 005c 03EB8303 		add	r3, r3, r3, lsl #2
+ 514 0060 07EB4307 		add	r7, r7, r3, lsl #1
+ 515 0064 FFB2     		uxtb	r7, r7
+ 516 0066 303F     		subs	r7, r7, #48
+ 517 0068 FFB2     		uxtb	r7, r7
+ 518 006a CB7A     		ldrb	r3, [r1, #11]	@ zero_extendqisi2
+ 519 006c 91F80C80 		ldrb	r8, [r1, #12]	@ zero_extendqisi2
+ 520 0070 303B     		subs	r3, r3, #48
+ 521 0072 03EB8303 		add	r3, r3, r3, lsl #2
+ 522 0076 08EB4308 		add	r8, r8, r3, lsl #1
+ 523 007a 5FFA88F8 		uxtb	r8, r8
+ 524 007e A8F13008 		sub	r8, r8, #48
+ 525 0082 5FFA88F8 		uxtb	r8, r8
+ 526 0086 8B7B     		ldrb	r3, [r1, #14]	@ zero_extendqisi2
+ 527 0088 91F80F90 		ldrb	r9, [r1, #15]	@ zero_extendqisi2
+ 528 008c 303B     		subs	r3, r3, #48
+ 529 008e 03EB8303 		add	r3, r3, r3, lsl #2
+ 530 0092 09EB4309 		add	r9, r9, r3, lsl #1
+ 531 0096 5FFA89F9 		uxtb	r9, r9
+ 532 009a A9F13009 		sub	r9, r9, #48
+ 533 009e 5FFA89F9 		uxtb	r9, r9
+ 534 00a2 4B7C     		ldrb	r3, [r1, #17]	@ zero_extendqisi2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 10
 
 
- 520 0058 4FF4FA62 		mov	r2, #2000
- 521 005c 6421     		movs	r1, #100
- 522 005e 2846     		mov	r0, r5
- 523 0060 FFF7FEFF 		bl	SX1278_LoRaEntryRx
- 524 0064 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
- 525 0066 0028     		cmp	r0, #0
- 526 0068 D6D0     		beq	.L39
- 527 006a 0120     		movs	r0, #1
- 528 006c D4E7     		b	.L39
- 529              	.L46:
- 530 006e 00BF     		.align	2
- 531              	.L45:
- 532 0070 00000000 		.word	message_length
- 533 0074 00000000 		.word	SX1278
- 534 0078 00000000 		.word	LoRa_Connected
- 535 007c 00000000 		.word	ret
- 537              		.section	.text.LoRa_RX,"ax",%progbits
- 538              		.align	1
- 539              		.global	LoRa_RX
- 540              		.syntax unified
- 541              		.thumb
- 542              		.thumb_func
- 544              	LoRa_RX:
- 545              		@ args = 0, pretend = 0, frame = 0
- 546              		@ frame_needed = 0, uses_anonymous_args = 0
- 547 0000 10B5     		push	{r4, lr}
- 548 0002 0E48     		ldr	r0, .L51
- 549 0004 FFF7FEFF 		bl	SX1278_LoRaRxPacket
- 550 0008 0D4B     		ldr	r3, .L51+4
- 551 000a 1870     		strb	r0, [r3]
- 552 000c 68B9     		cbnz	r0, .L50
- 553              	.L48:
- 554 000e 0B4C     		ldr	r4, .L51
- 555 0010 0F21     		movs	r1, #15
- 556 0012 2046     		mov	r0, r4
- 557 0014 FFF7FEFF 		bl	SX1278_SPIRead
- 558 0018 0246     		mov	r2, r0
- 559 001a 0D21     		movs	r1, #13
- 560 001c 2046     		mov	r0, r4
- 561 001e FFF7FEFF 		bl	SX1278_SPIWrite
- 562 0022 2046     		mov	r0, r4
- 563 0024 FFF7FEFF 		bl	SX1278_clearLoRaIrq
- 564 0028 10BD     		pop	{r4, pc}
- 565              	.L50:
- 566 002a 0246     		mov	r2, r0
- 567 002c 0549     		ldr	r1, .L51+8
- 568 002e 0648     		ldr	r0, .L51+12
- 569 0030 FFF7FEFF 		bl	memcpy
- 570 0034 054B     		ldr	r3, .L51+16
- 571 0036 0122     		movs	r2, #1
- 572 0038 1A70     		strb	r2, [r3]
- 573 003a E8E7     		b	.L48
- 574              	.L52:
- 575              		.align	2
- 576              	.L51:
- 577 003c 00000000 		.word	SX1278
- 578 0040 00000000 		.word	LoRa_RX_Length
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 11
+ 535 00a4 887C     		ldrb	r0, [r1, #18]	@ zero_extendqisi2
+ 536 00a6 303B     		subs	r3, r3, #48
+ 537 00a8 03EB8303 		add	r3, r3, r3, lsl #2
+ 538 00ac 00EB4300 		add	r0, r0, r3, lsl #1
+ 539 00b0 C0B2     		uxtb	r0, r0
+ 540 00b2 3038     		subs	r0, r0, #48
+ 541 00b4 C0B2     		uxtb	r0, r0
+ 542 00b6 FFF7FEFF 		bl	decimalbcd
+ 543 00ba 8DF81F00 		strb	r0, [sp, #31]
+ 544 00be 4FF0FF3B 		mov	fp, #-1
+ 545 00c2 CDF808B0 		str	fp, [sp, #8]
+ 546 00c6 0125     		movs	r5, #1
+ 547 00c8 0195     		str	r5, [sp, #4]
+ 548 00ca 0DF11F0A 		add	r10, sp, #31
+ 549 00ce CDF800A0 		str	r10, [sp]
+ 550 00d2 2B46     		mov	r3, r5
+ 551 00d4 0022     		movs	r2, #0
+ 552 00d6 D021     		movs	r1, #208
+ 553 00d8 3046     		mov	r0, r6
+ 554 00da FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 555 00de 4846     		mov	r0, r9
+ 556 00e0 FFF7FEFF 		bl	decimalbcd
+ 557 00e4 8DF81F00 		strb	r0, [sp, #31]
+ 558 00e8 CDF808B0 		str	fp, [sp, #8]
+ 559 00ec 0195     		str	r5, [sp, #4]
+ 560 00ee CDF800A0 		str	r10, [sp]
+ 561 00f2 2B46     		mov	r3, r5
+ 562 00f4 2A46     		mov	r2, r5
+ 563 00f6 D021     		movs	r1, #208
+ 564 00f8 3046     		mov	r0, r6
+ 565 00fa FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 566 00fe 4046     		mov	r0, r8
+ 567 0100 FFF7FEFF 		bl	decimalbcd
+ 568 0104 8DF81F00 		strb	r0, [sp, #31]
+ 569 0108 CDF808B0 		str	fp, [sp, #8]
+ 570 010c 0195     		str	r5, [sp, #4]
+ 571 010e CDF800A0 		str	r10, [sp]
+ 572 0112 2B46     		mov	r3, r5
+ 573 0114 0222     		movs	r2, #2
+ 574 0116 D021     		movs	r1, #208
+ 575 0118 3046     		mov	r0, r6
+ 576 011a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 577 011e 3846     		mov	r0, r7
+ 578 0120 FFF7FEFF 		bl	decimalbcd
+ 579 0124 8DF81F00 		strb	r0, [sp, #31]
+ 580 0128 CDF808B0 		str	fp, [sp, #8]
+ 581 012c 0195     		str	r5, [sp, #4]
+ 582 012e CDF800A0 		str	r10, [sp]
+ 583 0132 2B46     		mov	r3, r5
+ 584 0134 0422     		movs	r2, #4
+ 585 0136 D021     		movs	r1, #208
+ 586 0138 3046     		mov	r0, r6
+ 587 013a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 588 013e 0598     		ldr	r0, [sp, #20]
+ 589 0140 FFF7FEFF 		bl	decimalbcd
+ 590 0144 8DF81F00 		strb	r0, [sp, #31]
+ 591 0148 CDF808B0 		str	fp, [sp, #8]
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 11
 
 
- 579 0044 17000000 		.word	SX1278+23
- 580 0048 00000000 		.word	LoRa_RX_Buffer
- 581 004c 00000000 		.word	LoRa_RX_Flag
- 583              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
- 584              		.align	1
- 585              		.global	HAL_GPIO_EXTI_Callback
- 586              		.syntax unified
- 587              		.thumb
- 588              		.thumb_func
- 590              	HAL_GPIO_EXTI_Callback:
- 591              		@ args = 0, pretend = 0, frame = 0
- 592              		@ frame_needed = 0, uses_anonymous_args = 0
- 593 0000 B0F5007F 		cmp	r0, #512
- 594 0004 00D0     		beq	.L59
- 595 0006 7047     		bx	lr
- 596              	.L59:
- 597 0008 08B5     		push	{r3, lr}
- 598 000a FFF7FEFF 		bl	LoRa_RX
- 599 000e 08BD     		pop	{r3, pc}
- 601              		.section	.text.Error_Handler,"ax",%progbits
- 602              		.align	1
- 603              		.global	Error_Handler
- 604              		.syntax unified
- 605              		.thumb
- 606              		.thumb_func
- 608              	Error_Handler:
- 609              		@ Volatile: function does not return.
- 610              		@ args = 0, pretend = 0, frame = 0
- 611              		@ frame_needed = 0, uses_anonymous_args = 0
- 612              		@ link register save eliminated.
- 613              		.syntax unified
- 614              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 615 0000 72B6     		cpsid i
- 616              	@ 0 "" 2
- 617              		.thumb
- 618              		.syntax unified
- 619              	.L61:
- 620 0002 FEE7     		b	.L61
- 622              		.section	.text.MX_I2C1_Init,"ax",%progbits
- 623              		.align	1
- 624              		.syntax unified
- 625              		.thumb
- 626              		.thumb_func
- 628              	MX_I2C1_Init:
- 629              		@ args = 0, pretend = 0, frame = 0
- 630              		@ frame_needed = 0, uses_anonymous_args = 0
- 631 0000 08B5     		push	{r3, lr}
- 632 0002 0A48     		ldr	r0, .L66
- 633 0004 0A4B     		ldr	r3, .L66+4
- 634 0006 0360     		str	r3, [r0]
- 635 0008 0A4B     		ldr	r3, .L66+8
- 636 000a 4360     		str	r3, [r0, #4]
- 637 000c 0023     		movs	r3, #0
- 638 000e 8360     		str	r3, [r0, #8]
- 639 0010 C360     		str	r3, [r0, #12]
- 640 0012 4FF48042 		mov	r2, #16384
- 641 0016 0261     		str	r2, [r0, #16]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 12
+ 592 014c 0195     		str	r5, [sp, #4]
+ 593 014e CDF800A0 		str	r10, [sp]
+ 594 0152 2B46     		mov	r3, r5
+ 595 0154 0522     		movs	r2, #5
+ 596 0156 D021     		movs	r1, #208
+ 597 0158 3046     		mov	r0, r6
+ 598 015a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 599 015e 144B     		ldr	r3, .L37
+ 600 0160 A3FB0423 		umull	r2, r3, r3, r4
+ 601 0164 5B09     		lsrs	r3, r3, #5
+ 602 0166 6422     		movs	r2, #100
+ 603 0168 02FB1340 		mls	r0, r2, r3, r4
+ 604 016c C0B2     		uxtb	r0, r0
+ 605 016e FFF7FEFF 		bl	decimalbcd
+ 606 0172 8DF81F00 		strb	r0, [sp, #31]
+ 607 0176 CDF808B0 		str	fp, [sp, #8]
+ 608 017a 0195     		str	r5, [sp, #4]
+ 609 017c CDF800A0 		str	r10, [sp]
+ 610 0180 2B46     		mov	r3, r5
+ 611 0182 0622     		movs	r2, #6
+ 612 0184 D021     		movs	r1, #208
+ 613 0186 3046     		mov	r0, r6
+ 614 0188 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 615 018c AB23     		movs	r3, #171
+ 616 018e 8DF81F30 		strb	r3, [sp, #31]
+ 617 0192 CDF808B0 		str	fp, [sp, #8]
+ 618 0196 0195     		str	r5, [sp, #4]
+ 619 0198 CDF800A0 		str	r10, [sp]
+ 620 019c 2B46     		mov	r3, r5
+ 621 019e 0722     		movs	r2, #7
+ 622 01a0 D021     		movs	r1, #208
+ 623 01a2 3046     		mov	r0, r6
+ 624 01a4 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 625 01a8 09B0     		add	sp, sp, #36
+ 626              		@ sp needed
+ 627 01aa BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 628              	.L38:
+ 629 01ae 00BF     		.align	2
+ 630              	.L37:
+ 631 01b0 1F85EB51 		.word	1374389535
+ 633              		.section	.text.Atlas_Wake,"ax",%progbits
+ 634              		.align	1
+ 635              		.syntax unified
+ 636              		.thumb
+ 637              		.thumb_func
+ 639              	Atlas_Wake:
+ 640              		@ args = 0, pretend = 0, frame = 8
+ 641              		@ frame_needed = 0, uses_anonymous_args = 0
+ 642 0000 10B5     		push	{r4, lr}
+ 643 0002 84B0     		sub	sp, sp, #16
+ 644 0004 0446     		mov	r4, r0
+ 645 0006 5223     		movs	r3, #82
+ 646 0008 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 647 000c 03A8     		add	r0, sp, #12
+ 648 000e FFF7FEFF 		bl	strlen
+ 649 0012 4FF0FF33 		mov	r3, #-1
+ 650 0016 0093     		str	r3, [sp]
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 12
 
 
- 642 0018 4361     		str	r3, [r0, #20]
- 643 001a 8361     		str	r3, [r0, #24]
- 644 001c C361     		str	r3, [r0, #28]
- 645 001e 0362     		str	r3, [r0, #32]
- 646 0020 FFF7FEFF 		bl	HAL_I2C_Init
- 647 0024 00B9     		cbnz	r0, .L65
- 648 0026 08BD     		pop	{r3, pc}
- 649              	.L65:
- 650 0028 FFF7FEFF 		bl	Error_Handler
- 651              	.L67:
- 652              		.align	2
- 653              	.L66:
- 654 002c 00000000 		.word	hi2c1
- 655 0030 00540040 		.word	1073763328
- 656 0034 801A0600 		.word	400000
- 658              		.section	.text.MX_TIM11_Init,"ax",%progbits
- 659              		.align	1
- 660              		.syntax unified
- 661              		.thumb
- 662              		.thumb_func
- 664              	MX_TIM11_Init:
- 665              		@ args = 0, pretend = 0, frame = 0
- 666              		@ frame_needed = 0, uses_anonymous_args = 0
- 667 0000 08B5     		push	{r3, lr}
- 668 0002 0948     		ldr	r0, .L72
- 669 0004 094B     		ldr	r3, .L72+4
- 670 0006 0360     		str	r3, [r0]
- 671 0008 46F2A713 		movw	r3, #24999
- 672 000c 4360     		str	r3, [r0, #4]
- 673 000e 0023     		movs	r3, #0
- 674 0010 8360     		str	r3, [r0, #8]
- 675 0012 4FF47A72 		mov	r2, #1000
- 676 0016 C260     		str	r2, [r0, #12]
- 677 0018 0361     		str	r3, [r0, #16]
- 678 001a 8361     		str	r3, [r0, #24]
- 679 001c FFF7FEFF 		bl	HAL_TIM_Base_Init
- 680 0020 00B9     		cbnz	r0, .L71
- 681 0022 08BD     		pop	{r3, pc}
- 682              	.L71:
- 683 0024 FFF7FEFF 		bl	Error_Handler
- 684              	.L73:
- 685              		.align	2
- 686              	.L72:
- 687 0028 00000000 		.word	htim11
- 688 002c 00480140 		.word	1073825792
- 690              		.section	.text.MX_I2C2_Init,"ax",%progbits
- 691              		.align	1
- 692              		.syntax unified
- 693              		.thumb
- 694              		.thumb_func
- 696              	MX_I2C2_Init:
- 697              		@ args = 0, pretend = 0, frame = 0
- 698              		@ frame_needed = 0, uses_anonymous_args = 0
- 699 0000 08B5     		push	{r3, lr}
- 700 0002 0A48     		ldr	r0, .L78
- 701 0004 0A4B     		ldr	r3, .L78+4
- 702 0006 0360     		str	r3, [r0]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 13
+ 651 0018 83B2     		uxth	r3, r0
+ 652 001a 03AA     		add	r2, sp, #12
+ 653 001c 2146     		mov	r1, r4
+ 654 001e 0348     		ldr	r0, .L41
+ 655 0020 0068     		ldr	r0, [r0]
+ 656 0022 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 657 0026 04B0     		add	sp, sp, #16
+ 658              		@ sp needed
+ 659 0028 10BD     		pop	{r4, pc}
+ 660              	.L42:
+ 661 002a 00BF     		.align	2
+ 662              	.L41:
+ 663 002c 00000000 		.word	Atlas_I2C
+ 665              		.section	.rodata.Atlas_Sleep.str1.4,"aMS",%progbits,1
+ 666              		.align	2
+ 667              	.LC0:
+ 668 0000 536C6565 		.ascii	"Sleep\000"
+ 668      7000
+ 669              		.section	.text.Atlas_Sleep,"ax",%progbits
+ 670              		.align	1
+ 671              		.syntax unified
+ 672              		.thumb
+ 673              		.thumb_func
+ 675              	Atlas_Sleep:
+ 676              		@ args = 0, pretend = 0, frame = 8
+ 677              		@ frame_needed = 0, uses_anonymous_args = 0
+ 678 0000 10B5     		push	{r4, lr}
+ 679 0002 84B0     		sub	sp, sp, #16
+ 680 0004 0446     		mov	r4, r0
+ 681 0006 0A4B     		ldr	r3, .L45
+ 682 0008 93E80300 		ldm	r3, {r0, r1}
+ 683 000c 0290     		str	r0, [sp, #8]
+ 684 000e ADF80C10 		strh	r1, [sp, #12]	@ movhi
+ 685 0012 02A8     		add	r0, sp, #8
+ 686 0014 FFF7FEFF 		bl	strlen
+ 687 0018 4FF0FF33 		mov	r3, #-1
+ 688 001c 0093     		str	r3, [sp]
+ 689 001e 83B2     		uxth	r3, r0
+ 690 0020 02AA     		add	r2, sp, #8
+ 691 0022 2146     		mov	r1, r4
+ 692 0024 0348     		ldr	r0, .L45+4
+ 693 0026 0068     		ldr	r0, [r0]
+ 694 0028 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 695 002c 04B0     		add	sp, sp, #16
+ 696              		@ sp needed
+ 697 002e 10BD     		pop	{r4, pc}
+ 698              	.L46:
+ 699              		.align	2
+ 700              	.L45:
+ 701 0030 00000000 		.word	.LC0
+ 702 0034 00000000 		.word	Atlas_I2C
+ 704              		.section	.text.Atlas_Read_Val,"ax",%progbits
+ 705              		.align	1
+ 706              		.syntax unified
+ 707              		.thumb
+ 708              		.thumb_func
+ 710              	Atlas_Read_Val:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 13
 
 
- 703 0008 0A4B     		ldr	r3, .L78+8
- 704 000a 4360     		str	r3, [r0, #4]
- 705 000c 0023     		movs	r3, #0
- 706 000e 8360     		str	r3, [r0, #8]
- 707 0010 C360     		str	r3, [r0, #12]
- 708 0012 4FF48042 		mov	r2, #16384
- 709 0016 0261     		str	r2, [r0, #16]
- 710 0018 4361     		str	r3, [r0, #20]
- 711 001a 8361     		str	r3, [r0, #24]
- 712 001c C361     		str	r3, [r0, #28]
- 713 001e 0362     		str	r3, [r0, #32]
- 714 0020 FFF7FEFF 		bl	HAL_I2C_Init
- 715 0024 00B9     		cbnz	r0, .L77
- 716 0026 08BD     		pop	{r3, pc}
- 717              	.L77:
- 718 0028 FFF7FEFF 		bl	Error_Handler
- 719              	.L79:
- 720              		.align	2
- 721              	.L78:
- 722 002c 00000000 		.word	hi2c2
- 723 0030 00580040 		.word	1073764352
- 724 0034 A0860100 		.word	100000
- 726              		.section	.text.MX_I2C3_Init,"ax",%progbits
- 727              		.align	1
- 728              		.syntax unified
- 729              		.thumb
- 730              		.thumb_func
- 732              	MX_I2C3_Init:
- 733              		@ args = 0, pretend = 0, frame = 0
- 734              		@ frame_needed = 0, uses_anonymous_args = 0
- 735 0000 08B5     		push	{r3, lr}
- 736 0002 0A48     		ldr	r0, .L84
- 737 0004 0A4B     		ldr	r3, .L84+4
- 738 0006 0360     		str	r3, [r0]
- 739 0008 0A4B     		ldr	r3, .L84+8
- 740 000a 4360     		str	r3, [r0, #4]
- 741 000c 0023     		movs	r3, #0
- 742 000e 8360     		str	r3, [r0, #8]
- 743 0010 C360     		str	r3, [r0, #12]
- 744 0012 4FF48042 		mov	r2, #16384
- 745 0016 0261     		str	r2, [r0, #16]
- 746 0018 4361     		str	r3, [r0, #20]
- 747 001a 8361     		str	r3, [r0, #24]
- 748 001c C361     		str	r3, [r0, #28]
- 749 001e 0362     		str	r3, [r0, #32]
- 750 0020 FFF7FEFF 		bl	HAL_I2C_Init
- 751 0024 00B9     		cbnz	r0, .L83
- 752 0026 08BD     		pop	{r3, pc}
- 753              	.L83:
- 754 0028 FFF7FEFF 		bl	Error_Handler
- 755              	.L85:
- 756              		.align	2
- 757              	.L84:
- 758 002c 00000000 		.word	hi2c3
- 759 0030 005C0040 		.word	1073765376
- 760 0034 A0860100 		.word	100000
- 762              		.section	.text.MX_SPI1_Init,"ax",%progbits
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 14
+ 711              		@ args = 0, pretend = 0, frame = 24
+ 712              		@ frame_needed = 0, uses_anonymous_args = 0
+ 713 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 714 0002 89B0     		sub	sp, sp, #36
+ 715 0004 0746     		mov	r7, r0
+ 716 0006 0E46     		mov	r6, r1
+ 717 0008 5223     		movs	r3, #82
+ 718 000a ADF81C30 		strh	r3, [sp, #28]	@ movhi
+ 719 000e 07A8     		add	r0, sp, #28
+ 720 0010 FFF7FEFF 		bl	strlen
+ 721 0014 4FF0FF33 		mov	r3, #-1
+ 722 0018 0093     		str	r3, [sp]
+ 723 001a 83B2     		uxth	r3, r0
+ 724 001c 07AA     		add	r2, sp, #28
+ 725 001e 3146     		mov	r1, r6
+ 726 0020 1948     		ldr	r0, .L54
+ 727 0022 0068     		ldr	r0, [r0]
+ 728 0024 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 729 0028 4FF41670 		mov	r0, #600
+ 730 002c FFF7FEFF 		bl	HAL_Delay
+ 731 0030 0024     		movs	r4, #0
+ 732              	.L49:
+ 733 0032 6423     		movs	r3, #100
+ 734 0034 0093     		str	r3, [sp]
+ 735 0036 1123     		movs	r3, #17
+ 736 0038 02AA     		add	r2, sp, #8
+ 737 003a 3146     		mov	r1, r6
+ 738 003c 124D     		ldr	r5, .L54
+ 739 003e 2868     		ldr	r0, [r5]
+ 740 0040 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 741 0044 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ 742 0048 FE2B     		cmp	r3, #254
+ 743 004a 06D1     		bne	.L48
+ 744 004c 0134     		adds	r4, r4, #1
+ 745 004e E4B2     		uxtb	r4, r4
+ 746 0050 1420     		movs	r0, #20
+ 747 0052 FFF7FEFF 		bl	HAL_Delay
+ 748 0056 092C     		cmp	r4, #9
+ 749 0058 EBD9     		bls	.L49
+ 750              	.L48:
+ 751 005a 9DF80800 		ldrb	r0, [sp, #8]	@ zero_extendqisi2
+ 752 005e 0128     		cmp	r0, #1
+ 753 0060 02D0     		beq	.L53
+ 754 0062 0020     		movs	r0, #0
+ 755              	.L50:
+ 756 0064 09B0     		add	sp, sp, #36
+ 757              		@ sp needed
+ 758 0066 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 759              	.L53:
+ 760 0068 DDF80940 		ldr	r4, [sp, #9]	@ unaligned
+ 761 006c DDF80D10 		ldr	r1, [sp, #13]	@ unaligned
+ 762 0070 DDF81120 		ldr	r2, [sp, #17]	@ unaligned
+ 763 0074 DDF81530 		ldr	r3, [sp, #21]	@ unaligned
+ 764 0078 3C60     		str	r4, [r7]	@ unaligned
+ 765 007a 7960     		str	r1, [r7, #4]	@ unaligned
+ 766 007c BA60     		str	r2, [r7, #8]	@ unaligned
+ 767 007e FB60     		str	r3, [r7, #12]	@ unaligned
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 14
 
 
- 763              		.align	1
- 764              		.syntax unified
- 765              		.thumb
- 766              		.thumb_func
- 768              	MX_SPI1_Init:
- 769              		@ args = 0, pretend = 0, frame = 0
- 770              		@ frame_needed = 0, uses_anonymous_args = 0
- 771 0000 08B5     		push	{r3, lr}
- 772 0002 0D48     		ldr	r0, .L90
- 773 0004 0D4B     		ldr	r3, .L90+4
- 774 0006 0360     		str	r3, [r0]
- 775 0008 4FF48273 		mov	r3, #260
- 776 000c 4360     		str	r3, [r0, #4]
- 777 000e 0023     		movs	r3, #0
- 778 0010 8360     		str	r3, [r0, #8]
- 779 0012 C360     		str	r3, [r0, #12]
- 780 0014 0361     		str	r3, [r0, #16]
- 781 0016 4361     		str	r3, [r0, #20]
- 782 0018 4FF40072 		mov	r2, #512
- 783 001c 8261     		str	r2, [r0, #24]
- 784 001e 3822     		movs	r2, #56
- 785 0020 C261     		str	r2, [r0, #28]
- 786 0022 0362     		str	r3, [r0, #32]
- 787 0024 4362     		str	r3, [r0, #36]
- 788 0026 8362     		str	r3, [r0, #40]
- 789 0028 0A23     		movs	r3, #10
- 790 002a C362     		str	r3, [r0, #44]
- 791 002c FFF7FEFF 		bl	HAL_SPI_Init
- 792 0030 00B9     		cbnz	r0, .L89
- 793 0032 08BD     		pop	{r3, pc}
- 794              	.L89:
- 795 0034 FFF7FEFF 		bl	Error_Handler
- 796              	.L91:
- 797              		.align	2
- 798              	.L90:
- 799 0038 00000000 		.word	hspi1
- 800 003c 00300140 		.word	1073819648
- 802              		.section	.text.MX_SPI2_Init,"ax",%progbits
- 803              		.align	1
- 804              		.syntax unified
- 805              		.thumb
- 806              		.thumb_func
- 808              	MX_SPI2_Init:
- 809              		@ args = 0, pretend = 0, frame = 0
- 810              		@ frame_needed = 0, uses_anonymous_args = 0
- 811 0000 08B5     		push	{r3, lr}
- 812 0002 0D48     		ldr	r0, .L96
- 813 0004 0D4B     		ldr	r3, .L96+4
- 814 0006 0360     		str	r3, [r0]
- 815 0008 4FF48273 		mov	r3, #260
- 816 000c 4360     		str	r3, [r0, #4]
- 817 000e 0023     		movs	r3, #0
- 818 0010 8360     		str	r3, [r0, #8]
- 819 0012 C360     		str	r3, [r0, #12]
- 820 0014 0361     		str	r3, [r0, #16]
- 821 0016 4361     		str	r3, [r0, #20]
- 822 0018 4FF40072 		mov	r2, #512
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 15
+ 768 0080 0023     		movs	r3, #0
+ 769 0082 3B74     		strb	r3, [r7, #16]
+ 770 0084 EEE7     		b	.L50
+ 771              	.L55:
+ 772 0086 00BF     		.align	2
+ 773              	.L54:
+ 774 0088 00000000 		.word	Atlas_I2C
+ 776              		.section	.text.LoRa_ArmRX,"ax",%progbits
+ 777              		.align	1
+ 778              		.syntax unified
+ 779              		.thumb
+ 780              		.thumb_func
+ 782              	LoRa_ArmRX:
+ 783              		@ args = 0, pretend = 0, frame = 0
+ 784              		@ frame_needed = 0, uses_anonymous_args = 0
+ 785 0000 08B5     		push	{r3, lr}
+ 786 0002 4FF4FA62 		mov	r2, #2000
+ 787 0006 6421     		movs	r1, #100
+ 788 0008 0148     		ldr	r0, .L58
+ 789 000a FFF7FEFF 		bl	SX1278_LoRaEntryRx
+ 790 000e 08BD     		pop	{r3, pc}
+ 791              	.L59:
+ 792              		.align	2
+ 793              	.L58:
+ 794 0010 00000000 		.word	SX1278
+ 796              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 797              		.align	1
+ 798              		.global	HAL_TIM_PeriodElapsedCallback
+ 799              		.syntax unified
+ 800              		.thumb
+ 801              		.thumb_func
+ 803              	HAL_TIM_PeriodElapsedCallback:
+ 804              		@ args = 0, pretend = 0, frame = 0
+ 805              		@ frame_needed = 0, uses_anonymous_args = 0
+ 806 0000 10B5     		push	{r4, lr}
+ 807 0002 0446     		mov	r4, r0
+ 808 0004 0268     		ldr	r2, [r0]
+ 809 0006 0E4B     		ldr	r3, .L68
+ 810 0008 9A42     		cmp	r2, r3
+ 811 000a 07D0     		beq	.L65
+ 812              	.L61:
+ 813 000c 2368     		ldr	r3, [r4]
+ 814 000e 0D4A     		ldr	r2, .L68+4
+ 815 0010 9342     		cmp	r3, r2
+ 816 0012 0CD0     		beq	.L66
+ 817              	.L62:
+ 818 0014 0C4A     		ldr	r2, .L68+8
+ 819 0016 9342     		cmp	r3, r2
+ 820 0018 0DD0     		beq	.L67
+ 821              	.L60:
+ 822 001a 10BD     		pop	{r4, pc}
+ 823              	.L65:
+ 824 001c 4FF40051 		mov	r1, #8192
+ 825 0020 0A48     		ldr	r0, .L68+12
+ 826 0022 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 827 0026 0A4B     		ldr	r3, .L68+16
+ 828 0028 0122     		movs	r2, #1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 15
 
 
- 823 001c 8261     		str	r2, [r0, #24]
- 824 001e C361     		str	r3, [r0, #28]
- 825 0020 0362     		str	r3, [r0, #32]
- 826 0022 4362     		str	r3, [r0, #36]
- 827 0024 8362     		str	r3, [r0, #40]
- 828 0026 0A23     		movs	r3, #10
- 829 0028 C362     		str	r3, [r0, #44]
- 830 002a FFF7FEFF 		bl	HAL_SPI_Init
- 831 002e 00B9     		cbnz	r0, .L95
- 832 0030 08BD     		pop	{r3, pc}
- 833              	.L95:
- 834 0032 FFF7FEFF 		bl	Error_Handler
- 835              	.L97:
- 836 0036 00BF     		.align	2
- 837              	.L96:
- 838 0038 00000000 		.word	hspi2
- 839 003c 00380040 		.word	1073756160
- 841              		.section	.text.SystemClock_Config,"ax",%progbits
- 842              		.align	1
- 843              		.global	SystemClock_Config
- 844              		.syntax unified
- 845              		.thumb
- 846              		.thumb_func
- 848              	SystemClock_Config:
- 849              		@ args = 0, pretend = 0, frame = 80
- 850              		@ frame_needed = 0, uses_anonymous_args = 0
- 851 0000 00B5     		push	{lr}
- 852 0002 95B0     		sub	sp, sp, #84
- 853 0004 3022     		movs	r2, #48
- 854 0006 0021     		movs	r1, #0
- 855 0008 08A8     		add	r0, sp, #32
- 856 000a FFF7FEFF 		bl	memset
- 857 000e 0023     		movs	r3, #0
- 858 0010 0393     		str	r3, [sp, #12]
- 859 0012 0493     		str	r3, [sp, #16]
- 860 0014 0593     		str	r3, [sp, #20]
- 861 0016 0693     		str	r3, [sp, #24]
- 862 0018 0793     		str	r3, [sp, #28]
- 863 001a 0193     		str	r3, [sp, #4]
- 864 001c 1A4A     		ldr	r2, .L104
- 865 001e 116C     		ldr	r1, [r2, #64]
- 866 0020 41F08051 		orr	r1, r1, #268435456
- 867 0024 1164     		str	r1, [r2, #64]
- 868 0026 126C     		ldr	r2, [r2, #64]
- 869 0028 02F08052 		and	r2, r2, #268435456
- 870 002c 0192     		str	r2, [sp, #4]
- 871 002e 019A     		ldr	r2, [sp, #4]
- 872 0030 0293     		str	r3, [sp, #8]
- 873 0032 1649     		ldr	r1, .L104+4
- 874 0034 0A68     		ldr	r2, [r1]
- 875 0036 22F44042 		bic	r2, r2, #49152
- 876 003a 42F40042 		orr	r2, r2, #32768
- 877 003e 0A60     		str	r2, [r1]
- 878 0040 0A68     		ldr	r2, [r1]
- 879 0042 02F44042 		and	r2, r2, #49152
- 880 0046 0292     		str	r2, [sp, #8]
- 881 0048 029A     		ldr	r2, [sp, #8]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 16
+ 829 002a 1A70     		strb	r2, [r3]
+ 830 002c EEE7     		b	.L61
+ 831              	.L66:
+ 832 002e 094A     		ldr	r2, .L68+20
+ 833 0030 0121     		movs	r1, #1
+ 834 0032 1170     		strb	r1, [r2]
+ 835 0034 EEE7     		b	.L62
+ 836              	.L67:
+ 837 0036 084B     		ldr	r3, .L68+24
+ 838 0038 0122     		movs	r2, #1
+ 839 003a 1A70     		strb	r2, [r3]
+ 840 003c EDE7     		b	.L60
+ 841              	.L69:
+ 842 003e 00BF     		.align	2
+ 843              	.L68:
+ 844 0040 00480140 		.word	1073825792
+ 845 0044 00440140 		.word	1073824768
+ 846 0048 00400140 		.word	1073823744
+ 847 004c 00080240 		.word	1073874944
+ 848 0050 00000000 		.word	RTC_Update_Oled
+ 849 0054 00000000 		.word	Atlas_Send_live
+ 850 0058 00000000 		.word	Atlas_measure
+ 852              		.section	.text.LoRa_Detect,"ax",%progbits
+ 853              		.align	1
+ 854              		.global	LoRa_Detect
+ 855              		.syntax unified
+ 856              		.thumb
+ 857              		.thumb_func
+ 859              	LoRa_Detect:
+ 860              		@ args = 0, pretend = 0, frame = 0
+ 861              		@ frame_needed = 0, uses_anonymous_args = 0
+ 862 0000 08B5     		push	{r3, lr}
+ 863 0002 4221     		movs	r1, #66
+ 864 0004 FFF7FEFF 		bl	SX1278_SPIRead
+ 865 0008 1228     		cmp	r0, #18
+ 866 000a 14BF     		ite	ne
+ 867 000c 0020     		movne	r0, #0
+ 868 000e 0120     		moveq	r0, #1
+ 869 0010 08BD     		pop	{r3, pc}
+ 871              		.section	.text.LoRa_Init,"ax",%progbits
+ 872              		.align	1
+ 873              		.global	LoRa_Init
+ 874              		.syntax unified
+ 875              		.thumb
+ 876              		.thumb_func
+ 878              	LoRa_Init:
+ 879              		@ args = 0, pretend = 0, frame = 0
+ 880              		@ frame_needed = 0, uses_anonymous_args = 0
+ 881 0000 10B5     		push	{r4, lr}
+ 882 0002 86B0     		sub	sp, sp, #24
+ 883 0004 164C     		ldr	r4, .L77+8
+ 884 0006 2046     		mov	r0, r4
+ 885 0008 FFF7FEFF 		bl	SX1278_hw_init
+ 886 000c 2046     		mov	r0, r4
+ 887 000e FFF7FEFF 		bl	SX1278_hw_Reset
+ 888 0012 6420     		movs	r0, #100
+ 889 0014 FFF7FEFF 		bl	HAL_Delay
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 16
 
 
- 882 004a 0122     		movs	r2, #1
- 883 004c 0892     		str	r2, [sp, #32]
- 884 004e 4FF48032 		mov	r2, #65536
- 885 0052 0992     		str	r2, [sp, #36]
- 886 0054 0E93     		str	r3, [sp, #56]
- 887 0056 08A8     		add	r0, sp, #32
- 888 0058 FFF7FEFF 		bl	HAL_RCC_OscConfig
- 889 005c 80B9     		cbnz	r0, .L102
- 890 005e 0F23     		movs	r3, #15
- 891 0060 0393     		str	r3, [sp, #12]
- 892 0062 0123     		movs	r3, #1
- 893 0064 0493     		str	r3, [sp, #16]
- 894 0066 0021     		movs	r1, #0
- 895 0068 0591     		str	r1, [sp, #20]
- 896 006a 0691     		str	r1, [sp, #24]
- 897 006c 0791     		str	r1, [sp, #28]
- 898 006e 03A8     		add	r0, sp, #12
- 899 0070 FFF7FEFF 		bl	HAL_RCC_ClockConfig
- 900 0074 30B9     		cbnz	r0, .L103
- 901 0076 FFF7FEFF 		bl	HAL_RCC_EnableCSS
- 902 007a 15B0     		add	sp, sp, #84
- 903              		@ sp needed
- 904 007c 5DF804FB 		ldr	pc, [sp], #4
- 905              	.L102:
- 906 0080 FFF7FEFF 		bl	Error_Handler
- 907              	.L103:
- 908 0084 FFF7FEFF 		bl	Error_Handler
- 909              	.L105:
- 910              		.align	2
- 911              	.L104:
- 912 0088 00380240 		.word	1073887232
- 913 008c 00700040 		.word	1073770496
- 915              		.section	.text.main,"ax",%progbits
- 916              		.align	1
- 917              		.global	main
- 918              		.syntax unified
- 919              		.thumb
- 920              		.thumb_func
- 922              	main:
- 923              		@ args = 0, pretend = 0, frame = 0
- 924              		@ frame_needed = 0, uses_anonymous_args = 0
- 925 0000 08B5     		push	{r3, lr}
- 926 0002 FFF7FEFF 		bl	HAL_Init
- 927 0006 FFF7FEFF 		bl	SystemClock_Config
- 928 000a FFF7FEFF 		bl	MX_GPIO_Init
- 929 000e FFF7FEFF 		bl	MX_DMA_Init
- 930 0012 FFF7FEFF 		bl	MX_I2C1_Init
- 931 0016 FFF7FEFF 		bl	MX_TIM11_Init
- 932 001a FFF7FEFF 		bl	MX_I2C2_Init
- 933 001e FFF7FEFF 		bl	MX_I2C3_Init
- 934 0022 FFF7FEFF 		bl	MX_SPI1_Init
- 935 0026 FFF7FEFF 		bl	MX_FATFS_Init
- 936 002a FFF7FEFF 		bl	MX_SPI2_Init
- 937 002e 134B     		ldr	r3, .L109
- 938 0030 134A     		ldr	r2, .L109+4
- 939 0032 DA60     		str	r2, [r3, #12]
- 940 0034 4FF40071 		mov	r1, #512
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 17
+ 890 0018 1248     		ldr	r0, .L77+12
+ 891 001a FFF7FEFF 		bl	LoRa_Detect
+ 892 001e 20B9     		cbnz	r0, .L76
+ 893 0020 114B     		ldr	r3, .L77+16
+ 894 0022 0022     		movs	r2, #0
+ 895 0024 1A70     		strb	r2, [r3]
+ 896              	.L74:
+ 897 0026 06B0     		add	sp, sp, #24
+ 898              		@ sp needed
+ 899 0028 10BD     		pop	{r4, pc}
+ 900              	.L76:
+ 901 002a 6423     		movs	r3, #100
+ 902 002c 0593     		str	r3, [sp, #20]
+ 903 002e 0023     		movs	r3, #0
+ 904 0030 0493     		str	r3, [sp, #16]
+ 905 0032 0393     		str	r3, [sp, #12]
+ 906 0034 0723     		movs	r3, #7
+ 907 0036 0293     		str	r3, [sp, #8]
+ 908 0038 0423     		movs	r3, #4
+ 909 003a 0193     		str	r3, [sp, #4]
+ 910 003c 0124     		movs	r4, #1
+ 911 003e 0094     		str	r4, [sp]
+ 912 0040 05A3     		adr	r3, .L77
+ 913 0042 D3E90023 		ldrd	r2, [r3]
+ 914 0046 0748     		ldr	r0, .L77+12
+ 915 0048 FFF7FEFF 		bl	SX1278_init
+ 916 004c FFF7FEFF 		bl	LoRa_ArmRX
+ 917 0050 054B     		ldr	r3, .L77+16
+ 918 0052 1C70     		strb	r4, [r3]
+ 919 0054 2046     		mov	r0, r4
+ 920 0056 E6E7     		b	.L74
+ 921              	.L78:
+ 922              		.align	3
+ 923              	.L77:
+ 924 0058 D8B9D119 		.word	433175000
+ 925 005c 00000000 		.word	0
+ 926 0060 00000000 		.word	SX1278_hw
+ 927 0064 00000000 		.word	SX1278
+ 928 0068 00000000 		.word	LoRa_Connected
+ 930              		.section	.text.LoRa_TX,"ax",%progbits
+ 931              		.align	1
+ 932              		.global	LoRa_TX
+ 933              		.syntax unified
+ 934              		.thumb
+ 935              		.thumb_func
+ 937              	LoRa_TX:
+ 938              		@ args = 0, pretend = 0, frame = 0
+ 939              		@ frame_needed = 0, uses_anonymous_args = 0
+ 940 0000 38B5     		push	{r3, r4, r5, lr}
+ 941 0002 0546     		mov	r5, r0
+ 942 0004 FFF7FEFF 		bl	strlen
+ 943 0008 C4B2     		uxtb	r4, r0
+ 944 000a 631E     		subs	r3, r4, #1
+ 945 000c DBB2     		uxtb	r3, r3
+ 946 000e 632B     		cmp	r3, #99
+ 947 0010 02D9     		bls	.L84
+ 948 0012 0024     		movs	r4, #0
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 17
 
 
- 941 0038 9960     		str	r1, [r3, #8]
- 942 003a 1249     		ldr	r1, .L109+8
- 943 003c 5961     		str	r1, [r3, #20]
- 944 003e 4FF48051 		mov	r1, #4096
- 945 0042 1961     		str	r1, [r3, #16]
- 946 0044 5A60     		str	r2, [r3, #4]
- 947 0046 4FF48062 		mov	r2, #1024
- 948 004a 1A60     		str	r2, [r3]
- 949 004c 0E4A     		ldr	r2, .L109+12
- 950 004e 1268     		ldr	r2, [r2]
- 951 0050 9A61     		str	r2, [r3, #24]
- 952 0052 0E4A     		ldr	r2, .L109+16
- 953 0054 1360     		str	r3, [r2]
- 954 0056 FFF7FEFF 		bl	LoRa_Init
- 955 005a 0D4B     		ldr	r3, .L109+20
- 956 005c 1868     		ldr	r0, [r3]
- 957 005e FFF7FEFF 		bl	ssd1306_Init
- 958 0062 C343     		mvns	r3, r0
- 959 0064 0B4A     		ldr	r2, .L109+24
- 960 0066 1370     		strb	r3, [r2]
- 961 0068 0B4B     		ldr	r3, .L109+28
- 962 006a 1868     		ldr	r0, [r3]
- 963 006c FFF7FEFF 		bl	RTC_Set_Time_Once
- 964 0070 0A4B     		ldr	r3, .L109+32
- 965 0072 1868     		ldr	r0, [r3]
- 966 0074 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
- 967              	.L107:
- 968 0078 FEE7     		b	.L107
- 969              	.L110:
- 970 007a 00BF     		.align	2
- 971              	.L109:
- 972 007c 00000000 		.word	SX1278_hw
- 973 0080 00000240 		.word	1073872896
- 974 0084 00040240 		.word	1073873920
- 975 0088 00000000 		.word	Lora_SPI
- 976 008c 00000000 		.word	SX1278
- 977 0090 00000000 		.word	Oled_I2C
- 978 0094 00000000 		.word	OLED_Connected
- 979 0098 00000000 		.word	RTC_I2C
- 980 009c 00000000 		.word	LED_Tim
- 982              		.global	SD_Connected
- 983              		.section	.bss.SD_Connected,"aw",%nobits
- 986              	SD_Connected:
- 987 0000 00       		.space	1
- 988              		.global	RTC_Connected
- 989              		.section	.data.RTC_Connected,"aw"
- 992              	RTC_Connected:
- 993 0000 01       		.byte	1
- 994              		.global	OLED_Connected
- 995              		.section	.bss.OLED_Connected,"aw",%nobits
- 998              	OLED_Connected:
- 999 0000 00       		.space	1
- 1000              		.global	LoRa_RX_Flag
- 1001              		.section	.bss.LoRa_RX_Flag,"aw",%nobits
- 1004              	LoRa_RX_Flag:
- 1005 0000 00       		.space	1
- 1006              		.global	LoRa_Connected
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 18
+ 949              	.L80:
+ 950 0014 2046     		mov	r0, r4
+ 951 0016 38BD     		pop	{r3, r4, r5, pc}
+ 952              	.L84:
+ 953 0018 4FF4FA62 		mov	r2, #2000
+ 954 001c 2146     		mov	r1, r4
+ 955 001e 0848     		ldr	r0, .L86
+ 956 0020 FFF7FEFF 		bl	SX1278_LoRaEntryTx
+ 957 0024 08B9     		cbnz	r0, .L85
+ 958 0026 0024     		movs	r4, #0
+ 959 0028 F4E7     		b	.L80
+ 960              	.L85:
+ 961 002a 4FF4FA63 		mov	r3, #2000
+ 962 002e 2246     		mov	r2, r4
+ 963 0030 2946     		mov	r1, r5
+ 964 0032 0348     		ldr	r0, .L86
+ 965 0034 FFF7FEFF 		bl	SX1278_LoRaTxPacket
+ 966 0038 C4B2     		uxtb	r4, r0
+ 967 003a FFF7FEFF 		bl	LoRa_ArmRX
+ 968 003e E9E7     		b	.L80
+ 969              	.L87:
+ 970              		.align	2
+ 971              	.L86:
+ 972 0040 00000000 		.word	SX1278
+ 974              		.section	.text.LoRa_TX_Continuous,"ax",%progbits
+ 975              		.align	1
+ 976              		.global	LoRa_TX_Continuous
+ 977              		.syntax unified
+ 978              		.thumb
+ 979              		.thumb_func
+ 981              	LoRa_TX_Continuous:
+ 982              		@ args = 0, pretend = 0, frame = 0
+ 983              		@ frame_needed = 0, uses_anonymous_args = 0
+ 984 0000 38B5     		push	{r3, r4, r5, lr}
+ 985 0002 0546     		mov	r5, r0
+ 986 0004 FFF7FEFF 		bl	strlen
+ 987 0008 C4B2     		uxtb	r4, r0
+ 988 000a 631E     		subs	r3, r4, #1
+ 989 000c DBB2     		uxtb	r3, r3
+ 990 000e 632B     		cmp	r3, #99
+ 991 0010 01D9     		bls	.L93
+ 992 0012 0020     		movs	r0, #0
+ 993              	.L89:
+ 994 0014 38BD     		pop	{r3, r4, r5, pc}
+ 995              	.L93:
+ 996 0016 4FF4FA62 		mov	r2, #2000
+ 997 001a 2146     		mov	r1, r4
+ 998 001c 0748     		ldr	r0, .L95
+ 999 001e FFF7FEFF 		bl	SX1278_LoRaEntryTx
+ 1000 0022 08B9     		cbnz	r0, .L94
+ 1001 0024 0020     		movs	r0, #0
+ 1002 0026 F5E7     		b	.L89
+ 1003              	.L94:
+ 1004 0028 4FF4FA63 		mov	r3, #2000
+ 1005 002c 2246     		mov	r2, r4
+ 1006 002e 2946     		mov	r1, r5
+ 1007 0030 0248     		ldr	r0, .L95
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 18
 
 
- 1007              		.section	.bss.LoRa_Connected,"aw",%nobits
- 1010              	LoRa_Connected:
- 1011 0000 00       		.space	1
- 1012              		.global	count_buffer
- 1013              		.section	.bss.count_buffer,"aw",%nobits
- 1014              		.align	2
- 1017              	count_buffer:
- 1018 0000 00000000 		.space	4
- 1019              		.global	count
- 1020              		.section	.bss.count,"aw",%nobits
- 1023              	count:
- 1024 0000 00       		.space	1
- 1025              		.global	message_length
- 1026              		.section	.bss.message_length,"aw",%nobits
- 1029              	message_length:
- 1030 0000 00       		.space	1
- 1031              		.global	message
- 1032              		.section	.bss.message,"aw",%nobits
- 1035              	message:
- 1036 0000 00       		.space	1
- 1037              		.global	LoRa_RX_Length
- 1038              		.section	.bss.LoRa_RX_Length,"aw",%nobits
- 1041              	LoRa_RX_Length:
- 1042 0000 00       		.space	1
- 1043              		.global	LoRa_RX_Buffer
- 1044              		.section	.bss.LoRa_RX_Buffer,"aw",%nobits
- 1045              		.align	2
- 1048              	LoRa_RX_Buffer:
- 1049 0000 00000000 		.space	50
- 1049      00000000 
- 1049      00000000 
- 1049      00000000 
- 1049      00000000 
- 1050              		.global	ret
- 1051              		.section	.bss.ret,"aw",%nobits
- 1054              	ret:
- 1055 0000 00       		.space	1
- 1056              		.global	master
- 1057              		.section	.bss.master,"aw",%nobits
- 1060              	master:
- 1061 0000 00       		.space	1
- 1062              		.global	SX1278
- 1063              		.section	.bss.SX1278,"aw",%nobits
- 1064              		.align	3
- 1067              	SX1278:
- 1068 0000 00000000 		.space	280
- 1068      00000000 
- 1068      00000000 
- 1068      00000000 
- 1068      00000000 
- 1069              		.global	SX1278_hw
- 1070              		.section	.bss.SX1278_hw,"aw",%nobits
- 1071              		.align	2
- 1074              	SX1278_hw:
- 1075 0000 00000000 		.space	28
- 1075      00000000 
- 1075      00000000 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 19
+ 1008 0032 FFF7FEFF 		bl	SX1278_LoRaTxPacket
+ 1009 0036 C0B2     		uxtb	r0, r0
+ 1010 0038 ECE7     		b	.L89
+ 1011              	.L96:
+ 1012 003a 00BF     		.align	2
+ 1013              	.L95:
+ 1014 003c 00000000 		.word	SX1278
+ 1016              		.section	.text.LoRa_RX,"ax",%progbits
+ 1017              		.align	1
+ 1018              		.global	LoRa_RX
+ 1019              		.syntax unified
+ 1020              		.thumb
+ 1021              		.thumb_func
+ 1023              	LoRa_RX:
+ 1024              		@ args = 0, pretend = 0, frame = 0
+ 1025              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1026 0000 38B5     		push	{r3, r4, r5, lr}
+ 1027 0002 0C48     		ldr	r0, .L102
+ 1028 0004 FFF7FEFF 		bl	SX1278_LoRaRxPacket
+ 1029 0008 80B1     		cbz	r0, .L98
+ 1030 000a 0446     		mov	r4, r0
+ 1031 000c 3128     		cmp	r0, #49
+ 1032 000e 00D9     		bls	.L99
+ 1033 0010 3124     		movs	r4, #49
+ 1034              	.L99:
+ 1035 0012 094D     		ldr	r5, .L102+4
+ 1036 0014 2246     		mov	r2, r4
+ 1037 0016 0949     		ldr	r1, .L102+8
+ 1038 0018 2846     		mov	r0, r5
+ 1039 001a FFF7FEFF 		bl	memcpy
+ 1040 001e 0023     		movs	r3, #0
+ 1041 0020 2B55     		strb	r3, [r5, r4]
+ 1042 0022 074B     		ldr	r3, .L102+12
+ 1043 0024 1C70     		strb	r4, [r3]
+ 1044 0026 074B     		ldr	r3, .L102+16
+ 1045 0028 0122     		movs	r2, #1
+ 1046 002a 1A70     		strb	r2, [r3]
+ 1047              	.L98:
+ 1048 002c 0148     		ldr	r0, .L102
+ 1049 002e FFF7FEFF 		bl	SX1278_clearLoRaIrq
+ 1050 0032 38BD     		pop	{r3, r4, r5, pc}
+ 1051              	.L103:
+ 1052              		.align	2
+ 1053              	.L102:
+ 1054 0034 00000000 		.word	SX1278
+ 1055 0038 00000000 		.word	LoRa_RX_Buffer
+ 1056 003c 17000000 		.word	SX1278+23
+ 1057 0040 00000000 		.word	LoRa_RX_Length
+ 1058 0044 00000000 		.word	LoRa_RX_Flag
+ 1060              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+ 1061              		.align	1
+ 1062              		.global	HAL_GPIO_EXTI_Callback
+ 1063              		.syntax unified
+ 1064              		.thumb
+ 1065              		.thumb_func
+ 1067              	HAL_GPIO_EXTI_Callback:
+ 1068              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 19
 
 
- 1075      00000000 
- 1075      00000000 
- 1076              		.global	LED_Tim
- 1077              		.section	.data.LED_Tim,"aw"
- 1078              		.align	2
- 1081              	LED_Tim:
- 1082 0000 00000000 		.word	htim11
- 1083              		.global	Lora_SPI
- 1084              		.section	.data.Lora_SPI,"aw"
- 1085              		.align	2
- 1088              	Lora_SPI:
- 1089 0000 00000000 		.word	hspi2
- 1090              		.global	MicroSD_SPI
- 1091              		.section	.data.MicroSD_SPI,"aw"
- 1092              		.align	2
- 1095              	MicroSD_SPI:
- 1096 0000 00000000 		.word	hspi1
- 1097              		.global	RTC_I2C
- 1098              		.section	.data.RTC_I2C,"aw"
- 1099              		.align	2
- 1102              	RTC_I2C:
- 1103 0000 00000000 		.word	hi2c2
- 1104              		.global	Oled_I2C
- 1105              		.section	.data.Oled_I2C,"aw"
- 1106              		.align	2
- 1109              	Oled_I2C:
- 1110 0000 00000000 		.word	hi2c1
- 1111              		.global	Atlas_I2C
- 1112              		.section	.data.Atlas_I2C,"aw"
- 1113              		.align	2
- 1116              	Atlas_I2C:
- 1117 0000 00000000 		.word	hi2c3
- 1118              		.global	htim11
- 1119              		.section	.bss.htim11,"aw",%nobits
- 1120              		.align	2
- 1123              	htim11:
- 1124 0000 00000000 		.space	72
- 1124      00000000 
- 1124      00000000 
- 1124      00000000 
- 1124      00000000 
- 1125              		.global	hdma_spi1_rx
- 1126              		.section	.bss.hdma_spi1_rx,"aw",%nobits
- 1127              		.align	2
- 1130              	hdma_spi1_rx:
- 1131 0000 00000000 		.space	96
- 1131      00000000 
- 1131      00000000 
- 1131      00000000 
- 1131      00000000 
- 1132              		.global	hspi2
- 1133              		.section	.bss.hspi2,"aw",%nobits
- 1134              		.align	2
- 1137              	hspi2:
- 1138 0000 00000000 		.space	88
- 1138      00000000 
- 1138      00000000 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 20
+ 1069              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1070 0000 B0F5007F 		cmp	r0, #512
+ 1071 0004 00D0     		beq	.L110
+ 1072 0006 7047     		bx	lr
+ 1073              	.L110:
+ 1074 0008 08B5     		push	{r3, lr}
+ 1075 000a FFF7FEFF 		bl	LoRa_RX
+ 1076 000e 08BD     		pop	{r3, pc}
+ 1078              		.section	.text.Error_Handler,"ax",%progbits
+ 1079              		.align	1
+ 1080              		.global	Error_Handler
+ 1081              		.syntax unified
+ 1082              		.thumb
+ 1083              		.thumb_func
+ 1085              	Error_Handler:
+ 1086              		@ Volatile: function does not return.
+ 1087              		@ args = 0, pretend = 0, frame = 0
+ 1088              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1089              		@ link register save eliminated.
+ 1090              		.syntax unified
+ 1091              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1092 0000 72B6     		cpsid i
+ 1093              	@ 0 "" 2
+ 1094              		.thumb
+ 1095              		.syntax unified
+ 1096              	.L112:
+ 1097 0002 FEE7     		b	.L112
+ 1099              		.section	.text.MX_I2C1_Init,"ax",%progbits
+ 1100              		.align	1
+ 1101              		.syntax unified
+ 1102              		.thumb
+ 1103              		.thumb_func
+ 1105              	MX_I2C1_Init:
+ 1106              		@ args = 0, pretend = 0, frame = 0
+ 1107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1108 0000 08B5     		push	{r3, lr}
+ 1109 0002 0A48     		ldr	r0, .L117
+ 1110 0004 0A4B     		ldr	r3, .L117+4
+ 1111 0006 0360     		str	r3, [r0]
+ 1112 0008 0A4B     		ldr	r3, .L117+8
+ 1113 000a 4360     		str	r3, [r0, #4]
+ 1114 000c 0023     		movs	r3, #0
+ 1115 000e 8360     		str	r3, [r0, #8]
+ 1116 0010 C360     		str	r3, [r0, #12]
+ 1117 0012 4FF48042 		mov	r2, #16384
+ 1118 0016 0261     		str	r2, [r0, #16]
+ 1119 0018 4361     		str	r3, [r0, #20]
+ 1120 001a 8361     		str	r3, [r0, #24]
+ 1121 001c C361     		str	r3, [r0, #28]
+ 1122 001e 0362     		str	r3, [r0, #32]
+ 1123 0020 FFF7FEFF 		bl	HAL_I2C_Init
+ 1124 0024 00B9     		cbnz	r0, .L116
+ 1125 0026 08BD     		pop	{r3, pc}
+ 1126              	.L116:
+ 1127 0028 FFF7FEFF 		bl	Error_Handler
+ 1128              	.L118:
+ 1129              		.align	2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 20
 
 
- 1138      00000000 
- 1138      00000000 
- 1139              		.global	hspi1
- 1140              		.section	.bss.hspi1,"aw",%nobits
- 1141              		.align	2
- 1144              	hspi1:
- 1145 0000 00000000 		.space	88
- 1145      00000000 
- 1145      00000000 
- 1145      00000000 
- 1145      00000000 
- 1146              		.global	hi2c3
- 1147              		.section	.bss.hi2c3,"aw",%nobits
- 1148              		.align	2
- 1151              	hi2c3:
- 1152 0000 00000000 		.space	84
- 1152      00000000 
- 1152      00000000 
- 1152      00000000 
- 1152      00000000 
- 1153              		.global	hi2c2
- 1154              		.section	.bss.hi2c2,"aw",%nobits
- 1155              		.align	2
- 1158              	hi2c2:
- 1159 0000 00000000 		.space	84
- 1159      00000000 
- 1159      00000000 
- 1159      00000000 
- 1159      00000000 
- 1160              		.global	hi2c1
- 1161              		.section	.bss.hi2c1,"aw",%nobits
+ 1130              	.L117:
+ 1131 002c 00000000 		.word	hi2c1
+ 1132 0030 00540040 		.word	1073763328
+ 1133 0034 801A0600 		.word	400000
+ 1135              		.section	.text.MX_TIM11_Init,"ax",%progbits
+ 1136              		.align	1
+ 1137              		.syntax unified
+ 1138              		.thumb
+ 1139              		.thumb_func
+ 1141              	MX_TIM11_Init:
+ 1142              		@ args = 0, pretend = 0, frame = 0
+ 1143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1144 0000 08B5     		push	{r3, lr}
+ 1145 0002 0948     		ldr	r0, .L123
+ 1146 0004 094B     		ldr	r3, .L123+4
+ 1147 0006 0360     		str	r3, [r0]
+ 1148 0008 46F2A713 		movw	r3, #24999
+ 1149 000c 4360     		str	r3, [r0, #4]
+ 1150 000e 0023     		movs	r3, #0
+ 1151 0010 8360     		str	r3, [r0, #8]
+ 1152 0012 4FF47A72 		mov	r2, #1000
+ 1153 0016 C260     		str	r2, [r0, #12]
+ 1154 0018 0361     		str	r3, [r0, #16]
+ 1155 001a 8361     		str	r3, [r0, #24]
+ 1156 001c FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 1157 0020 00B9     		cbnz	r0, .L122
+ 1158 0022 08BD     		pop	{r3, pc}
+ 1159              	.L122:
+ 1160 0024 FFF7FEFF 		bl	Error_Handler
+ 1161              	.L124:
  1162              		.align	2
- 1165              	hi2c1:
- 1166 0000 00000000 		.space	84
- 1166      00000000 
- 1166      00000000 
- 1166      00000000 
- 1166      00000000 
- 1167              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 21
+ 1163              	.L123:
+ 1164 0028 00000000 		.word	htim11
+ 1165 002c 00480140 		.word	1073825792
+ 1167              		.section	.text.MX_I2C2_Init,"ax",%progbits
+ 1168              		.align	1
+ 1169              		.syntax unified
+ 1170              		.thumb
+ 1171              		.thumb_func
+ 1173              	MX_I2C2_Init:
+ 1174              		@ args = 0, pretend = 0, frame = 0
+ 1175              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1176 0000 08B5     		push	{r3, lr}
+ 1177 0002 0A48     		ldr	r0, .L129
+ 1178 0004 0A4B     		ldr	r3, .L129+4
+ 1179 0006 0360     		str	r3, [r0]
+ 1180 0008 0A4B     		ldr	r3, .L129+8
+ 1181 000a 4360     		str	r3, [r0, #4]
+ 1182 000c 0023     		movs	r3, #0
+ 1183 000e 8360     		str	r3, [r0, #8]
+ 1184 0010 C360     		str	r3, [r0, #12]
+ 1185 0012 4FF48042 		mov	r2, #16384
+ 1186 0016 0261     		str	r2, [r0, #16]
+ 1187 0018 4361     		str	r3, [r0, #20]
+ 1188 001a 8361     		str	r3, [r0, #24]
+ 1189 001c C361     		str	r3, [r0, #28]
+ 1190 001e 0362     		str	r3, [r0, #32]
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 21
+
+
+ 1191 0020 FFF7FEFF 		bl	HAL_I2C_Init
+ 1192 0024 00B9     		cbnz	r0, .L128
+ 1193 0026 08BD     		pop	{r3, pc}
+ 1194              	.L128:
+ 1195 0028 FFF7FEFF 		bl	Error_Handler
+ 1196              	.L130:
+ 1197              		.align	2
+ 1198              	.L129:
+ 1199 002c 00000000 		.word	hi2c2
+ 1200 0030 00580040 		.word	1073764352
+ 1201 0034 A0860100 		.word	100000
+ 1203              		.section	.text.MX_I2C3_Init,"ax",%progbits
+ 1204              		.align	1
+ 1205              		.syntax unified
+ 1206              		.thumb
+ 1207              		.thumb_func
+ 1209              	MX_I2C3_Init:
+ 1210              		@ args = 0, pretend = 0, frame = 0
+ 1211              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1212 0000 08B5     		push	{r3, lr}
+ 1213 0002 0A48     		ldr	r0, .L135
+ 1214 0004 0A4B     		ldr	r3, .L135+4
+ 1215 0006 0360     		str	r3, [r0]
+ 1216 0008 0A4B     		ldr	r3, .L135+8
+ 1217 000a 4360     		str	r3, [r0, #4]
+ 1218 000c 0023     		movs	r3, #0
+ 1219 000e 8360     		str	r3, [r0, #8]
+ 1220 0010 C360     		str	r3, [r0, #12]
+ 1221 0012 4FF48042 		mov	r2, #16384
+ 1222 0016 0261     		str	r2, [r0, #16]
+ 1223 0018 4361     		str	r3, [r0, #20]
+ 1224 001a 8361     		str	r3, [r0, #24]
+ 1225 001c C361     		str	r3, [r0, #28]
+ 1226 001e 0362     		str	r3, [r0, #32]
+ 1227 0020 FFF7FEFF 		bl	HAL_I2C_Init
+ 1228 0024 00B9     		cbnz	r0, .L134
+ 1229 0026 08BD     		pop	{r3, pc}
+ 1230              	.L134:
+ 1231 0028 FFF7FEFF 		bl	Error_Handler
+ 1232              	.L136:
+ 1233              		.align	2
+ 1234              	.L135:
+ 1235 002c 00000000 		.word	hi2c3
+ 1236 0030 005C0040 		.word	1073765376
+ 1237 0034 A0860100 		.word	100000
+ 1239              		.section	.text.MX_SPI1_Init,"ax",%progbits
+ 1240              		.align	1
+ 1241              		.syntax unified
+ 1242              		.thumb
+ 1243              		.thumb_func
+ 1245              	MX_SPI1_Init:
+ 1246              		@ args = 0, pretend = 0, frame = 0
+ 1247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1248 0000 08B5     		push	{r3, lr}
+ 1249 0002 0D48     		ldr	r0, .L141
+ 1250 0004 0D4B     		ldr	r3, .L141+4
+ 1251 0006 0360     		str	r3, [r0]
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 22
+
+
+ 1252 0008 4FF48273 		mov	r3, #260
+ 1253 000c 4360     		str	r3, [r0, #4]
+ 1254 000e 0023     		movs	r3, #0
+ 1255 0010 8360     		str	r3, [r0, #8]
+ 1256 0012 C360     		str	r3, [r0, #12]
+ 1257 0014 0361     		str	r3, [r0, #16]
+ 1258 0016 4361     		str	r3, [r0, #20]
+ 1259 0018 4FF40072 		mov	r2, #512
+ 1260 001c 8261     		str	r2, [r0, #24]
+ 1261 001e 3822     		movs	r2, #56
+ 1262 0020 C261     		str	r2, [r0, #28]
+ 1263 0022 0362     		str	r3, [r0, #32]
+ 1264 0024 4362     		str	r3, [r0, #36]
+ 1265 0026 8362     		str	r3, [r0, #40]
+ 1266 0028 0A23     		movs	r3, #10
+ 1267 002a C362     		str	r3, [r0, #44]
+ 1268 002c FFF7FEFF 		bl	HAL_SPI_Init
+ 1269 0030 00B9     		cbnz	r0, .L140
+ 1270 0032 08BD     		pop	{r3, pc}
+ 1271              	.L140:
+ 1272 0034 FFF7FEFF 		bl	Error_Handler
+ 1273              	.L142:
+ 1274              		.align	2
+ 1275              	.L141:
+ 1276 0038 00000000 		.word	hspi1
+ 1277 003c 00300140 		.word	1073819648
+ 1279              		.section	.text.MX_SPI2_Init,"ax",%progbits
+ 1280              		.align	1
+ 1281              		.syntax unified
+ 1282              		.thumb
+ 1283              		.thumb_func
+ 1285              	MX_SPI2_Init:
+ 1286              		@ args = 0, pretend = 0, frame = 0
+ 1287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1288 0000 08B5     		push	{r3, lr}
+ 1289 0002 0D48     		ldr	r0, .L147
+ 1290 0004 0D4B     		ldr	r3, .L147+4
+ 1291 0006 0360     		str	r3, [r0]
+ 1292 0008 4FF48273 		mov	r3, #260
+ 1293 000c 4360     		str	r3, [r0, #4]
+ 1294 000e 0023     		movs	r3, #0
+ 1295 0010 8360     		str	r3, [r0, #8]
+ 1296 0012 C360     		str	r3, [r0, #12]
+ 1297 0014 0361     		str	r3, [r0, #16]
+ 1298 0016 4361     		str	r3, [r0, #20]
+ 1299 0018 4FF40072 		mov	r2, #512
+ 1300 001c 8261     		str	r2, [r0, #24]
+ 1301 001e C361     		str	r3, [r0, #28]
+ 1302 0020 0362     		str	r3, [r0, #32]
+ 1303 0022 4362     		str	r3, [r0, #36]
+ 1304 0024 8362     		str	r3, [r0, #40]
+ 1305 0026 0A23     		movs	r3, #10
+ 1306 0028 C362     		str	r3, [r0, #44]
+ 1307 002a FFF7FEFF 		bl	HAL_SPI_Init
+ 1308 002e 00B9     		cbnz	r0, .L146
+ 1309 0030 08BD     		pop	{r3, pc}
+ 1310              	.L146:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 23
+
+
+ 1311 0032 FFF7FEFF 		bl	Error_Handler
+ 1312              	.L148:
+ 1313 0036 00BF     		.align	2
+ 1314              	.L147:
+ 1315 0038 00000000 		.word	hspi2
+ 1316 003c 00380040 		.word	1073756160
+ 1318              		.section	.text.MX_TIM10_Init,"ax",%progbits
+ 1319              		.align	1
+ 1320              		.syntax unified
+ 1321              		.thumb
+ 1322              		.thumb_func
+ 1324              	MX_TIM10_Init:
+ 1325              		@ args = 0, pretend = 0, frame = 0
+ 1326              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1327 0000 08B5     		push	{r3, lr}
+ 1328 0002 0948     		ldr	r0, .L153
+ 1329 0004 094B     		ldr	r3, .L153+4
+ 1330 0006 0360     		str	r3, [r0]
+ 1331 0008 46F2A713 		movw	r3, #24999
+ 1332 000c 4360     		str	r3, [r0, #4]
+ 1333 000e 0023     		movs	r3, #0
+ 1334 0010 8360     		str	r3, [r0, #8]
+ 1335 0012 47F22F52 		movw	r2, #29999
+ 1336 0016 C260     		str	r2, [r0, #12]
+ 1337 0018 0361     		str	r3, [r0, #16]
+ 1338 001a 8361     		str	r3, [r0, #24]
+ 1339 001c FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 1340 0020 00B9     		cbnz	r0, .L152
+ 1341 0022 08BD     		pop	{r3, pc}
+ 1342              	.L152:
+ 1343 0024 FFF7FEFF 		bl	Error_Handler
+ 1344              	.L154:
+ 1345              		.align	2
+ 1346              	.L153:
+ 1347 0028 00000000 		.word	htim10
+ 1348 002c 00440140 		.word	1073824768
+ 1350              		.section	.text.MX_TIM9_Init,"ax",%progbits
+ 1351              		.align	1
+ 1352              		.syntax unified
+ 1353              		.thumb
+ 1354              		.thumb_func
+ 1356              	MX_TIM9_Init:
+ 1357              		@ args = 0, pretend = 0, frame = 16
+ 1358              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1359 0000 00B5     		push	{lr}
+ 1360 0002 85B0     		sub	sp, sp, #20
+ 1361 0004 0023     		movs	r3, #0
+ 1362 0006 0093     		str	r3, [sp]
+ 1363 0008 0193     		str	r3, [sp, #4]
+ 1364 000a 0293     		str	r3, [sp, #8]
+ 1365 000c 0393     		str	r3, [sp, #12]
+ 1366 000e 0F48     		ldr	r0, .L161
+ 1367 0010 0F4A     		ldr	r2, .L161+4
+ 1368 0012 0260     		str	r2, [r0]
+ 1369 0014 46F2A712 		movw	r2, #24999
+ 1370 0018 4260     		str	r2, [r0, #4]
+ 1371 001a 8360     		str	r3, [r0, #8]
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 24
+
+
+ 1372 001c 41F28732 		movw	r2, #4999
+ 1373 0020 C260     		str	r2, [r0, #12]
+ 1374 0022 0361     		str	r3, [r0, #16]
+ 1375 0024 8361     		str	r3, [r0, #24]
+ 1376 0026 FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 1377 002a 50B9     		cbnz	r0, .L159
+ 1378 002c 4FF48053 		mov	r3, #4096
+ 1379 0030 0093     		str	r3, [sp]
+ 1380 0032 6946     		mov	r1, sp
+ 1381 0034 0548     		ldr	r0, .L161
+ 1382 0036 FFF7FEFF 		bl	HAL_TIM_ConfigClockSource
+ 1383 003a 20B9     		cbnz	r0, .L160
+ 1384 003c 05B0     		add	sp, sp, #20
+ 1385              		@ sp needed
+ 1386 003e 5DF804FB 		ldr	pc, [sp], #4
+ 1387              	.L159:
+ 1388 0042 FFF7FEFF 		bl	Error_Handler
+ 1389              	.L160:
+ 1390 0046 FFF7FEFF 		bl	Error_Handler
+ 1391              	.L162:
+ 1392 004a 00BF     		.align	2
+ 1393              	.L161:
+ 1394 004c 00000000 		.word	htim9
+ 1395 0050 00400140 		.word	1073823744
+ 1397              		.section	.text.SystemClock_Config,"ax",%progbits
+ 1398              		.align	1
+ 1399              		.global	SystemClock_Config
+ 1400              		.syntax unified
+ 1401              		.thumb
+ 1402              		.thumb_func
+ 1404              	SystemClock_Config:
+ 1405              		@ args = 0, pretend = 0, frame = 80
+ 1406              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1407 0000 00B5     		push	{lr}
+ 1408 0002 95B0     		sub	sp, sp, #84
+ 1409 0004 3022     		movs	r2, #48
+ 1410 0006 0021     		movs	r1, #0
+ 1411 0008 08A8     		add	r0, sp, #32
+ 1412 000a FFF7FEFF 		bl	memset
+ 1413 000e 0023     		movs	r3, #0
+ 1414 0010 0393     		str	r3, [sp, #12]
+ 1415 0012 0493     		str	r3, [sp, #16]
+ 1416 0014 0593     		str	r3, [sp, #20]
+ 1417 0016 0693     		str	r3, [sp, #24]
+ 1418 0018 0793     		str	r3, [sp, #28]
+ 1419 001a 0193     		str	r3, [sp, #4]
+ 1420 001c 1A4A     		ldr	r2, .L169
+ 1421 001e 116C     		ldr	r1, [r2, #64]
+ 1422 0020 41F08051 		orr	r1, r1, #268435456
+ 1423 0024 1164     		str	r1, [r2, #64]
+ 1424 0026 126C     		ldr	r2, [r2, #64]
+ 1425 0028 02F08052 		and	r2, r2, #268435456
+ 1426 002c 0192     		str	r2, [sp, #4]
+ 1427 002e 019A     		ldr	r2, [sp, #4]
+ 1428 0030 0293     		str	r3, [sp, #8]
+ 1429 0032 1649     		ldr	r1, .L169+4
+ 1430 0034 0A68     		ldr	r2, [r1]
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 25
+
+
+ 1431 0036 22F44042 		bic	r2, r2, #49152
+ 1432 003a 42F40042 		orr	r2, r2, #32768
+ 1433 003e 0A60     		str	r2, [r1]
+ 1434 0040 0A68     		ldr	r2, [r1]
+ 1435 0042 02F44042 		and	r2, r2, #49152
+ 1436 0046 0292     		str	r2, [sp, #8]
+ 1437 0048 029A     		ldr	r2, [sp, #8]
+ 1438 004a 0122     		movs	r2, #1
+ 1439 004c 0892     		str	r2, [sp, #32]
+ 1440 004e 4FF48032 		mov	r2, #65536
+ 1441 0052 0992     		str	r2, [sp, #36]
+ 1442 0054 0E93     		str	r3, [sp, #56]
+ 1443 0056 08A8     		add	r0, sp, #32
+ 1444 0058 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 1445 005c 80B9     		cbnz	r0, .L167
+ 1446 005e 0F23     		movs	r3, #15
+ 1447 0060 0393     		str	r3, [sp, #12]
+ 1448 0062 0123     		movs	r3, #1
+ 1449 0064 0493     		str	r3, [sp, #16]
+ 1450 0066 0021     		movs	r1, #0
+ 1451 0068 0591     		str	r1, [sp, #20]
+ 1452 006a 0691     		str	r1, [sp, #24]
+ 1453 006c 0791     		str	r1, [sp, #28]
+ 1454 006e 03A8     		add	r0, sp, #12
+ 1455 0070 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 1456 0074 30B9     		cbnz	r0, .L168
+ 1457 0076 FFF7FEFF 		bl	HAL_RCC_EnableCSS
+ 1458 007a 15B0     		add	sp, sp, #84
+ 1459              		@ sp needed
+ 1460 007c 5DF804FB 		ldr	pc, [sp], #4
+ 1461              	.L167:
+ 1462 0080 FFF7FEFF 		bl	Error_Handler
+ 1463              	.L168:
+ 1464 0084 FFF7FEFF 		bl	Error_Handler
+ 1465              	.L170:
+ 1466              		.align	2
+ 1467              	.L169:
+ 1468 0088 00380240 		.word	1073887232
+ 1469 008c 00700040 		.word	1073770496
+ 1471              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 1472              		.align	2
+ 1473              	.LC1:
+ 1474 0000 25642F25 		.ascii	"%d/%m/%y %H:%M:%S\000"
+ 1474      6D2F2579 
+ 1474      2025483A 
+ 1474      254D3A25 
+ 1474      5300
+ 1475 0012 0000     		.align	2
+ 1476              	.LC2:
+ 1477 0014 4C3A2575 		.ascii	"L:%u,R:%u,A:%u%u%u%u,S:%u\000"
+ 1477      2C523A25 
+ 1477      752C413A 
+ 1477      25752575 
+ 1477      25752575 
+ 1478 002e 0000     		.align	2
+ 1479              	.LC3:
+ 1480 0030 4D5200   		.ascii	"MR\000"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 26
+
+
+ 1481 0033 00       		.align	2
+ 1482              	.LC4:
+ 1483 0034 545800   		.ascii	"TX\000"
+ 1484 0037 00       		.align	2
+ 1485              	.LC5:
+ 1486 0038 535400   		.ascii	"ST\000"
+ 1487 003b 00       		.align	2
+ 1488              	.LC6:
+ 1489 003c 4E4100   		.ascii	"NA\000"
+ 1490 003f 00       		.align	2
+ 1491              	.LC7:
+ 1492 0040 20202020 		.ascii	"                  \000"
+ 1492      20202020 
+ 1492      20202020 
+ 1492      20202020 
+ 1492      202000
+ 1493 0053 00       		.align	2
+ 1494              	.LC8:
+ 1495 0054 434D443A 		.ascii	"CMD:BATTERY\000"
+ 1495      42415454 
+ 1495      45525900 
+ 1496              		.align	2
+ 1497              	.LC9:
+ 1498 0060 54595045 		.ascii	"TYPE:3,BUOY:0,BAT:3.99\000"
+ 1498      3A332C42 
+ 1498      554F593A 
+ 1498      302C4241 
+ 1498      543A332E 
+ 1499 0077 00       		.align	2
+ 1500              	.LC10:
+ 1501 0078 434D443A 		.ascii	"CMD:DATADUMP\000"
+ 1501      44415441 
+ 1501      44554D50 
+ 1501      00
+ 1502 0085 000000   		.align	2
+ 1503              	.LC11:
+ 1504 0088 54595045 		.ascii	"TYPE:2,BUOY:0,CHAMBER:0,DO:9999,RTD:9999,TS:3999_01"
+ 1504      3A322C42 
+ 1504      554F593A 
+ 1504      302C4348 
+ 1504      414D4245 
+ 1505 00bb 5F30315F 		.ascii	"_01_12_30_10\000"
+ 1505      31325F33 
+ 1505      305F3130 
+ 1505      00
+ 1506              		.align	2
+ 1507              	.LC12:
+ 1508 00c8 54595045 		.ascii	"TYPE:2,BUOY:0,CHAMBER:1,DO:8888,RTD:8888,TS:3999_01"
+ 1508      3A322C42 
+ 1508      554F593A 
+ 1508      302C4348 
+ 1508      414D4245 
+ 1509 00fb 5F30315F 		.ascii	"_01_12_30_10\000"
+ 1509      31325F33 
+ 1509      305F3130 
+ 1509      00
+ 1510              		.align	2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 27
+
+
+ 1511              	.LC13:
+ 1512 0108 54595045 		.ascii	"TYPE:4,BUOY:0,COUNT:2\000"
+ 1512      3A342C42 
+ 1512      554F593A 
+ 1512      302C434F 
+ 1512      554E543A 
+ 1513 011e 0000     		.align	2
+ 1514              	.LC14:
+ 1515 0120 434D443A 		.ascii	"CMD:SYNC\000"
+ 1515      53594E43 
+ 1515      00
+ 1516 0129 000000   		.align	2
+ 1517              	.LC15:
+ 1518 012c 53796E63 		.ascii	"Sync_ACK\000"
+ 1518      5F41434B 
+ 1518      00
+ 1519 0135 000000   		.align	2
+ 1520              	.LC16:
+ 1521 0138 54595045 		.ascii	"TYPE:1,BUOY:0,CHAMBER:0,DO:%s,RTD:%s\000"
+ 1521      3A312C42 
+ 1521      554F593A 
+ 1521      302C4348 
+ 1521      414D4245 
+ 1522 015d 000000   		.align	2
+ 1523              	.LC17:
+ 1524 0160 54595045 		.ascii	"TYPE:1,BUOY:0,CHAMBER:1,DO:%s,RTD:%s\000"
+ 1524      3A312C42 
+ 1524      554F593A 
+ 1524      302C4348 
+ 1524      414D4245 
+ 1525              		.section	.text.main,"ax",%progbits
+ 1526              		.align	1
+ 1527              		.global	main
+ 1528              		.syntax unified
+ 1529              		.thumb
+ 1530              		.thumb_func
+ 1532              	main:
+ 1533              		@ args = 0, pretend = 0, frame = 40
+ 1534              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1535 0000 30B5     		push	{r4, r5, lr}
+ 1536 0002 91B0     		sub	sp, sp, #68
+ 1537 0004 FFF7FEFF 		bl	HAL_Init
+ 1538 0008 FFF7FEFF 		bl	SystemClock_Config
+ 1539 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 1540 0010 FFF7FEFF 		bl	MX_DMA_Init
+ 1541 0014 FFF7FEFF 		bl	MX_I2C1_Init
+ 1542 0018 FFF7FEFF 		bl	MX_TIM11_Init
+ 1543 001c FFF7FEFF 		bl	MX_I2C2_Init
+ 1544 0020 FFF7FEFF 		bl	MX_I2C3_Init
+ 1545 0024 FFF7FEFF 		bl	MX_SPI1_Init
+ 1546 0028 FFF7FEFF 		bl	MX_FATFS_Init
+ 1547 002c FFF7FEFF 		bl	MX_SPI2_Init
+ 1548 0030 FFF7FEFF 		bl	MX_TIM10_Init
+ 1549 0034 FFF7FEFF 		bl	MX_TIM9_Init
+ 1550 0038 40F2DC50 		movw	r0, #1500
+ 1551 003c FFF7FEFF 		bl	HAL_Delay
+ 1552 0040 674B     		ldr	r3, .L219
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 28
+
+
+ 1553 0042 684A     		ldr	r2, .L219+4
+ 1554 0044 DA60     		str	r2, [r3, #12]
+ 1555 0046 4FF40071 		mov	r1, #512
+ 1556 004a 9960     		str	r1, [r3, #8]
+ 1557 004c 6649     		ldr	r1, .L219+8
+ 1558 004e 5961     		str	r1, [r3, #20]
+ 1559 0050 4FF48051 		mov	r1, #4096
+ 1560 0054 1961     		str	r1, [r3, #16]
+ 1561 0056 5A60     		str	r2, [r3, #4]
+ 1562 0058 4FF48062 		mov	r2, #1024
+ 1563 005c 1A60     		str	r2, [r3]
+ 1564 005e 634A     		ldr	r2, .L219+12
+ 1565 0060 1268     		ldr	r2, [r2]
+ 1566 0062 9A61     		str	r2, [r3, #24]
+ 1567 0064 624A     		ldr	r2, .L219+16
+ 1568 0066 1360     		str	r3, [r2]
+ 1569 0068 FFF7FEFF 		bl	LoRa_Init
+ 1570 006c 614B     		ldr	r3, .L219+20
+ 1571 006e 1868     		ldr	r0, [r3]
+ 1572 0070 FFF7FEFF 		bl	ssd1306_Init
+ 1573 0074 B0FA80F3 		clz	r3, r0
+ 1574 0078 5B09     		lsrs	r3, r3, #5
+ 1575 007a 5F4A     		ldr	r2, .L219+24
+ 1576 007c 1370     		strb	r3, [r2]
+ 1577 007e FFF7FEFF 		bl	RTC_Detect
+ 1578 0082 5E4B     		ldr	r3, .L219+28
+ 1579 0084 1870     		strb	r0, [r3]
+ 1580 0086 C220     		movs	r0, #194
+ 1581 0088 FFF7FEFF 		bl	Atlas_Detect
+ 1582 008c 5C4B     		ldr	r3, .L219+32
+ 1583 008e 1870     		strb	r0, [r3]
+ 1584 0090 CC20     		movs	r0, #204
+ 1585 0092 FFF7FEFF 		bl	Atlas_Detect
+ 1586 0096 5B4B     		ldr	r3, .L219+36
+ 1587 0098 1870     		strb	r0, [r3]
+ 1588 009a C420     		movs	r0, #196
+ 1589 009c FFF7FEFF 		bl	Atlas_Detect
+ 1590 00a0 594B     		ldr	r3, .L219+40
+ 1591 00a2 1870     		strb	r0, [r3]
+ 1592 00a4 CE20     		movs	r0, #206
+ 1593 00a6 FFF7FEFF 		bl	Atlas_Detect
+ 1594 00aa 584B     		ldr	r3, .L219+44
+ 1595 00ac 1870     		strb	r0, [r3]
+ 1596 00ae FFF7FEFF 		bl	SD_Detect
+ 1597 00b2 574B     		ldr	r3, .L219+48
+ 1598 00b4 1868     		ldr	r0, [r3]
+ 1599 00b6 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 1600 00ba 564B     		ldr	r3, .L219+52
+ 1601 00bc 1868     		ldr	r0, [r3]
+ 1602 00be FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 1603 00c2 554B     		ldr	r3, .L219+56
+ 1604 00c4 1868     		ldr	r0, [r3]
+ 1605 00c6 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 1606 00ca 4FF47A70 		mov	r0, #1000
+ 1607 00ce FFF7FEFF 		bl	HAL_Delay
+ 1608 00d2 21E1     		b	.L197
+ 1609              	.L213:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 29
+
+
+ 1610 00d4 514B     		ldr	r3, .L219+60
+ 1611 00d6 1868     		ldr	r0, [r3]
+ 1612 00d8 FFF7FEFF 		bl	RTC_Get_Time
+ 1613 00dc 0690     		str	r0, [sp, #24]
+ 1614 00de 0023     		movs	r3, #0
+ 1615 00e0 0793     		str	r3, [sp, #28]
+ 1616 00e2 06A8     		add	r0, sp, #24
+ 1617 00e4 FFF7FEFF 		bl	localtime
+ 1618 00e8 0346     		mov	r3, r0
+ 1619 00ea 4D4A     		ldr	r2, .L219+64
+ 1620 00ec 1221     		movs	r1, #18
+ 1621 00ee 0BA8     		add	r0, sp, #44
+ 1622 00f0 FFF7FEFF 		bl	strftime
+ 1623 00f4 1AE1     		b	.L172
+ 1624              	.L214:
+ 1625 00f6 0BAA     		add	r2, sp, #44
+ 1626 00f8 0021     		movs	r1, #0
+ 1627 00fa 0846     		mov	r0, r1
+ 1628 00fc FFF7FEFF 		bl	write_OLED
+ 1629 0100 484C     		ldr	r4, .L219+68
+ 1630 0102 494B     		ldr	r3, .L219+72
+ 1631 0104 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1632 0106 0593     		str	r3, [sp, #20]
+ 1633 0108 404B     		ldr	r3, .L219+44
+ 1634 010a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1635 010c 0493     		str	r3, [sp, #16]
+ 1636 010e 3E4B     		ldr	r3, .L219+40
+ 1637 0110 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1638 0112 0393     		str	r3, [sp, #12]
+ 1639 0114 3B4B     		ldr	r3, .L219+36
+ 1640 0116 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1641 0118 0293     		str	r3, [sp, #8]
+ 1642 011a 394B     		ldr	r3, .L219+32
+ 1643 011c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1644 011e 0193     		str	r3, [sp, #4]
+ 1645 0120 364B     		ldr	r3, .L219+28
+ 1646 0122 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1647 0124 0093     		str	r3, [sp]
+ 1648 0126 414B     		ldr	r3, .L219+76
+ 1649 0128 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1650 012a 414A     		ldr	r2, .L219+80
+ 1651 012c 1421     		movs	r1, #20
+ 1652 012e 2046     		mov	r0, r4
+ 1653 0130 FFF7FEFF 		bl	snprintf
+ 1654 0134 2246     		mov	r2, r4
+ 1655 0136 0121     		movs	r1, #1
+ 1656 0138 0020     		movs	r0, #0
+ 1657 013a FFF7FEFF 		bl	write_OLED
+ 1658 013e 3D4A     		ldr	r2, .L219+84
+ 1659 0140 0221     		movs	r1, #2
+ 1660 0142 0020     		movs	r0, #0
+ 1661 0144 FFF7FEFF 		bl	write_OLED
+ 1662 0148 3B4A     		ldr	r2, .L219+88
+ 1663 014a 0221     		movs	r1, #2
+ 1664 014c 0720     		movs	r0, #7
+ 1665 014e FFF7FEFF 		bl	write_OLED
+ 1666 0152 3A4A     		ldr	r2, .L219+92
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 30
+
+
+ 1667 0154 0321     		movs	r1, #3
+ 1668 0156 0020     		movs	r0, #0
+ 1669 0158 FFF7FEFF 		bl	write_OLED
+ 1670 015c 384A     		ldr	r2, .L219+96
+ 1671 015e 0321     		movs	r1, #3
+ 1672 0160 0720     		movs	r0, #7
+ 1673 0162 FFF7FEFF 		bl	write_OLED
+ 1674 0166 374B     		ldr	r3, .L219+100
+ 1675 0168 0022     		movs	r2, #0
+ 1676 016a 1A70     		strb	r2, [r3]
+ 1677 016c E6E0     		b	.L173
+ 1678              	.L175:
+ 1679 016e 364A     		ldr	r2, .L219+104
+ 1680 0170 364B     		ldr	r3, .L219+108
+ 1681 0172 1B68     		ldr	r3, [r3]
+ 1682 0174 1380     		strh	r3, [r2]	@ movhi
+ 1683 0176 1B0C     		lsrs	r3, r3, #16
+ 1684 0178 9370     		strb	r3, [r2, #2]
+ 1685 017a 354B     		ldr	r3, .L219+112
+ 1686 017c 0022     		movs	r2, #0
+ 1687 017e 1A70     		strb	r2, [r3]
+ 1688 0180 344B     		ldr	r3, .L219+116
+ 1689 0182 0122     		movs	r2, #1
+ 1690 0184 1A70     		strb	r2, [r3]
+ 1691 0186 F3E0     		b	.L178
+ 1692              	.L176:
+ 1693 0188 2F4A     		ldr	r2, .L219+104
+ 1694 018a 334B     		ldr	r3, .L219+120
+ 1695 018c 1B68     		ldr	r3, [r3]
+ 1696 018e 1380     		strh	r3, [r2]	@ movhi
+ 1697 0190 1B0C     		lsrs	r3, r3, #16
+ 1698 0192 9370     		strb	r3, [r2, #2]
+ 1699 0194 2E4B     		ldr	r3, .L219+112
+ 1700 0196 0022     		movs	r2, #0
+ 1701 0198 1A70     		strb	r2, [r3]
+ 1702 019a 2E4B     		ldr	r3, .L219+116
+ 1703 019c 0122     		movs	r2, #1
+ 1704 019e 1A70     		strb	r2, [r3]
+ 1705 01a0 E6E0     		b	.L178
+ 1706              	.L177:
+ 1707 01a2 294A     		ldr	r2, .L219+104
+ 1708 01a4 2D4B     		ldr	r3, .L219+124
+ 1709 01a6 1B68     		ldr	r3, [r3]
+ 1710 01a8 1380     		strh	r3, [r2]	@ movhi
+ 1711 01aa 1B0C     		lsrs	r3, r3, #16
+ 1712 01ac 9370     		strb	r3, [r2, #2]
+ 1713 01ae 284B     		ldr	r3, .L219+112
+ 1714 01b0 0022     		movs	r2, #0
+ 1715 01b2 1A70     		strb	r2, [r3]
+ 1716 01b4 DCE0     		b	.L178
+ 1717              	.L215:
+ 1718 01b6 244A     		ldr	r2, .L219+104
+ 1719 01b8 0521     		movs	r1, #5
+ 1720 01ba 0F20     		movs	r0, #15
+ 1721 01bc FFF7FEFF 		bl	write_OLED
+ 1722 01c0 244B     		ldr	r3, .L219+116
+ 1723 01c2 0022     		movs	r2, #0
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 31
+
+
+ 1724 01c4 1A70     		strb	r2, [r3]
+ 1725 01c6 D8E0     		b	.L174
+ 1726              	.L216:
+ 1727 01c8 254A     		ldr	r2, .L219+128
+ 1728 01ca 0421     		movs	r1, #4
+ 1729 01cc 0020     		movs	r0, #0
+ 1730 01ce FFF7FEFF 		bl	write_OLED
+ 1731 01d2 244A     		ldr	r2, .L219+132
+ 1732 01d4 0421     		movs	r1, #4
+ 1733 01d6 0020     		movs	r0, #0
+ 1734 01d8 FFF7FEFF 		bl	write_OLED
+ 1735 01dc D5E0     		b	.L179
+ 1736              	.L220:
+ 1737 01de 00BF     		.align	2
+ 1738              	.L219:
+ 1739 01e0 00000000 		.word	SX1278_hw
+ 1740 01e4 00000240 		.word	1073872896
+ 1741 01e8 00040240 		.word	1073873920
+ 1742 01ec 00000000 		.word	Lora_SPI
+ 1743 01f0 00000000 		.word	SX1278
+ 1744 01f4 00000000 		.word	Oled_I2C
+ 1745 01f8 00000000 		.word	OLED_Connected
+ 1746 01fc 00000000 		.word	RTC_Connected
+ 1747 0200 00000000 		.word	Atlas1_Connected
+ 1748 0204 00000000 		.word	Atlas2_Connected
+ 1749 0208 00000000 		.word	Atlas3_Connected
+ 1750 020c 00000000 		.word	Atlas4_Connected
+ 1751 0210 00000000 		.word	LED_Tim
+ 1752 0214 00000000 		.word	Live_Tim
+ 1753 0218 00000000 		.word	Measure_Tim
+ 1754 021c 00000000 		.word	RTC_I2C
+ 1755 0220 00000000 		.word	.LC1
+ 1756 0224 00000000 		.word	connected_buffer
+ 1757 0228 00000000 		.word	SD_Connected
+ 1758 022c 00000000 		.word	LoRa_Connected
+ 1759 0230 14000000 		.word	.LC2
+ 1760 0234 00000000 		.word	Atlas_Buffer_1
+ 1761 0238 00000000 		.word	Atlas_Buffer_2
+ 1762 023c 00000000 		.word	Atlas_Buffer_3
+ 1763 0240 00000000 		.word	Atlas_Buffer_4
+ 1764 0244 00000000 		.word	RTC_Update_Oled
+ 1765 0248 00000000 		.word	mode_buffer
+ 1766 024c 34000000 		.word	.LC4
+ 1767 0250 00000000 		.word	Mode
+ 1768 0254 00000000 		.word	Mode_Changed
+ 1769 0258 38000000 		.word	.LC5
+ 1770 025c 3C000000 		.word	.LC6
+ 1771 0260 40000000 		.word	.LC7
+ 1772 0264 00000000 		.word	LoRa_RX_Buffer
+ 1773              	.L217:
+ 1774 0268 8E48     		ldr	r0, .L221
+ 1775 026a FFF7FEFF 		bl	LoRa_TX
+ 1776 026e 8E4B     		ldr	r3, .L221+4
+ 1777 0270 0222     		movs	r2, #2
+ 1778 0272 1A70     		strb	r2, [r3]
+ 1779              	.L182:
+ 1780 0274 8D4B     		ldr	r3, .L221+8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 32
+
+
+ 1781 0276 0022     		movs	r2, #0
+ 1782 0278 1A70     		strb	r2, [r3]
+ 1783              	.L180:
+ 1784 027a 8D4B     		ldr	r3, .L221+12
+ 1785 027c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1786 027e 002B     		cmp	r3, #0
+ 1787 0280 45D0     		beq	.L184
+ 1788 0282 8C4B     		ldr	r3, .L221+16
+ 1789 0284 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1790 0286 002B     		cmp	r3, #0
+ 1791 0288 40F0BA80 		bne	.L200
+ 1792              	.L185:
+ 1793 028c 8A4B     		ldr	r3, .L221+20
+ 1794 028e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1795 0290 002B     		cmp	r3, #0
+ 1796 0292 40F0B980 		bne	.L201
+ 1797              	.L186:
+ 1798 0296 894B     		ldr	r3, .L221+24
+ 1799 0298 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1800 029a 002B     		cmp	r3, #0
+ 1801 029c 40F0B880 		bne	.L202
+ 1802              	.L187:
+ 1803 02a0 874B     		ldr	r3, .L221+28
+ 1804 02a2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1805 02a4 002B     		cmp	r3, #0
+ 1806 02a6 40F0B780 		bne	.L203
+ 1807              	.L188:
+ 1808 02aa 4FF41670 		mov	r0, #600
+ 1809 02ae FFF7FEFF 		bl	HAL_Delay
+ 1810 02b2 804B     		ldr	r3, .L221+16
+ 1811 02b4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1812 02b6 002B     		cmp	r3, #0
+ 1813 02b8 40F0B280 		bne	.L204
+ 1814              	.L189:
+ 1815 02bc 7E4B     		ldr	r3, .L221+20
+ 1816 02be 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1817 02c0 002B     		cmp	r3, #0
+ 1818 02c2 40F0B280 		bne	.L205
+ 1819              	.L190:
+ 1820 02c6 7D4B     		ldr	r3, .L221+24
+ 1821 02c8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1822 02ca 002B     		cmp	r3, #0
+ 1823 02cc 40F0B280 		bne	.L206
+ 1824              	.L191:
+ 1825 02d0 7B4B     		ldr	r3, .L221+28
+ 1826 02d2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1827 02d4 002B     		cmp	r3, #0
+ 1828 02d6 40F0B280 		bne	.L207
+ 1829              	.L192:
+ 1830 02da 764B     		ldr	r3, .L221+16
+ 1831 02dc 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1832 02de 002B     		cmp	r3, #0
+ 1833 02e0 40F0B280 		bne	.L208
+ 1834              	.L193:
+ 1835 02e4 744B     		ldr	r3, .L221+20
+ 1836 02e6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1837 02e8 002B     		cmp	r3, #0
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 33
+
+
+ 1838 02ea 40F0B180 		bne	.L209
+ 1839              	.L194:
+ 1840 02ee 734B     		ldr	r3, .L221+24
+ 1841 02f0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1842 02f2 002B     		cmp	r3, #0
+ 1843 02f4 40F0B080 		bne	.L210
+ 1844              	.L195:
+ 1845 02f8 714B     		ldr	r3, .L221+28
+ 1846 02fa 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1847 02fc 002B     		cmp	r3, #0
+ 1848 02fe 40F0AF80 		bne	.L211
+ 1849              	.L196:
+ 1850 0302 6B4B     		ldr	r3, .L221+12
+ 1851 0304 0022     		movs	r2, #0
+ 1852 0306 1A70     		strb	r2, [r3]
+ 1853 0308 674B     		ldr	r3, .L221+4
+ 1854 030a 0122     		movs	r2, #1
+ 1855 030c 1A70     		strb	r2, [r3]
+ 1856              	.L184:
+ 1857 030e 6D4B     		ldr	r3, .L221+32
+ 1858 0310 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1859 0312 002B     		cmp	r3, #0
+ 1860 0314 40F0A880 		bne	.L212
+ 1861              	.L197:
+ 1862 0318 FFF7FEFF 		bl	SD_Detect
+ 1863 031c 6A4B     		ldr	r3, .L221+36
+ 1864 031e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1865 0320 23B1     		cbz	r3, .L172
+ 1866 0322 6A4B     		ldr	r3, .L221+40
+ 1867 0324 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1868 0326 002B     		cmp	r3, #0
+ 1869 0328 7FF4D4AE 		bne	.L213
+ 1870              	.L172:
+ 1871 032c 684B     		ldr	r3, .L221+44
+ 1872 032e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1873 0330 23B1     		cbz	r3, .L173
+ 1874 0332 664B     		ldr	r3, .L221+40
+ 1875 0334 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1876 0336 002B     		cmp	r3, #0
+ 1877 0338 7FF4DDAE 		bne	.L214
+ 1878              	.L173:
+ 1879 033c 644B     		ldr	r3, .L221+44
+ 1880 033e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1881 0340 DBB1     		cbz	r3, .L174
+ 1882 0342 594B     		ldr	r3, .L221+4
+ 1883 0344 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1884 0346 022B     		cmp	r3, #2
+ 1885 0348 3FF411AF 		beq	.L175
+ 1886 034c 032B     		cmp	r3, #3
+ 1887 034e 3FF41BAF 		beq	.L176
+ 1888 0352 012B     		cmp	r3, #1
+ 1889 0354 7FF425AF 		bne	.L177
+ 1890 0358 5E4A     		ldr	r2, .L221+48
+ 1891 035a 5F4B     		ldr	r3, .L221+52
+ 1892 035c 1B68     		ldr	r3, [r3]
+ 1893 035e 1380     		strh	r3, [r2]	@ movhi
+ 1894 0360 1B0C     		lsrs	r3, r3, #16
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 34
+
+
+ 1895 0362 9370     		strb	r3, [r2, #2]
+ 1896 0364 504B     		ldr	r3, .L221+4
+ 1897 0366 0022     		movs	r2, #0
+ 1898 0368 1A70     		strb	r2, [r3]
+ 1899 036a 5C4B     		ldr	r3, .L221+56
+ 1900 036c 0122     		movs	r2, #1
+ 1901 036e 1A70     		strb	r2, [r3]
+ 1902              	.L178:
+ 1903 0370 5A4B     		ldr	r3, .L221+56
+ 1904 0372 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1905 0374 002B     		cmp	r3, #0
+ 1906 0376 7FF41EAF 		bne	.L215
+ 1907              	.L174:
+ 1908 037a 4C4B     		ldr	r3, .L221+8
+ 1909 037c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1910 037e 23B1     		cbz	r3, .L179
+ 1911 0380 534B     		ldr	r3, .L221+44
+ 1912 0382 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1913 0384 002B     		cmp	r3, #0
+ 1914 0386 7FF41FAF 		bne	.L216
+ 1915              	.L179:
+ 1916 038a 484B     		ldr	r3, .L221+8
+ 1917 038c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1918 038e 002B     		cmp	r3, #0
+ 1919 0390 3FF473AF 		beq	.L180
+ 1920 0394 5249     		ldr	r1, .L221+60
+ 1921 0396 5348     		ldr	r0, .L221+64
+ 1922 0398 FFF7FEFF 		bl	strcmp
+ 1923 039c 0028     		cmp	r0, #0
+ 1924 039e 3FF463AF 		beq	.L217
+ 1925 03a2 5149     		ldr	r1, .L221+68
+ 1926 03a4 4F48     		ldr	r0, .L221+64
+ 1927 03a6 FFF7FEFF 		bl	strcmp
+ 1928 03aa E0B1     		cbz	r0, .L218
+ 1929 03ac 0822     		movs	r2, #8
+ 1930 03ae 4F49     		ldr	r1, .L221+72
+ 1931 03b0 4C48     		ldr	r0, .L221+64
+ 1932 03b2 FFF7FEFF 		bl	strncmp
+ 1933 03b6 0028     		cmp	r0, #0
+ 1934 03b8 7FF45CAF 		bne	.L182
+ 1935 03bc 06AC     		add	r4, sp, #24
+ 1936 03be 4C4D     		ldr	r5, .L221+76
+ 1937 03c0 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 1938 03c2 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 1939 03c4 2B68     		ldr	r3, [r5]
+ 1940 03c6 24F8023B 		strh	r3, [r4], #2	@ movhi
+ 1941 03ca 1B0C     		lsrs	r3, r3, #16
+ 1942 03cc 2370     		strb	r3, [r4]
+ 1943 03ce 06A9     		add	r1, sp, #24
+ 1944 03d0 484B     		ldr	r3, .L221+80
+ 1945 03d2 1868     		ldr	r0, [r3]
+ 1946 03d4 FFF7FEFF 		bl	RTC_Set_Time
+ 1947 03d8 4748     		ldr	r0, .L221+84
+ 1948 03da FFF7FEFF 		bl	LoRa_TX
+ 1949 03de 324B     		ldr	r3, .L221+4
+ 1950 03e0 0222     		movs	r2, #2
+ 1951 03e2 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 35
+
+
+ 1952 03e4 46E7     		b	.L182
+ 1953              	.L218:
+ 1954 03e6 4548     		ldr	r0, .L221+88
+ 1955 03e8 FFF7FEFF 		bl	LoRa_TX_Continuous
+ 1956 03ec 4448     		ldr	r0, .L221+92
+ 1957 03ee FFF7FEFF 		bl	LoRa_TX_Continuous
+ 1958 03f2 4448     		ldr	r0, .L221+96
+ 1959 03f4 FFF7FEFF 		bl	LoRa_TX
+ 1960 03f8 2B4B     		ldr	r3, .L221+4
+ 1961 03fa 0222     		movs	r2, #2
+ 1962 03fc 1A70     		strb	r2, [r3]
+ 1963 03fe 39E7     		b	.L182
+ 1964              	.L200:
+ 1965 0400 C220     		movs	r0, #194
+ 1966 0402 FFF7FEFF 		bl	Atlas_Wake
+ 1967 0406 41E7     		b	.L185
+ 1968              	.L201:
+ 1969 0408 CC20     		movs	r0, #204
+ 1970 040a FFF7FEFF 		bl	Atlas_Wake
+ 1971 040e 42E7     		b	.L186
+ 1972              	.L202:
+ 1973 0410 C420     		movs	r0, #196
+ 1974 0412 FFF7FEFF 		bl	Atlas_Wake
+ 1975 0416 43E7     		b	.L187
+ 1976              	.L203:
+ 1977 0418 CE20     		movs	r0, #206
+ 1978 041a FFF7FEFF 		bl	Atlas_Wake
+ 1979 041e 44E7     		b	.L188
+ 1980              	.L204:
+ 1981 0420 C221     		movs	r1, #194
+ 1982 0422 3948     		ldr	r0, .L221+100
+ 1983 0424 FFF7FEFF 		bl	Atlas_Read_Val
+ 1984 0428 48E7     		b	.L189
+ 1985              	.L205:
+ 1986 042a CC21     		movs	r1, #204
+ 1987 042c 3748     		ldr	r0, .L221+104
+ 1988 042e FFF7FEFF 		bl	Atlas_Read_Val
+ 1989 0432 48E7     		b	.L190
+ 1990              	.L206:
+ 1991 0434 C421     		movs	r1, #196
+ 1992 0436 3648     		ldr	r0, .L221+108
+ 1993 0438 FFF7FEFF 		bl	Atlas_Read_Val
+ 1994 043c 48E7     		b	.L191
+ 1995              	.L207:
+ 1996 043e CE21     		movs	r1, #206
+ 1997 0440 3448     		ldr	r0, .L221+112
+ 1998 0442 FFF7FEFF 		bl	Atlas_Read_Val
+ 1999 0446 48E7     		b	.L192
+ 2000              	.L208:
+ 2001 0448 C220     		movs	r0, #194
+ 2002 044a FFF7FEFF 		bl	Atlas_Sleep
+ 2003 044e 49E7     		b	.L193
+ 2004              	.L209:
+ 2005 0450 CC20     		movs	r0, #204
+ 2006 0452 FFF7FEFF 		bl	Atlas_Sleep
+ 2007 0456 4AE7     		b	.L194
+ 2008              	.L210:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 36
+
+
+ 2009 0458 C420     		movs	r0, #196
+ 2010 045a FFF7FEFF 		bl	Atlas_Sleep
+ 2011 045e 4BE7     		b	.L195
+ 2012              	.L211:
+ 2013 0460 CE20     		movs	r0, #206
+ 2014 0462 FFF7FEFF 		bl	Atlas_Sleep
+ 2015 0466 4CE7     		b	.L196
+ 2016              	.L212:
+ 2017 0468 2B4C     		ldr	r4, .L221+116
+ 2018 046a 284B     		ldr	r3, .L221+104
+ 2019 046c 0093     		str	r3, [sp]
+ 2020 046e 264B     		ldr	r3, .L221+100
+ 2021 0470 2A4A     		ldr	r2, .L221+120
+ 2022 0472 6421     		movs	r1, #100
+ 2023 0474 2046     		mov	r0, r4
+ 2024 0476 FFF7FEFF 		bl	snprintf
+ 2025 047a 2046     		mov	r0, r4
+ 2026 047c FFF7FEFF 		bl	LoRa_TX_Continuous
+ 2027 0480 244B     		ldr	r3, .L221+112
+ 2028 0482 0093     		str	r3, [sp]
+ 2029 0484 224B     		ldr	r3, .L221+108
+ 2030 0486 264A     		ldr	r2, .L221+124
+ 2031 0488 6421     		movs	r1, #100
+ 2032 048a 2046     		mov	r0, r4
+ 2033 048c FFF7FEFF 		bl	snprintf
+ 2034 0490 2046     		mov	r0, r4
+ 2035 0492 FFF7FEFF 		bl	LoRa_TX
+ 2036 0496 044B     		ldr	r3, .L221+4
+ 2037 0498 0222     		movs	r2, #2
+ 2038 049a 1A70     		strb	r2, [r3]
+ 2039 049c 094B     		ldr	r3, .L221+32
+ 2040 049e 0022     		movs	r2, #0
+ 2041 04a0 1A70     		strb	r2, [r3]
+ 2042 04a2 39E7     		b	.L197
+ 2043              	.L222:
+ 2044              		.align	2
+ 2045              	.L221:
+ 2046 04a4 60000000 		.word	.LC9
+ 2047 04a8 00000000 		.word	Mode
+ 2048 04ac 00000000 		.word	LoRa_RX_Flag
+ 2049 04b0 00000000 		.word	Atlas_measure
+ 2050 04b4 00000000 		.word	Atlas1_Connected
+ 2051 04b8 00000000 		.word	Atlas2_Connected
+ 2052 04bc 00000000 		.word	Atlas3_Connected
+ 2053 04c0 00000000 		.word	Atlas4_Connected
+ 2054 04c4 00000000 		.word	Atlas_Send_live
+ 2055 04c8 00000000 		.word	RTC_Connected
+ 2056 04cc 00000000 		.word	RTC_Update_Oled
+ 2057 04d0 00000000 		.word	OLED_Connected
+ 2058 04d4 00000000 		.word	mode_buffer
+ 2059 04d8 30000000 		.word	.LC3
+ 2060 04dc 00000000 		.word	Mode_Changed
+ 2061 04e0 54000000 		.word	.LC8
+ 2062 04e4 00000000 		.word	LoRa_RX_Buffer
+ 2063 04e8 78000000 		.word	.LC10
+ 2064 04ec 20010000 		.word	.LC14
+ 2065 04f0 0C000000 		.word	LoRa_RX_Buffer+12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 37
+
+
+ 2066 04f4 00000000 		.word	RTC_I2C
+ 2067 04f8 2C010000 		.word	.LC15
+ 2068 04fc 88000000 		.word	.LC11
+ 2069 0500 C8000000 		.word	.LC12
+ 2070 0504 08010000 		.word	.LC13
+ 2071 0508 00000000 		.word	Atlas_Buffer_1
+ 2072 050c 00000000 		.word	Atlas_Buffer_2
+ 2073 0510 00000000 		.word	Atlas_Buffer_3
+ 2074 0514 00000000 		.word	Atlas_Buffer_4
+ 2075 0518 00000000 		.word	LoRa_TX_Buffer
+ 2076 051c 38010000 		.word	.LC16
+ 2077 0520 60010000 		.word	.LC17
+ 2079              		.global	Atlas_measure
+ 2080              		.section	.bss.Atlas_measure,"aw",%nobits
+ 2083              	Atlas_measure:
+ 2084 0000 00       		.space	1
+ 2085              		.global	Atlas_Send_live
+ 2086              		.section	.bss.Atlas_Send_live,"aw",%nobits
+ 2089              	Atlas_Send_live:
+ 2090 0000 00       		.space	1
+ 2091              		.global	Atlas4_Connected
+ 2092              		.section	.bss.Atlas4_Connected,"aw",%nobits
+ 2095              	Atlas4_Connected:
+ 2096 0000 00       		.space	1
+ 2097              		.global	Atlas3_Connected
+ 2098              		.section	.bss.Atlas3_Connected,"aw",%nobits
+ 2101              	Atlas3_Connected:
+ 2102 0000 00       		.space	1
+ 2103              		.global	Atlas2_Connected
+ 2104              		.section	.bss.Atlas2_Connected,"aw",%nobits
+ 2107              	Atlas2_Connected:
+ 2108 0000 00       		.space	1
+ 2109              		.global	Atlas1_Connected
+ 2110              		.section	.bss.Atlas1_Connected,"aw",%nobits
+ 2113              	Atlas1_Connected:
+ 2114 0000 00       		.space	1
+ 2115              		.global	SD_Connected
+ 2116              		.section	.bss.SD_Connected,"aw",%nobits
+ 2119              	SD_Connected:
+ 2120 0000 00       		.space	1
+ 2121              		.global	RTC_Update_Oled
+ 2122              		.section	.bss.RTC_Update_Oled,"aw",%nobits
+ 2125              	RTC_Update_Oled:
+ 2126 0000 00       		.space	1
+ 2127              		.global	RTC_Connected
+ 2128              		.section	.bss.RTC_Connected,"aw",%nobits
+ 2131              	RTC_Connected:
+ 2132 0000 00       		.space	1
+ 2133              		.global	OLED_Connected
+ 2134              		.section	.bss.OLED_Connected,"aw",%nobits
+ 2137              	OLED_Connected:
+ 2138 0000 00       		.space	1
+ 2139              		.global	LoRa_RX_Counter
+ 2140              		.section	.bss.LoRa_RX_Counter,"aw",%nobits
+ 2143              	LoRa_RX_Counter:
+ 2144 0000 00       		.space	1
+ 2145              		.global	LoRa_RX_Mode
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 38
+
+
+ 2146              		.section	.bss.LoRa_RX_Mode,"aw",%nobits
+ 2149              	LoRa_RX_Mode:
+ 2150 0000 00       		.space	1
+ 2151              		.global	LoRa_RX_Flag
+ 2152              		.section	.bss.LoRa_RX_Flag,"aw",%nobits
+ 2155              	LoRa_RX_Flag:
+ 2156 0000 00       		.space	1
+ 2157              		.global	LoRa_Connected
+ 2158              		.section	.bss.LoRa_Connected,"aw",%nobits
+ 2161              	LoRa_Connected:
+ 2162 0000 00       		.space	1
+ 2163              		.global	connected_buffer
+ 2164              		.section	.bss.connected_buffer,"aw",%nobits
+ 2165              		.align	2
+ 2168              	connected_buffer:
+ 2169 0000 00000000 		.space	20
+ 2169      00000000 
+ 2169      00000000 
+ 2169      00000000 
+ 2169      00000000 
+ 2170              		.global	Buoy_ID
+ 2171              		.section	.bss.Buoy_ID,"aw",%nobits
+ 2174              	Buoy_ID:
+ 2175 0000 00       		.space	1
+ 2176              		.global	Mode
+ 2177              		.section	.bss.Mode,"aw",%nobits
+ 2180              	Mode:
+ 2181 0000 00       		.space	1
+ 2182              		.global	Mode_Changed
+ 2183              		.section	.bss.Mode_Changed,"aw",%nobits
+ 2186              	Mode_Changed:
+ 2187 0000 00       		.space	1
+ 2188              		.global	mode_buffer
+ 2189              		.section	.bss.mode_buffer,"aw",%nobits
+ 2190              		.align	2
+ 2193              	mode_buffer:
+ 2194 0000 000000   		.space	3
+ 2195              		.global	Atlas_Buffer_4
+ 2196              		.section	.bss.Atlas_Buffer_4,"aw",%nobits
+ 2197              		.align	2
+ 2200              	Atlas_Buffer_4:
+ 2201 0000 00000000 		.space	17
+ 2201      00000000 
+ 2201      00000000 
+ 2201      00000000 
+ 2201      00
+ 2202              		.global	Atlas_Buffer_3
+ 2203              		.section	.bss.Atlas_Buffer_3,"aw",%nobits
+ 2204              		.align	2
+ 2207              	Atlas_Buffer_3:
+ 2208 0000 00000000 		.space	17
+ 2208      00000000 
+ 2208      00000000 
+ 2208      00000000 
+ 2208      00
+ 2209              		.global	Atlas_Buffer_2
+ 2210              		.section	.bss.Atlas_Buffer_2,"aw",%nobits
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 39
+
+
+ 2211              		.align	2
+ 2214              	Atlas_Buffer_2:
+ 2215 0000 00000000 		.space	17
+ 2215      00000000 
+ 2215      00000000 
+ 2215      00000000 
+ 2215      00
+ 2216              		.global	Atlas_Buffer_1
+ 2217              		.section	.bss.Atlas_Buffer_1,"aw",%nobits
+ 2218              		.align	2
+ 2221              	Atlas_Buffer_1:
+ 2222 0000 00000000 		.space	17
+ 2222      00000000 
+ 2222      00000000 
+ 2222      00000000 
+ 2222      00
+ 2223              		.global	LoRa_TX_Buffer_Length
+ 2224              		.section	.bss.LoRa_TX_Buffer_Length,"aw",%nobits
+ 2227              	LoRa_TX_Buffer_Length:
+ 2228 0000 00       		.space	1
+ 2229              		.global	LoRa_TX_Buffer
+ 2230              		.section	.bss.LoRa_TX_Buffer,"aw",%nobits
+ 2231              		.align	2
+ 2234              	LoRa_TX_Buffer:
+ 2235 0000 00000000 		.space	100
+ 2235      00000000 
+ 2235      00000000 
+ 2235      00000000 
+ 2235      00000000 
+ 2236              		.global	LoRa_RX_Length
+ 2237              		.section	.bss.LoRa_RX_Length,"aw",%nobits
+ 2240              	LoRa_RX_Length:
+ 2241 0000 00       		.space	1
+ 2242              		.global	LoRa_RX_Buffer
+ 2243              		.section	.bss.LoRa_RX_Buffer,"aw",%nobits
+ 2244              		.align	2
+ 2247              	LoRa_RX_Buffer:
+ 2248 0000 00000000 		.space	50
+ 2248      00000000 
+ 2248      00000000 
+ 2248      00000000 
+ 2248      00000000 
+ 2249              		.global	SX1278
+ 2250              		.section	.bss.SX1278,"aw",%nobits
+ 2251              		.align	3
+ 2254              	SX1278:
+ 2255 0000 00000000 		.space	280
+ 2255      00000000 
+ 2255      00000000 
+ 2255      00000000 
+ 2255      00000000 
+ 2256              		.global	SX1278_hw
+ 2257              		.section	.bss.SX1278_hw,"aw",%nobits
+ 2258              		.align	2
+ 2261              	SX1278_hw:
+ 2262 0000 00000000 		.space	28
+ 2262      00000000 
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 40
+
+
+ 2262      00000000 
+ 2262      00000000 
+ 2262      00000000 
+ 2263              		.global	Measure_Tim
+ 2264              		.section	.data.Measure_Tim,"aw"
+ 2265              		.align	2
+ 2268              	Measure_Tim:
+ 2269 0000 00000000 		.word	htim9
+ 2270              		.global	Live_Tim
+ 2271              		.section	.data.Live_Tim,"aw"
+ 2272              		.align	2
+ 2275              	Live_Tim:
+ 2276 0000 00000000 		.word	htim10
+ 2277              		.global	LED_Tim
+ 2278              		.section	.data.LED_Tim,"aw"
+ 2279              		.align	2
+ 2282              	LED_Tim:
+ 2283 0000 00000000 		.word	htim11
+ 2284              		.global	Lora_SPI
+ 2285              		.section	.data.Lora_SPI,"aw"
+ 2286              		.align	2
+ 2289              	Lora_SPI:
+ 2290 0000 00000000 		.word	hspi2
+ 2291              		.global	MicroSD_SPI
+ 2292              		.section	.data.MicroSD_SPI,"aw"
+ 2293              		.align	2
+ 2296              	MicroSD_SPI:
+ 2297 0000 00000000 		.word	hspi1
+ 2298              		.global	RTC_I2C
+ 2299              		.section	.data.RTC_I2C,"aw"
+ 2300              		.align	2
+ 2303              	RTC_I2C:
+ 2304 0000 00000000 		.word	hi2c2
+ 2305              		.global	Oled_I2C
+ 2306              		.section	.data.Oled_I2C,"aw"
+ 2307              		.align	2
+ 2310              	Oled_I2C:
+ 2311 0000 00000000 		.word	hi2c1
+ 2312              		.global	Atlas_I2C
+ 2313              		.section	.data.Atlas_I2C,"aw"
+ 2314              		.align	2
+ 2317              	Atlas_I2C:
+ 2318 0000 00000000 		.word	hi2c3
+ 2319              		.global	htim11
+ 2320              		.section	.bss.htim11,"aw",%nobits
+ 2321              		.align	2
+ 2324              	htim11:
+ 2325 0000 00000000 		.space	72
+ 2325      00000000 
+ 2325      00000000 
+ 2325      00000000 
+ 2325      00000000 
+ 2326              		.global	htim10
+ 2327              		.section	.bss.htim10,"aw",%nobits
+ 2328              		.align	2
+ 2331              	htim10:
+ 2332 0000 00000000 		.space	72
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 41
+
+
+ 2332      00000000 
+ 2332      00000000 
+ 2332      00000000 
+ 2332      00000000 
+ 2333              		.global	htim9
+ 2334              		.section	.bss.htim9,"aw",%nobits
+ 2335              		.align	2
+ 2338              	htim9:
+ 2339 0000 00000000 		.space	72
+ 2339      00000000 
+ 2339      00000000 
+ 2339      00000000 
+ 2339      00000000 
+ 2340              		.global	hdma_spi1_rx
+ 2341              		.section	.bss.hdma_spi1_rx,"aw",%nobits
+ 2342              		.align	2
+ 2345              	hdma_spi1_rx:
+ 2346 0000 00000000 		.space	96
+ 2346      00000000 
+ 2346      00000000 
+ 2346      00000000 
+ 2346      00000000 
+ 2347              		.global	hspi2
+ 2348              		.section	.bss.hspi2,"aw",%nobits
+ 2349              		.align	2
+ 2352              	hspi2:
+ 2353 0000 00000000 		.space	88
+ 2353      00000000 
+ 2353      00000000 
+ 2353      00000000 
+ 2353      00000000 
+ 2354              		.global	hspi1
+ 2355              		.section	.bss.hspi1,"aw",%nobits
+ 2356              		.align	2
+ 2359              	hspi1:
+ 2360 0000 00000000 		.space	88
+ 2360      00000000 
+ 2360      00000000 
+ 2360      00000000 
+ 2360      00000000 
+ 2361              		.global	hi2c3
+ 2362              		.section	.bss.hi2c3,"aw",%nobits
+ 2363              		.align	2
+ 2366              	hi2c3:
+ 2367 0000 00000000 		.space	84
+ 2367      00000000 
+ 2367      00000000 
+ 2367      00000000 
+ 2367      00000000 
+ 2368              		.global	hi2c2
+ 2369              		.section	.bss.hi2c2,"aw",%nobits
+ 2370              		.align	2
+ 2373              	hi2c2:
+ 2374 0000 00000000 		.space	84
+ 2374      00000000 
+ 2374      00000000 
+ 2374      00000000 
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 42
+
+
+ 2374      00000000 
+ 2375              		.global	hi2c1
+ 2376              		.section	.bss.hi2c1,"aw",%nobits
+ 2377              		.align	2
+ 2380              	hi2c1:
+ 2381 0000 00000000 		.space	84
+ 2381      00000000 
+ 2381      00000000 
+ 2381      00000000 
+ 2381      00000000 
+ 2382              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 43
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:18     .text.decimalbcd:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:23     .text.decimalbcd:00000000 decimalbcd
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:39     .text.decimalbcd:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:42     .text.MX_GPIO_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:47     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:164    .text.MX_GPIO_Init:00000120 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:170    .text.MX_DMA_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:175    .text.MX_DMA_Init:00000000 MX_DMA_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:201    .text.MX_DMA_Init:00000030 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:204    .rodata.RTC_Set_Time_Once.str1.4:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:214    .text.RTC_Set_Time_Once:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:219    .text.RTC_Set_Time_Once:00000000 RTC_Set_Time_Once
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:355    .text.RTC_Set_Time_Once:00000148 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:360    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:366    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:384    .text.HAL_TIM_PeriodElapsedCallback:00000018 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:388    .text.LoRa_Detect:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:394    .text.LoRa_Detect:00000000 LoRa_Detect
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:407    .text.LoRa_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:413    .text.LoRa_Init:00000000 LoRa_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:463    .text.LoRa_Init:00000068 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1074   .bss.SX1278_hw:00000000 SX1278_hw
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1067   .bss.SX1278:00000000 SX1278
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1010   .bss.LoRa_Connected:00000000 LoRa_Connected
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:470    .text.LoRa_TX:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:476    .text.LoRa_TX:00000000 LoRa_TX
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:532    .text.LoRa_TX:00000070 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1029   .bss.message_length:00000000 message_length
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1054   .bss.ret:00000000 ret
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:538    .text.LoRa_RX:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:544    .text.LoRa_RX:00000000 LoRa_RX
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:577    .text.LoRa_RX:0000003c $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1041   .bss.LoRa_RX_Length:00000000 LoRa_RX_Length
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1048   .bss.LoRa_RX_Buffer:00000000 LoRa_RX_Buffer
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1004   .bss.LoRa_RX_Flag:00000000 LoRa_RX_Flag
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:584    .text.HAL_GPIO_EXTI_Callback:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:590    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:602    .text.Error_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:608    .text.Error_Handler:00000000 Error_Handler
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:623    .text.MX_I2C1_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:628    .text.MX_I2C1_Init:00000000 MX_I2C1_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:654    .text.MX_I2C1_Init:0000002c $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1165   .bss.hi2c1:00000000 hi2c1
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:659    .text.MX_TIM11_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:664    .text.MX_TIM11_Init:00000000 MX_TIM11_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:687    .text.MX_TIM11_Init:00000028 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1123   .bss.htim11:00000000 htim11
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:691    .text.MX_I2C2_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:696    .text.MX_I2C2_Init:00000000 MX_I2C2_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:722    .text.MX_I2C2_Init:0000002c $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1158   .bss.hi2c2:00000000 hi2c2
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:727    .text.MX_I2C3_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:732    .text.MX_I2C3_Init:00000000 MX_I2C3_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:758    .text.MX_I2C3_Init:0000002c $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1151   .bss.hi2c3:00000000 hi2c3
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 22
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:18     .text.bcdtodec:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:23     .text.bcdtodec:00000000 bcdtodec
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:35     .text.decimalbcd:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:40     .text.decimalbcd:00000000 decimalbcd
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:56     .text.decimalbcd:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:59     .text.MX_GPIO_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:64     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:188    .text.MX_GPIO_Init:00000130 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:194    .text.MX_DMA_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:199    .text.MX_DMA_Init:00000000 MX_DMA_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:225    .text.MX_DMA_Init:00000030 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:228    .text.RTC_Detect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:233    .text.RTC_Detect:00000000 RTC_Detect
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:253    .text.RTC_Detect:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2303   .data.RTC_I2C:00000000 RTC_I2C
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:256    .text.Atlas_Detect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:261    .text.Atlas_Detect:00000000 Atlas_Detect
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:277    .text.Atlas_Detect:00000018 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2317   .data.Atlas_I2C:00000000 Atlas_I2C
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:280    .text.SD_Detect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:285    .text.SD_Detect:00000000 SD_Detect
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:298    .text.SD_Detect:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2119   .bss.SD_Connected:00000000 SD_Connected
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:302    .text.get_unix_timestamp:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:307    .text.get_unix_timestamp:00000000 get_unix_timestamp
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:331    .text.RTC_Get_Time:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:336    .text.RTC_Get_Time:00000000 RTC_Get_Time
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:437    .text.write_OLED:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:442    .text.write_OLED:00000000 write_OLED
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:465    .text.write_OLED:00000030 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2310   .data.Oled_I2C:00000000 Oled_I2C
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:469    .text.RTC_Set_Time:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:474    .text.RTC_Set_Time:00000000 RTC_Set_Time
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:631    .text.RTC_Set_Time:000001b0 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:634    .text.Atlas_Wake:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:639    .text.Atlas_Wake:00000000 Atlas_Wake
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:663    .text.Atlas_Wake:0000002c $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:666    .rodata.Atlas_Sleep.str1.4:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:670    .text.Atlas_Sleep:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:675    .text.Atlas_Sleep:00000000 Atlas_Sleep
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:701    .text.Atlas_Sleep:00000030 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:705    .text.Atlas_Read_Val:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:710    .text.Atlas_Read_Val:00000000 Atlas_Read_Val
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:774    .text.Atlas_Read_Val:00000088 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:777    .text.LoRa_ArmRX:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:782    .text.LoRa_ArmRX:00000000 LoRa_ArmRX
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:794    .text.LoRa_ArmRX:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2254   .bss.SX1278:00000000 SX1278
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:797    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:803    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:844    .text.HAL_TIM_PeriodElapsedCallback:00000040 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2125   .bss.RTC_Update_Oled:00000000 RTC_Update_Oled
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2089   .bss.Atlas_Send_live:00000000 Atlas_Send_live
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2083   .bss.Atlas_measure:00000000 Atlas_measure
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:853    .text.LoRa_Detect:00000000 $t
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 44
 
 
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:763    .text.MX_SPI1_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:768    .text.MX_SPI1_Init:00000000 MX_SPI1_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:799    .text.MX_SPI1_Init:00000038 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1144   .bss.hspi1:00000000 hspi1
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:803    .text.MX_SPI2_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:808    .text.MX_SPI2_Init:00000000 MX_SPI2_Init
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:838    .text.MX_SPI2_Init:00000038 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1137   .bss.hspi2:00000000 hspi2
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:842    .text.SystemClock_Config:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:848    .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:912    .text.SystemClock_Config:00000088 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:916    .text.main:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:922    .text.main:00000000 main
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:972    .text.main:0000007c $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1088   .data.Lora_SPI:00000000 Lora_SPI
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1109   .data.Oled_I2C:00000000 Oled_I2C
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:998    .bss.OLED_Connected:00000000 OLED_Connected
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1102   .data.RTC_I2C:00000000 RTC_I2C
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1081   .data.LED_Tim:00000000 LED_Tim
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:986    .bss.SD_Connected:00000000 SD_Connected
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:987    .bss.SD_Connected:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:992    .data.RTC_Connected:00000000 RTC_Connected
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:999    .bss.OLED_Connected:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1005   .bss.LoRa_RX_Flag:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1011   .bss.LoRa_Connected:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1017   .bss.count_buffer:00000000 count_buffer
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1014   .bss.count_buffer:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1023   .bss.count:00000000 count
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1024   .bss.count:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1030   .bss.message_length:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1035   .bss.message:00000000 message
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1036   .bss.message:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1042   .bss.LoRa_RX_Length:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1045   .bss.LoRa_RX_Buffer:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1055   .bss.ret:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1060   .bss.master:00000000 master
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1061   .bss.master:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1064   .bss.SX1278:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1071   .bss.SX1278_hw:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1078   .data.LED_Tim:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1085   .data.Lora_SPI:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1095   .data.MicroSD_SPI:00000000 MicroSD_SPI
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1092   .data.MicroSD_SPI:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1099   .data.RTC_I2C:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1106   .data.Oled_I2C:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1116   .data.Atlas_I2C:00000000 Atlas_I2C
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1113   .data.Atlas_I2C:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1120   .bss.htim11:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1130   .bss.hdma_spi1_rx:00000000 hdma_spi1_rx
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1127   .bss.hdma_spi1_rx:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1134   .bss.hspi2:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1141   .bss.hspi1:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1148   .bss.hi2c3:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1155   .bss.hi2c2:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s:1162   .bss.hi2c1:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:859    .text.LoRa_Detect:00000000 LoRa_Detect
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:872    .text.LoRa_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:878    .text.LoRa_Init:00000000 LoRa_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:924    .text.LoRa_Init:00000058 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2261   .bss.SX1278_hw:00000000 SX1278_hw
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2161   .bss.LoRa_Connected:00000000 LoRa_Connected
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:931    .text.LoRa_TX:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:937    .text.LoRa_TX:00000000 LoRa_TX
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:972    .text.LoRa_TX:00000040 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:975    .text.LoRa_TX_Continuous:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:981    .text.LoRa_TX_Continuous:00000000 LoRa_TX_Continuous
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1014   .text.LoRa_TX_Continuous:0000003c $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1017   .text.LoRa_RX:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1023   .text.LoRa_RX:00000000 LoRa_RX
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1054   .text.LoRa_RX:00000034 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2247   .bss.LoRa_RX_Buffer:00000000 LoRa_RX_Buffer
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2240   .bss.LoRa_RX_Length:00000000 LoRa_RX_Length
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2155   .bss.LoRa_RX_Flag:00000000 LoRa_RX_Flag
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1061   .text.HAL_GPIO_EXTI_Callback:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1067   .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1079   .text.Error_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1085   .text.Error_Handler:00000000 Error_Handler
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1100   .text.MX_I2C1_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1105   .text.MX_I2C1_Init:00000000 MX_I2C1_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1131   .text.MX_I2C1_Init:0000002c $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2380   .bss.hi2c1:00000000 hi2c1
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1136   .text.MX_TIM11_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1141   .text.MX_TIM11_Init:00000000 MX_TIM11_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1164   .text.MX_TIM11_Init:00000028 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2324   .bss.htim11:00000000 htim11
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1168   .text.MX_I2C2_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1173   .text.MX_I2C2_Init:00000000 MX_I2C2_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1199   .text.MX_I2C2_Init:0000002c $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2373   .bss.hi2c2:00000000 hi2c2
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1204   .text.MX_I2C3_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1209   .text.MX_I2C3_Init:00000000 MX_I2C3_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1235   .text.MX_I2C3_Init:0000002c $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2366   .bss.hi2c3:00000000 hi2c3
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1240   .text.MX_SPI1_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1245   .text.MX_SPI1_Init:00000000 MX_SPI1_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1276   .text.MX_SPI1_Init:00000038 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2359   .bss.hspi1:00000000 hspi1
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1280   .text.MX_SPI2_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1285   .text.MX_SPI2_Init:00000000 MX_SPI2_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1315   .text.MX_SPI2_Init:00000038 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2352   .bss.hspi2:00000000 hspi2
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1319   .text.MX_TIM10_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1324   .text.MX_TIM10_Init:00000000 MX_TIM10_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1347   .text.MX_TIM10_Init:00000028 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2331   .bss.htim10:00000000 htim10
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1351   .text.MX_TIM9_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1356   .text.MX_TIM9_Init:00000000 MX_TIM9_Init
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1394   .text.MX_TIM9_Init:0000004c $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2338   .bss.htim9:00000000 htim9
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1398   .text.SystemClock_Config:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1404   .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1468   .text.SystemClock_Config:00000088 $d
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 45
+
+
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1472   .rodata.main.str1.4:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1526   .text.main:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1532   .text.main:00000000 main
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1739   .text.main:000001e0 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2289   .data.Lora_SPI:00000000 Lora_SPI
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2137   .bss.OLED_Connected:00000000 OLED_Connected
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2131   .bss.RTC_Connected:00000000 RTC_Connected
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2113   .bss.Atlas1_Connected:00000000 Atlas1_Connected
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2107   .bss.Atlas2_Connected:00000000 Atlas2_Connected
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2101   .bss.Atlas3_Connected:00000000 Atlas3_Connected
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2095   .bss.Atlas4_Connected:00000000 Atlas4_Connected
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2282   .data.LED_Tim:00000000 LED_Tim
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2275   .data.Live_Tim:00000000 Live_Tim
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2268   .data.Measure_Tim:00000000 Measure_Tim
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2168   .bss.connected_buffer:00000000 connected_buffer
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2221   .bss.Atlas_Buffer_1:00000000 Atlas_Buffer_1
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2214   .bss.Atlas_Buffer_2:00000000 Atlas_Buffer_2
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2207   .bss.Atlas_Buffer_3:00000000 Atlas_Buffer_3
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2200   .bss.Atlas_Buffer_4:00000000 Atlas_Buffer_4
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2193   .bss.mode_buffer:00000000 mode_buffer
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2180   .bss.Mode:00000000 Mode
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2186   .bss.Mode_Changed:00000000 Mode_Changed
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:1774   .text.main:00000268 $t
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2046   .text.main:000004a4 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2234   .bss.LoRa_TX_Buffer:00000000 LoRa_TX_Buffer
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2084   .bss.Atlas_measure:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2090   .bss.Atlas_Send_live:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2096   .bss.Atlas4_Connected:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2102   .bss.Atlas3_Connected:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2108   .bss.Atlas2_Connected:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2114   .bss.Atlas1_Connected:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2120   .bss.SD_Connected:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2126   .bss.RTC_Update_Oled:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2132   .bss.RTC_Connected:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2138   .bss.OLED_Connected:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2143   .bss.LoRa_RX_Counter:00000000 LoRa_RX_Counter
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2144   .bss.LoRa_RX_Counter:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2149   .bss.LoRa_RX_Mode:00000000 LoRa_RX_Mode
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2150   .bss.LoRa_RX_Mode:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2156   .bss.LoRa_RX_Flag:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2162   .bss.LoRa_Connected:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2165   .bss.connected_buffer:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2174   .bss.Buoy_ID:00000000 Buoy_ID
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2175   .bss.Buoy_ID:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2181   .bss.Mode:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2187   .bss.Mode_Changed:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2190   .bss.mode_buffer:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2197   .bss.Atlas_Buffer_4:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2204   .bss.Atlas_Buffer_3:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2211   .bss.Atlas_Buffer_2:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2218   .bss.Atlas_Buffer_1:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2227   .bss.LoRa_TX_Buffer_Length:00000000 LoRa_TX_Buffer_Length
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2228   .bss.LoRa_TX_Buffer_Length:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2231   .bss.LoRa_TX_Buffer:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2241   .bss.LoRa_RX_Length:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2244   .bss.LoRa_RX_Buffer:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2251   .bss.SX1278:00000000 $d
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 46
+
+
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2258   .bss.SX1278_hw:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2265   .data.Measure_Tim:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2272   .data.Live_Tim:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2279   .data.LED_Tim:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2286   .data.Lora_SPI:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2296   .data.MicroSD_SPI:00000000 MicroSD_SPI
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2293   .data.MicroSD_SPI:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2300   .data.RTC_I2C:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2307   .data.Oled_I2C:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2314   .data.Atlas_I2C:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2321   .bss.htim11:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2328   .bss.htim10:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2335   .bss.htim9:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2345   .bss.hdma_spi1_rx:00000000 hdma_spi1_rx
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2342   .bss.hdma_spi1_rx:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2349   .bss.hspi2:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2356   .bss.hspi1:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2363   .bss.hi2c3:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2370   .bss.hi2c2:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s:2377   .bss.hi2c1:00000000 $d
 
 UNDEFINED SYMBOLS
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc6nPrD9.s 			page 23
-
-
 HAL_GPIO_WritePin
 HAL_GPIO_Init
 HAL_NVIC_SetPriority
 HAL_NVIC_EnableIRQ
+HAL_I2C_IsDeviceReady
+HAL_GPIO_ReadPin
+mktime
 HAL_I2C_Mem_Read
-strncmp
+ssd1306_SetCursor
+ssd1306_WriteString
+ssd1306_UpdateScreen
+Font_7x10
 HAL_I2C_Mem_Write
+strlen
+HAL_I2C_Master_Transmit
+HAL_Delay
+HAL_I2C_Master_Receive
+SX1278_LoRaEntryRx
 HAL_GPIO_TogglePin
 SX1278_SPIRead
 SX1278_hw_init
 SX1278_hw_Reset
-HAL_Delay
 SX1278_init
-SX1278_LoRaEntryRx
-strlen
 SX1278_LoRaEntryTx
 SX1278_LoRaTxPacket
 SX1278_LoRaRxPacket
-SX1278_SPIWrite
-SX1278_clearLoRaIrq
 memcpy
+SX1278_clearLoRaIrq
 HAL_I2C_Init
 HAL_TIM_Base_Init
 HAL_SPI_Init
+HAL_TIM_ConfigClockSource
 memset
 HAL_RCC_OscConfig
 HAL_RCC_ClockConfig
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccEZXmcC.s 			page 47
+
+
 HAL_RCC_EnableCSS
 HAL_Init
 MX_FATFS_Init
 ssd1306_Init
 HAL_TIM_Base_Start_IT
+localtime
+strftime
+snprintf
+strcmp
+strncmp

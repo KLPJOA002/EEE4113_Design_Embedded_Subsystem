@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cco550ym.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s 			page 1
   58 0010 5268     		ldr	r2, [r2, #4]
   59 0012 1268     		ldr	r2, [r2]
   60 0014 0344     		add	r3, r3, r0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cco550ym.s 			page 2
 
 
   61 0016 187A     		ldrb	r0, [r3, #8]	@ zero_extendqisi2
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s 			page 1
  119 0012 38BD     		pop	{r3, r4, r5, pc}
  120              	.L21:
  121              		.align	2
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cco550ym.s 			page 3
 
 
  122              	.L20:
@@ -158,28 +158,28 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s 			page 1
  160 0000 0020     		movs	r0, #0
  161 0002 7047     		bx	lr
  163              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cco550ym.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 diskio.c
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:18     .text.disk_status:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:24     .text.disk_status:00000000 disk_status
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:39     .text.disk_status:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:42     .text.disk_initialize:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:48     .text.disk_initialize:00000000 disk_initialize
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:75     .text.disk_initialize:00000028 $d
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:78     .text.disk_read:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:84     .text.disk_read:00000000 disk_read
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:99     .text.disk_read:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:102    .text.disk_write:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:108    .text.disk_write:00000000 disk_write
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:123    .text.disk_write:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:126    .text.disk_ioctl:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:132    .text.disk_ioctl:00000000 disk_ioctl
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:147    .text.disk_ioctl:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:150    .text.get_fattime:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccoBKxyZ.s:156    .text.get_fattime:00000000 get_fattime
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:18     .text.disk_status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:24     .text.disk_status:00000000 disk_status
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:39     .text.disk_status:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:42     .text.disk_initialize:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:48     .text.disk_initialize:00000000 disk_initialize
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:75     .text.disk_initialize:00000028 $d
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:78     .text.disk_read:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:84     .text.disk_read:00000000 disk_read
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:99     .text.disk_read:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:102    .text.disk_write:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:108    .text.disk_write:00000000 disk_write
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:123    .text.disk_write:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:126    .text.disk_ioctl:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:132    .text.disk_ioctl:00000000 disk_ioctl
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:147    .text.disk_ioctl:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:150    .text.get_fattime:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cco550ym.s:156    .text.get_fattime:00000000 get_fattime
 
 UNDEFINED SYMBOLS
 disk

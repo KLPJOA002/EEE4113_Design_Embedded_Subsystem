@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s 			page 1
   59              		.weak	SX1278_hw_SPICommand
   60              		.syntax unified
   61              		.thumb
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s 			page 2
 
 
   62              		.thumb_func
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s 			page 1
  119 003a 10BD     		pop	{r4, pc}
  121              		.section	.text.SX1278_hw_DelayMs,"ax",%progbits
  122              		.align	1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s 			page 3
 
 
  123              		.weak	SX1278_hw_DelayMs
@@ -176,25 +176,25 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s 			page 1
  180 0010 0120     		moveq	r0, #1
  181 0012 08BD     		pop	{r3, pc}
  183              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 SX1278_hw.c
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:18     .text.SX1278_hw_SetNSS:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:24     .text.SX1278_hw_SetNSS:00000000 SX1278_hw_SetNSS
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:38     .text.SX1278_hw_init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:44     .text.SX1278_hw_init:00000000 SX1278_hw_init
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:58     .text.SX1278_hw_SPICommand:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:64     .text.SX1278_hw_SPICommand:00000000 SX1278_hw_SPICommand
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:88     .text.SX1278_hw_SPIReadByte:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:94     .text.SX1278_hw_SPIReadByte:00000000 SX1278_hw_SPIReadByte
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:122    .text.SX1278_hw_DelayMs:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:128    .text.SX1278_hw_DelayMs:00000000 SX1278_hw_DelayMs
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:136    .text.SX1278_hw_Reset:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:142    .text.SX1278_hw_Reset:00000000 SX1278_hw_Reset
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:164    .text.SX1278_hw_GetDIO0:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccwdDDbX.s:170    .text.SX1278_hw_GetDIO0:00000000 SX1278_hw_GetDIO0
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:18     .text.SX1278_hw_SetNSS:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:24     .text.SX1278_hw_SetNSS:00000000 SX1278_hw_SetNSS
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:38     .text.SX1278_hw_init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:44     .text.SX1278_hw_init:00000000 SX1278_hw_init
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:58     .text.SX1278_hw_SPICommand:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:64     .text.SX1278_hw_SPICommand:00000000 SX1278_hw_SPICommand
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:88     .text.SX1278_hw_SPIReadByte:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:94     .text.SX1278_hw_SPIReadByte:00000000 SX1278_hw_SPIReadByte
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:122    .text.SX1278_hw_DelayMs:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:128    .text.SX1278_hw_DelayMs:00000000 SX1278_hw_DelayMs
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:136    .text.SX1278_hw_Reset:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:142    .text.SX1278_hw_Reset:00000000 SX1278_hw_Reset
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:164    .text.SX1278_hw_GetDIO0:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccshHmfk.s:170    .text.SX1278_hw_GetDIO0:00000000 SX1278_hw_GetDIO0
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

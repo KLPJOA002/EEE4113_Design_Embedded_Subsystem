@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
   57              		.global	HAL_I2C_MspInit
   58              		.syntax unified
   59              		.thumb
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 2
 
 
   60              		.thumb_func
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
  115 006c 0193     		str	r3, [sp, #4]
  116 006e 019B     		ldr	r3, [sp, #4]
  117 0070 D9E7     		b	.L5
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 3
 
 
  118              	.L11:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
  172 00f2 236B     		ldr	r3, [r4, #48]
  173 00f4 43F00203 		orr	r3, r3, #2
  174 00f8 2363     		str	r3, [r4, #48]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 4
 
 
  175 00fa 236B     		ldr	r3, [r4, #48]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
  231 0004 1D4A     		ldr	r2, .L23
  232 0006 9342     		cmp	r3, r2
  233 0008 06D0     		beq	.L20
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 5
 
 
  234 000a 1D4A     		ldr	r2, .L23+4
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
  289              		.section	.text.HAL_SPI_MspInit,"ax",%progbits
  290              		.align	1
  291              		.global	HAL_SPI_MspInit
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 6
 
 
  292              		.syntax unified
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
  347 0062 2348     		ldr	r0, .L33+12
  348 0064 FFF7FEFF 		bl	HAL_GPIO_Init
  349 0068 2248     		ldr	r0, .L33+16
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 7
 
 
  350 006a 234B     		ldr	r3, .L33+20
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
  404              	.L34:
  405              		.align	2
  406              	.L33:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 8
 
 
  407 00e4 00300140 		.word	1073819648
@@ -478,104 +478,174 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 1
  464              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
  465              		.align	1
  466              		.global	HAL_TIM_Base_MspInit
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 9
 
 
  467              		.syntax unified
  468              		.thumb
  469              		.thumb_func
  471              	HAL_TIM_Base_MspInit:
- 472              		@ args = 0, pretend = 0, frame = 8
+ 472              		@ args = 0, pretend = 0, frame = 16
  473              		@ frame_needed = 0, uses_anonymous_args = 0
- 474 0000 0268     		ldr	r2, [r0]
- 475 0002 0E4B     		ldr	r3, .L50
- 476 0004 9A42     		cmp	r2, r3
- 477 0006 00D0     		beq	.L49
- 478 0008 7047     		bx	lr
- 479              	.L49:
- 480 000a 00B5     		push	{lr}
- 481 000c 83B0     		sub	sp, sp, #12
- 482 000e 0021     		movs	r1, #0
- 483 0010 0191     		str	r1, [sp, #4]
- 484 0012 03F57043 		add	r3, r3, #61440
- 485 0016 5A6C     		ldr	r2, [r3, #68]
- 486 0018 42F48022 		orr	r2, r2, #262144
- 487 001c 5A64     		str	r2, [r3, #68]
- 488 001e 5B6C     		ldr	r3, [r3, #68]
- 489 0020 03F48023 		and	r3, r3, #262144
- 490 0024 0193     		str	r3, [sp, #4]
- 491 0026 019B     		ldr	r3, [sp, #4]
- 492 0028 0A46     		mov	r2, r1
- 493 002a 1A20     		movs	r0, #26
- 494 002c FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 495 0030 1A20     		movs	r0, #26
- 496 0032 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 497 0036 03B0     		add	sp, sp, #12
- 498              		@ sp needed
- 499 0038 5DF804FB 		ldr	pc, [sp], #4
- 500              	.L51:
- 501              		.align	2
- 502              	.L50:
- 503 003c 00480140 		.word	1073825792
- 505              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
- 506              		.align	1
- 507              		.global	HAL_TIM_Base_MspDeInit
- 508              		.syntax unified
- 509              		.thumb
- 510              		.thumb_func
- 512              	HAL_TIM_Base_MspDeInit:
- 513              		@ args = 0, pretend = 0, frame = 0
- 514              		@ frame_needed = 0, uses_anonymous_args = 0
- 515 0000 08B5     		push	{r3, lr}
- 516 0002 0268     		ldr	r2, [r0]
- 517 0004 064B     		ldr	r3, .L56
- 518 0006 9A42     		cmp	r2, r3
- 519 0008 00D0     		beq	.L55
- 520              	.L52:
- 521 000a 08BD     		pop	{r3, pc}
- 522              	.L55:
- 523 000c 054A     		ldr	r2, .L56+4
- 524 000e 536C     		ldr	r3, [r2, #68]
- 525 0010 23F48023 		bic	r3, r3, #262144
- 526 0014 5364     		str	r3, [r2, #68]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 10
+ 474 0000 00B5     		push	{lr}
+ 475 0002 85B0     		sub	sp, sp, #20
+ 476 0004 0368     		ldr	r3, [r0]
+ 477 0006 244A     		ldr	r2, .L51
+ 478 0008 9342     		cmp	r3, r2
+ 479 000a 08D0     		beq	.L48
+ 480 000c 234A     		ldr	r2, .L51+4
+ 481 000e 9342     		cmp	r3, r2
+ 482 0010 19D0     		beq	.L49
+ 483 0012 234A     		ldr	r2, .L51+8
+ 484 0014 9342     		cmp	r3, r2
+ 485 0016 2AD0     		beq	.L50
+ 486              	.L43:
+ 487 0018 05B0     		add	sp, sp, #20
+ 488              		@ sp needed
+ 489 001a 5DF804FB 		ldr	pc, [sp], #4
+ 490              	.L48:
+ 491 001e 0021     		movs	r1, #0
+ 492 0020 0191     		str	r1, [sp, #4]
+ 493 0022 204B     		ldr	r3, .L51+12
+ 494 0024 5A6C     		ldr	r2, [r3, #68]
+ 495 0026 42F48032 		orr	r2, r2, #65536
+ 496 002a 5A64     		str	r2, [r3, #68]
+ 497 002c 5B6C     		ldr	r3, [r3, #68]
+ 498 002e 03F48033 		and	r3, r3, #65536
+ 499 0032 0193     		str	r3, [sp, #4]
+ 500 0034 019B     		ldr	r3, [sp, #4]
+ 501 0036 0A46     		mov	r2, r1
+ 502 0038 1820     		movs	r0, #24
+ 503 003a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 504 003e 1820     		movs	r0, #24
+ 505 0040 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 506 0044 E8E7     		b	.L43
+ 507              	.L49:
+ 508 0046 0021     		movs	r1, #0
+ 509 0048 0291     		str	r1, [sp, #8]
+ 510 004a 164B     		ldr	r3, .L51+12
+ 511 004c 5A6C     		ldr	r2, [r3, #68]
+ 512 004e 42F40032 		orr	r2, r2, #131072
+ 513 0052 5A64     		str	r2, [r3, #68]
+ 514 0054 5B6C     		ldr	r3, [r3, #68]
+ 515 0056 03F40033 		and	r3, r3, #131072
+ 516 005a 0293     		str	r3, [sp, #8]
+ 517 005c 029B     		ldr	r3, [sp, #8]
+ 518 005e 0A46     		mov	r2, r1
+ 519 0060 1920     		movs	r0, #25
+ 520 0062 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 521 0066 1920     		movs	r0, #25
+ 522 0068 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 523 006c D4E7     		b	.L43
+ 524              	.L50:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 10
 
 
- 527 0016 1A20     		movs	r0, #26
- 528 0018 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
- 529 001c F5E7     		b	.L52
- 530              	.L57:
- 531 001e 00BF     		.align	2
- 532              	.L56:
- 533 0020 00480140 		.word	1073825792
- 534 0024 00380240 		.word	1073887232
- 536              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s 			page 11
+ 525 006e 0021     		movs	r1, #0
+ 526 0070 0391     		str	r1, [sp, #12]
+ 527 0072 0C4B     		ldr	r3, .L51+12
+ 528 0074 5A6C     		ldr	r2, [r3, #68]
+ 529 0076 42F48022 		orr	r2, r2, #262144
+ 530 007a 5A64     		str	r2, [r3, #68]
+ 531 007c 5B6C     		ldr	r3, [r3, #68]
+ 532 007e 03F48023 		and	r3, r3, #262144
+ 533 0082 0393     		str	r3, [sp, #12]
+ 534 0084 039B     		ldr	r3, [sp, #12]
+ 535 0086 0A46     		mov	r2, r1
+ 536 0088 1A20     		movs	r0, #26
+ 537 008a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 538 008e 1A20     		movs	r0, #26
+ 539 0090 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 540 0094 C0E7     		b	.L43
+ 541              	.L52:
+ 542 0096 00BF     		.align	2
+ 543              	.L51:
+ 544 0098 00400140 		.word	1073823744
+ 545 009c 00440140 		.word	1073824768
+ 546 00a0 00480140 		.word	1073825792
+ 547 00a4 00380240 		.word	1073887232
+ 549              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
+ 550              		.align	1
+ 551              		.global	HAL_TIM_Base_MspDeInit
+ 552              		.syntax unified
+ 553              		.thumb
+ 554              		.thumb_func
+ 556              	HAL_TIM_Base_MspDeInit:
+ 557              		@ args = 0, pretend = 0, frame = 0
+ 558              		@ frame_needed = 0, uses_anonymous_args = 0
+ 559 0000 08B5     		push	{r3, lr}
+ 560 0002 0368     		ldr	r3, [r0]
+ 561 0004 134A     		ldr	r2, .L61
+ 562 0006 9342     		cmp	r3, r2
+ 563 0008 06D0     		beq	.L58
+ 564 000a 134A     		ldr	r2, .L61+4
+ 565 000c 9342     		cmp	r3, r2
+ 566 000e 0DD0     		beq	.L59
+ 567 0010 124A     		ldr	r2, .L61+8
+ 568 0012 9342     		cmp	r3, r2
+ 569 0014 14D0     		beq	.L60
+ 570              	.L53:
+ 571 0016 08BD     		pop	{r3, pc}
+ 572              	.L58:
+ 573 0018 02F57842 		add	r2, r2, #63488
+ 574 001c 536C     		ldr	r3, [r2, #68]
+ 575 001e 23F48033 		bic	r3, r3, #65536
+ 576 0022 5364     		str	r3, [r2, #68]
+ 577 0024 1820     		movs	r0, #24
+ 578 0026 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 579 002a F4E7     		b	.L53
+ 580              	.L59:
+ 581 002c 02F57442 		add	r2, r2, #62464
+ 582 0030 536C     		ldr	r3, [r2, #68]
+ 583 0032 23F40033 		bic	r3, r3, #131072
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 11
+
+
+ 584 0036 5364     		str	r3, [r2, #68]
+ 585 0038 1920     		movs	r0, #25
+ 586 003a FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 587 003e EAE7     		b	.L53
+ 588              	.L60:
+ 589 0040 02F57042 		add	r2, r2, #61440
+ 590 0044 536C     		ldr	r3, [r2, #68]
+ 591 0046 23F48023 		bic	r3, r3, #262144
+ 592 004a 5364     		str	r3, [r2, #68]
+ 593 004c 1A20     		movs	r0, #26
+ 594 004e FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 595 0052 E0E7     		b	.L53
+ 596              	.L62:
+ 597              		.align	2
+ 598              	.L61:
+ 599 0054 00400140 		.word	1073823744
+ 600 0058 00440140 		.word	1073824768
+ 601 005c 00480140 		.word	1073825792
+ 603              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_msp.c
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:18     .text.HAL_MspInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:24     .text.HAL_MspInit:00000000 HAL_MspInit
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:53     .text.HAL_MspInit:00000034 $d
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:56     .text.HAL_I2C_MspInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:62     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:212    .text.HAL_I2C_MspInit:0000014c $d
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:220    .text.HAL_I2C_MspDeInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:226    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:283    .text.HAL_I2C_MspDeInit:0000007c $d
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:290    .text.HAL_SPI_MspInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:296    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:407    .text.HAL_SPI_MspInit:000000e4 $d
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:416    .text.HAL_SPI_MspDeInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:422    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:459    .text.HAL_SPI_MspDeInit:00000048 $d
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:465    .text.HAL_TIM_Base_MspInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:471    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:503    .text.HAL_TIM_Base_MspInit:0000003c $d
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:506    .text.HAL_TIM_Base_MspDeInit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:512    .text.HAL_TIM_Base_MspDeInit:00000000 HAL_TIM_Base_MspDeInit
-C:\Users\joabk\AppData\Local\Temp\ccXgMXtB.s:533    .text.HAL_TIM_Base_MspDeInit:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:18     .text.HAL_MspInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:24     .text.HAL_MspInit:00000000 HAL_MspInit
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:53     .text.HAL_MspInit:00000034 $d
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:56     .text.HAL_I2C_MspInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:62     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:212    .text.HAL_I2C_MspInit:0000014c $d
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:220    .text.HAL_I2C_MspDeInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:226    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:283    .text.HAL_I2C_MspDeInit:0000007c $d
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:290    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:296    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:407    .text.HAL_SPI_MspInit:000000e4 $d
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:416    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:422    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:459    .text.HAL_SPI_MspDeInit:00000048 $d
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:465    .text.HAL_TIM_Base_MspInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:471    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:544    .text.HAL_TIM_Base_MspInit:00000098 $d
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:550    .text.HAL_TIM_Base_MspDeInit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:556    .text.HAL_TIM_Base_MspDeInit:00000000 HAL_TIM_Base_MspDeInit
+C:\Users\joabk\AppData\Local\Temp\ccQPt7Tg.s:599    .text.HAL_TIM_Base_MspDeInit:00000054 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_Init

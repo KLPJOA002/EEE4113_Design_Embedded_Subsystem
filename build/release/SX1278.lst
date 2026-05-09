@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
   58 0014 2068     		ldr	r0, [r4]
   59 0016 FFF7FEFF 		bl	SX1278_hw_SPICommand
   60 001a 2946     		mov	r1, r5
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 2
 
 
   61 001c 2068     		ldr	r0, [r4]
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  119 0000 012B     		cmp	r3, #1
  120 0002 1CD9     		bls	.L18
  121 0004 F8B5     		push	{r3, r4, r5, r6, r7, lr}
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 3
 
 
  122 0006 0546     		mov	r5, r0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  180 0002 0446     		mov	r4, r0
  181 0004 0822     		movs	r2, #8
  182 0006 0121     		movs	r1, #1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 4
 
 
  183 0008 FFF7FEFF 		bl	SX1278_SPIWrite
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  241 004a 1222     		movs	r2, #18
  242 004c 3921     		movs	r1, #57
  243 004e 2046     		mov	r0, r4
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 5
 
 
  244 0050 FFF7FEFF 		bl	SX1278_SPIWrite
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  298 00ca FFF7FEFF 		bl	SX1278_SPIWrite
  299 00ce 0822     		movs	r2, #8
  300 00d0 1F21     		movs	r1, #31
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 6
 
 
  301 00d2 2046     		mov	r0, r4
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  355 0148 2046     		mov	r0, r4
  356 014a FFF7FEFF 		bl	SX1278_SPIWrite
  357 014e 3121     		movs	r1, #49
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 7
 
 
  358 0150 2046     		mov	r0, r4
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  416 0018 FF22     		movs	r2, #255
  417 001a 2421     		movs	r1, #36
  418 001c 2846     		mov	r0, r5
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 8
 
 
  419 001e FFF7FEFF 		bl	SX1278_SPIWrite
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  474              		.global	SX1278_LoRaRxPacket
  475              		.syntax unified
  476              		.thumb
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 9
 
 
  477              		.thumb_func
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  534 0002 0546     		mov	r5, r0
  535 0004 0E46     		mov	r6, r1
  536 0006 1446     		mov	r4, r2
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 10
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 10
 
 
  537 0008 4175     		strb	r1, [r0, #21]
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  592              		.syntax unified
  593              		.thumb
  594              		.thumb_func
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 11
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 11
 
 
  596              	SX1278_LoRaTxPacket:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  652 0004 1646     		mov	r6, r2
  653 0006 1D46     		mov	r5, r3
  654 0008 0068     		ldr	r0, [r0]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 12
 
 
  655 000a FFF7FEFF 		bl	SX1278_hw_init
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  713 0000 08B5     		push	{r3, lr}
  714 0002 FFF7FEFF 		bl	SX1278_LoRaEntryRx
  715 0006 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 13
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 13
 
 
  717              		.section	.text.SX1278_available,"ax",%progbits
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  776 000c 08BD     		pop	{r3, pc}
  778              		.section	.text.SX1278_RSSI,"ax",%progbits
  779              		.align	1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 14
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 14
 
 
  780              		.global	SX1278_RSSI
@@ -819,67 +819,67 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 1
  824              	SX1278_Power:
  825 0000 FFFCF9F6 		.ascii	"\377\374\371\366"
  826              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 15
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 SX1278.c
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:18     .text.SX1278_SPIRead:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:24     .text.SX1278_SPIRead:00000000 SX1278_SPIRead
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:41     .text.SX1278_SPIWrite:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:47     .text.SX1278_SPIWrite:00000000 SX1278_SPIWrite
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:69     .text.SX1278_SPIBurstRead:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:75     .text.SX1278_SPIBurstRead:00000000 SX1278_SPIBurstRead
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:110    .text.SX1278_SPIBurstWrite:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:116    .text.SX1278_SPIBurstWrite:00000000 SX1278_SPIBurstWrite
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:151    .text.SX1278_standby:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:157    .text.SX1278_standby:00000000 SX1278_standby
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:170    .text.SX1278_sleep:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:176    .text.SX1278_sleep:00000000 SX1278_sleep
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:189    .text.SX1278_entryLoRa:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:195    .text.SX1278_entryLoRa:00000000 SX1278_entryLoRa
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:206    .text.SX1278_config:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:212    .text.SX1278_config:00000000 SX1278_config
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:373    .text.SX1278_config:00000174 $d
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:824    .rodata.SX1278_Power:00000000 SX1278_Power
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:818    .rodata.SX1278_SpreadFactor:00000000 SX1278_SpreadFactor
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:812    .rodata.SX1278_LoRaBandwidth:00000000 SX1278_LoRaBandwidth
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:806    .rodata.SX1278_CodingRate:00000000 SX1278_CodingRate
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:800    .rodata.SX1278_CRC_Sum:00000000 SX1278_CRC_Sum
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:381    .text.SX1278_clearLoRaIrq:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:387    .text.SX1278_clearLoRaIrq:00000000 SX1278_clearLoRaIrq
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:397    .text.SX1278_LoRaEntryRx:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:403    .text.SX1278_LoRaEntryRx:00000000 SX1278_LoRaEntryRx
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:473    .text.SX1278_LoRaRxPacket:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:479    .text.SX1278_LoRaRxPacket:00000000 SX1278_LoRaRxPacket
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:524    .text.SX1278_LoRaEntryTx:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:530    .text.SX1278_LoRaEntryTx:00000000 SX1278_LoRaEntryTx
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:590    .text.SX1278_LoRaTxPacket:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:596    .text.SX1278_LoRaTxPacket:00000000 SX1278_LoRaTxPacket
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:641    .text.SX1278_init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:647    .text.SX1278_init:00000000 SX1278_init
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:675    .text.SX1278_transmit:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:681    .text.SX1278_transmit:00000000 SX1278_transmit
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:704    .text.SX1278_receive:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:710    .text.SX1278_receive:00000000 SX1278_receive
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:718    .text.SX1278_available:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:724    .text.SX1278_available:00000000 SX1278_available
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:732    .text.SX1278_read:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:738    .text.SX1278_read:00000000 SX1278_read
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:762    .text.SX1278_RSSI_LoRa:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:768    .text.SX1278_RSSI_LoRa:00000000 SX1278_RSSI_LoRa
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:779    .text.SX1278_RSSI:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:785    .text.SX1278_RSSI:00000000 SX1278_RSSI
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:797    .rodata.SX1278_CRC_Sum:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:803    .rodata.SX1278_CodingRate:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:809    .rodata.SX1278_LoRaBandwidth:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:815    .rodata.SX1278_SpreadFactor:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s:821    .rodata.SX1278_Power:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:18     .text.SX1278_SPIRead:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:24     .text.SX1278_SPIRead:00000000 SX1278_SPIRead
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:41     .text.SX1278_SPIWrite:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:47     .text.SX1278_SPIWrite:00000000 SX1278_SPIWrite
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:69     .text.SX1278_SPIBurstRead:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:75     .text.SX1278_SPIBurstRead:00000000 SX1278_SPIBurstRead
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:110    .text.SX1278_SPIBurstWrite:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:116    .text.SX1278_SPIBurstWrite:00000000 SX1278_SPIBurstWrite
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:151    .text.SX1278_standby:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:157    .text.SX1278_standby:00000000 SX1278_standby
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:170    .text.SX1278_sleep:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:176    .text.SX1278_sleep:00000000 SX1278_sleep
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:189    .text.SX1278_entryLoRa:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:195    .text.SX1278_entryLoRa:00000000 SX1278_entryLoRa
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:206    .text.SX1278_config:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:212    .text.SX1278_config:00000000 SX1278_config
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:373    .text.SX1278_config:00000174 $d
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:824    .rodata.SX1278_Power:00000000 SX1278_Power
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:818    .rodata.SX1278_SpreadFactor:00000000 SX1278_SpreadFactor
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:812    .rodata.SX1278_LoRaBandwidth:00000000 SX1278_LoRaBandwidth
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:806    .rodata.SX1278_CodingRate:00000000 SX1278_CodingRate
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:800    .rodata.SX1278_CRC_Sum:00000000 SX1278_CRC_Sum
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:381    .text.SX1278_clearLoRaIrq:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:387    .text.SX1278_clearLoRaIrq:00000000 SX1278_clearLoRaIrq
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:397    .text.SX1278_LoRaEntryRx:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:403    .text.SX1278_LoRaEntryRx:00000000 SX1278_LoRaEntryRx
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:473    .text.SX1278_LoRaRxPacket:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:479    .text.SX1278_LoRaRxPacket:00000000 SX1278_LoRaRxPacket
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:524    .text.SX1278_LoRaEntryTx:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:530    .text.SX1278_LoRaEntryTx:00000000 SX1278_LoRaEntryTx
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:590    .text.SX1278_LoRaTxPacket:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:596    .text.SX1278_LoRaTxPacket:00000000 SX1278_LoRaTxPacket
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:641    .text.SX1278_init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:647    .text.SX1278_init:00000000 SX1278_init
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:675    .text.SX1278_transmit:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:681    .text.SX1278_transmit:00000000 SX1278_transmit
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:704    .text.SX1278_receive:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:710    .text.SX1278_receive:00000000 SX1278_receive
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:718    .text.SX1278_available:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:724    .text.SX1278_available:00000000 SX1278_available
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:732    .text.SX1278_read:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:738    .text.SX1278_read:00000000 SX1278_read
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:762    .text.SX1278_RSSI_LoRa:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:768    .text.SX1278_RSSI_LoRa:00000000 SX1278_RSSI_LoRa
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:779    .text.SX1278_RSSI:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:785    .text.SX1278_RSSI:00000000 SX1278_RSSI
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:797    .rodata.SX1278_CRC_Sum:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:803    .rodata.SX1278_CodingRate:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:809    .rodata.SX1278_LoRaBandwidth:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:815    .rodata.SX1278_SpreadFactor:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s:821    .rodata.SX1278_Power:00000000 $d
 
 UNDEFINED SYMBOLS
 SX1278_hw_SPICommand
 SX1278_hw_SPIReadByte
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccKWFxIQ.s 			page 16
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMZC39h.s 			page 16
 
 
 SX1278_hw_SetNSS

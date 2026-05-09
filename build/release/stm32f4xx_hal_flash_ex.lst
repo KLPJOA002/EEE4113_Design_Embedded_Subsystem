@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
   58 000a 1A7D     		ldrb	r2, [r3, #20]	@ zero_extendqisi2
   59 000c 0243     		orrs	r2, r2, r0
   60 000e 1A75     		strb	r2, [r3, #20]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 2
 
 
   61 0010 0020     		movs	r0, #0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  121 000a 587D     		ldrb	r0, [r3, #21]	@ zero_extendqisi2
  122 000c C0B2     		uxtb	r0, r0
  123 000e AA28     		cmp	r0, #170
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 3
 
 
  124 0010 00D0     		beq	.L14
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  184              	FLASH_OB_DisableWRP:
  185              		@ args = 0, pretend = 0, frame = 0
  186              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 4
 
 
  187 0000 10B5     		push	{r4, lr}
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  245 0014 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
  246 0016 03F01F03 		and	r3, r3, #31
  247 001a 43EA0601 		orr	r1, r3, r6
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 5
 
 
  248 001e 41EA0502 		orr	r2, r1, r5
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  306              	.L50:
  307              		.align	2
  308              	.L49:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 6
 
 
  309 001c 003C0240 		.word	1073888256
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  365 0056 207C     		ldrb	r0, [r4, #16]	@ zero_extendqisi2
  366 0058 FFF7FEFF 		bl	FLASH_OB_RDP_LevelConfig
  367 005c EFE7     		b	.L55
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 7
 
 
  368              	.L66:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  426 000c 012B     		cmp	r3, #1
  427 000e 03D0     		beq	.L77
  428 0010 0089     		ldrh	r0, [r0, #8]
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 8
 
 
  429 0012 FFF7FEFF 		bl	FLASH_OB_DisablePCROP
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  489              	HAL_FLASHEx_OB_DeSelectPCROP:
  490              		@ args = 0, pretend = 0, frame = 0
  491              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 9
 
 
  492              		@ link register save eliminated.
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  548              	.L92:
  549 0048 003C0240 		.word	1073888256
  551              		.section	.text.HAL_FLASHEx_Erase_IT,"ax",%progbits
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 10
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 10
 
 
  552              		.align	1
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  608              		.thumb_func
  610              	FLASH_FlushCaches:
  611              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 11
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 11
 
 
  612              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  668 0004 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
  669 0006 012B     		cmp	r3, #1
  670 0008 3ED0     		beq	.L114
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 12
 
 
  671 000a 0446     		mov	r4, r0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  725              	.L107:
  726 0084 3846     		mov	r0, r7
  727 0086 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 13
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 13
 
 
  728              	.L114:
@@ -730,78 +730,78 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 1
  734 008c 00000000 		.word	pFlash
  735 0090 003C0240 		.word	1073888256
  737              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 14
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_flash_ex.c
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:18     .text.FLASH_MassErase:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:23     .text.FLASH_MassErase:00000000 FLASH_MassErase
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:42     .text.FLASH_MassErase:00000020 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:45     .text.FLASH_OB_BOR_LevelConfig:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:50     .text.FLASH_OB_BOR_LevelConfig:00000000 FLASH_OB_BOR_LevelConfig
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:66     .text.FLASH_OB_BOR_LevelConfig:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:69     .text.FLASH_OB_GetUser:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:74     .text.FLASH_OB_GetUser:00000000 FLASH_OB_GetUser
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:85     .text.FLASH_OB_GetUser:0000000c $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:88     .text.FLASH_OB_GetWRP:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:93     .text.FLASH_OB_GetWRP:00000000 FLASH_OB_GetWRP
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:104    .text.FLASH_OB_GetWRP:00000008 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:107    .text.FLASH_OB_GetRDP:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:112    .text.FLASH_OB_GetRDP:00000000 FLASH_OB_GetRDP
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:131    .text.FLASH_OB_GetRDP:00000018 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:134    .text.FLASH_OB_GetBOR:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:139    .text.FLASH_OB_GetBOR:00000000 FLASH_OB_GetBOR
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:150    .text.FLASH_OB_GetBOR:0000000c $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:153    .text.FLASH_OB_EnableWRP:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:158    .text.FLASH_OB_EnableWRP:00000000 FLASH_OB_EnableWRP
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:176    .text.FLASH_OB_EnableWRP:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:179    .text.FLASH_OB_DisableWRP:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:184    .text.FLASH_OB_DisableWRP:00000000 FLASH_OB_DisableWRP
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:203    .text.FLASH_OB_DisableWRP:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:206    .text.FLASH_OB_RDP_LevelConfig:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:211    .text.FLASH_OB_RDP_LevelConfig:00000000 FLASH_OB_RDP_LevelConfig
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:226    .text.FLASH_OB_RDP_LevelConfig:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:229    .text.FLASH_OB_UserConfig:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:234    .text.FLASH_OB_UserConfig:00000000 FLASH_OB_UserConfig
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:256    .text.FLASH_OB_UserConfig:00000028 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:259    .text.FLASH_OB_EnablePCROP:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:264    .text.FLASH_OB_EnablePCROP:00000000 FLASH_OB_EnablePCROP
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:283    .text.FLASH_OB_EnablePCROP:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:286    .text.FLASH_OB_DisablePCROP:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:291    .text.FLASH_OB_DisablePCROP:00000000 FLASH_OB_DisablePCROP
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:309    .text.FLASH_OB_DisablePCROP:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:312    .text.HAL_FLASHEx_OBProgram:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:318    .text.HAL_FLASHEx_OBProgram:00000000 HAL_FLASHEx_OBProgram
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:385    .text.HAL_FLASHEx_OBProgram:00000080 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:388    .text.HAL_FLASHEx_OBGetConfig:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:394    .text.HAL_FLASHEx_OBGetConfig:00000000 HAL_FLASHEx_OBGetConfig
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:412    .text.HAL_FLASHEx_AdvOBProgram:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:418    .text.HAL_FLASHEx_AdvOBProgram:00000000 HAL_FLASHEx_AdvOBProgram
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:441    .text.HAL_FLASHEx_AdvOBGetConfig:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:447    .text.HAL_FLASHEx_AdvOBGetConfig:00000000 HAL_FLASHEx_AdvOBGetConfig
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:458    .text.HAL_FLASHEx_AdvOBGetConfig:00000008 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:461    .text.HAL_FLASHEx_OB_SelectPCROP:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:467    .text.HAL_FLASHEx_OB_SelectPCROP:00000000 HAL_FLASHEx_OB_SelectPCROP
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:480    .text.HAL_FLASHEx_OB_SelectPCROP:00000010 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:483    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:489    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000000 HAL_FLASHEx_OB_DeSelectPCROP
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:502    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000010 $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:505    .text.FLASH_Erase_Sector:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:511    .text.FLASH_Erase_Sector:00000000 FLASH_Erase_Sector
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:549    .text.FLASH_Erase_Sector:00000048 $d
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s 			page 15
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:18     .text.FLASH_MassErase:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:23     .text.FLASH_MassErase:00000000 FLASH_MassErase
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:42     .text.FLASH_MassErase:00000020 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:45     .text.FLASH_OB_BOR_LevelConfig:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:50     .text.FLASH_OB_BOR_LevelConfig:00000000 FLASH_OB_BOR_LevelConfig
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:66     .text.FLASH_OB_BOR_LevelConfig:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:69     .text.FLASH_OB_GetUser:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:74     .text.FLASH_OB_GetUser:00000000 FLASH_OB_GetUser
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:85     .text.FLASH_OB_GetUser:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:88     .text.FLASH_OB_GetWRP:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:93     .text.FLASH_OB_GetWRP:00000000 FLASH_OB_GetWRP
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:104    .text.FLASH_OB_GetWRP:00000008 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:107    .text.FLASH_OB_GetRDP:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:112    .text.FLASH_OB_GetRDP:00000000 FLASH_OB_GetRDP
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:131    .text.FLASH_OB_GetRDP:00000018 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:134    .text.FLASH_OB_GetBOR:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:139    .text.FLASH_OB_GetBOR:00000000 FLASH_OB_GetBOR
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:150    .text.FLASH_OB_GetBOR:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:153    .text.FLASH_OB_EnableWRP:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:158    .text.FLASH_OB_EnableWRP:00000000 FLASH_OB_EnableWRP
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:176    .text.FLASH_OB_EnableWRP:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:179    .text.FLASH_OB_DisableWRP:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:184    .text.FLASH_OB_DisableWRP:00000000 FLASH_OB_DisableWRP
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:203    .text.FLASH_OB_DisableWRP:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:206    .text.FLASH_OB_RDP_LevelConfig:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:211    .text.FLASH_OB_RDP_LevelConfig:00000000 FLASH_OB_RDP_LevelConfig
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:226    .text.FLASH_OB_RDP_LevelConfig:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:229    .text.FLASH_OB_UserConfig:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:234    .text.FLASH_OB_UserConfig:00000000 FLASH_OB_UserConfig
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:256    .text.FLASH_OB_UserConfig:00000028 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:259    .text.FLASH_OB_EnablePCROP:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:264    .text.FLASH_OB_EnablePCROP:00000000 FLASH_OB_EnablePCROP
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:283    .text.FLASH_OB_EnablePCROP:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:286    .text.FLASH_OB_DisablePCROP:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:291    .text.FLASH_OB_DisablePCROP:00000000 FLASH_OB_DisablePCROP
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:309    .text.FLASH_OB_DisablePCROP:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:312    .text.HAL_FLASHEx_OBProgram:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:318    .text.HAL_FLASHEx_OBProgram:00000000 HAL_FLASHEx_OBProgram
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:385    .text.HAL_FLASHEx_OBProgram:00000080 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:388    .text.HAL_FLASHEx_OBGetConfig:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:394    .text.HAL_FLASHEx_OBGetConfig:00000000 HAL_FLASHEx_OBGetConfig
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:412    .text.HAL_FLASHEx_AdvOBProgram:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:418    .text.HAL_FLASHEx_AdvOBProgram:00000000 HAL_FLASHEx_AdvOBProgram
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:441    .text.HAL_FLASHEx_AdvOBGetConfig:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:447    .text.HAL_FLASHEx_AdvOBGetConfig:00000000 HAL_FLASHEx_AdvOBGetConfig
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:458    .text.HAL_FLASHEx_AdvOBGetConfig:00000008 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:461    .text.HAL_FLASHEx_OB_SelectPCROP:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:467    .text.HAL_FLASHEx_OB_SelectPCROP:00000000 HAL_FLASHEx_OB_SelectPCROP
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:480    .text.HAL_FLASHEx_OB_SelectPCROP:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:483    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:489    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000000 HAL_FLASHEx_OB_DeSelectPCROP
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:502    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:505    .text.FLASH_Erase_Sector:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:511    .text.FLASH_Erase_Sector:00000000 FLASH_Erase_Sector
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:549    .text.FLASH_Erase_Sector:00000048 $d
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s 			page 15
 
 
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:552    .text.HAL_FLASHEx_Erase_IT:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:558    .text.HAL_FLASHEx_Erase_IT:00000000 HAL_FLASHEx_Erase_IT
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:600    .text.HAL_FLASHEx_Erase_IT:0000004c $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:604    .text.FLASH_FlushCaches:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:610    .text.FLASH_FlushCaches:00000000 FLASH_FlushCaches
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:654    .text.FLASH_FlushCaches:0000005c $d
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:657    .text.HAL_FLASHEx_Erase:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:663    .text.HAL_FLASHEx_Erase:00000000 HAL_FLASHEx_Erase
-C:\Users\joabk\AppData\Local\Temp\ccJvDqgm.s:734    .text.HAL_FLASHEx_Erase:0000008c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:552    .text.HAL_FLASHEx_Erase_IT:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:558    .text.HAL_FLASHEx_Erase_IT:00000000 HAL_FLASHEx_Erase_IT
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:600    .text.HAL_FLASHEx_Erase_IT:0000004c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:604    .text.FLASH_FlushCaches:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:610    .text.FLASH_FlushCaches:00000000 FLASH_FlushCaches
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:654    .text.FLASH_FlushCaches:0000005c $d
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:657    .text.HAL_FLASHEx_Erase:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:663    .text.HAL_FLASHEx_Erase:00000000 HAL_FLASHEx_Erase
+C:\Users\joabk\AppData\Local\Temp\ccqumXPY.s:734    .text.HAL_FLASHEx_Erase:0000008c $d
 
 UNDEFINED SYMBOLS
 FLASH_WaitForLastOperation

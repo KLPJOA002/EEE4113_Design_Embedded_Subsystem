@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
   58              	.L7:
   59 000a FF20     		movs	r0, #255
   60 000c FFF7FEFF 		bl	xchg_spi
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 2
 
 
   61 0010 0446     		mov	r4, r0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  119 0014 00000240 		.word	1073872896
  121              		.section	.text.spiselect,"ax",%progbits
  122              		.align	1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 3
 
 
  123              		.syntax unified
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  180 0030 C5F30720 		ubfx	r0, r5, #8, #8
  181 0034 FFF7FEFF 		bl	xchg_spi
  182 0038 E8B2     		uxtb	r0, r5
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 4
 
 
  183 003a FFF7FEFF 		bl	xchg_spi
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  239 000a 0248     		ldr	r0, .L39
  240 000c FFF7FEFF 		bl	HAL_SPI_Transmit
  241 0010 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 5
 
 
  242              	.L40:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  300 0000 10B5     		push	{r4, lr}
  301 0002 0446     		mov	r4, r0
  302 0004 FFF7FEFF 		bl	HAL_GetTick
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 6
 
 
  303 0008 024B     		ldr	r3, .L50
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  361 0016 03D1     		bne	.L57
  362 0018 FFF7FEFF 		bl	SPI_Timer_Status
  363 001c 0028     		cmp	r0, #0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 7
 
 
  364 001e F5D1     		bne	.L58
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  420 003a 0021     		movs	r1, #0
  421 003c 0846     		mov	r0, r1
  422 003e FFF7FEFF 		bl	send_cmd
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 8
 
 
  423 0042 0546     		mov	r5, r0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  477 00ba FFF7FEFF 		bl	SPI_Timer_Status
  478 00be 30B1     		cbz	r0, .L72
  479 00c0 4FF08041 		mov	r1, #1073741824
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 9
 
 
  480 00c4 A920     		movs	r0, #169
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  534 0138 A925     		movs	r5, #169
  535 013a EEE7     		b	.L78
  536              	.L96:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 10
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 10
 
 
  537 013c 4FF40071 		mov	r1, #512
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  595              		@ frame_needed = 0, uses_anonymous_args = 0
  596 0000 0028     		cmp	r0, #0
  597 0002 39D1     		bne	.L111
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 11
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 11
 
 
  598 0004 38B5     		push	{r3, r4, r5, lr}
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  652 0078 0420     		movs	r0, #4
  653 007a 7047     		bx	lr
  654              	.L112:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 12
 
 
  655 007c 0420     		movs	r0, #4
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  711 004c 18B1     		cbz	r0, .L128
  712 004e 05F50075 		add	r5, r5, #512
  713 0052 013C     		subs	r4, r4, #1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 13
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 13
 
 
  714 0054 F6D1     		bne	.L129
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  769              		.syntax unified
  770              		.thumb
  771              		.thumb_func
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 14
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 14
 
 
  773              	USER_SPI_ioctl:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  827 0070 02F00F02 		and	r2, r2, #15
  828 0074 9DF80A30 		ldrb	r3, [sp, #10]	@ zero_extendqisi2
  829 0078 02EBD312 		add	r2, r2, r3, lsr #7
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 15
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 15
 
 
  830 007c 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  884              	.L154:
  885 0102 002C     		cmp	r4, #0
  886 0104 F8D1     		bne	.L155
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 16
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 16
 
 
  887 0106 9DF80A20 		ldrb	r2, [sp, #10]	@ zero_extendqisi2
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  941 0186 13F0060F 		tst	r3, #6
  942 018a 01D1     		bne	.L180
  943 018c 0124     		movs	r4, #1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 17
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 17
 
 
  944 018e 5CE7     		b	.L146
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  998 0200 23E7     		b	.L146
  999              	.L164:
  1000 0202 2C46     		mov	r4, r5
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 18
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 18
 
 
  1001 0204 21E7     		b	.L146
@@ -1059,67 +1059,67 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 1
  1045              	Stat:
  1046 0000 01       		.byte	1
  1047              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 19
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 user_diskio_spi.c
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:18     .text.xchg_spi:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:23     .text.xchg_spi:00000000 xchg_spi
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:43     .text.xchg_spi:00000028 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:46     .text.wait_ready:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:51     .text.wait_ready:00000000 wait_ready
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:76     .text.rcvr_spi_multi:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:81     .text.rcvr_spi_multi:00000000 rcvr_spi_multi
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:100    .text.despiselect:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:105    .text.despiselect:00000000 despiselect
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:119    .text.despiselect:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:122    .text.spiselect:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:127    .text.spiselect:00000000 spiselect
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:151    .text.spiselect:0000002c $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:154    .text.send_cmd:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:159    .text.send_cmd:00000000 send_cmd
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:227    .text.xmit_spi_multi:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:232    .text.xmit_spi_multi:00000000 xmit_spi_multi
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:245    .text.xmit_spi_multi:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:248    .text.xmit_datablock:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:253    .text.xmit_datablock:00000000 xmit_datablock
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:291    .text.SPI_Timer_On:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:297    .text.SPI_Timer_On:00000000 SPI_Timer_On
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:311    .text.SPI_Timer_On:00000014 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1035   .bss.spiTimerTickStart:00000000 spiTimerTickStart
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1028   .bss.spiTimerTickDelay:00000000 spiTimerTickDelay
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:315    .text.SPI_Timer_Status:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:321    .text.SPI_Timer_Status:00000000 SPI_Timer_Status
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:339    .text.SPI_Timer_Status:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:343    .text.rcvr_datablock:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:348    .text.rcvr_datablock:00000000 rcvr_datablock
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:383    .text.USER_SPI_initialize:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:389    .text.USER_SPI_initialize:00000000 USER_SPI_initialize
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:558    .text.USER_SPI_initialize:00000160 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1045   .data.Stat:00000000 Stat
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1040   .bss.CardType:00000000 CardType
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:563    .text.USER_SPI_status:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:569    .text.USER_SPI_status:00000000 USER_SPI_status
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:584    .text.USER_SPI_status:00000010 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:587    .text.USER_SPI_read:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:593    .text.USER_SPI_read:00000000 USER_SPI_read
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:663    .text.USER_SPI_read:00000084 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:667    .text.USER_SPI_write:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:673    .text.USER_SPI_write:00000000 USER_SPI_write
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:763    .text.USER_SPI_write:000000a8 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:767    .text.USER_SPI_ioctl:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:773    .text.USER_SPI_ioctl:00000000 USER_SPI_ioctl
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:790    .text.USER_SPI_ioctl:00000024 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:795    .text.USER_SPI_ioctl:0000002e $t
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1020   .text.USER_SPI_ioctl:0000021c $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1025   .bss.spiTimerTickDelay:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1032   .bss.spiTimerTickStart:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s:1041   .bss.CardType:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:18     .text.xchg_spi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:23     .text.xchg_spi:00000000 xchg_spi
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:43     .text.xchg_spi:00000028 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:46     .text.wait_ready:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:51     .text.wait_ready:00000000 wait_ready
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:76     .text.rcvr_spi_multi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:81     .text.rcvr_spi_multi:00000000 rcvr_spi_multi
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:100    .text.despiselect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:105    .text.despiselect:00000000 despiselect
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:119    .text.despiselect:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:122    .text.spiselect:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:127    .text.spiselect:00000000 spiselect
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:151    .text.spiselect:0000002c $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:154    .text.send_cmd:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:159    .text.send_cmd:00000000 send_cmd
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:227    .text.xmit_spi_multi:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:232    .text.xmit_spi_multi:00000000 xmit_spi_multi
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:245    .text.xmit_spi_multi:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:248    .text.xmit_datablock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:253    .text.xmit_datablock:00000000 xmit_datablock
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:291    .text.SPI_Timer_On:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:297    .text.SPI_Timer_On:00000000 SPI_Timer_On
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:311    .text.SPI_Timer_On:00000014 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:1035   .bss.spiTimerTickStart:00000000 spiTimerTickStart
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:1028   .bss.spiTimerTickDelay:00000000 spiTimerTickDelay
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:315    .text.SPI_Timer_Status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:321    .text.SPI_Timer_Status:00000000 SPI_Timer_Status
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:339    .text.SPI_Timer_Status:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:343    .text.rcvr_datablock:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:348    .text.rcvr_datablock:00000000 rcvr_datablock
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:383    .text.USER_SPI_initialize:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:389    .text.USER_SPI_initialize:00000000 USER_SPI_initialize
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:558    .text.USER_SPI_initialize:00000160 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:1045   .data.Stat:00000000 Stat
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:1040   .bss.CardType:00000000 CardType
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:563    .text.USER_SPI_status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:569    .text.USER_SPI_status:00000000 USER_SPI_status
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:584    .text.USER_SPI_status:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:587    .text.USER_SPI_read:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:593    .text.USER_SPI_read:00000000 USER_SPI_read
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:663    .text.USER_SPI_read:00000084 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:667    .text.USER_SPI_write:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:673    .text.USER_SPI_write:00000000 USER_SPI_write
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:763    .text.USER_SPI_write:000000a8 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:767    .text.USER_SPI_ioctl:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:773    .text.USER_SPI_ioctl:00000000 USER_SPI_ioctl
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:790    .text.USER_SPI_ioctl:00000024 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:795    .text.USER_SPI_ioctl:0000002e $t
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:1020   .text.USER_SPI_ioctl:0000021c $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:1025   .bss.spiTimerTickDelay:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:1032   .bss.spiTimerTickStart:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s:1041   .bss.CardType:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_TransmitReceive
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccDa4aX4.s 			page 20
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc7nOOcM.s 			page 20
 
 
 hspi1

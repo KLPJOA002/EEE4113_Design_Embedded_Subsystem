@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s 			page 1
   56              	.L3:
   57 004c 0120     		movs	r0, #1
   58 004e 7047     		bx	lr
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s 			page 2
 
 
   59              	.L9:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s 			page 1
  117              	.L17:
  118 0036 00BF     		.align	2
  119              	.L16:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s 			page 3
 
 
  120 0038 00000000 		.word	disk
@@ -160,25 +160,25 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s 			page 1
  162      00000000 
  162      00000000 
  163              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 ff_gen_drv.c
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:18     .text.FATFS_LinkDriverEx:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:24     .text.FATFS_LinkDriverEx:00000000 FATFS_LinkDriverEx
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:62     .text.FATFS_LinkDriverEx:00000050 $d
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:161    .bss.disk:00000000 disk
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:65     .text.FATFS_LinkDriver:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:71     .text.FATFS_LinkDriver:00000000 FATFS_LinkDriver
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:80     .text.FATFS_UnLinkDriverEx:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:86     .text.FATFS_UnLinkDriverEx:00000000 FATFS_UnLinkDriverEx
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:120    .text.FATFS_UnLinkDriverEx:00000038 $d
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:123    .text.FATFS_UnLinkDriver:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:129    .text.FATFS_UnLinkDriver:00000000 FATFS_UnLinkDriver
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:138    .text.FATFS_GetAttachedDriversNbr:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:144    .text.FATFS_GetAttachedDriversNbr:00000000 FATFS_GetAttachedDriversNbr
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:154    .text.FATFS_GetAttachedDriversNbr:00000008 $d
-C:\Users\joabk\AppData\Local\Temp\ccgDSdK5.s:158    .bss.disk:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:18     .text.FATFS_LinkDriverEx:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:24     .text.FATFS_LinkDriverEx:00000000 FATFS_LinkDriverEx
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:62     .text.FATFS_LinkDriverEx:00000050 $d
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:161    .bss.disk:00000000 disk
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:65     .text.FATFS_LinkDriver:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:71     .text.FATFS_LinkDriver:00000000 FATFS_LinkDriver
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:80     .text.FATFS_UnLinkDriverEx:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:86     .text.FATFS_UnLinkDriverEx:00000000 FATFS_UnLinkDriverEx
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:120    .text.FATFS_UnLinkDriverEx:00000038 $d
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:123    .text.FATFS_UnLinkDriver:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:129    .text.FATFS_UnLinkDriver:00000000 FATFS_UnLinkDriver
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:138    .text.FATFS_GetAttachedDriversNbr:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:144    .text.FATFS_GetAttachedDriversNbr:00000000 FATFS_GetAttachedDriversNbr
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:154    .text.FATFS_GetAttachedDriversNbr:00000008 $d
+C:\Users\joabk\AppData\Local\Temp\ccMbHzbx.s:158    .bss.disk:00000000 $d
 
 NO UNDEFINED SYMBOLS

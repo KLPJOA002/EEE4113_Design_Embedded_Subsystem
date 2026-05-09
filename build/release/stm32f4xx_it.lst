@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 1
   60              	.L7:
   61 0000 FEE7     		b	.L7
   63              		.section	.text.BusFault_Handler,"ax",%progbits
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s 			page 2
 
 
   64              		.align	1
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 1
  127              		@ args = 0, pretend = 0, frame = 0
  128              		@ frame_needed = 0, uses_anonymous_args = 0
  129              		@ link register save eliminated.
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s 			page 3
 
 
  130 0000 7047     		bx	lr
@@ -147,13 +147,13 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 1
  157 0002 4FF40070 		mov	r0, #512
  158 0006 FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
  159 000a 08BD     		pop	{r3, pc}
- 161              		.section	.text.TIM1_TRG_COM_TIM11_IRQHandler,"ax",%progbits
+ 161              		.section	.text.TIM1_BRK_TIM9_IRQHandler,"ax",%progbits
  162              		.align	1
- 163              		.global	TIM1_TRG_COM_TIM11_IRQHandler
+ 163              		.global	TIM1_BRK_TIM9_IRQHandler
  164              		.syntax unified
  165              		.thumb
  166              		.thumb_func
- 168              	TIM1_TRG_COM_TIM11_IRQHandler:
+ 168              	TIM1_BRK_TIM9_IRQHandler:
  169              		@ args = 0, pretend = 0, frame = 0
  170              		@ frame_needed = 0, uses_anonymous_args = 0
  171 0000 08B5     		push	{r3, lr}
@@ -163,65 +163,107 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 1
  175              	.L22:
  176 000a 00BF     		.align	2
  177              	.L21:
- 178 000c 00000000 		.word	htim11
- 180              		.section	.text.DMA2_Stream0_IRQHandler,"ax",%progbits
+ 178 000c 00000000 		.word	htim9
+ 180              		.section	.text.TIM1_UP_TIM10_IRQHandler,"ax",%progbits
  181              		.align	1
- 182              		.global	DMA2_Stream0_IRQHandler
+ 182              		.global	TIM1_UP_TIM10_IRQHandler
  183              		.syntax unified
  184              		.thumb
  185              		.thumb_func
- 187              	DMA2_Stream0_IRQHandler:
+ 187              	TIM1_UP_TIM10_IRQHandler:
  188              		@ args = 0, pretend = 0, frame = 0
  189              		@ frame_needed = 0, uses_anonymous_args = 0
  190 0000 08B5     		push	{r3, lr}
  191 0002 0248     		ldr	r0, .L25
- 192 0004 FFF7FEFF 		bl	HAL_DMA_IRQHandler
+ 192 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
  193 0008 08BD     		pop	{r3, pc}
  194              	.L26:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s 			page 4
 
 
  195 000a 00BF     		.align	2
  196              	.L25:
- 197 000c 00000000 		.word	hdma_spi1_rx
- 199              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s 			page 5
+ 197 000c 00000000 		.word	htim10
+ 199              		.section	.text.TIM1_TRG_COM_TIM11_IRQHandler,"ax",%progbits
+ 200              		.align	1
+ 201              		.global	TIM1_TRG_COM_TIM11_IRQHandler
+ 202              		.syntax unified
+ 203              		.thumb
+ 204              		.thumb_func
+ 206              	TIM1_TRG_COM_TIM11_IRQHandler:
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209 0000 08B5     		push	{r3, lr}
+ 210 0002 0248     		ldr	r0, .L29
+ 211 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 212 0008 08BD     		pop	{r3, pc}
+ 213              	.L30:
+ 214 000a 00BF     		.align	2
+ 215              	.L29:
+ 216 000c 00000000 		.word	htim11
+ 218              		.section	.text.DMA2_Stream0_IRQHandler,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	DMA2_Stream0_IRQHandler
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 225              	DMA2_Stream0_IRQHandler:
+ 226              		@ args = 0, pretend = 0, frame = 0
+ 227              		@ frame_needed = 0, uses_anonymous_args = 0
+ 228 0000 08B5     		push	{r3, lr}
+ 229 0002 0248     		ldr	r0, .L33
+ 230 0004 FFF7FEFF 		bl	HAL_DMA_IRQHandler
+ 231 0008 08BD     		pop	{r3, pc}
+ 232              	.L34:
+ 233 000a 00BF     		.align	2
+ 234              	.L33:
+ 235 000c 00000000 		.word	hdma_spi1_rx
+ 237              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_it.c
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:18     .text.NMI_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:24     .text.NMI_Handler:00000000 NMI_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:34     .text.HardFault_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:40     .text.HardFault_Handler:00000000 HardFault_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:49     .text.MemManage_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:55     .text.MemManage_Handler:00000000 MemManage_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:64     .text.BusFault_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:70     .text.BusFault_Handler:00000000 BusFault_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:79     .text.UsageFault_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:85     .text.UsageFault_Handler:00000000 UsageFault_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:94     .text.SVC_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:100    .text.SVC_Handler:00000000 SVC_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:107    .text.DebugMon_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:113    .text.DebugMon_Handler:00000000 DebugMon_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:120    .text.PendSV_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:126    .text.PendSV_Handler:00000000 PendSV_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:133    .text.SysTick_Handler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:139    .text.SysTick_Handler:00000000 SysTick_Handler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:147    .text.EXTI9_5_IRQHandler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:153    .text.EXTI9_5_IRQHandler:00000000 EXTI9_5_IRQHandler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:162    .text.TIM1_TRG_COM_TIM11_IRQHandler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:168    .text.TIM1_TRG_COM_TIM11_IRQHandler:00000000 TIM1_TRG_COM_TIM11_IRQHandler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:178    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000c $d
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:181    .text.DMA2_Stream0_IRQHandler:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:187    .text.DMA2_Stream0_IRQHandler:00000000 DMA2_Stream0_IRQHandler
-C:\Users\joabk\AppData\Local\Temp\ccd3UZiU.s:197    .text.DMA2_Stream0_IRQHandler:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:18     .text.NMI_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:24     .text.NMI_Handler:00000000 NMI_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:34     .text.HardFault_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:40     .text.HardFault_Handler:00000000 HardFault_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:49     .text.MemManage_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:55     .text.MemManage_Handler:00000000 MemManage_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:64     .text.BusFault_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:70     .text.BusFault_Handler:00000000 BusFault_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:79     .text.UsageFault_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:85     .text.UsageFault_Handler:00000000 UsageFault_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:94     .text.SVC_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:100    .text.SVC_Handler:00000000 SVC_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:107    .text.DebugMon_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:113    .text.DebugMon_Handler:00000000 DebugMon_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:120    .text.PendSV_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:126    .text.PendSV_Handler:00000000 PendSV_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:133    .text.SysTick_Handler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:139    .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:147    .text.EXTI9_5_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:153    .text.EXTI9_5_IRQHandler:00000000 EXTI9_5_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:162    .text.TIM1_BRK_TIM9_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:168    .text.TIM1_BRK_TIM9_IRQHandler:00000000 TIM1_BRK_TIM9_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:178    .text.TIM1_BRK_TIM9_IRQHandler:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:181    .text.TIM1_UP_TIM10_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:187    .text.TIM1_UP_TIM10_IRQHandler:00000000 TIM1_UP_TIM10_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:197    .text.TIM1_UP_TIM10_IRQHandler:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:200    .text.TIM1_TRG_COM_TIM11_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:206    .text.TIM1_TRG_COM_TIM11_IRQHandler:00000000 TIM1_TRG_COM_TIM11_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:216    .text.TIM1_TRG_COM_TIM11_IRQHandler:0000000c $d
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:219    .text.DMA2_Stream0_IRQHandler:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:225    .text.DMA2_Stream0_IRQHandler:00000000 DMA2_Stream0_IRQHandler
+C:\Users\joabk\AppData\Local\Temp\cc1uqcft.s:235    .text.DMA2_Stream0_IRQHandler:0000000c $d
 
 UNDEFINED SYMBOLS
 HAL_RCC_NMI_IRQHandler
 HAL_IncTick
 HAL_GPIO_EXTI_IRQHandler
 HAL_TIM_IRQHandler
+htim9
+htim10
 htim11
 HAL_DMA_IRQHandler
 hdma_spi1_rx

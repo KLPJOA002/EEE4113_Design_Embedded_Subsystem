@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 1
   61 0000 00000000 		.space	560
   61      00000000 
   61      00000000 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s 			page 2
 
 
   61      00000000 
@@ -67,7 +67,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 1
   63              		.section	.bss.USERFatFS,"aw",%nobits
   64              		.align	2
   67              	USERFatFS:
-  68 0000 00000000 		.space	560
+  68 0000 00000000 		.space	564
   68      00000000 
   68      00000000 
   68      00000000 
@@ -82,24 +82,24 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 1
   80              	retUSER:
   81 0000 00       		.space	1
   82              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 fatfs.c
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:18     .text.MX_FATFS_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:24     .text.MX_FATFS_Init:00000000 MX_FATFS_Init
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:37     .text.MX_FATFS_Init:00000010 $d
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:74     .bss.USERPath:00000000 USERPath
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:80     .bss.retUSER:00000000 retUSER
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:42     .text.get_fattime:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:48     .text.get_fattime:00000000 get_fattime
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:60     .bss.USERFile:00000000 USERFile
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:57     .bss.USERFile:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:67     .bss.USERFatFS:00000000 USERFatFS
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:64     .bss.USERFatFS:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:71     .bss.USERPath:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccQbUyU1.s:81     .bss.retUSER:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:18     .text.MX_FATFS_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:24     .text.MX_FATFS_Init:00000000 MX_FATFS_Init
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:37     .text.MX_FATFS_Init:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:74     .bss.USERPath:00000000 USERPath
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:80     .bss.retUSER:00000000 retUSER
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:42     .text.get_fattime:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:48     .text.get_fattime:00000000 get_fattime
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:60     .bss.USERFile:00000000 USERFile
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:57     .bss.USERFile:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:67     .bss.USERFatFS:00000000 USERFatFS
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:64     .bss.USERFatFS:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:71     .bss.USERPath:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccuQWTno.s:81     .bss.retUSER:00000000 $d
 
 UNDEFINED SYMBOLS
 FATFS_LinkDriver

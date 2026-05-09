@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s 			page 1
   61              		.global	USER_write
   62              		.syntax unified
   63              		.thumb
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s 			page 2
 
 
   64              		.thumb_func
@@ -93,24 +93,24 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s 			page 1
  101              	Stat:
  102 0000 01       		.byte	1
  103              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 13.3.1 20240614"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 user_diskio.c
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:18     .text.USER_initialize:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:24     .text.USER_initialize:00000000 USER_initialize
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:32     .text.USER_status:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:38     .text.USER_status:00000000 USER_status
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:46     .text.USER_read:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:52     .text.USER_read:00000000 USER_read
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:60     .text.USER_write:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:66     .text.USER_write:00000000 USER_write
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:74     .text.USER_ioctl:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:80     .text.USER_ioctl:00000000 USER_ioctl
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:92     .data.USER_Driver:00000000 USER_Driver
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:89     .data.USER_Driver:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccHKljB6.s:101    .data.Stat:00000000 Stat
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:18     .text.USER_initialize:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:24     .text.USER_initialize:00000000 USER_initialize
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:32     .text.USER_status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:38     .text.USER_status:00000000 USER_status
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:46     .text.USER_read:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:52     .text.USER_read:00000000 USER_read
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:60     .text.USER_write:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:66     .text.USER_write:00000000 USER_write
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:74     .text.USER_ioctl:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:80     .text.USER_ioctl:00000000 USER_ioctl
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:92     .data.USER_Driver:00000000 USER_Driver
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:89     .data.USER_Driver:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccLM8yuJ.s:101    .data.Stat:00000000 Stat
 
 UNDEFINED SYMBOLS
 USER_SPI_initialize

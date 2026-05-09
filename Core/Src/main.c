@@ -68,6 +68,8 @@ I2C_HandleTypeDef hi2c1;
 I2C_HandleTypeDef hi2c2;
 I2C_HandleTypeDef hi2c3;
 
+IWDG_HandleTypeDef hiwdg;
+
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 DMA_HandleTypeDef hdma_spi1_rx;
@@ -103,6 +105,7 @@ static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_TIM10_Init(void);
 static void MX_TIM9_Init(void);
+static void MX_IWDG_Init(void);
 /* USER CODE BEGIN PFP */
 
 // ===============================
@@ -191,6 +194,7 @@ uint8_t Mode_Changed = 0;
 uint8_t Mode = 0;
 uint8_t Buoy_ID = 0;
 char connected_buffer[20];
+static char SD_filename[40] = "";  // max 8.3 = "YYMMDD.CSV\0" = 11 chars
 
 // ====================================================================================================
 // Flags
@@ -272,7 +276,9 @@ int main(void)
   MX_SPI2_Init();
   MX_TIM10_Init();
   MX_TIM9_Init();
+  MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
+  HAL_Delay(1500);
 
   //initialize LoRa module
   SX1278_hw.dio0.port = Lora_IRQ_GPIO_Port;
@@ -293,33 +299,42 @@ int main(void)
   RTC_Connected = RTC_Detect();
   //if (RTC_Connected) RTC_Set_Time_Once(RTC_I2C);
 
+  
+
   Atlas1_Connected = Atlas_Detect(DO_1_Addr);
   Atlas2_Connected = Atlas_Detect(RTD_1_Addr);
   Atlas3_Connected = Atlas_Detect(DO_2_Addr);
   Atlas4_Connected = Atlas_Detect(RTD_2_Addr);
 
   //SD CARD CODE 
+
   
+  SD_Detect();
 
-  // FATFS FatFs;
-  // FIL fil;
-  // FRESULT fres;
-  // BYTE readBuf[30];
+  // if(SD_Connected)
+  // {
 
- 
-  // fres = f_mount(&FatFs, "", 1); //1=mount now  //Open the file system
-  // if (fres != FR_OK) {
-  //   while(1);
+  //   FATFS FatFs;
+  //   FIL fil;
+  //   FRESULT fres;
+  //   BYTE readBuf[30];
+
+  
+  //   fres = f_mount(&FatFs, "", 1); //1=mount now  //Open the file system
+  //   if (fres != FR_OK) {
+  //     while(1);
+  //   }
+
+  //   fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+
+  //   strncpy((char*)readBuf,"a new file is made!",19);
+  //   UINT bytesWrote;
+  //   fres = f_write(&fil,readBuf,19,&bytesWrote);
+    
+
+  //   f_close(&fil);
+    
   // }
-
-  // fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
-
-  // strncpy((char*)readBuf,"a new file is made!",19);
-  // UINT bytesWrote;
-  // fres = f_write(&fil,readBuf,19,&bytesWrote);
-  
-
-  // f_close(&fil);
   
 
   HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
@@ -330,12 +345,16 @@ int main(void)
   //uint16_t Counter = 0;
   char time_buffer[18];
 
+  HAL_Delay(1000);
+  HAL_IWDG_Refresh(&hiwdg);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    SD_Detect();
 
 // ====================================================================================================
 // Update RTC OLED Display
@@ -444,22 +463,29 @@ int main(void)
 // ====================================================================================================
     if(Atlas_measure)
     {  
-      Atlas_Wake(DO_1_Addr);
-      Atlas_Wake(RTD_1_Addr);
-      Atlas_Wake(DO_2_Addr);
-      Atlas_Wake(RTD_2_Addr);
+      if (Atlas1_Connected) Atlas_Wake(DO_1_Addr);
+      if (Atlas2_Connected) Atlas_Wake(RTD_1_Addr);
+      if (Atlas3_Connected) Atlas_Wake(DO_2_Addr);
+      if (Atlas4_Connected) Atlas_Wake(RTD_2_Addr);
 
-      HAL_Delay(500);
+      HAL_Delay(600);
 
       if (Atlas1_Connected) Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
       if (Atlas2_Connected) Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
       if (Atlas3_Connected) Atlas_Read_Val(Atlas_Buffer_3,DO_2_Addr);
       if (Atlas4_Connected) Atlas_Read_Val(Atlas_Buffer_4,RTD_2_Addr);
 
-      Atlas_Sleep(DO_1_Addr);
-      Atlas_Sleep(RTD_1_Addr);
-      Atlas_Sleep(DO_2_Addr);
-      Atlas_Sleep(RTD_2_Addr);
+      if (Atlas1_Connected) Atlas_Sleep(DO_1_Addr);
+      if (Atlas2_Connected) Atlas_Sleep(RTD_1_Addr);
+      if (Atlas3_Connected) Atlas_Sleep(DO_2_Addr);
+      if (Atlas4_Connected) Atlas_Sleep(RTD_2_Addr);
+
+      //HAL_Delay(500);
+      if (SD_Connected&&RTC_Connected)
+      {
+        curr_time = RTC_Get_Time(RTC_I2C);
+        SD_Write(curr_time);
+      }
 
       Atlas_measure = 0;
       Mode = 1;
@@ -488,6 +514,8 @@ int main(void)
     }
 
     //HAL_Delay(5000);
+
+    HAL_IWDG_Refresh(&hiwdg);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -512,8 +540,9 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -638,6 +667,34 @@ static void MX_I2C3_Init(void)
   /* USER CODE BEGIN I2C3_Init 2 */
 
   /* USER CODE END I2C3_Init 2 */
+
+}
+
+/**
+  * @brief IWDG Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_IWDG_Init(void)
+{
+
+  /* USER CODE BEGIN IWDG_Init 0 */
+
+  /* USER CODE END IWDG_Init 0 */
+
+  /* USER CODE BEGIN IWDG_Init 1 */
+
+  /* USER CODE END IWDG_Init 1 */
+  hiwdg.Instance = IWDG;
+  hiwdg.Init.Prescaler = IWDG_PRESCALER_128;
+  hiwdg.Init.Reload = 4095;
+  if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN IWDG_Init 2 */
+
+  /* USER CODE END IWDG_Init 2 */
 
 }
 
@@ -1335,6 +1392,64 @@ static uint8_t SD_Detect()
   SD_Connected = HAL_GPIO_ReadPin(SD_CD_GPIO_Port,SD_CD_Pin);
 }
 
+static uint8_t SD_Write(uint32_t timestamp)
+{
+    SD_Detect();
+    if (!SD_Connected) return 0;
+
+    FATFS   FatFs;
+    FIL     fil;
+    FRESULT fres;
+    UINT    bytesWrote;
+    char    row[60];
+
+    time_t raw = (time_t)timestamp;
+    struct tm *tm_info = localtime(&raw);
+
+    // Generate the filename on the very first write of this session
+
+    strftime(SD_filename, sizeof(SD_filename), "%y-%m-%d-%H-%M-%S-READING.CSV", tm_info);
+
+    //if (OLED_Connected) write_OLED(0,5,"flnnm");
+
+    // Human-readable timestamp for inside the CSV rows
+    char ts[20];
+    strftime(ts, sizeof(ts), "%Y-%m-%d %H:%M:%S", tm_info);
+
+    //if (OLED_Connected) write_OLED(0,5,"timok ");
+
+    fres = f_mount(&FatFs, "", 1);
+    if (fres != FR_OK) return 0;
+    //if (OLED_Connected) write_OLED(0,5,"mntok");
+
+    fres = f_open(&fil, SD_filename, FA_WRITE | FA_CREATE_ALWAYS);
+    if (fres != FR_OK) { f_close(&fil); return 0; }
+    //if (OLED_Connected) write_OLED(0,5,"opnok");
+
+    if (f_size(&fil) == 0) {
+        char *header = "Date,Sensor,Value\n";
+        f_write(&fil, header, strlen(header), &bytesWrote);
+    }
+
+    f_lseek(&fil, f_size(&fil));
+
+    snprintf(row, sizeof(row), "%s,DO_1,%s\n",  ts, Atlas_Buffer_1);
+    f_write(&fil, row, strlen(row), &bytesWrote);
+
+    snprintf(row, sizeof(row), "%s,RTD_1,%s\n", ts, Atlas_Buffer_2);
+    f_write(&fil, row, strlen(row), &bytesWrote);
+
+    snprintf(row, sizeof(row), "%s,DO_2,%s\n",  ts, Atlas_Buffer_3);
+    f_write(&fil, row, strlen(row), &bytesWrote);
+
+    snprintf(row, sizeof(row), "%s,RTD_2,%s\n", ts, Atlas_Buffer_4);
+    f_write(&fil, row, strlen(row), &bytesWrote);
+
+    f_close(&fil);
+    //f_unmount("");
+    return 1;
+}
+
 // ===============================================================================================
 // Atlas Functions
 // ===============================================================================================
@@ -1386,6 +1501,10 @@ static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr)
 
     return 0;  // error
 }
+
+  // Holds the current session's filename, set on first write
+
+
 /* USER CODE END 4 */
 
 /**
