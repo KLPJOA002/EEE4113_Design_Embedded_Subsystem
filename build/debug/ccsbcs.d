@@ -1,4 +1,4 @@
-build/debug/unicode.o: Middlewares/Third_Party/FatFs/src/option/unicode.c \
+build/debug/ccsbcs.o: Middlewares/Third_Party/FatFs/src/option/ccsbcs.c \
  Middlewares/Third_Party/FatFs/src/option/../ff.h \
  Middlewares/Third_Party/FatFs/src/option/../integer.h \
  FATFS/Target/ffconf.h Core/Inc/main.h \
@@ -30,8 +30,7 @@ build/debug/unicode.o: Middlewares/Third_Party/FatFs/src/option/unicode.c \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- Middlewares/Third_Party/FatFs/src/option/ccsbcs.c
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 Middlewares/Third_Party/FatFs/src/option/../ff.h:
 Middlewares/Third_Party/FatFs/src/option/../integer.h:
 FATFS/Target/ffconf.h:
@@ -67,4 +66,3 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
-Middlewares/Third_Party/FatFs/src/option/ccsbcs.c:

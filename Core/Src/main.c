@@ -483,9 +483,20 @@ int main(void)
       //HAL_Delay(500);
       if (SD_Connected&&RTC_Connected)
       {
+        HAL_IWDG_Refresh(&hiwdg);
         curr_time = RTC_Get_Time(RTC_I2C);
-        SD_Write(curr_time);
+        if (SD_Write(curr_time))
+        {
+          if (OLED_Connected) write_OLED(0,5,"ST ");
+        }
+        else
+        {
+          if (OLED_Connected) write_OLED(0,5,"STF");
+        }
       }
+
+      if (OLED_Connected&&!SD_Connected) write_OLED(0,5,"STF");
+
 
       Atlas_measure = 0;
       Mode = 1;
@@ -1390,6 +1401,7 @@ static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18])
 static uint8_t SD_Detect()
 {
   SD_Connected = HAL_GPIO_ReadPin(SD_CD_GPIO_Port,SD_CD_Pin);
+  return SD_Connected;
 }
 
 static uint8_t SD_Write(uint32_t timestamp)
@@ -1408,6 +1420,7 @@ static uint8_t SD_Write(uint32_t timestamp)
 
     // Generate the filename on the very first write of this session
 
+
     strftime(SD_filename, sizeof(SD_filename), "%y-%m-%d-%H-%M-%S-READING.CSV", tm_info);
 
     //if (OLED_Connected) write_OLED(0,5,"flnnm");
@@ -1423,7 +1436,8 @@ static uint8_t SD_Write(uint32_t timestamp)
     //if (OLED_Connected) write_OLED(0,5,"mntok");
 
     fres = f_open(&fil, SD_filename, FA_WRITE | FA_CREATE_ALWAYS);
-    if (fres != FR_OK) { f_close(&fil); return 0; }
+    if (fres != FR_OK) { f_mount(NULL, "", 0); return 0; }
+
     //if (OLED_Connected) write_OLED(0,5,"opnok");
 
     if (f_size(&fil) == 0) {
@@ -1431,7 +1445,7 @@ static uint8_t SD_Write(uint32_t timestamp)
         f_write(&fil, header, strlen(header), &bytesWrote);
     }
 
-    f_lseek(&fil, f_size(&fil));
+    //f_lseek(&fil, f_size(&fil));
 
     snprintf(row, sizeof(row), "%s,DO_1,%s\n",  ts, Atlas_Buffer_1);
     f_write(&fil, row, strlen(row), &bytesWrote);
@@ -1447,6 +1461,10 @@ static uint8_t SD_Write(uint32_t timestamp)
 
     f_close(&fil);
     //f_unmount("");
+    f_mount(NULL, "", 0);
+
+    //Mode = 3;
+    //if (OLED_Connected) write_OLED(0,5,"ST");
     return 1;
 }
 

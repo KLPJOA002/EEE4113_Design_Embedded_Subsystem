@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -15,11 +15,11 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
   12              		.eabi_attribute 30, 1
   13              		.eabi_attribute 34, 1
   14              		.eabi_attribute 18, 4
-  15              		.file	"unicode.c"
+  15              		.file	"ccsbcs.c"
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.file 1 "Middlewares/Third_Party/FatFs/src/option/unicode.c"
+  19              		.file 1 "Middlewares/Third_Party/FatFs/src/option/ccsbcs.c"
   20              		.section	.text.ff_convert,"ax",%progbits
   21              		.align	1
   22              		.global	ff_convert
@@ -29,7 +29,6 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
   27              	ff_convert:
   28              	.LVL0:
   29              	.LFB134:
-  30              		.file 2 "Middlewares/Third_Party/FatFs/src/option/ccsbcs.c"
    1:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** /*------------------------------------------------------------------------*/
    2:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** /* Unicode - Local code bidirectional converter  (C)ChaN, 2015            */
    3:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** /* (SBCS code pages)                                                      */
@@ -58,10 +57,10 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
   26:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
   27:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** #if _CODE_PAGE == 437
   28:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** #define _TBLDEF 1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 2
-
-
   29:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** static
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 2
+
+
   30:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** const WCHAR Tbl[] = {	/*  CP437(0x80-0xFF) to Unicode conversion table */
   31:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00C7, 0x00FC, 0x00E9, 0x00E2, 0x00E4, 0x00E0, 0x00E5, 0x00E7, 0x00EA, 0x00EB, 0x00E8, 0x00EF, 0x
   32:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00C9, 0x00E6, 0x00C6, 0x00F4, 0x00F6, 0x00F2, 0x00FB, 0x00F9, 0x00FF, 0x00D6, 0x00DC, 0x00A2, 0x
@@ -118,10 +117,10 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
   83:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** #elif _CODE_PAGE == 775
   84:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** #define _TBLDEF 1
   85:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** static
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 3
-
-
   86:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** const WCHAR Tbl[] = {	/*  CP775(0x80-0xFF) to Unicode conversion table */
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 3
+
+
   87:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x0106, 0x00FC, 0x00E9, 0x0101, 0x00E4, 0x0123, 0x00E5, 0x0107, 0x0142, 0x0113, 0x0156, 0x0157, 0x
   88:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00C9, 0x00E6, 0x00C6, 0x014D, 0x00F6, 0x0122, 0x00A2, 0x015A, 0x015B, 0x00D6, 0x00DC, 0x00F8, 0x
   89:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x0100, 0x012A, 0x00F3, 0x017B, 0x017C, 0x017A, 0x201D, 0x00A6, 0x00A9, 0x00AE, 0x00AC, 0x00BD, 0x
@@ -178,10 +177,10 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
  140:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** #define _TBLDEF 1
  141:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** static
  142:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** const WCHAR Tbl[] = {	/*  CP857(0x80-0xFF) to Unicode conversion table */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 4
-
-
  143:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00C7, 0x00FC, 0x00E9, 0x00E2, 0x00E4, 0x00E0, 0x00E5, 0x00E7, 0x00EA, 0x00EB, 0x00E8, 0x00EF, 0x
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 4
+
+
  144:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00C9, 0x00E6, 0x00C6, 0x00F4, 0x00F6, 0x00F2, 0x00FB, 0x00F9, 0x0130, 0x00D6, 0x00DC, 0x00F8, 0x
  145:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00E1, 0x00ED, 0x00F3, 0x00FA, 0x00F1, 0x00D1, 0x011E, 0x011F, 0x00BF, 0x00AE, 0x00AC, 0x00BD, 0x
  146:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x2591, 0x2592, 0x2593, 0x2502, 0x2524, 0x00C1, 0x00C2, 0x00C0, 0x00A9, 0x2563, 0x2551, 0x2557, 0x
@@ -238,10 +237,10 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
  197:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** static
  198:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** const WCHAR Tbl[] = {	/*  CP863(0x80-0xFF) to Unicode conversion table */
  199:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00C7, 0x00FC, 0x00E9, 0x00E2, 0x00C2, 0x00E0, 0x00B6, 0x00E7, 0x00EA, 0x00EB, 0x00E8, 0x00EF, 0x
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 5
-
-
  200:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00C9, 0x00C8, 0x00CA, 0x00F4, 0x00CB, 0x00CF, 0x00FB, 0x00F9, 0x00A4, 0x00D4, 0x00DC, 0x00A2, 0x
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 5
+
+
  201:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00A6, 0x00B4, 0x00F3, 0x00FA, 0x00A8, 0x00BB, 0x00B3, 0x00AF, 0x00CE, 0x3210, 0x00AC, 0x00BD, 0x
  202:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x2591, 0x2592, 0x2593, 0x2502, 0x2524, 0x2561, 0x2562, 0x2556, 0x2555, 0x2563, 0x2551, 0x2557, 0x
  203:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x2514, 0x2534, 0x252C, 0x251C, 0x2500, 0x253C, 0x255E, 0x255F, 0x255A, 0x2554, 0x2569, 0x2566, 0x
@@ -298,10 +297,10 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
  254:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** const WCHAR Tbl[] = {	/*  CP869(0x80-0xFF) to Unicode conversion table */
  255:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x00B7, 0x00B7, 0x00B7, 0x00B7, 0x00B7, 0x00B7, 0x0386, 0x00B7, 0x00B7, 0x00AC, 0x00A6, 0x2018, 0x
  256:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x038A, 0x03AA, 0x038C, 0x00B7, 0x00B7, 0x038E, 0x03AB, 0x00A9, 0x038F, 0x00B2, 0x00B3, 0x03AC, 0x
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 6
-
-
  257:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x03CA, 0x0390, 0x03CC, 0x03CD, 0x0391, 0x0392, 0x0393, 0x0394, 0x0395, 0x0396, 0x0397, 0x00BD, 0x
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 6
+
+
  258:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x2591, 0x2592, 0x2593, 0x2502, 0x2524, 0x039A, 0x039B, 0x039C, 0x039D, 0x2563, 0x2551, 0x2557, 0x
  259:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x2514, 0x2534, 0x252C, 0x251C, 0x2500, 0x253C, 0x0A30, 0x03A1, 0x255A, 0x2554, 0x2569, 0x2566, 0x
  260:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	0x03A4, 0x03A5, 0x03A6, 0x03A7, 0x03A8, 0x03A9, 0x03B1, 0x03B2, 0x03B3, 0x2518, 0x250C, 0x2588, 0x
@@ -324,120 +323,120 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
  277:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	UINT	dir		/* 0: Unicode to OEM code, 1: OEM code to Unicode */
  278:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** )
  279:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** {
-  31              		.loc 2 279 1 view -0
-  32              		.cfi_startproc
-  33              		@ args = 0, pretend = 0, frame = 0
-  34              		@ frame_needed = 0, uses_anonymous_args = 0
-  35              		@ link register save eliminated.
+  30              		.loc 1 279 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
  280:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	WCHAR c;
-  36              		.loc 2 280 2 view .LVU1
+  35              		.loc 1 280 2 view .LVU1
  281:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  282:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  283:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	if (chr < 0x80) {	/* ASCII */
-  37              		.loc 2 283 2 view .LVU2
-  38              		.loc 2 283 5 is_stmt 0 view .LVU3
-  39 0000 7F28     		cmp	r0, #127
-  40 0002 17D9     		bls	.L2
+  36              		.loc 1 283 2 view .LVU2
+  37              		.loc 1 283 5 is_stmt 0 view .LVU3
+  38 0000 7F28     		cmp	r0, #127
+  39 0002 17D9     		bls	.L2
  284:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		c = chr;
  285:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  286:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	} else {
  287:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		if (dir) {		/* OEM code to Unicode */
-  41              		.loc 2 287 3 is_stmt 1 view .LVU4
-  42              		.loc 2 287 6 is_stmt 0 view .LVU5
-  43 0004 31B1     		cbz	r1, .L6
+  40              		.loc 1 287 3 is_stmt 1 view .LVU4
+  41              		.loc 1 287 6 is_stmt 0 view .LVU5
+  42 0004 31B1     		cbz	r1, .L6
  288:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			c = (chr >= 0x100) ? 0 : Tbl[chr - 0x80];
-  44              		.loc 2 288 4 is_stmt 1 view .LVU6
-  45              		.loc 2 288 6 is_stmt 0 view .LVU7
-  46 0006 FF28     		cmp	r0, #255
-  47 0008 13D8     		bhi	.L7
-  48              		.loc 2 288 37 discriminator 1 view .LVU8
-  49 000a 8038     		subs	r0, r0, #128
-  50              	.LVL1:
-  51              		.loc 2 288 6 discriminator 1 view .LVU9
-  52 000c 0A4B     		ldr	r3, .L8
-  53 000e 33F81000 		ldrh	r0, [r3, r0, lsl #1]
-  54              	.LVL2:
-  55              		.loc 2 288 6 discriminator 1 view .LVU10
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 7
+  43              		.loc 1 288 4 is_stmt 1 view .LVU6
+  44              		.loc 1 288 6 is_stmt 0 view .LVU7
+  45 0006 FF28     		cmp	r0, #255
+  46 0008 13D8     		bhi	.L7
+  47              		.loc 1 288 37 discriminator 1 view .LVU8
+  48 000a 8038     		subs	r0, r0, #128
+  49              	.LVL1:
+  50              		.loc 1 288 6 discriminator 1 view .LVU9
+  51 000c 0A4B     		ldr	r3, .L8
+  52 000e 33F81000 		ldrh	r0, [r3, r0, lsl #1]
+  53              	.LVL2:
+  54              		.loc 1 288 6 discriminator 1 view .LVU10
+  55 0012 7047     		bx	lr
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 7
 
 
-  56 0012 7047     		bx	lr
-  57              	.LVL3:
-  58              	.L6:
+  56              	.LVL3:
+  57              	.L6:
  289:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  290:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		} else {		/* Unicode to OEM code */
  291:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			for (c = 0; c < 0x80; c++) {
-  59              		.loc 2 291 11 view .LVU11
-  60 0014 0023     		movs	r3, #0
-  61              	.L3:
-  62              	.LVL4:
-  63              		.loc 2 291 18 is_stmt 1 discriminator 1 view .LVU12
-  64 0016 7F2B     		cmp	r3, #127
-  65 0018 07D8     		bhi	.L4
+  58              		.loc 1 291 11 view .LVU11
+  59 0014 0023     		movs	r3, #0
+  60              	.L3:
+  61              	.LVL4:
+  62              		.loc 1 291 18 is_stmt 1 discriminator 1 view .LVU12
+  63 0016 7F2B     		cmp	r3, #127
+  64 0018 07D8     		bhi	.L4
  292:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 				if (chr == Tbl[c]) break;
-  66              		.loc 2 292 5 view .LVU13
-  67              		.loc 2 292 19 is_stmt 0 view .LVU14
-  68 001a 074A     		ldr	r2, .L8
-  69 001c 32F81320 		ldrh	r2, [r2, r3, lsl #1]
-  70              		.loc 2 292 8 view .LVU15
-  71 0020 8242     		cmp	r2, r0
-  72 0022 02D0     		beq	.L4
+  65              		.loc 1 292 5 view .LVU13
+  66              		.loc 1 292 19 is_stmt 0 view .LVU14
+  67 001a 074A     		ldr	r2, .L8
+  68 001c 32F81320 		ldrh	r2, [r2, r3, lsl #1]
+  69              		.loc 1 292 8 view .LVU15
+  70 0020 8242     		cmp	r2, r0
+  71 0022 02D0     		beq	.L4
  291:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 				if (chr == Tbl[c]) break;
-  73              		.loc 2 291 27 is_stmt 1 discriminator 2 view .LVU16
-  74 0024 0133     		adds	r3, r3, #1
-  75              	.LVL5:
+  72              		.loc 1 291 27 is_stmt 1 discriminator 2 view .LVU16
+  73 0024 0133     		adds	r3, r3, #1
+  74              	.LVL5:
  291:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 				if (chr == Tbl[c]) break;
-  76              		.loc 2 291 27 is_stmt 0 discriminator 2 view .LVU17
-  77 0026 9BB2     		uxth	r3, r3
-  78              	.LVL6:
+  75              		.loc 1 291 27 is_stmt 0 discriminator 2 view .LVU17
+  76 0026 9BB2     		uxth	r3, r3
+  77              	.LVL6:
  291:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 				if (chr == Tbl[c]) break;
-  79              		.loc 2 291 27 discriminator 2 view .LVU18
-  80 0028 F5E7     		b	.L3
-  81              	.L4:
+  78              		.loc 1 291 27 discriminator 2 view .LVU18
+  79 0028 F5E7     		b	.L3
+  80              	.L4:
  293:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			}
  294:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			c = (c + 0x80) & 0xFF;
-  82              		.loc 2 294 4 is_stmt 1 view .LVU19
-  83              		.loc 2 294 11 is_stmt 0 view .LVU20
-  84 002a 03F18000 		add	r0, r3, #128
-  85              	.LVL7:
-  86              		.loc 2 294 6 view .LVU21
-  87 002e C0B2     		uxtb	r0, r0
-  88              	.LVL8:
-  89              		.loc 2 294 6 view .LVU22
-  90 0030 7047     		bx	lr
-  91              	.LVL9:
-  92              	.L7:
+  81              		.loc 1 294 4 is_stmt 1 view .LVU19
+  82              		.loc 1 294 11 is_stmt 0 view .LVU20
+  83 002a 03F18000 		add	r0, r3, #128
+  84              	.LVL7:
+  85              		.loc 1 294 6 view .LVU21
+  86 002e C0B2     		uxtb	r0, r0
+  87              	.LVL8:
+  88              		.loc 1 294 6 view .LVU22
+  89 0030 7047     		bx	lr
+  90              	.LVL9:
+  91              	.L7:
  288:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
-  93              		.loc 2 288 6 discriminator 2 view .LVU23
-  94 0032 0020     		movs	r0, #0
-  95              	.LVL10:
-  96              	.L2:
+  92              		.loc 1 288 6 discriminator 2 view .LVU23
+  93 0032 0020     		movs	r0, #0
+  94              	.LVL10:
+  95              	.L2:
  295:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		}
  296:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	}
  297:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  298:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	return c;
-  97              		.loc 2 298 2 is_stmt 1 view .LVU24
+  96              		.loc 1 298 2 is_stmt 1 view .LVU24
  299:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** }
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 8
+  97              		.loc 1 299 1 is_stmt 0 view .LVU25
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 8
 
 
-  98              		.loc 2 299 1 is_stmt 0 view .LVU25
-  99 0034 7047     		bx	lr
- 100              	.L9:
- 101 0036 00BF     		.align	2
- 102              	.L8:
- 103 0038 00000000 		.word	Tbl
- 104              		.cfi_endproc
- 105              	.LFE134:
- 107              		.section	.text.ff_wtoupper,"ax",%progbits
- 108              		.align	1
- 109              		.global	ff_wtoupper
- 110              		.syntax unified
- 111              		.thumb
- 112              		.thumb_func
- 114              	ff_wtoupper:
- 115              	.LVL11:
- 116              	.LFB135:
+  98 0034 7047     		bx	lr
+  99              	.L9:
+ 100 0036 00BF     		.align	2
+ 101              	.L8:
+ 102 0038 00000000 		.word	Tbl
+ 103              		.cfi_endproc
+ 104              	.LFE134:
+ 106              		.section	.text.ff_wtoupper,"ax",%progbits
+ 107              		.align	1
+ 108              		.global	ff_wtoupper
+ 109              		.syntax unified
+ 110              		.thumb
+ 111              		.thumb_func
+ 113              	ff_wtoupper:
+ 114              	.LVL11:
+ 115              	.LFB135:
  300:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  301:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  302:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
@@ -445,13 +444,13 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
  304:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	WCHAR chr		/* Unicode character to be upper converted (BMP only) */
  305:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** )
  306:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** {
- 117              		.loc 2 306 1 is_stmt 1 view -0
- 118              		.cfi_startproc
- 119              		@ args = 0, pretend = 0, frame = 0
- 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              		.loc 1 306 1 is_stmt 1 view -0
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
  307:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	/* Compressed upper conversion table */
  308:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	static const WCHAR cvt1[] = {	/* U+0000 - U+0FFF */
- 121              		.loc 2 308 2 view .LVU27
+ 120              		.loc 1 308 2 view .LVU27
  309:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		/* Basic Latin */
  310:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		0x0061,0x031A,
  311:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		/* Latin-1 Supplement */
@@ -476,12 +475,12 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
  330:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		0x0000
  331:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	};
  332:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	static const WCHAR cvt2[] = {	/* U+1000 - U+FFFF */
- 122              		.loc 2 332 2 view .LVU28
+ 121              		.loc 1 332 2 view .LVU28
  333:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		/* Phonetic Extensions */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 9
-
-
  334:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		0x1D7D,0x0001,0x2C63,
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 9
+
+
  335:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		/* Latin Extended Additional */
  336:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		0x1E00,0x0196,  0x1EA0,0x015A,
  337:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		/* Greek Extended */
@@ -508,108 +507,108 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
  358:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		0x0000
  359:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	};
  360:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	const WCHAR *p;
- 123              		.loc 2 360 2 view .LVU29
+ 122              		.loc 1 360 2 view .LVU29
  361:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	WCHAR bc, nc, cmd;
- 124              		.loc 2 361 2 view .LVU30
+ 123              		.loc 1 361 2 view .LVU30
  362:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  363:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  364:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	p = chr < 0x1000 ? cvt1 : cvt2;
- 125              		.loc 2 364 2 view .LVU31
- 126              		.loc 2 364 26 is_stmt 0 view .LVU32
- 127 0000 B0F5805F 		cmp	r0, #4096
- 128 0004 07D2     		bcs	.L26
- 129              		.loc 2 364 26 discriminator 1 view .LVU33
- 130 0006 234B     		ldr	r3, .L36
- 131              	.L30:
- 132              	.LVL12:
+ 124              		.loc 1 364 2 view .LVU31
+ 125              		.loc 1 364 26 is_stmt 0 view .LVU32
+ 126 0000 B0F5805F 		cmp	r0, #4096
+ 127 0004 07D2     		bcs	.L26
+ 128              		.loc 1 364 26 discriminator 1 view .LVU33
+ 129 0006 234B     		ldr	r3, .L36
+ 130              	.L30:
+ 131              	.LVL12:
  365:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	for (;;) {
- 133              		.loc 2 365 2 is_stmt 1 view .LVU34
+ 132              		.loc 1 365 2 is_stmt 1 view .LVU34
  366:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		bc = *p++;								/* Get block base */
- 134              		.loc 2 366 3 view .LVU35
- 135              		.loc 2 366 6 is_stmt 0 view .LVU36
- 136 0008 1A88     		ldrh	r2, [r3]
- 137              	.LVL13:
+ 133              		.loc 1 366 3 view .LVU35
+ 134              		.loc 1 366 6 is_stmt 0 view .LVU36
+ 135 0008 1A88     		ldrh	r2, [r3]
+ 136              	.LVL13:
  367:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		if (!bc || chr < bc) break;
- 138              		.loc 2 367 3 is_stmt 1 view .LVU37
- 139              		.loc 2 367 6 is_stmt 0 view .LVU38
- 140 000a 002A     		cmp	r2, #0
- 141 000c 41D0     		beq	.L31
- 142              		.loc 2 367 11 discriminator 1 view .LVU39
- 143 000e 9042     		cmp	r0, r2
- 144 0010 3FD3     		bcc	.L31
+ 137              		.loc 1 367 3 is_stmt 1 view .LVU37
+ 138              		.loc 1 367 6 is_stmt 0 view .LVU38
+ 139 000a 002A     		cmp	r2, #0
+ 140 000c 41D0     		beq	.L31
+ 141              		.loc 1 367 11 discriminator 1 view .LVU39
+ 142 000e 9042     		cmp	r0, r2
+ 143 0010 3FD3     		bcc	.L31
  306:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	/* Compressed upper conversion table */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 10
+ 144              		.loc 1 306 1 view .LVU40
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 10
 
 
- 145              		.loc 2 306 1 view .LVU40
- 146 0012 10B5     		push	{r4, lr}
- 147              		.cfi_def_cfa_offset 8
- 148              		.cfi_offset 4, -8
- 149              		.cfi_offset 14, -4
- 150 0014 06E0     		b	.L33
- 151              	.LVL14:
- 152              	.L26:
- 153              		.cfi_def_cfa_offset 0
- 154              		.cfi_restore 4
- 155              		.cfi_restore 14
+ 145 0012 10B5     		push	{r4, lr}
+ 146              		.cfi_def_cfa_offset 8
+ 147              		.cfi_offset 4, -8
+ 148              		.cfi_offset 14, -4
+ 149 0014 06E0     		b	.L33
+ 150              	.LVL14:
+ 151              	.L26:
+ 152              		.cfi_def_cfa_offset 0
+ 153              		.cfi_restore 4
+ 154              		.cfi_restore 14
  364:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	for (;;) {
- 156              		.loc 2 364 26 discriminator 2 view .LVU41
- 157 0016 204B     		ldr	r3, .L36+4
- 158 0018 F6E7     		b	.L30
- 159              	.LVL15:
- 160              	.L27:
- 161              		.cfi_def_cfa_offset 8
- 162              		.cfi_offset 4, -8
- 163              		.cfi_offset 14, -4
+ 155              		.loc 1 364 26 discriminator 2 view .LVU41
+ 156 0016 204B     		ldr	r3, .L36+4
+ 157 0018 F6E7     		b	.L30
+ 158              	.LVL15:
+ 159              	.L27:
+ 160              		.cfi_def_cfa_offset 8
+ 161              		.cfi_offset 4, -8
+ 162              		.cfi_offset 14, -4
  368:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		nc = *p++; cmd = nc >> 8; nc &= 0xFF;	/* Get processing command and block size */
- 164              		.loc 2 368 10 view .LVU42
- 165 001a 7346     		mov	r3, lr
- 166              	.LVL16:
- 167              	.L24:
+ 163              		.loc 1 368 10 view .LVU42
+ 164 001a 7346     		mov	r3, lr
+ 165              	.LVL16:
+ 166              	.L24:
  365:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		bc = *p++;								/* Get block base */
- 168              		.loc 2 365 2 is_stmt 1 view .LVU43
+ 167              		.loc 1 365 2 is_stmt 1 view .LVU43
  366:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		if (!bc || chr < bc) break;
- 169              		.loc 2 366 3 view .LVU44
+ 168              		.loc 1 366 3 view .LVU44
  366:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		if (!bc || chr < bc) break;
- 170              		.loc 2 366 6 is_stmt 0 view .LVU45
- 171 001c 1A88     		ldrh	r2, [r3]
- 172              	.LVL17:
+ 169              		.loc 1 366 6 is_stmt 0 view .LVU45
+ 170 001c 1A88     		ldrh	r2, [r3]
+ 171              	.LVL17:
  367:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		nc = *p++; cmd = nc >> 8; nc &= 0xFF;	/* Get processing command and block size */
- 173              		.loc 2 367 3 is_stmt 1 view .LVU46
+ 172              		.loc 1 367 3 is_stmt 1 view .LVU46
  367:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		nc = *p++; cmd = nc >> 8; nc &= 0xFF;	/* Get processing command and block size */
- 174              		.loc 2 367 6 is_stmt 0 view .LVU47
- 175 001e DAB1     		cbz	r2, .L12
+ 173              		.loc 1 367 6 is_stmt 0 view .LVU47
+ 174 001e DAB1     		cbz	r2, .L12
  367:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		nc = *p++; cmd = nc >> 8; nc &= 0xFF;	/* Get processing command and block size */
- 176              		.loc 2 367 11 discriminator 1 view .LVU48
- 177 0020 9042     		cmp	r0, r2
- 178 0022 19D3     		bcc	.L12
- 179              	.LVL18:
- 180              	.L33:
- 181              		.loc 2 368 3 is_stmt 1 view .LVU49
- 182              		.loc 2 368 10 is_stmt 0 view .LVU50
- 183 0024 03F1040E 		add	lr, r3, #4
- 184              	.LVL19:
- 185              		.loc 2 368 6 view .LVU51
- 186 0028 5B88     		ldrh	r3, [r3, #2]
- 187              	.LVL20:
- 188              		.loc 2 368 14 is_stmt 1 view .LVU52
- 189              		.loc 2 368 18 is_stmt 0 view .LVU53
- 190 002a 190A     		lsrs	r1, r3, #8
- 191              	.LVL21:
- 192              		.loc 2 368 29 is_stmt 1 view .LVU54
- 193              		.loc 2 368 32 is_stmt 0 view .LVU55
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 11
+ 175              		.loc 1 367 11 discriminator 1 view .LVU48
+ 176 0020 9042     		cmp	r0, r2
+ 177 0022 19D3     		bcc	.L12
+ 178              	.LVL18:
+ 179              	.L33:
+ 180              		.loc 1 368 3 is_stmt 1 view .LVU49
+ 181              		.loc 1 368 10 is_stmt 0 view .LVU50
+ 182 0024 03F1040E 		add	lr, r3, #4
+ 183              	.LVL19:
+ 184              		.loc 1 368 6 view .LVU51
+ 185 0028 5B88     		ldrh	r3, [r3, #2]
+ 186              	.LVL20:
+ 187              		.loc 1 368 14 is_stmt 1 view .LVU52
+ 188              		.loc 1 368 18 is_stmt 0 view .LVU53
+ 189 002a 190A     		lsrs	r1, r3, #8
+ 190              	.LVL21:
+ 191              		.loc 1 368 29 is_stmt 1 view .LVU54
+ 192              		.loc 1 368 32 is_stmt 0 view .LVU55
+ 193 002c DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 11
 
 
- 194 002c DBB2     		uxtb	r3, r3
- 195              	.LVL22:
+ 194              	.LVL22:
  369:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		if (chr < bc + nc) {	/* In the block? */
- 196              		.loc 2 369 3 is_stmt 1 view .LVU56
- 197              		.loc 2 369 16 is_stmt 0 view .LVU57
- 198 002e 03EB020C 		add	ip, r3, r2
- 199              		.loc 2 369 6 view .LVU58
- 200 0032 6045     		cmp	r0, ip
- 201 0034 04DB     		blt	.L35
+ 195              		.loc 1 369 3 is_stmt 1 view .LVU56
+ 196              		.loc 1 369 16 is_stmt 0 view .LVU57
+ 197 002e 03EB020C 		add	ip, r3, r2
+ 198              		.loc 1 369 6 view .LVU58
+ 199 0032 6045     		cmp	r0, ip
+ 200 0034 04DB     		blt	.L35
  370:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			switch (cmd) {
  371:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 0:	chr = p[chr - bc]; break;		/* Table conversion */
  372:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 1:	chr -= (chr - bc) & 1; break;	/* Case pairs */
@@ -624,726 +623,726 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 1
  381:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			break;
  382:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		}
  383:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 		if (!cmd) p += nc;
- 202              		.loc 2 383 3 is_stmt 1 view .LVU59
- 203              		.loc 2 383 6 is_stmt 0 view .LVU60
- 204 0036 0029     		cmp	r1, #0
- 205 0038 EFD1     		bne	.L27
- 206              		.loc 2 383 13 is_stmt 1 discriminator 1 view .LVU61
- 207              		.loc 2 383 15 is_stmt 0 discriminator 1 view .LVU62
- 208 003a 0EEB4303 		add	r3, lr, r3, lsl #1
- 209              	.LVL23:
- 210              		.loc 2 383 15 discriminator 1 view .LVU63
- 211 003e EDE7     		b	.L24
- 212              	.LVL24:
- 213              	.L35:
+ 201              		.loc 1 383 3 is_stmt 1 view .LVU59
+ 202              		.loc 1 383 6 is_stmt 0 view .LVU60
+ 203 0036 0029     		cmp	r1, #0
+ 204 0038 EFD1     		bne	.L27
+ 205              		.loc 1 383 13 is_stmt 1 discriminator 1 view .LVU61
+ 206              		.loc 1 383 15 is_stmt 0 discriminator 1 view .LVU62
+ 207 003a 0EEB4303 		add	r3, lr, r3, lsl #1
+ 208              	.LVL23:
+ 209              		.loc 1 383 15 discriminator 1 view .LVU63
+ 210 003e EDE7     		b	.L24
+ 211              	.LVL24:
+ 212              	.L35:
  370:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			switch (cmd) {
- 214              		.loc 2 370 4 is_stmt 1 view .LVU64
- 215 0040 0829     		cmp	r1, #8
- 216 0042 09D8     		bhi	.L12
- 217 0044 DFE801F0 		tbb	[pc, r1]
- 218              	.LVL25:
- 219              	.L15:
- 220 0048 05       		.byte	(.L23-.L15)/2
- 221 0049 09       		.byte	(.L22-.L15)/2
- 222 004a 0F       		.byte	(.L21-.L15)/2
- 223 004b 12       		.byte	(.L20-.L15)/2
- 224 004c 15       		.byte	(.L19-.L15)/2
- 225 004d 18       		.byte	(.L18-.L15)/2
- 226 004e 1B       		.byte	(.L17-.L15)/2
- 227 004f 1E       		.byte	(.L16-.L15)/2
- 228 0050 21       		.byte	(.L14-.L15)/2
- 229 0051 00       		.p2align 1
- 230              	.L23:
+ 213              		.loc 1 370 4 is_stmt 1 view .LVU64
+ 214 0040 0829     		cmp	r1, #8
+ 215 0042 09D8     		bhi	.L12
+ 216 0044 DFE801F0 		tbb	[pc, r1]
+ 217              	.LVL25:
+ 218              	.L15:
+ 219 0048 05       		.byte	(.L23-.L15)/2
+ 220 0049 09       		.byte	(.L22-.L15)/2
+ 221 004a 0F       		.byte	(.L21-.L15)/2
+ 222 004b 12       		.byte	(.L20-.L15)/2
+ 223 004c 15       		.byte	(.L19-.L15)/2
+ 224 004d 18       		.byte	(.L18-.L15)/2
+ 225 004e 1B       		.byte	(.L17-.L15)/2
+ 226 004f 1E       		.byte	(.L16-.L15)/2
+ 227 0050 21       		.byte	(.L14-.L15)/2
+ 228 0051 00       		.p2align 1
+ 229              	.L23:
  371:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 1:	chr -= (chr - bc) & 1; break;	/* Case pairs */
- 231              		.loc 2 371 12 view .LVU65
+ 230              		.loc 1 371 12 view .LVU65
  371:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 1:	chr -= (chr - bc) & 1; break;	/* Case pairs */
- 232              		.loc 2 371 24 is_stmt 0 view .LVU66
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 12
+ 231              		.loc 1 371 24 is_stmt 0 view .LVU66
+ 232 0052 841A     		subs	r4, r0, r2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 12
 
 
- 233 0052 841A     		subs	r4, r0, r2
  371:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 1:	chr -= (chr - bc) & 1; break;	/* Case pairs */
- 234              		.loc 2 371 16 view .LVU67
- 235 0054 3EF81400 		ldrh	r0, [lr, r4, lsl #1]
- 236              	.LVL26:
+ 233              		.loc 1 371 16 view .LVU67
+ 234 0054 3EF81400 		ldrh	r0, [lr, r4, lsl #1]
+ 235              	.LVL26:
  371:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 1:	chr -= (chr - bc) & 1; break;	/* Case pairs */
- 237              		.loc 2 371 31 is_stmt 1 view .LVU68
- 238              	.L12:
+ 236              		.loc 1 371 31 is_stmt 1 view .LVU68
+ 237              	.L12:
  384:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	}
  385:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 
  386:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 	return chr;
- 239              		.loc 2 386 2 view .LVU69
+ 238              		.loc 1 386 2 view .LVU69
  387:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** }
- 240              		.loc 2 387 1 is_stmt 0 view .LVU70
- 241 0058 10BD     		pop	{r4, pc}
- 242              	.LVL27:
- 243              	.L22:
+ 239              		.loc 1 387 1 is_stmt 0 view .LVU70
+ 240 0058 10BD     		pop	{r4, pc}
+ 241              	.LVL27:
+ 242              	.L22:
  372:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 2: chr -= 16; break;				/* Shift -16 */
- 244              		.loc 2 372 12 is_stmt 1 view .LVU71
+ 243              		.loc 1 372 12 is_stmt 1 view .LVU71
  372:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 2: chr -= 16; break;				/* Shift -16 */
- 245              		.loc 2 372 30 is_stmt 0 view .LVU72
- 246 005a 831A     		subs	r3, r0, r2
- 247 005c 03F00103 		and	r3, r3, #1
+ 244              		.loc 1 372 30 is_stmt 0 view .LVU72
+ 245 005a 831A     		subs	r3, r0, r2
+ 246 005c 03F00103 		and	r3, r3, #1
  372:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 2: chr -= 16; break;				/* Shift -16 */
- 248              		.loc 2 372 16 view .LVU73
- 249 0060 C01A     		subs	r0, r0, r3
- 250              	.LVL28:
+ 247              		.loc 1 372 16 view .LVU73
+ 248 0060 C01A     		subs	r0, r0, r3
+ 249              	.LVL28:
  372:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 2: chr -= 16; break;				/* Shift -16 */
- 251              		.loc 2 372 16 view .LVU74
- 252 0062 80B2     		uxth	r0, r0
- 253              	.LVL29:
+ 250              		.loc 1 372 16 view .LVU74
+ 251 0062 80B2     		uxth	r0, r0
+ 252              	.LVL29:
  372:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 2: chr -= 16; break;				/* Shift -16 */
- 254              		.loc 2 372 35 is_stmt 1 view .LVU75
- 255 0064 F8E7     		b	.L12
- 256              	.L21:
+ 253              		.loc 1 372 35 is_stmt 1 view .LVU75
+ 254 0064 F8E7     		b	.L12
+ 255              	.L21:
  373:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 3:	chr -= 32; break;				/* Shift -32 */
- 257              		.loc 2 373 12 view .LVU76
+ 256              		.loc 1 373 12 view .LVU76
  373:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 3:	chr -= 32; break;				/* Shift -32 */
- 258              		.loc 2 373 16 is_stmt 0 view .LVU77
- 259 0066 1038     		subs	r0, r0, #16
- 260              	.LVL30:
+ 257              		.loc 1 373 16 is_stmt 0 view .LVU77
+ 258 0066 1038     		subs	r0, r0, #16
+ 259              	.LVL30:
  373:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 3:	chr -= 32; break;				/* Shift -32 */
- 261              		.loc 2 373 16 view .LVU78
- 262 0068 80B2     		uxth	r0, r0
- 263              	.LVL31:
+ 260              		.loc 1 373 16 view .LVU78
+ 261 0068 80B2     		uxth	r0, r0
+ 262              	.LVL31:
  373:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 3:	chr -= 32; break;				/* Shift -32 */
- 264              		.loc 2 373 23 is_stmt 1 view .LVU79
- 265 006a F5E7     		b	.L12
- 266              	.L20:
+ 263              		.loc 1 373 23 is_stmt 1 view .LVU79
+ 264 006a F5E7     		b	.L12
+ 265              	.L20:
  374:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 4:	chr -= 48; break;				/* Shift -48 */
- 267              		.loc 2 374 12 view .LVU80
+ 266              		.loc 1 374 12 view .LVU80
  374:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 4:	chr -= 48; break;				/* Shift -48 */
- 268              		.loc 2 374 16 is_stmt 0 view .LVU81
- 269 006c 2038     		subs	r0, r0, #32
- 270              	.LVL32:
+ 267              		.loc 1 374 16 is_stmt 0 view .LVU81
+ 268 006c 2038     		subs	r0, r0, #32
+ 269              	.LVL32:
  374:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 4:	chr -= 48; break;				/* Shift -48 */
- 271              		.loc 2 374 16 view .LVU82
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 13
+ 270              		.loc 1 374 16 view .LVU82
+ 271 006e 80B2     		uxth	r0, r0
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 13
 
 
- 272 006e 80B2     		uxth	r0, r0
- 273              	.LVL33:
+ 272              	.LVL33:
  374:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 4:	chr -= 48; break;				/* Shift -48 */
- 274              		.loc 2 374 23 is_stmt 1 view .LVU83
- 275 0070 F2E7     		b	.L12
- 276              	.L19:
+ 273              		.loc 1 374 23 is_stmt 1 view .LVU83
+ 274 0070 F2E7     		b	.L12
+ 275              	.L19:
  375:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 5:	chr -= 26; break;				/* Shift -26 */
- 277              		.loc 2 375 12 view .LVU84
+ 276              		.loc 1 375 12 view .LVU84
  375:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 5:	chr -= 26; break;				/* Shift -26 */
- 278              		.loc 2 375 16 is_stmt 0 view .LVU85
- 279 0072 3038     		subs	r0, r0, #48
- 280              	.LVL34:
+ 277              		.loc 1 375 16 is_stmt 0 view .LVU85
+ 278 0072 3038     		subs	r0, r0, #48
+ 279              	.LVL34:
  375:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 5:	chr -= 26; break;				/* Shift -26 */
- 281              		.loc 2 375 16 view .LVU86
- 282 0074 80B2     		uxth	r0, r0
- 283              	.LVL35:
+ 280              		.loc 1 375 16 view .LVU86
+ 281 0074 80B2     		uxth	r0, r0
+ 282              	.LVL35:
  375:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 5:	chr -= 26; break;				/* Shift -26 */
- 284              		.loc 2 375 23 is_stmt 1 view .LVU87
- 285 0076 EFE7     		b	.L12
- 286              	.L18:
+ 283              		.loc 1 375 23 is_stmt 1 view .LVU87
+ 284 0076 EFE7     		b	.L12
+ 285              	.L18:
  376:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 6:	chr += 8; break;				/* Shift +8 */
- 287              		.loc 2 376 12 view .LVU88
+ 286              		.loc 1 376 12 view .LVU88
  376:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 6:	chr += 8; break;				/* Shift +8 */
- 288              		.loc 2 376 16 is_stmt 0 view .LVU89
- 289 0078 1A38     		subs	r0, r0, #26
- 290              	.LVL36:
+ 287              		.loc 1 376 16 is_stmt 0 view .LVU89
+ 288 0078 1A38     		subs	r0, r0, #26
+ 289              	.LVL36:
  376:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 6:	chr += 8; break;				/* Shift +8 */
- 291              		.loc 2 376 16 view .LVU90
- 292 007a 80B2     		uxth	r0, r0
- 293              	.LVL37:
+ 290              		.loc 1 376 16 view .LVU90
+ 291 007a 80B2     		uxth	r0, r0
+ 292              	.LVL37:
  376:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 6:	chr += 8; break;				/* Shift +8 */
- 294              		.loc 2 376 23 is_stmt 1 view .LVU91
- 295 007c ECE7     		b	.L12
- 296              	.L17:
+ 293              		.loc 1 376 23 is_stmt 1 view .LVU91
+ 294 007c ECE7     		b	.L12
+ 295              	.L17:
  377:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 7: chr -= 80; break;				/* Shift -80 */
- 297              		.loc 2 377 12 view .LVU92
+ 296              		.loc 1 377 12 view .LVU92
  377:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 7: chr -= 80; break;				/* Shift -80 */
- 298              		.loc 2 377 16 is_stmt 0 view .LVU93
- 299 007e 0830     		adds	r0, r0, #8
- 300              	.LVL38:
+ 297              		.loc 1 377 16 is_stmt 0 view .LVU93
+ 298 007e 0830     		adds	r0, r0, #8
+ 299              	.LVL38:
  377:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 7: chr -= 80; break;				/* Shift -80 */
- 301              		.loc 2 377 16 view .LVU94
- 302 0080 80B2     		uxth	r0, r0
- 303              	.LVL39:
+ 300              		.loc 1 377 16 view .LVU94
+ 301 0080 80B2     		uxth	r0, r0
+ 302              	.LVL39:
  377:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 7: chr -= 80; break;				/* Shift -80 */
- 304              		.loc 2 377 22 is_stmt 1 view .LVU95
- 305 0082 E9E7     		b	.L12
- 306              	.L16:
+ 303              		.loc 1 377 22 is_stmt 1 view .LVU95
+ 304 0082 E9E7     		b	.L12
+ 305              	.L16:
  378:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 8:	chr -= 0x1C60; break;			/* Shift -0x1C60 */
- 307              		.loc 2 378 12 view .LVU96
+ 306              		.loc 1 378 12 view .LVU96
  378:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 8:	chr -= 0x1C60; break;			/* Shift -0x1C60 */
- 308              		.loc 2 378 16 is_stmt 0 view .LVU97
- 309 0084 5038     		subs	r0, r0, #80
- 310              	.LVL40:
+ 307              		.loc 1 378 16 is_stmt 0 view .LVU97
+ 308 0084 5038     		subs	r0, r0, #80
+ 309              	.LVL40:
  378:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 8:	chr -= 0x1C60; break;			/* Shift -0x1C60 */
- 311              		.loc 2 378 16 view .LVU98
- 312 0086 80B2     		uxth	r0, r0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 14
+ 310              		.loc 1 378 16 view .LVU98
+ 311 0086 80B2     		uxth	r0, r0
+ 312              	.LVL41:
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 14
 
 
- 313              	.LVL41:
  378:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			case 8:	chr -= 0x1C60; break;			/* Shift -0x1C60 */
- 314              		.loc 2 378 23 is_stmt 1 view .LVU99
- 315 0088 E6E7     		b	.L12
- 316              	.L14:
+ 313              		.loc 1 378 23 is_stmt 1 view .LVU99
+ 314 0088 E6E7     		b	.L12
+ 315              	.L14:
  379:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			}
- 317              		.loc 2 379 12 view .LVU100
+ 316              		.loc 1 379 12 view .LVU100
  379:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			}
- 318              		.loc 2 379 16 is_stmt 0 view .LVU101
- 319 008a A0F5E350 		sub	r0, r0, #7264
- 320              	.LVL42:
+ 317              		.loc 1 379 16 is_stmt 0 view .LVU101
+ 318 008a A0F5E350 		sub	r0, r0, #7264
+ 319              	.LVL42:
  379:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			}
- 321              		.loc 2 379 16 view .LVU102
- 322 008e 80B2     		uxth	r0, r0
- 323              	.LVL43:
+ 320              		.loc 1 379 16 view .LVU102
+ 321 008e 80B2     		uxth	r0, r0
+ 322              	.LVL43:
  379:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** 			}
- 324              		.loc 2 379 27 is_stmt 1 view .LVU103
- 325 0090 E2E7     		b	.L12
- 326              	.LVL44:
- 327              	.L31:
- 328              		.cfi_def_cfa_offset 0
- 329              		.cfi_restore 4
- 330              		.cfi_restore 14
+ 323              		.loc 1 379 27 is_stmt 1 view .LVU103
+ 324 0090 E2E7     		b	.L12
+ 325              	.LVL44:
+ 326              	.L31:
+ 327              		.cfi_def_cfa_offset 0
+ 328              		.cfi_restore 4
+ 329              		.cfi_restore 14
  386:Middlewares/Third_Party/FatFs/src/option/ccsbcs.c **** }
- 331              		.loc 2 386 2 view .LVU104
- 332              		.loc 2 387 1 is_stmt 0 view .LVU105
- 333 0092 7047     		bx	lr
- 334              	.L37:
- 335              		.align	2
- 336              	.L36:
- 337 0094 00000000 		.word	cvt1.1
- 338 0098 00000000 		.word	cvt2.0
- 339              		.cfi_endproc
- 340              	.LFE135:
- 342              		.section	.rodata.cvt2.0,"a"
- 343              		.align	2
- 346              	cvt2.0:
- 347 0000 7D1D     		.short	7549
- 348 0002 0100     		.short	1
- 349 0004 632C     		.short	11363
- 350 0006 001E     		.short	7680
- 351 0008 9601     		.short	406
- 352 000a A01E     		.short	7840
- 353 000c 5A01     		.short	346
- 354 000e 001F     		.short	7936
- 355 0010 0806     		.short	1544
- 356 0012 101F     		.short	7952
- 357 0014 0606     		.short	1542
- 358 0016 201F     		.short	7968
- 359 0018 0806     		.short	1544
- 360 001a 301F     		.short	7984
- 361 001c 0806     		.short	1544
- 362 001e 401F     		.short	8000
- 363 0020 0606     		.short	1542
- 364 0022 511F     		.short	8017
- 365 0024 0700     		.short	7
- 366 0026 591F     		.short	8025
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 15
+ 330              		.loc 1 386 2 view .LVU104
+ 331              		.loc 1 387 1 is_stmt 0 view .LVU105
+ 332 0092 7047     		bx	lr
+ 333              	.L37:
+ 334              		.align	2
+ 335              	.L36:
+ 336 0094 00000000 		.word	cvt1.1
+ 337 0098 00000000 		.word	cvt2.0
+ 338              		.cfi_endproc
+ 339              	.LFE135:
+ 341              		.section	.rodata.cvt2.0,"a"
+ 342              		.align	2
+ 345              	cvt2.0:
+ 346 0000 7D1D     		.short	7549
+ 347 0002 0100     		.short	1
+ 348 0004 632C     		.short	11363
+ 349 0006 001E     		.short	7680
+ 350 0008 9601     		.short	406
+ 351 000a A01E     		.short	7840
+ 352 000c 5A01     		.short	346
+ 353 000e 001F     		.short	7936
+ 354 0010 0806     		.short	1544
+ 355 0012 101F     		.short	7952
+ 356 0014 0606     		.short	1542
+ 357 0016 201F     		.short	7968
+ 358 0018 0806     		.short	1544
+ 359 001a 301F     		.short	7984
+ 360 001c 0806     		.short	1544
+ 361 001e 401F     		.short	8000
+ 362 0020 0606     		.short	1542
+ 363 0022 511F     		.short	8017
+ 364 0024 0700     		.short	7
+ 365 0026 591F     		.short	8025
+ 366 0028 521F     		.short	8018
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 15
 
 
- 367 0028 521F     		.short	8018
- 368 002a 5B1F     		.short	8027
- 369 002c 541F     		.short	8020
- 370 002e 5D1F     		.short	8029
- 371 0030 561F     		.short	8022
- 372 0032 5F1F     		.short	8031
- 373 0034 601F     		.short	8032
- 374 0036 0806     		.short	1544
- 375 0038 701F     		.short	8048
- 376 003a 0E00     		.short	14
- 377 003c BA1F     		.short	8122
- 378 003e BB1F     		.short	8123
- 379 0040 C81F     		.short	8136
- 380 0042 C91F     		.short	8137
- 381 0044 CA1F     		.short	8138
- 382 0046 CB1F     		.short	8139
- 383 0048 DA1F     		.short	8154
- 384 004a DB1F     		.short	8155
- 385 004c F81F     		.short	8184
- 386 004e F91F     		.short	8185
- 387 0050 EA1F     		.short	8170
- 388 0052 EB1F     		.short	8171
- 389 0054 FA1F     		.short	8186
- 390 0056 FB1F     		.short	8187
- 391 0058 801F     		.short	8064
- 392 005a 0806     		.short	1544
- 393 005c 901F     		.short	8080
- 394 005e 0806     		.short	1544
- 395 0060 A01F     		.short	8096
- 396 0062 0806     		.short	1544
- 397 0064 B01F     		.short	8112
- 398 0066 0400     		.short	4
- 399 0068 B81F     		.short	8120
- 400 006a B91F     		.short	8121
- 401 006c B21F     		.short	8114
- 402 006e BC1F     		.short	8124
- 403 0070 CC1F     		.short	8140
- 404 0072 0100     		.short	1
- 405 0074 C31F     		.short	8131
- 406 0076 D01F     		.short	8144
- 407 0078 0206     		.short	1538
- 408 007a E01F     		.short	8160
- 409 007c 0206     		.short	1538
- 410 007e E51F     		.short	8165
- 411 0080 0100     		.short	1
- 412 0082 EC1F     		.short	8172
- 413 0084 F21F     		.short	8178
- 414 0086 0100     		.short	1
- 415 0088 FC1F     		.short	8188
- 416 008a 4E21     		.short	8526
- 417 008c 0100     		.short	1
- 418 008e 3221     		.short	8498
- 419 0090 7021     		.short	8560
- 420 0092 1002     		.short	528
- 421 0094 8421     		.short	8580
- 422 0096 0100     		.short	1
- 423 0098 8321     		.short	8579
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 16
+ 367 002a 5B1F     		.short	8027
+ 368 002c 541F     		.short	8020
+ 369 002e 5D1F     		.short	8029
+ 370 0030 561F     		.short	8022
+ 371 0032 5F1F     		.short	8031
+ 372 0034 601F     		.short	8032
+ 373 0036 0806     		.short	1544
+ 374 0038 701F     		.short	8048
+ 375 003a 0E00     		.short	14
+ 376 003c BA1F     		.short	8122
+ 377 003e BB1F     		.short	8123
+ 378 0040 C81F     		.short	8136
+ 379 0042 C91F     		.short	8137
+ 380 0044 CA1F     		.short	8138
+ 381 0046 CB1F     		.short	8139
+ 382 0048 DA1F     		.short	8154
+ 383 004a DB1F     		.short	8155
+ 384 004c F81F     		.short	8184
+ 385 004e F91F     		.short	8185
+ 386 0050 EA1F     		.short	8170
+ 387 0052 EB1F     		.short	8171
+ 388 0054 FA1F     		.short	8186
+ 389 0056 FB1F     		.short	8187
+ 390 0058 801F     		.short	8064
+ 391 005a 0806     		.short	1544
+ 392 005c 901F     		.short	8080
+ 393 005e 0806     		.short	1544
+ 394 0060 A01F     		.short	8096
+ 395 0062 0806     		.short	1544
+ 396 0064 B01F     		.short	8112
+ 397 0066 0400     		.short	4
+ 398 0068 B81F     		.short	8120
+ 399 006a B91F     		.short	8121
+ 400 006c B21F     		.short	8114
+ 401 006e BC1F     		.short	8124
+ 402 0070 CC1F     		.short	8140
+ 403 0072 0100     		.short	1
+ 404 0074 C31F     		.short	8131
+ 405 0076 D01F     		.short	8144
+ 406 0078 0206     		.short	1538
+ 407 007a E01F     		.short	8160
+ 408 007c 0206     		.short	1538
+ 409 007e E51F     		.short	8165
+ 410 0080 0100     		.short	1
+ 411 0082 EC1F     		.short	8172
+ 412 0084 F21F     		.short	8178
+ 413 0086 0100     		.short	1
+ 414 0088 FC1F     		.short	8188
+ 415 008a 4E21     		.short	8526
+ 416 008c 0100     		.short	1
+ 417 008e 3221     		.short	8498
+ 418 0090 7021     		.short	8560
+ 419 0092 1002     		.short	528
+ 420 0094 8421     		.short	8580
+ 421 0096 0100     		.short	1
+ 422 0098 8321     		.short	8579
+ 423 009a D024     		.short	9424
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 16
 
 
- 424 009a D024     		.short	9424
- 425 009c 1A05     		.short	1306
- 426 009e 302C     		.short	11312
- 427 00a0 2F04     		.short	1071
- 428 00a2 602C     		.short	11360
- 429 00a4 0201     		.short	258
- 430 00a6 672C     		.short	11367
- 431 00a8 0601     		.short	262
- 432 00aa 752C     		.short	11381
- 433 00ac 0201     		.short	258
- 434 00ae 802C     		.short	11392
- 435 00b0 6401     		.short	356
- 436 00b2 002D     		.short	11520
- 437 00b4 2608     		.short	2086
- 438 00b6 41FF     		.short	-191
- 439 00b8 1A03     		.short	794
- 440 00ba 0000     		.short	0
- 441              		.section	.rodata.cvt1.1,"a"
- 442              		.align	2
- 445              	cvt1.1:
- 446 0000 6100     		.short	97
- 447 0002 1A03     		.short	794
- 448 0004 E000     		.short	224
- 449 0006 1703     		.short	791
- 450 0008 F800     		.short	248
- 451 000a 0703     		.short	775
- 452 000c FF00     		.short	255
- 453 000e 0100     		.short	1
- 454 0010 7801     		.short	376
- 455 0012 0001     		.short	256
- 456 0014 3001     		.short	304
- 457 0016 3201     		.short	306
- 458 0018 0601     		.short	262
- 459 001a 3901     		.short	313
- 460 001c 1001     		.short	272
- 461 001e 4A01     		.short	330
- 462 0020 2E01     		.short	302
- 463 0022 7901     		.short	377
- 464 0024 0601     		.short	262
- 465 0026 8001     		.short	384
- 466 0028 4D00     		.short	77
- 467 002a 4302     		.short	579
- 468 002c 8101     		.short	385
- 469 002e 8201     		.short	386
- 470 0030 8201     		.short	386
- 471 0032 8401     		.short	388
- 472 0034 8401     		.short	388
- 473 0036 8601     		.short	390
- 474 0038 8701     		.short	391
- 475 003a 8701     		.short	391
- 476 003c 8901     		.short	393
- 477 003e 8A01     		.short	394
- 478 0040 8B01     		.short	395
- 479 0042 8B01     		.short	395
- 480 0044 8D01     		.short	397
- 481 0046 8E01     		.short	398
- 482 0048 8F01     		.short	399
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 17
+ 424 009c 1A05     		.short	1306
+ 425 009e 302C     		.short	11312
+ 426 00a0 2F04     		.short	1071
+ 427 00a2 602C     		.short	11360
+ 428 00a4 0201     		.short	258
+ 429 00a6 672C     		.short	11367
+ 430 00a8 0601     		.short	262
+ 431 00aa 752C     		.short	11381
+ 432 00ac 0201     		.short	258
+ 433 00ae 802C     		.short	11392
+ 434 00b0 6401     		.short	356
+ 435 00b2 002D     		.short	11520
+ 436 00b4 2608     		.short	2086
+ 437 00b6 41FF     		.short	-191
+ 438 00b8 1A03     		.short	794
+ 439 00ba 0000     		.short	0
+ 440              		.section	.rodata.cvt1.1,"a"
+ 441              		.align	2
+ 444              	cvt1.1:
+ 445 0000 6100     		.short	97
+ 446 0002 1A03     		.short	794
+ 447 0004 E000     		.short	224
+ 448 0006 1703     		.short	791
+ 449 0008 F800     		.short	248
+ 450 000a 0703     		.short	775
+ 451 000c FF00     		.short	255
+ 452 000e 0100     		.short	1
+ 453 0010 7801     		.short	376
+ 454 0012 0001     		.short	256
+ 455 0014 3001     		.short	304
+ 456 0016 3201     		.short	306
+ 457 0018 0601     		.short	262
+ 458 001a 3901     		.short	313
+ 459 001c 1001     		.short	272
+ 460 001e 4A01     		.short	330
+ 461 0020 2E01     		.short	302
+ 462 0022 7901     		.short	377
+ 463 0024 0601     		.short	262
+ 464 0026 8001     		.short	384
+ 465 0028 4D00     		.short	77
+ 466 002a 4302     		.short	579
+ 467 002c 8101     		.short	385
+ 468 002e 8201     		.short	386
+ 469 0030 8201     		.short	386
+ 470 0032 8401     		.short	388
+ 471 0034 8401     		.short	388
+ 472 0036 8601     		.short	390
+ 473 0038 8701     		.short	391
+ 474 003a 8701     		.short	391
+ 475 003c 8901     		.short	393
+ 476 003e 8A01     		.short	394
+ 477 0040 8B01     		.short	395
+ 478 0042 8B01     		.short	395
+ 479 0044 8D01     		.short	397
+ 480 0046 8E01     		.short	398
+ 481 0048 8F01     		.short	399
+ 482 004a 9001     		.short	400
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 17
 
 
- 483 004a 9001     		.short	400
- 484 004c 9101     		.short	401
- 485 004e 9101     		.short	401
- 486 0050 9301     		.short	403
- 487 0052 9401     		.short	404
- 488 0054 F601     		.short	502
- 489 0056 9601     		.short	406
- 490 0058 9701     		.short	407
- 491 005a 9801     		.short	408
- 492 005c 9801     		.short	408
- 493 005e 3D02     		.short	573
- 494 0060 9B01     		.short	411
- 495 0062 9C01     		.short	412
- 496 0064 9D01     		.short	413
- 497 0066 2002     		.short	544
- 498 0068 9F01     		.short	415
- 499 006a A001     		.short	416
- 500 006c A001     		.short	416
- 501 006e A201     		.short	418
- 502 0070 A201     		.short	418
- 503 0072 A401     		.short	420
- 504 0074 A401     		.short	420
- 505 0076 A601     		.short	422
- 506 0078 A701     		.short	423
- 507 007a A701     		.short	423
- 508 007c A901     		.short	425
- 509 007e AA01     		.short	426
- 510 0080 AB01     		.short	427
- 511 0082 AC01     		.short	428
- 512 0084 AC01     		.short	428
- 513 0086 AE01     		.short	430
- 514 0088 AF01     		.short	431
- 515 008a AF01     		.short	431
- 516 008c B101     		.short	433
- 517 008e B201     		.short	434
- 518 0090 B301     		.short	435
- 519 0092 B301     		.short	435
- 520 0094 B501     		.short	437
- 521 0096 B501     		.short	437
- 522 0098 B701     		.short	439
- 523 009a B801     		.short	440
- 524 009c B801     		.short	440
- 525 009e BA01     		.short	442
- 526 00a0 BB01     		.short	443
- 527 00a2 BC01     		.short	444
- 528 00a4 BC01     		.short	444
- 529 00a6 BE01     		.short	446
- 530 00a8 F701     		.short	503
- 531 00aa C001     		.short	448
- 532 00ac C101     		.short	449
- 533 00ae C201     		.short	450
- 534 00b0 C301     		.short	451
- 535 00b2 C401     		.short	452
- 536 00b4 C501     		.short	453
- 537 00b6 C401     		.short	452
- 538 00b8 C701     		.short	455
- 539 00ba C801     		.short	456
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 18
+ 483 004c 9101     		.short	401
+ 484 004e 9101     		.short	401
+ 485 0050 9301     		.short	403
+ 486 0052 9401     		.short	404
+ 487 0054 F601     		.short	502
+ 488 0056 9601     		.short	406
+ 489 0058 9701     		.short	407
+ 490 005a 9801     		.short	408
+ 491 005c 9801     		.short	408
+ 492 005e 3D02     		.short	573
+ 493 0060 9B01     		.short	411
+ 494 0062 9C01     		.short	412
+ 495 0064 9D01     		.short	413
+ 496 0066 2002     		.short	544
+ 497 0068 9F01     		.short	415
+ 498 006a A001     		.short	416
+ 499 006c A001     		.short	416
+ 500 006e A201     		.short	418
+ 501 0070 A201     		.short	418
+ 502 0072 A401     		.short	420
+ 503 0074 A401     		.short	420
+ 504 0076 A601     		.short	422
+ 505 0078 A701     		.short	423
+ 506 007a A701     		.short	423
+ 507 007c A901     		.short	425
+ 508 007e AA01     		.short	426
+ 509 0080 AB01     		.short	427
+ 510 0082 AC01     		.short	428
+ 511 0084 AC01     		.short	428
+ 512 0086 AE01     		.short	430
+ 513 0088 AF01     		.short	431
+ 514 008a AF01     		.short	431
+ 515 008c B101     		.short	433
+ 516 008e B201     		.short	434
+ 517 0090 B301     		.short	435
+ 518 0092 B301     		.short	435
+ 519 0094 B501     		.short	437
+ 520 0096 B501     		.short	437
+ 521 0098 B701     		.short	439
+ 522 009a B801     		.short	440
+ 523 009c B801     		.short	440
+ 524 009e BA01     		.short	442
+ 525 00a0 BB01     		.short	443
+ 526 00a2 BC01     		.short	444
+ 527 00a4 BC01     		.short	444
+ 528 00a6 BE01     		.short	446
+ 529 00a8 F701     		.short	503
+ 530 00aa C001     		.short	448
+ 531 00ac C101     		.short	449
+ 532 00ae C201     		.short	450
+ 533 00b0 C301     		.short	451
+ 534 00b2 C401     		.short	452
+ 535 00b4 C501     		.short	453
+ 536 00b6 C401     		.short	452
+ 537 00b8 C701     		.short	455
+ 538 00ba C801     		.short	456
+ 539 00bc C701     		.short	455
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 18
 
 
- 540 00bc C701     		.short	455
- 541 00be CA01     		.short	458
- 542 00c0 CB01     		.short	459
- 543 00c2 CA01     		.short	458
- 544 00c4 CD01     		.short	461
- 545 00c6 1001     		.short	272
- 546 00c8 DD01     		.short	477
- 547 00ca 0100     		.short	1
- 548 00cc 8E01     		.short	398
- 549 00ce DE01     		.short	478
- 550 00d0 1201     		.short	274
- 551 00d2 F301     		.short	499
- 552 00d4 0300     		.short	3
- 553 00d6 F101     		.short	497
- 554 00d8 F401     		.short	500
- 555 00da F401     		.short	500
- 556 00dc F801     		.short	504
- 557 00de 2801     		.short	296
- 558 00e0 2202     		.short	546
- 559 00e2 1201     		.short	274
- 560 00e4 3A02     		.short	570
- 561 00e6 0900     		.short	9
- 562 00e8 652C     		.short	11365
- 563 00ea 3B02     		.short	571
- 564 00ec 3B02     		.short	571
- 565 00ee 3D02     		.short	573
- 566 00f0 662C     		.short	11366
- 567 00f2 3F02     		.short	575
- 568 00f4 4002     		.short	576
- 569 00f6 4102     		.short	577
- 570 00f8 4102     		.short	577
- 571 00fa 4602     		.short	582
- 572 00fc 0A01     		.short	266
- 573 00fe 5302     		.short	595
- 574 0100 4000     		.short	64
- 575 0102 8101     		.short	385
- 576 0104 8601     		.short	390
- 577 0106 5502     		.short	597
- 578 0108 8901     		.short	393
- 579 010a 8A01     		.short	394
- 580 010c 5802     		.short	600
- 581 010e 8F01     		.short	399
- 582 0110 5A02     		.short	602
- 583 0112 9001     		.short	400
- 584 0114 5C02     		.short	604
- 585 0116 5D02     		.short	605
- 586 0118 5E02     		.short	606
- 587 011a 5F02     		.short	607
- 588 011c 9301     		.short	403
- 589 011e 6102     		.short	609
- 590 0120 6202     		.short	610
- 591 0122 9401     		.short	404
- 592 0124 6402     		.short	612
- 593 0126 6502     		.short	613
- 594 0128 6602     		.short	614
- 595 012a 6702     		.short	615
- 596 012c 9701     		.short	407
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 19
+ 540 00be CA01     		.short	458
+ 541 00c0 CB01     		.short	459
+ 542 00c2 CA01     		.short	458
+ 543 00c4 CD01     		.short	461
+ 544 00c6 1001     		.short	272
+ 545 00c8 DD01     		.short	477
+ 546 00ca 0100     		.short	1
+ 547 00cc 8E01     		.short	398
+ 548 00ce DE01     		.short	478
+ 549 00d0 1201     		.short	274
+ 550 00d2 F301     		.short	499
+ 551 00d4 0300     		.short	3
+ 552 00d6 F101     		.short	497
+ 553 00d8 F401     		.short	500
+ 554 00da F401     		.short	500
+ 555 00dc F801     		.short	504
+ 556 00de 2801     		.short	296
+ 557 00e0 2202     		.short	546
+ 558 00e2 1201     		.short	274
+ 559 00e4 3A02     		.short	570
+ 560 00e6 0900     		.short	9
+ 561 00e8 652C     		.short	11365
+ 562 00ea 3B02     		.short	571
+ 563 00ec 3B02     		.short	571
+ 564 00ee 3D02     		.short	573
+ 565 00f0 662C     		.short	11366
+ 566 00f2 3F02     		.short	575
+ 567 00f4 4002     		.short	576
+ 568 00f6 4102     		.short	577
+ 569 00f8 4102     		.short	577
+ 570 00fa 4602     		.short	582
+ 571 00fc 0A01     		.short	266
+ 572 00fe 5302     		.short	595
+ 573 0100 4000     		.short	64
+ 574 0102 8101     		.short	385
+ 575 0104 8601     		.short	390
+ 576 0106 5502     		.short	597
+ 577 0108 8901     		.short	393
+ 578 010a 8A01     		.short	394
+ 579 010c 5802     		.short	600
+ 580 010e 8F01     		.short	399
+ 581 0110 5A02     		.short	602
+ 582 0112 9001     		.short	400
+ 583 0114 5C02     		.short	604
+ 584 0116 5D02     		.short	605
+ 585 0118 5E02     		.short	606
+ 586 011a 5F02     		.short	607
+ 587 011c 9301     		.short	403
+ 588 011e 6102     		.short	609
+ 589 0120 6202     		.short	610
+ 590 0122 9401     		.short	404
+ 591 0124 6402     		.short	612
+ 592 0126 6502     		.short	613
+ 593 0128 6602     		.short	614
+ 594 012a 6702     		.short	615
+ 595 012c 9701     		.short	407
+ 596 012e 9601     		.short	406
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 19
 
 
- 597 012e 9601     		.short	406
- 598 0130 6A02     		.short	618
- 599 0132 622C     		.short	11362
- 600 0134 6C02     		.short	620
- 601 0136 6D02     		.short	621
- 602 0138 6E02     		.short	622
- 603 013a 9C01     		.short	412
- 604 013c 7002     		.short	624
- 605 013e 7102     		.short	625
- 606 0140 9D01     		.short	413
- 607 0142 7302     		.short	627
- 608 0144 7402     		.short	628
- 609 0146 9F01     		.short	415
- 610 0148 7602     		.short	630
- 611 014a 7702     		.short	631
- 612 014c 7802     		.short	632
- 613 014e 7902     		.short	633
- 614 0150 7A02     		.short	634
- 615 0152 7B02     		.short	635
- 616 0154 7C02     		.short	636
- 617 0156 642C     		.short	11364
- 618 0158 7E02     		.short	638
- 619 015a 7F02     		.short	639
- 620 015c A601     		.short	422
- 621 015e 8102     		.short	641
- 622 0160 8202     		.short	642
- 623 0162 A901     		.short	425
- 624 0164 8402     		.short	644
- 625 0166 8502     		.short	645
- 626 0168 8602     		.short	646
- 627 016a 8702     		.short	647
- 628 016c AE01     		.short	430
- 629 016e 4402     		.short	580
- 630 0170 B101     		.short	433
- 631 0172 B201     		.short	434
- 632 0174 4502     		.short	581
- 633 0176 8D02     		.short	653
- 634 0178 8E02     		.short	654
- 635 017a 8F02     		.short	655
- 636 017c 9002     		.short	656
- 637 017e 9102     		.short	657
- 638 0180 B701     		.short	439
- 639 0182 7B03     		.short	891
- 640 0184 0300     		.short	3
- 641 0186 FD03     		.short	1021
- 642 0188 FE03     		.short	1022
- 643 018a FF03     		.short	1023
- 644 018c AC03     		.short	940
- 645 018e 0400     		.short	4
- 646 0190 8603     		.short	902
- 647 0192 8803     		.short	904
- 648 0194 8903     		.short	905
- 649 0196 8A03     		.short	906
- 650 0198 B103     		.short	945
- 651 019a 1103     		.short	785
- 652 019c C203     		.short	962
- 653 019e 0200     		.short	2
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 20
+ 597 0130 6A02     		.short	618
+ 598 0132 622C     		.short	11362
+ 599 0134 6C02     		.short	620
+ 600 0136 6D02     		.short	621
+ 601 0138 6E02     		.short	622
+ 602 013a 9C01     		.short	412
+ 603 013c 7002     		.short	624
+ 604 013e 7102     		.short	625
+ 605 0140 9D01     		.short	413
+ 606 0142 7302     		.short	627
+ 607 0144 7402     		.short	628
+ 608 0146 9F01     		.short	415
+ 609 0148 7602     		.short	630
+ 610 014a 7702     		.short	631
+ 611 014c 7802     		.short	632
+ 612 014e 7902     		.short	633
+ 613 0150 7A02     		.short	634
+ 614 0152 7B02     		.short	635
+ 615 0154 7C02     		.short	636
+ 616 0156 642C     		.short	11364
+ 617 0158 7E02     		.short	638
+ 618 015a 7F02     		.short	639
+ 619 015c A601     		.short	422
+ 620 015e 8102     		.short	641
+ 621 0160 8202     		.short	642
+ 622 0162 A901     		.short	425
+ 623 0164 8402     		.short	644
+ 624 0166 8502     		.short	645
+ 625 0168 8602     		.short	646
+ 626 016a 8702     		.short	647
+ 627 016c AE01     		.short	430
+ 628 016e 4402     		.short	580
+ 629 0170 B101     		.short	433
+ 630 0172 B201     		.short	434
+ 631 0174 4502     		.short	581
+ 632 0176 8D02     		.short	653
+ 633 0178 8E02     		.short	654
+ 634 017a 8F02     		.short	655
+ 635 017c 9002     		.short	656
+ 636 017e 9102     		.short	657
+ 637 0180 B701     		.short	439
+ 638 0182 7B03     		.short	891
+ 639 0184 0300     		.short	3
+ 640 0186 FD03     		.short	1021
+ 641 0188 FE03     		.short	1022
+ 642 018a FF03     		.short	1023
+ 643 018c AC03     		.short	940
+ 644 018e 0400     		.short	4
+ 645 0190 8603     		.short	902
+ 646 0192 8803     		.short	904
+ 647 0194 8903     		.short	905
+ 648 0196 8A03     		.short	906
+ 649 0198 B103     		.short	945
+ 650 019a 1103     		.short	785
+ 651 019c C203     		.short	962
+ 652 019e 0200     		.short	2
+ 653 01a0 A303     		.short	931
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 20
 
 
- 654 01a0 A303     		.short	931
- 655 01a2 A303     		.short	931
- 656 01a4 C403     		.short	964
- 657 01a6 0803     		.short	776
- 658 01a8 CC03     		.short	972
- 659 01aa 0300     		.short	3
- 660 01ac 8C03     		.short	908
- 661 01ae 8E03     		.short	910
- 662 01b0 8F03     		.short	911
- 663 01b2 D803     		.short	984
- 664 01b4 1801     		.short	280
- 665 01b6 F203     		.short	1010
- 666 01b8 0A00     		.short	10
- 667 01ba F903     		.short	1017
- 668 01bc F303     		.short	1011
- 669 01be F403     		.short	1012
- 670 01c0 F503     		.short	1013
- 671 01c2 F603     		.short	1014
- 672 01c4 F703     		.short	1015
- 673 01c6 F703     		.short	1015
- 674 01c8 F903     		.short	1017
- 675 01ca FA03     		.short	1018
- 676 01cc FA03     		.short	1018
- 677 01ce 3004     		.short	1072
- 678 01d0 2003     		.short	800
- 679 01d2 5004     		.short	1104
- 680 01d4 1007     		.short	1808
- 681 01d6 6004     		.short	1120
- 682 01d8 2201     		.short	290
- 683 01da 8A04     		.short	1162
- 684 01dc 3601     		.short	310
- 685 01de C104     		.short	1217
- 686 01e0 0E01     		.short	270
- 687 01e2 CF04     		.short	1231
- 688 01e4 0100     		.short	1
- 689 01e6 C004     		.short	1216
- 690 01e8 D004     		.short	1232
- 691 01ea 4401     		.short	324
- 692 01ec 6105     		.short	1377
- 693 01ee 2604     		.short	1062
- 694 01f0 0000     		.short	0
- 695              		.section	.rodata.Tbl,"a"
- 696              		.align	2
- 699              	Tbl:
- 700 0000 C700     		.short	199
- 701 0002 FC00     		.short	252
- 702 0004 E900     		.short	233
- 703 0006 E200     		.short	226
- 704 0008 E400     		.short	228
- 705 000a E000     		.short	224
- 706 000c E500     		.short	229
- 707 000e E700     		.short	231
- 708 0010 EA00     		.short	234
- 709 0012 EB00     		.short	235
- 710 0014 E800     		.short	232
- 711 0016 EF00     		.short	239
- 712 0018 EE00     		.short	238
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 21
+ 654 01a2 A303     		.short	931
+ 655 01a4 C403     		.short	964
+ 656 01a6 0803     		.short	776
+ 657 01a8 CC03     		.short	972
+ 658 01aa 0300     		.short	3
+ 659 01ac 8C03     		.short	908
+ 660 01ae 8E03     		.short	910
+ 661 01b0 8F03     		.short	911
+ 662 01b2 D803     		.short	984
+ 663 01b4 1801     		.short	280
+ 664 01b6 F203     		.short	1010
+ 665 01b8 0A00     		.short	10
+ 666 01ba F903     		.short	1017
+ 667 01bc F303     		.short	1011
+ 668 01be F403     		.short	1012
+ 669 01c0 F503     		.short	1013
+ 670 01c2 F603     		.short	1014
+ 671 01c4 F703     		.short	1015
+ 672 01c6 F703     		.short	1015
+ 673 01c8 F903     		.short	1017
+ 674 01ca FA03     		.short	1018
+ 675 01cc FA03     		.short	1018
+ 676 01ce 3004     		.short	1072
+ 677 01d0 2003     		.short	800
+ 678 01d2 5004     		.short	1104
+ 679 01d4 1007     		.short	1808
+ 680 01d6 6004     		.short	1120
+ 681 01d8 2201     		.short	290
+ 682 01da 8A04     		.short	1162
+ 683 01dc 3601     		.short	310
+ 684 01de C104     		.short	1217
+ 685 01e0 0E01     		.short	270
+ 686 01e2 CF04     		.short	1231
+ 687 01e4 0100     		.short	1
+ 688 01e6 C004     		.short	1216
+ 689 01e8 D004     		.short	1232
+ 690 01ea 4401     		.short	324
+ 691 01ec 6105     		.short	1377
+ 692 01ee 2604     		.short	1062
+ 693 01f0 0000     		.short	0
+ 694              		.section	.rodata.Tbl,"a"
+ 695              		.align	2
+ 698              	Tbl:
+ 699 0000 C700     		.short	199
+ 700 0002 FC00     		.short	252
+ 701 0004 E900     		.short	233
+ 702 0006 E200     		.short	226
+ 703 0008 E400     		.short	228
+ 704 000a E000     		.short	224
+ 705 000c E500     		.short	229
+ 706 000e E700     		.short	231
+ 707 0010 EA00     		.short	234
+ 708 0012 EB00     		.short	235
+ 709 0014 E800     		.short	232
+ 710 0016 EF00     		.short	239
+ 711 0018 EE00     		.short	238
+ 712 001a EC00     		.short	236
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 21
 
 
- 713 001a EC00     		.short	236
- 714 001c C400     		.short	196
- 715 001e C500     		.short	197
- 716 0020 C900     		.short	201
- 717 0022 E600     		.short	230
- 718 0024 C600     		.short	198
- 719 0026 F400     		.short	244
- 720 0028 F600     		.short	246
- 721 002a F200     		.short	242
- 722 002c FB00     		.short	251
- 723 002e F900     		.short	249
- 724 0030 FF00     		.short	255
- 725 0032 D600     		.short	214
- 726 0034 DC00     		.short	220
- 727 0036 F800     		.short	248
- 728 0038 A300     		.short	163
- 729 003a D800     		.short	216
- 730 003c D700     		.short	215
- 731 003e 9201     		.short	402
- 732 0040 E100     		.short	225
- 733 0042 ED00     		.short	237
- 734 0044 F300     		.short	243
- 735 0046 FA00     		.short	250
- 736 0048 F100     		.short	241
- 737 004a D100     		.short	209
- 738 004c AA00     		.short	170
- 739 004e BA00     		.short	186
- 740 0050 BF00     		.short	191
- 741 0052 AE00     		.short	174
- 742 0054 AC00     		.short	172
- 743 0056 BD00     		.short	189
- 744 0058 BC00     		.short	188
- 745 005a A100     		.short	161
- 746 005c AB00     		.short	171
- 747 005e BB00     		.short	187
- 748 0060 9125     		.short	9617
- 749 0062 9225     		.short	9618
- 750 0064 9325     		.short	9619
- 751 0066 0225     		.short	9474
- 752 0068 2425     		.short	9508
- 753 006a C100     		.short	193
- 754 006c C200     		.short	194
- 755 006e C000     		.short	192
- 756 0070 A900     		.short	169
- 757 0072 6325     		.short	9571
- 758 0074 5125     		.short	9553
- 759 0076 5725     		.short	9559
- 760 0078 5D25     		.short	9565
- 761 007a A200     		.short	162
- 762 007c A500     		.short	165
- 763 007e 1025     		.short	9488
- 764 0080 1425     		.short	9492
- 765 0082 3425     		.short	9524
- 766 0084 2C25     		.short	9516
- 767 0086 1C25     		.short	9500
- 768 0088 0025     		.short	9472
- 769 008a 3C25     		.short	9532
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 22
+ 713 001c C400     		.short	196
+ 714 001e C500     		.short	197
+ 715 0020 C900     		.short	201
+ 716 0022 E600     		.short	230
+ 717 0024 C600     		.short	198
+ 718 0026 F400     		.short	244
+ 719 0028 F600     		.short	246
+ 720 002a F200     		.short	242
+ 721 002c FB00     		.short	251
+ 722 002e F900     		.short	249
+ 723 0030 FF00     		.short	255
+ 724 0032 D600     		.short	214
+ 725 0034 DC00     		.short	220
+ 726 0036 F800     		.short	248
+ 727 0038 A300     		.short	163
+ 728 003a D800     		.short	216
+ 729 003c D700     		.short	215
+ 730 003e 9201     		.short	402
+ 731 0040 E100     		.short	225
+ 732 0042 ED00     		.short	237
+ 733 0044 F300     		.short	243
+ 734 0046 FA00     		.short	250
+ 735 0048 F100     		.short	241
+ 736 004a D100     		.short	209
+ 737 004c AA00     		.short	170
+ 738 004e BA00     		.short	186
+ 739 0050 BF00     		.short	191
+ 740 0052 AE00     		.short	174
+ 741 0054 AC00     		.short	172
+ 742 0056 BD00     		.short	189
+ 743 0058 BC00     		.short	188
+ 744 005a A100     		.short	161
+ 745 005c AB00     		.short	171
+ 746 005e BB00     		.short	187
+ 747 0060 9125     		.short	9617
+ 748 0062 9225     		.short	9618
+ 749 0064 9325     		.short	9619
+ 750 0066 0225     		.short	9474
+ 751 0068 2425     		.short	9508
+ 752 006a C100     		.short	193
+ 753 006c C200     		.short	194
+ 754 006e C000     		.short	192
+ 755 0070 A900     		.short	169
+ 756 0072 6325     		.short	9571
+ 757 0074 5125     		.short	9553
+ 758 0076 5725     		.short	9559
+ 759 0078 5D25     		.short	9565
+ 760 007a A200     		.short	162
+ 761 007c A500     		.short	165
+ 762 007e 1025     		.short	9488
+ 763 0080 1425     		.short	9492
+ 764 0082 3425     		.short	9524
+ 765 0084 2C25     		.short	9516
+ 766 0086 1C25     		.short	9500
+ 767 0088 0025     		.short	9472
+ 768 008a 3C25     		.short	9532
+ 769 008c E300     		.short	227
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 22
 
 
- 770 008c E300     		.short	227
- 771 008e C300     		.short	195
- 772 0090 5A25     		.short	9562
- 773 0092 5425     		.short	9556
- 774 0094 6925     		.short	9577
- 775 0096 6625     		.short	9574
- 776 0098 6025     		.short	9568
- 777 009a 5025     		.short	9552
- 778 009c 6C25     		.short	9580
- 779 009e A400     		.short	164
- 780 00a0 F000     		.short	240
- 781 00a2 D000     		.short	208
- 782 00a4 CA00     		.short	202
- 783 00a6 CB00     		.short	203
- 784 00a8 C800     		.short	200
- 785 00aa 3101     		.short	305
- 786 00ac CD00     		.short	205
- 787 00ae CE00     		.short	206
- 788 00b0 CF00     		.short	207
- 789 00b2 1825     		.short	9496
- 790 00b4 0C25     		.short	9484
- 791 00b6 8825     		.short	9608
- 792 00b8 8425     		.short	9604
- 793 00ba A600     		.short	166
- 794 00bc CC00     		.short	204
- 795 00be 8025     		.short	9600
- 796 00c0 D300     		.short	211
- 797 00c2 DF00     		.short	223
- 798 00c4 D400     		.short	212
- 799 00c6 D200     		.short	210
- 800 00c8 F500     		.short	245
- 801 00ca D500     		.short	213
- 802 00cc B500     		.short	181
- 803 00ce FE00     		.short	254
- 804 00d0 DE00     		.short	222
- 805 00d2 DA00     		.short	218
- 806 00d4 DB00     		.short	219
- 807 00d6 D900     		.short	217
- 808 00d8 FD00     		.short	253
- 809 00da DD00     		.short	221
- 810 00dc AF00     		.short	175
- 811 00de B400     		.short	180
- 812 00e0 AD00     		.short	173
- 813 00e2 B100     		.short	177
- 814 00e4 1720     		.short	8215
- 815 00e6 BE00     		.short	190
- 816 00e8 B600     		.short	182
- 817 00ea A700     		.short	167
- 818 00ec F700     		.short	247
- 819 00ee B800     		.short	184
- 820 00f0 B000     		.short	176
- 821 00f2 A800     		.short	168
- 822 00f4 B700     		.short	183
- 823 00f6 B900     		.short	185
- 824 00f8 B300     		.short	179
- 825 00fa B200     		.short	178
- 826 00fc A025     		.short	9632
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 23
+ 770 008e C300     		.short	195
+ 771 0090 5A25     		.short	9562
+ 772 0092 5425     		.short	9556
+ 773 0094 6925     		.short	9577
+ 774 0096 6625     		.short	9574
+ 775 0098 6025     		.short	9568
+ 776 009a 5025     		.short	9552
+ 777 009c 6C25     		.short	9580
+ 778 009e A400     		.short	164
+ 779 00a0 F000     		.short	240
+ 780 00a2 D000     		.short	208
+ 781 00a4 CA00     		.short	202
+ 782 00a6 CB00     		.short	203
+ 783 00a8 C800     		.short	200
+ 784 00aa 3101     		.short	305
+ 785 00ac CD00     		.short	205
+ 786 00ae CE00     		.short	206
+ 787 00b0 CF00     		.short	207
+ 788 00b2 1825     		.short	9496
+ 789 00b4 0C25     		.short	9484
+ 790 00b6 8825     		.short	9608
+ 791 00b8 8425     		.short	9604
+ 792 00ba A600     		.short	166
+ 793 00bc CC00     		.short	204
+ 794 00be 8025     		.short	9600
+ 795 00c0 D300     		.short	211
+ 796 00c2 DF00     		.short	223
+ 797 00c4 D400     		.short	212
+ 798 00c6 D200     		.short	210
+ 799 00c8 F500     		.short	245
+ 800 00ca D500     		.short	213
+ 801 00cc B500     		.short	181
+ 802 00ce FE00     		.short	254
+ 803 00d0 DE00     		.short	222
+ 804 00d2 DA00     		.short	218
+ 805 00d4 DB00     		.short	219
+ 806 00d6 D900     		.short	217
+ 807 00d8 FD00     		.short	253
+ 808 00da DD00     		.short	221
+ 809 00dc AF00     		.short	175
+ 810 00de B400     		.short	180
+ 811 00e0 AD00     		.short	173
+ 812 00e2 B100     		.short	177
+ 813 00e4 1720     		.short	8215
+ 814 00e6 BE00     		.short	190
+ 815 00e8 B600     		.short	182
+ 816 00ea A700     		.short	167
+ 817 00ec F700     		.short	247
+ 818 00ee B800     		.short	184
+ 819 00f0 B000     		.short	176
+ 820 00f2 A800     		.short	168
+ 821 00f4 B700     		.short	183
+ 822 00f6 B900     		.short	185
+ 823 00f8 B300     		.short	179
+ 824 00fa B200     		.short	178
+ 825 00fc A025     		.short	9632
+ 826 00fe A000     		.short	160
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 23
 
 
- 827 00fe A000     		.short	160
- 828              		.text
- 829              	.Letext0:
- 830              		.file 3 "Middlewares/Third_Party/FatFs/src/option/../integer.h"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s 			page 24
+ 827              		.text
+ 828              	.Letext0:
+ 829              		.file 2 "Middlewares/Third_Party/FatFs/src/option/../integer.h"
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s 			page 24
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 unicode.c
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:21     .text.ff_convert:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:27     .text.ff_convert:00000000 ff_convert
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:103    .text.ff_convert:00000038 $d
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:699    .rodata.Tbl:00000000 Tbl
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:108    .text.ff_wtoupper:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:114    .text.ff_wtoupper:00000000 ff_wtoupper
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:220    .text.ff_wtoupper:00000048 $d
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:337    .text.ff_wtoupper:00000094 $d
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:445    .rodata.cvt1.1:00000000 cvt1.1
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:346    .rodata.cvt2.0:00000000 cvt2.0
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:343    .rodata.cvt2.0:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:442    .rodata.cvt1.1:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:696    .rodata.Tbl:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:229    .text.ff_wtoupper:00000051 $d
-C:\Users\joabk\AppData\Local\Temp\ccuhZVnH.s:229    .text.ff_wtoupper:00000052 $t
+                            *ABS*:00000000 ccsbcs.c
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:21     .text.ff_convert:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:27     .text.ff_convert:00000000 ff_convert
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:102    .text.ff_convert:00000038 $d
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:698    .rodata.Tbl:00000000 Tbl
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:107    .text.ff_wtoupper:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:113    .text.ff_wtoupper:00000000 ff_wtoupper
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:219    .text.ff_wtoupper:00000048 $d
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:336    .text.ff_wtoupper:00000094 $d
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:444    .rodata.cvt1.1:00000000 cvt1.1
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:345    .rodata.cvt2.0:00000000 cvt2.0
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:342    .rodata.cvt2.0:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:441    .rodata.cvt1.1:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:695    .rodata.Tbl:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:228    .text.ff_wtoupper:00000051 $d
+C:\Users\joabk\AppData\Local\Temp\ccFD7qCf.s:228    .text.ff_wtoupper:00000052 $t
 
 NO UNDEFINED SYMBOLS

@@ -483,6 +483,7 @@ int main(void)
       //HAL_Delay(500);
       if (SD_Connected&&RTC_Connected)
       {
+        HAL_IWDG_Refresh(&hiwdg);
         curr_time = RTC_Get_Time(RTC_I2C);
         SD_Write(curr_time);
       }
@@ -686,7 +687,7 @@ static void MX_IWDG_Init(void)
 
   /* USER CODE END IWDG_Init 1 */
   hiwdg.Instance = IWDG;
-  hiwdg.Init.Prescaler = IWDG_PRESCALER_64;
+  hiwdg.Init.Prescaler = IWDG_PRESCALER_128;
   hiwdg.Init.Reload = 4095;
   if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
   {
@@ -1416,20 +1417,23 @@ static uint8_t SD_Write(uint32_t timestamp)
     char ts[20];
     strftime(ts, sizeof(ts), "%Y-%m-%d %H:%M:%S", tm_info);
 
-    //if (OLED_Connected) write_OLED(0,5,"timok ");
+    if (OLED_Connected) write_OLED(0,5,"timok ");
 
     fres = f_mount(&FatFs, "", 1);
     if (fres != FR_OK) return 0;
     if (OLED_Connected) write_OLED(0,5,"mntok");
 
+    char err_buf[10];
     fres = f_open(&fil, SD_filename, FA_WRITE | FA_CREATE_ALWAYS);
-    if (fres != FR_OK) { f_close(&fil); return 0; }
+    snprintf(err_buf, sizeof(err_buf), "fr:%d", fres);
+    if (OLED_Connected) write_OLED(0,5, err_buf);
+    if (fres != FR_OK) { f_mount(NULL, "", 0); return 0; }
     if (OLED_Connected) write_OLED(0,5,"opnok");
 
-    if (f_size(&fil) == 0) {
+    //if (f_size(&fil) == 0) {
         char *header = "Date,Sensor,Value\n";
         f_write(&fil, header, strlen(header), &bytesWrote);
-    }
+    //}
 
     f_lseek(&fil, f_size(&fil));
 
@@ -1447,6 +1451,9 @@ static uint8_t SD_Write(uint32_t timestamp)
 
     f_close(&fil);
     //f_unmount("");
+    f_mount(NULL, "", 0);
+
+    Mode = 3;
     return 1;
 }
 
