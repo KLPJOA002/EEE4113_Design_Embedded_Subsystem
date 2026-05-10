@@ -67,6 +67,7 @@ void Error_Handler(void);
 #define PB_2_EXTI_IRQn EXTI15_10_IRQn
 #define PB_3_Pin GPIO_PIN_1
 #define PB_3_GPIO_Port GPIOA
+#define PB_3_EXTI_IRQn EXTI1_IRQn
 #define BAT_MSR_Pin GPIO_PIN_2
 #define BAT_MSR_GPIO_Port GPIOA
 #define SD_CD_Pin GPIO_PIN_3

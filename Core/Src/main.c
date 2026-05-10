@@ -214,6 +214,7 @@ char mode_buffer[3];
 uint8_t Main_Mode_Changed = 0;
 uint8_t Main_Mode = 0;
 uint8_t Buoy_ID = 0;
+uint8_t Num_Buoys = 1;
 char connected_buffer[20];
 static char SD_filename[40] = "";  // max 8.3 = "YYMMDD.CSV\0" = 11 chars
 
@@ -222,6 +223,9 @@ uint8_t PB2_Flag = 0;
 uint8_t PB3_Flag = 0;
 
 uint8_t Calibrate_Flag = 0; 
+
+uint8_t StartLive_Flag = 0;
+uint8_t Current_Second = 0;
 
 
 // ====================================================================================================
@@ -409,6 +413,7 @@ int main(void)
       // 1. Break the timestamp down into the tm struct
       tm_info = localtime(&raw_time);
       strftime(time_buffer, sizeof(time_buffer), "%d/%m/%y %H:%M:%S", tm_info);
+      Current_Second = tm_info ->tm_sec;
     }
 
     if (OLED_Connected&&RTC_Update_Oled)
@@ -511,6 +516,7 @@ int main(void)
         memcpy(time,LoRa_RX_Buffer+12,19);
         RTC_Set_Time(RTC_I2C,time);
         LoRa_TX("Sync_ACK");
+        StartLive_Flag = 1;
         Main_Mode = 2;
       }
       LoRa_RX_Flag = 0;
@@ -561,7 +567,7 @@ int main(void)
       Main_Mode = 1;
     }
     
-    if (Atlas_Send_live)
+    if (Atlas_Send_live&&StartLive_Flag&&((Current_Second%30)==((30/Num_Buoys)*Buoy_ID)))
     {
       //  // 1. Get and convert the timestamp
       // curr_time = RTC_Get_Time(RTC_I2C);
@@ -808,8 +814,8 @@ static void MX_IWDG_Init(void)
 
   /* USER CODE END IWDG_Init 1 */
   hiwdg.Instance = IWDG;
-  hiwdg.Init.Prescaler = IWDG_PRESCALER_128;
-  hiwdg.Init.Reload = 4095;
+  hiwdg.Init.Prescaler = IWDG_PRESCALER_256;
+  hiwdg.Init.Reload = 3750;
   if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
   {
     Error_Handler();

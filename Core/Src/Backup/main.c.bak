@@ -56,6 +56,14 @@
 #define DO_2_Addr 0x62 << 1
 #define RTD_2_Addr 0x67 << 1
 
+#define ADC_RESOLUTION        4095.0f
+#define VREF_MV               3300.0f
+#define VOLTAGE_DIVIDER_RATIO 2.0f
+#define SOC_FULL_MV           4200.0f
+#define SOC_EMPTY_MV          3000.0f
+#define ADC_NUM_SAMPLES       16
+#define SOC_DISCONNECTED_MV   100.0f
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -121,10 +129,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 // ===============================
 uint8_t LoRa_Init();
 uint8_t LoRa_Detect(SX1278_t *module);
-uint8_t LoRa_TX(char message[50]);
-uint8_t LoRa_TX_Continuous(char message[50]);
+uint8_t LoRa_TX(const char message[50]);
+uint8_t LoRa_TX_Continuous(const char message[50]);
 static void LoRa_ArmRX();
 void LoRa_RX();
+static uint8_t SD_DataDump(void);
 // ===============================
 // RTC Functions
 // ===============================
@@ -155,6 +164,15 @@ static uint8_t Atlas_Detect(uint16_t device_addr);
 static void Atlas_Wake(uint16_t device_addr);
 static void Atlas_Sleep(uint16_t device_addr);
 static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr);
+static uint8_t Calibrate_Atlas();
+
+// ===============================
+// Battery Measure Functions
+// ===============================
+static uint32_t ADC_ReadRaw_Averaged(void);
+static float ADC_RawToMillivolts(uint32_t raw);
+static float ADC_CalculateSoCPercent(float voltage_mv);
+static void LCD_DisplaySoC(float adc_mv, float battery_mv, float soc_percent);
 
 /* USER CODE END PFP */
 
@@ -193,8 +211,8 @@ char Atlas_Buffer_4[17];
 // ===============================
 //uint8_t count = 0;
 char mode_buffer[3];
-uint8_t Mode_Changed = 0;
-uint8_t Mode = 0;
+uint8_t Main_Mode_Changed = 0;
+uint8_t Main_Mode = 0;
 uint8_t Buoy_ID = 0;
 char connected_buffer[20];
 static char SD_filename[40] = "";  // max 8.3 = "YYMMDD.CSV\0" = 11 chars
@@ -202,6 +220,9 @@ static char SD_filename[40] = "";  // max 8.3 = "YYMMDD.CSV\0" = 11 chars
 uint8_t PB1_Flag = 0;
 uint8_t PB2_Flag = 0;
 uint8_t PB3_Flag = 0;
+
+uint8_t Calibrate_Flag = 0; 
+
 
 // ====================================================================================================
 // Flags
@@ -362,7 +383,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     SD_Detect();
+
+    if (Atlas1_Connected&&Atlas3_Connected&&Calibrate_Flag&&OLED_Connected)
+    {
+      Calibrate_Atlas();
+      PB1_Flag = 0;
+      PB2_Flag = 0;
+      PB3_Flag = 0;
+      Calibrate_Flag = 0;
+      ssd1306_Fill(Black);
+    }
 
 // ====================================================================================================
 // Update RTC OLED Display
@@ -407,6 +439,8 @@ int main(void)
       else if(PB3_Flag)
       {
         write_OLED(6,5,"3");
+        SD_DataDump();
+        Main_Mode = 2;
         PB3_Flag = 0;
       }
     }
@@ -417,31 +451,31 @@ int main(void)
 // ====================================================================================================
     if (OLED_Connected)
     {
-      switch (Mode) {
+      switch (Main_Mode) {
         case 1:
           snprintf(mode_buffer,sizeof(mode_buffer),"MR");
-          Mode = 0;
-          Mode_Changed = 1;
+          Main_Mode = 0;
+          Main_Mode_Changed = 1;
           break;
         case 2:
           snprintf(mode_buffer,sizeof(mode_buffer),"TX");
-          Mode = 0;
-          Mode_Changed = 1;
+          Main_Mode = 0;
+          Main_Mode_Changed = 1;
           break;
         case 3:
           snprintf(mode_buffer,sizeof(mode_buffer),"ST");
-          Mode = 0;
-          Mode_Changed = 1;
+          Main_Mode = 0;
+          Main_Mode_Changed = 1;
           break;
         default:
           snprintf(mode_buffer,sizeof(mode_buffer),"NA");
-          Mode = 0;
+          Main_Mode = 0;
       }
 
-      if (Mode_Changed)
+      if (Main_Mode_Changed)
       {
         write_OLED(15,5,mode_buffer);
-        Mode_Changed = 0;
+        Main_Mode_Changed = 0;
       }
     }
 
@@ -461,14 +495,15 @@ int main(void)
       if(strcmp(LoRa_RX_Buffer,"CMD:BATTERY")==0)
       {
         LoRa_TX("TYPE:3,BUOY:0,BAT:3.99");
-        Mode = 2;
+        Main_Mode = 2;
       }
       else if (strcmp(LoRa_RX_Buffer,"CMD:DATADUMP")==0)
       {
-        LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:0,DO:9999,RTD:9999,TS:3999_01_01_12_30_10");
-        LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:1,DO:8888,RTD:8888,TS:3999_01_01_12_30_10");
-        LoRa_TX("TYPE:4,BUOY:0,COUNT:2");
-        Mode = 2;
+        // LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:0,DO:9999,RTD:9999,TS:3999_01_01_12_30_10");
+        // LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:1,DO:8888,RTD:8888,TS:3999_01_01_12_30_10");
+        // LoRa_TX("TYPE:4,BUOY:0,COUNT:2");
+        SD_DataDump();
+        Main_Mode = 2;
       }
       else if (strncmp(LoRa_RX_Buffer,"CMD:SYNC",8)==0)
       {
@@ -476,7 +511,7 @@ int main(void)
         memcpy(time,LoRa_RX_Buffer+12,19);
         RTC_Set_Time(RTC_I2C,time);
         LoRa_TX("Sync_ACK");
-        Mode = 2;
+        Main_Mode = 2;
       }
       LoRa_RX_Flag = 0;
 
@@ -523,7 +558,7 @@ int main(void)
 
 
       Atlas_measure = 0;
-      Mode = 1;
+      Main_Mode = 1;
     }
     
     if (Atlas_Send_live)
@@ -543,7 +578,7 @@ int main(void)
 
       snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:0,CHAMBER:1,DO:%s,RTD:%s", Atlas_Buffer_3,Atlas_Buffer_4); // Convert object to C-string
       LoRa_TX(LoRa_TX_Buffer);
-      Mode = 2;
+      Main_Mode = 2;
 
       Atlas_Send_live=0;
     }
@@ -1061,6 +1096,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(Lora_Reset_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
@@ -1101,7 +1139,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   if(GPIO_Pin == Lora_IRQ_Pin) // Check which pin triggered the interrupt
   {
-    LoRa_RX();
+    //LoRa_RX();
+    if(SX1278.status == RX)   // only handle RxDone when actually in RX
+    {
+      LoRa_RX();
+    } 
   }
   if(GPIO_Pin == PB_1_Pin)
   {
@@ -1113,6 +1155,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
       last_press_time1 = current_time1;
       PB1_Flag = 1;
+      Calibrate_Flag = 1;
     }
   }
   if(GPIO_Pin == PB_2_Pin)
@@ -1176,32 +1219,75 @@ uint8_t LoRa_Detect(SX1278_t *module)
 }
 
 
-uint8_t LoRa_TX(char *message)
-{
-  uint8_t msg_len = strlen(message);
-  if (msg_len == 0 || msg_len > 100) return 0;
+// uint8_t LoRa_TX(char *message)
+// {
+//   uint8_t msg_len = strlen(message);
+//   if (msg_len == 0 || msg_len > 100) return 0;
 
-  if (SX1278_LoRaEntryTx(&SX1278, msg_len, 2000))
-  {
-    uint8_t result =  SX1278_LoRaTxPacket(&SX1278, (uint8_t*)message, msg_len, 2000);
+//   if (SX1278_LoRaEntryTx(&SX1278, msg_len, 2000))
+//   {
+//     uint8_t result =  SX1278_LoRaTxPacket(&SX1278, (uint8_t*)message, msg_len, 2000);
+//     LoRa_ArmRX();
+//     return result;
+//   }
+//   return 0;
+//}
+
+uint8_t LoRa_TX(const char *message)
+{
+    uint8_t result = LoRa_TX_Continuous(message);
     LoRa_ArmRX();
     return result;
-  }
-  return 0;
 }
 
-uint8_t LoRa_TX_Continuous(char *message)
-{
-  uint8_t msg_len = strlen(message);
-  if (msg_len == 0 || msg_len > 100) return 0;
+// uint8_t LoRa_TX_Continuous(char *message)
+// {
+//   uint8_t msg_len = strlen(message);
+//   if (msg_len == 0 || msg_len > 100) return 0;
 
-  if (SX1278_LoRaEntryTx(&SX1278, msg_len, 2000))
-  {
-    uint8_t result =  SX1278_LoRaTxPacket(&SX1278, (uint8_t*)message, msg_len, 2000);
-    //LoRa_ArmRX();
-    return result;
-  }
-  return 0;
+//   if (SX1278_LoRaEntryTx(&SX1278, msg_len, 2000))
+//   {
+//     uint8_t result =  SX1278_LoRaTxPacket(&SX1278, (uint8_t*)message, msg_len, 2000);
+//     //LoRa_ArmRX();
+//     return result;
+//   }
+//   return 0;
+// }
+
+uint8_t LoRa_TX_Continuous(const char *message)
+{
+    uint8_t msg_len = strlen(message);
+    if (msg_len == 0 || msg_len > 100) return 0;
+
+    // Lightweight TX setup — no SX1278_config, no 15ms delay
+    SX1278_SPIWrite(&SX1278, REG_LR_PADAC,        0x87);  // PA boost
+    SX1278_SPIWrite(&SX1278, LR_RegHopPeriod,     0x00);
+    SX1278_SPIWrite(&SX1278, REG_LR_DIOMAPPING1,  0x41);  // DIO0 = TxDone
+    SX1278_clearLoRaIrq(&SX1278);
+    SX1278_SPIWrite(&SX1278, LR_RegIrqFlagsMask,  0xF7);
+    SX1278_SPIWrite(&SX1278, LR_RegPayloadLength,  msg_len);
+
+    uint8_t addr = SX1278_SPIRead(&SX1278, LR_RegFifoTxBaseAddr);
+    SX1278_SPIWrite(&SX1278, LR_RegFifoAddrPtr, addr);
+
+    SX1278.status = TX;  // set before firing so EXTI handler ignores DIO0
+
+    // Write payload and fire
+    SX1278_SPIBurstWrite(&SX1278, 0x00, (uint8_t*)message, msg_len);
+    SX1278_SPIWrite(&SX1278, LR_RegOpMode, 0x8B);  // TX mode
+
+    // Poll for TxDone
+    uint32_t deadline = HAL_GetTick() + 3000;
+    while (!SX1278_hw_GetDIO0(SX1278.hw))
+    {
+        if (HAL_GetTick() > deadline) return 0;
+    }
+
+    SX1278_clearLoRaIrq(&SX1278);
+    SX1278_SPIWrite(&SX1278, LR_RegOpMode, 0x89);  // back to LoRa standby
+    SX1278.status = STANDBY;
+
+    return 1;
 }
 
 // uint8_t LoRa_TX(char message[50])
@@ -1342,6 +1428,113 @@ void LoRa_RX()
         //LoRa_RX_Counter++;
     }
     SX1278_clearLoRaIrq(&SX1278);
+}
+
+static uint8_t SD_DataDump(void)
+{
+    if (!SD_Connected) return 0;
+
+    FATFS   FatFs;
+    DIR     dir;
+    FILINFO fno;
+    FIL     fil;
+    FRESULT fres;
+
+    fres = f_mount(&FatFs, "", 1);
+    if (fres != FR_OK) return 0;
+
+    fres = f_opendir(&dir, "/");
+    if (fres != FR_OK) { f_mount(NULL, "", 0); return 0; }
+
+    uint16_t count = 0;
+    char tx_buf[100];
+
+    while (1)
+    {
+        fres = f_readdir(&dir, &fno);
+        // End of directory or error
+        if (fres != FR_OK || fno.fname[0] == '\0') break;
+        // Skip directories and non-CSV files
+        if (fno.fattrib & AM_DIR) continue;
+        if (strstr(fno.fname, "READING.CSV") == NULL) continue;
+
+        // Open the file
+        fres = f_open(&fil, fno.fname, FA_READ);
+        if (fres != FR_OK) continue;
+
+        // --- Parse the CSV ---
+        // File format (after header):
+        //   2025-05-10 12:30:00,DO_1,8.45
+        //   2025-05-10 12:30:00,RTD_1,22.1
+        //   2025-05-10 12:30:00,DO_2,7.90
+        //   2025-05-10 12:30:00,RTD_2,21.5
+
+        char line[60];
+        char ts[20]   = "";
+        char do1[16]  = "";
+        char rtd1[16] = "";
+        char do2[16]  = "";
+        char rtd2[16] = "";
+
+        // Skip header line
+        f_gets(line, sizeof(line), &fil);
+
+        // Read the 4 data lines
+        while (f_gets(line, sizeof(line), &fil))
+        {
+            // Remove trailing newline
+            line[strcspn(line, "\r\n")] = '\0';
+
+            // Split: "YYYY-MM-DD HH:MM:SS,SENSOR,VALUE"
+            char *col1 = strtok(line, ",");   // timestamp
+            char *col2 = strtok(NULL, ",");   // sensor name
+            char *col3 = strtok(NULL, ",");   // value
+
+            if (!col1 || !col2 || !col3) continue;
+
+            // Capture timestamp from first row (all rows share same timestamp)
+            if (ts[0] == '\0') strncpy(ts, col1, sizeof(ts)-1);
+
+            if      (strcmp(col2, "DO_1")  == 0) strncpy(do1,  col3, sizeof(do1)-1);
+            else if (strcmp(col2, "RTD_1") == 0) strncpy(rtd1, col3, sizeof(rtd1)-1);
+            else if (strcmp(col2, "DO_2")  == 0) strncpy(do2,  col3, sizeof(do2)-1);
+            else if (strcmp(col2, "RTD_2") == 0) strncpy(rtd2, col3, sizeof(rtd2)-1);
+        }
+
+        f_close(&fil);
+
+        // Convert timestamp "YYYY-MM-DD HH:MM:SS" → "YYYY_MM_DD_HH_MM_SS"
+        // Replace spaces, dashes, colons with underscores
+        char ts_fmt[20] = "";
+        strncpy(ts_fmt, ts, sizeof(ts_fmt)-1);
+        for (int i = 0; ts_fmt[i]; i++) {
+            if (ts_fmt[i] == ' ' || ts_fmt[i] == '-' || ts_fmt[i] == ':')
+                ts_fmt[i] = '_';
+        }
+
+        // Transmit Chamber 0 (DO_1 / RTD_1)
+        snprintf(tx_buf, sizeof(tx_buf),
+                 "TYPE:2,BUOY:0,CHAMBER:0,DO:%s,RTD:%s,TS:%s",
+                 do1, rtd1, ts_fmt);
+        LoRa_TX_Continuous(tx_buf);
+
+        // Transmit Chamber 1 (DO_2 / RTD_2)
+        snprintf(tx_buf, sizeof(tx_buf),
+                 "TYPE:2,BUOY:0,CHAMBER:1,DO:%s,RTD:%s,TS:%s",
+                 do2, rtd2, ts_fmt);
+        LoRa_TX_Continuous(tx_buf);
+
+        count++;
+    }
+
+    f_closedir(&dir);
+    f_mount(NULL, "", 0);
+
+    // Send the end-of-dump summary (count = number of readings, not packets)
+    snprintf(tx_buf, sizeof(tx_buf), "TYPE:4,BUOY:0,COUNT:%u", count);
+    LoRa_TX(tx_buf);
+
+    return count;
 }
 
 // ===============================================================================================
@@ -1590,7 +1783,7 @@ static uint8_t SD_Write(uint32_t timestamp)
     //f_unmount("");
     f_mount(NULL, "", 0);
 
-    //Mode = 3;
+    //Main_Mode = 3;
     //if (OLED_Connected) write_OLED(0,5,"ST");
     return 1;
 }
@@ -1616,6 +1809,22 @@ static void Atlas_Wake(uint16_t device_addr)
     // The device needs ~600ms to wake + take the reading before you read back.
     char cmd[] = "R";
     HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)cmd, strlen(cmd), HAL_MAX_DELAY);
+}
+
+static void Atlas_Calibrate_Low(uint16_t device_addr)
+{
+    // Send "Cal,0" This calibrates the low point
+    char cmd[] = "Cal,0";
+    HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)cmd, strlen(cmd), HAL_MAX_DELAY);
+    HAL_Delay(1300);
+}
+
+static void Atlas_Calibrate_High(uint16_t device_addr)
+{
+    // Send "Cal,0" This calibrates the High point
+    char cmd[] = "Cal";
+    HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)cmd, strlen(cmd), HAL_MAX_DELAY);
+    HAL_Delay(1300);
 }
 
 static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr)
@@ -1647,7 +1856,151 @@ static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr)
     return 0;  // error
 }
 
+
+static uint8_t Calibrate_Atlas()
+{
+  PB2_Flag = 0;
+  PB3_Flag = 0;
+
+  Atlas_Wake(DO_1_Addr);
+  Atlas_Wake(RTD_1_Addr);
+  Atlas_Wake(DO_2_Addr);
+  Atlas_Wake(RTD_2_Addr);
+
+  ssd1306_Fill(Black);
+  write_OLED(0,0,"Cal Mode");
+  write_OLED(0,1,"PB2 for DO 1,2");
+  write_OLED(0,2,"PB3 for DO 3,4");
+
+  while (1)
+  {
+    if (PB2_Flag)
+    {
+      PB2_Flag = 0;
+      PB3_Flag = 0;
+      ssd1306_Fill(Black);
+      write_OLED(0,0,"Cal Sensor 1,2");
+      write_OLED(0,1,"0% CAL");
+      write_OLED(0,2,"PB2 When stl");
+      write_OLED(0,5,"PB3 Exit");
+
+      while(!PB2_Flag)
+      {
+        Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
+        Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
+
+        write_OLED(0,3,Atlas_Buffer_1);
+        write_OLED(0,4,Atlas_Buffer_2);
+
+        if (PB3_Flag) return 0;
+      }
+      if (PB3_Flag) return 0;
+
+      Atlas_Calibrate_Low(DO_1_Addr);
+
+      PB2_Flag = 0;
+      PB3_Flag = 0;
+      ssd1306_Fill(Black);
+      write_OLED(0,0,"Cal Sensor 1,2");
+      write_OLED(0,1,"atm CAL");
+      write_OLED(0,2,"PB2 When stl");
+      write_OLED(0,5,"PB3 Exit");
+
+      while(!PB2_Flag)
+      {
+        Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
+        Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
+
+        write_OLED(0,3,Atlas_Buffer_1);
+        write_OLED(0,4,Atlas_Buffer_2);
+        if (PB3_Flag) return 0;
+      }
+      if (PB3_Flag) return 0;
+
+      Atlas_Calibrate_High(DO_1_Addr);
+
+    }
+    else if (PB3_Flag)
+    {
+      PB2_Flag = 0;
+      PB3_Flag = 0;
+      ssd1306_Fill(Black);
+      write_OLED(0,0,"Cal Sensor 3,4");
+      write_OLED(0,1,"0% CAL");
+      write_OLED(0,2,"PB2 When stl");
+      write_OLED(0,5,"PB3 Exit");
+
+      while(!PB2_Flag)
+      {
+        Atlas_Read_Val(Atlas_Buffer_3,DO_2_Addr);
+        Atlas_Read_Val(Atlas_Buffer_4,RTD_2_Addr);
+
+        write_OLED(0,3,Atlas_Buffer_3);
+        write_OLED(0,4,Atlas_Buffer_4);
+        if (PB3_Flag) return 0;
+      }
+      if (PB3_Flag) return 0;
+
+      Atlas_Calibrate_Low(DO_2_Addr);
+
+      PB2_Flag = 0;
+      PB3_Flag = 0;
+      ssd1306_Fill(Black);
+      write_OLED(0,0,"Cal Sensor 3,4");
+      write_OLED(0,1,"atm CAL");
+      write_OLED(0,2,"PB2 When stl");
+      write_OLED(0,5,"PB3 Exit");
+
+      while(!PB2_Flag)
+      {
+        Atlas_Read_Val(Atlas_Buffer_3,DO_2_Addr);
+        Atlas_Read_Val(Atlas_Buffer_4,RTD_2_Addr);
+
+        write_OLED(0,3,Atlas_Buffer_3);
+        write_OLED(0,4,Atlas_Buffer_4);
+        if (PB3_Flag) return 0;
+      }
+      if (PB3_Flag) return 0;
+
+      Atlas_Calibrate_High(DO_2_Addr);
+
+    }
+  }
+
+  return 1;
+}
   // Holds the current session's filename, set on first write
+
+
+// ===============================================================================================
+// Battery Functions
+// ===============================================================================================
+
+static uint32_t ADC_ReadRaw_Averaged(void)
+{
+    uint32_t accumulator = 0;
+    for (uint8_t i = 0; i < ADC_NUM_SAMPLES; i++)
+    {
+        HAL_ADC_Start(&hadc1);
+        if (HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
+            accumulator += HAL_ADC_GetValue(&hadc1);
+        HAL_ADC_Stop(&hadc1);
+    }
+    return accumulator / ADC_NUM_SAMPLES;
+}
+
+static float ADC_RawToMillivolts(uint32_t raw)
+{
+    return ((float)raw / ADC_RESOLUTION) * VREF_MV;
+}
+
+static float ADC_CalculateSoCPercent(float voltage_mv)
+{
+    if (voltage_mv >= SOC_FULL_MV)  return 100.0f;
+    if (voltage_mv <= SOC_EMPTY_MV) return   0.0f;
+    return ((voltage_mv - SOC_EMPTY_MV) /
+            (SOC_FULL_MV - SOC_EMPTY_MV)) * 100.0f;
+}
 
 
 /* USER CODE END 4 */

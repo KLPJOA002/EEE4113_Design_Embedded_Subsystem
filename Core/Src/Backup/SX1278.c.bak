@@ -114,7 +114,7 @@ void SX1278_config(SX1278_t *module) {
 }
 
 void SX1278_standby(SX1278_t *module) {
-	SX1278_SPIWrite(module, LR_RegOpMode, 0x09);
+	SX1278_SPIWrite(module, LR_RegOpMode, 0x89);
 	module->status = STANDBY;
 }
 
