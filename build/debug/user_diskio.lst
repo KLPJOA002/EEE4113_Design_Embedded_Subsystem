@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cck126mb.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -28,7 +28,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
   25              		.thumb_func
   27              	USER_initialize:
   28              	.LVL0:
-  29              	.LFB134:
+  29              	.LFB220:
    1:FATFS/Target/user_diskio.c **** /* USER CODE BEGIN Header */
    2:FATFS/Target/user_diskio.c **** /**
    3:FATFS/Target/user_diskio.c ****  ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
   27:FATFS/Target/user_diskio.c ****  * the section contents can be deleted.
   28:FATFS/Target/user_diskio.c ****  */
   29:FATFS/Target/user_diskio.c **** /* USER CODE BEGIN 0 */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cck126mb.s 			page 2
 
 
   30:FATFS/Target/user_diskio.c **** /* USER CODE END 0 */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
   30              		.loc 1 83 1 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cck126mb.s 			page 3
 
 
   33              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -140,7 +140,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
   43              		.loc 1 89 1 view .LVU4
   44 0006 08BD     		pop	{r3, pc}
   45              		.cfi_endproc
-  46              	.LFE134:
+  46              	.LFE220:
   48              		.section	.text.USER_status,"ax",%progbits
   49              		.align	1
   50              		.global	USER_status
@@ -149,7 +149,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
   53              		.thumb_func
   55              	USER_status:
   56              	.LVL2:
-  57              	.LFB135:
+  57              	.LFB221:
   90:FATFS/Target/user_diskio.c **** 
   91:FATFS/Target/user_diskio.c **** /**
   92:FATFS/Target/user_diskio.c ****   * @brief  Gets Disk Status
@@ -178,14 +178,14 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
   69 0002 FFF7FEFF 		bl	USER_SPI_status
   70              	.LVL3:
  104:FATFS/Target/user_diskio.c ****   /* USER CODE END STATUS */
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cck126mb.s 			page 4
 
 
  105:FATFS/Target/user_diskio.c **** }
   71              		.loc 1 105 1 view .LVU9
   72 0006 08BD     		pop	{r3, pc}
   73              		.cfi_endproc
-  74              	.LFE135:
+  74              	.LFE221:
   76              		.section	.text.USER_read,"ax",%progbits
   77              		.align	1
   78              		.global	USER_read
@@ -194,7 +194,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
   81              		.thumb_func
   83              	USER_read:
   84              	.LVL4:
-  85              	.LFB136:
+  85              	.LFB222:
  106:FATFS/Target/user_diskio.c **** 
  107:FATFS/Target/user_diskio.c **** /**
  108:FATFS/Target/user_diskio.c ****   * @brief  Reads Sector(s)
@@ -232,19 +232,19 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
   99              		.loc 1 126 1 view .LVU14
  100 0006 08BD     		pop	{r3, pc}
  101              		.cfi_endproc
- 102              	.LFE136:
+ 102              	.LFE222:
  104              		.section	.text.USER_write,"ax",%progbits
  105              		.align	1
  106              		.global	USER_write
  107              		.syntax unified
  108              		.thumb
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cck126mb.s 			page 5
 
 
  109              		.thumb_func
  111              	USER_write:
  112              	.LVL6:
- 113              	.LFB137:
+ 113              	.LFB223:
  127:FATFS/Target/user_diskio.c **** 
  128:FATFS/Target/user_diskio.c **** /**
  129:FATFS/Target/user_diskio.c ****   * @brief  Writes Sector(s)
@@ -284,7 +284,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
  127              		.loc 1 149 1 view .LVU19
  128 0006 08BD     		pop	{r3, pc}
  129              		.cfi_endproc
- 130              	.LFE137:
+ 130              	.LFE223:
  132              		.section	.text.USER_ioctl,"ax",%progbits
  133              		.align	1
  134              		.global	USER_ioctl
@@ -293,12 +293,12 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
  137              		.thumb_func
  139              	USER_ioctl:
  140              	.LVL8:
- 141              	.LFB138:
+ 141              	.LFB224:
  150:FATFS/Target/user_diskio.c **** #endif /* _USE_WRITE == 1 */
  151:FATFS/Target/user_diskio.c **** 
  152:FATFS/Target/user_diskio.c **** /**
  153:FATFS/Target/user_diskio.c ****   * @brief  I/O control operation
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cck126mb.s 			page 6
 
 
  154:FATFS/Target/user_diskio.c ****   * @param  pdrv: Physical drive number (0..)
@@ -335,7 +335,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
  155              		.loc 1 171 1 view .LVU24
  156 0006 08BD     		pop	{r3, pc}
  157              		.cfi_endproc
- 158              	.LFE138:
+ 158              	.LFE224:
  160              		.global	USER_Driver
  161              		.section	.data.USER_Driver,"aw"
  162              		.align	2
@@ -354,24 +354,24 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 1
  179              		.file 3 "Middlewares/Third_Party/FatFs/src/diskio.h"
  180              		.file 4 "Middlewares/Third_Party/FatFs/src/ff_gen_drv.h"
  181              		.file 5 "FATFS/Target/user_diskio_spi.h"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\cck126mb.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 user_diskio.c
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:21     .text.USER_initialize:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:27     .text.USER_initialize:00000000 USER_initialize
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:49     .text.USER_status:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:55     .text.USER_status:00000000 USER_status
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:77     .text.USER_read:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:83     .text.USER_read:00000000 USER_read
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:105    .text.USER_write:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:111    .text.USER_write:00000000 USER_write
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:133    .text.USER_ioctl:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:139    .text.USER_ioctl:00000000 USER_ioctl
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:165    .data.USER_Driver:00000000 USER_Driver
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:162    .data.USER_Driver:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\ccz51I6x.s:174    .data.Stat:00000000 Stat
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:21     .text.USER_initialize:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:27     .text.USER_initialize:00000000 USER_initialize
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:49     .text.USER_status:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:55     .text.USER_status:00000000 USER_status
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:77     .text.USER_read:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:83     .text.USER_read:00000000 USER_read
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:105    .text.USER_write:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:111    .text.USER_write:00000000 USER_write
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:133    .text.USER_ioctl:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:139    .text.USER_ioctl:00000000 USER_ioctl
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:165    .data.USER_Driver:00000000 USER_Driver
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:162    .data.USER_Driver:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\cck126mb.s:174    .data.Stat:00000000 Stat
 
 UNDEFINED SYMBOLS
 USER_SPI_initialize

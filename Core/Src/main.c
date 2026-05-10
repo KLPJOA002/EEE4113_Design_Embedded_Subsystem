@@ -64,6 +64,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc1;
+
 I2C_HandleTypeDef hi2c1;
 I2C_HandleTypeDef hi2c2;
 I2C_HandleTypeDef hi2c3;
@@ -106,6 +108,7 @@ static void MX_SPI2_Init(void);
 static void MX_TIM10_Init(void);
 static void MX_TIM9_Init(void);
 static void MX_IWDG_Init(void);
+static void MX_ADC1_Init(void);
 /* USER CODE BEGIN PFP */
 
 // ===============================
@@ -196,6 +199,10 @@ uint8_t Buoy_ID = 0;
 char connected_buffer[20];
 static char SD_filename[40] = "";  // max 8.3 = "YYMMDD.CSV\0" = 11 chars
 
+uint8_t PB1_Flag = 0;
+uint8_t PB2_Flag = 0;
+uint8_t PB3_Flag = 0;
+
 // ====================================================================================================
 // Flags
 // ====================================================================================================
@@ -277,6 +284,7 @@ int main(void)
   MX_TIM10_Init();
   MX_TIM9_Init();
   MX_IWDG_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
   HAL_Delay(1500);
 
@@ -385,6 +393,22 @@ int main(void)
 
 
       RTC_Update_Oled = 0;
+
+      if(PB1_Flag)
+      {
+        write_OLED(6,5,"1");
+        PB1_Flag = 0;
+      }
+      else if(PB2_Flag)
+      {
+        write_OLED(6,5,"2");
+        PB3_Flag = 0;
+      }
+      else if(PB3_Flag)
+      {
+        write_OLED(6,5,"3");
+        PB3_Flag = 0;
+      }
     }
 
 
@@ -577,6 +601,58 @@ void SystemClock_Config(void)
   /** Enables the Clock Security System
   */
   HAL_RCC_EnableCSS();
+}
+
+/**
+  * @brief ADC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ADC1_Init(void)
+{
+
+  /* USER CODE BEGIN ADC1_Init 0 */
+
+  /* USER CODE END ADC1_Init 0 */
+
+  ADC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN ADC1_Init 1 */
+
+  /* USER CODE END ADC1_Init 1 */
+
+  /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
+  */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+  */
+  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC1_Init 2 */
+
+  /* USER CODE END ADC1_Init 2 */
+
 }
 
 /**
@@ -939,6 +1015,18 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_Board_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : PB_1_Pin PB_2_Pin */
+  GPIO_InitStruct.Pin = PB_1_Pin|PB_2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PB_3_Pin */
+  GPIO_InitStruct.Pin = PB_3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(PB_3_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pin : SD_CD_Pin */
   GPIO_InitStruct.Pin = SD_CD_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -973,8 +1061,14 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(Lora_Reset_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
@@ -1011,6 +1105,42 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   if(GPIO_Pin == Lora_IRQ_Pin) // Check which pin triggered the interrupt
   {
     LoRa_RX();
+  }
+  if(GPIO_Pin == PB_1_Pin)
+  {
+    static uint32_t last_press_time1 = 0;
+    uint32_t current_time1 = HAL_GetTick(); 
+
+    if ((current_time1 - last_press_time1) > 500) // 200ms debounce delay
+    {
+      HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
+      last_press_time1 = current_time1;
+      PB1_Flag = 1;
+    }
+  }
+  if(GPIO_Pin == PB_2_Pin)
+  {
+    static uint32_t last_press_time2 = 0;
+    uint32_t current_time2 = HAL_GetTick(); 
+
+    if ((current_time2 - last_press_time2) > 500) // 200ms debounce delay
+    {
+      HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
+      last_press_time2 = current_time2;
+      PB2_Flag = 1;
+    }
+  }
+  if(GPIO_Pin == PB_3_Pin)
+  {
+    static uint32_t last_press_time3 = 0;
+    uint32_t current_time3 = HAL_GetTick(); 
+
+    if ((current_time3 - last_press_time3) > 500) // 200ms debounce delay
+    {
+      HAL_GPIO_TogglePin(LED_Board_GPIO_Port,LED_Board_Pin);
+      last_press_time3 = current_time3;
+      PB3_Flag = 1;
+    }
   }
 }
 
