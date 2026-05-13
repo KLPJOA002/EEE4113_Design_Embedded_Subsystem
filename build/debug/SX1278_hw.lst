@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 1
   36              		.cfi_def_cfa_offset 8
   37              		.cfi_offset 3, -8
   38              		.cfi_offset 14, -4
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s 			page 2
 
 
   21:Core/Src/SX1278_hw.c **** 	HAL_GPIO_WritePin(hw->nss.port, hw->nss.pin,
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 1
   87              		.loc 1 18 1 is_stmt 0 view .LVU10
   88 0014 10BD     		pop	{r4, pc}
   18:Core/Src/SX1278_hw.c **** 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s 			page 3
 
 
   89              		.loc 1 18 1 view .LVU11
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 1
  129              		.loc 1 39 2 view .LVU17
  130              	.L6:
  131              		.loc 1 39 35 discriminator 1 view .LVU18
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s 			page 4
 
 
  132              		.loc 1 39 9 is_stmt 0 discriminator 1 view .LVU19
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 1
   48:Core/Src/SX1278_hw.c **** 	HAL_SPI_TransmitReceive(hw->spi, &txByte, &rxByte, 1, 1000);
  180              		.loc 1 48 2 view .LVU30
  181 0014 4FF47A73 		mov	r3, #1000
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s 			page 5
 
 
  182 0018 0093     		str	r3, [sp]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 1
  231              	.LVL17:
   56:Core/Src/SX1278_hw.c **** }
  232              		.loc 1 56 1 is_stmt 0 view .LVU41
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s 			page 6
 
 
  233 0006 08BD     		pop	{r3, pc}
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 1
  281              		.loc 1 34 1 is_stmt 0 view .LVU49
  282 002a 10BD     		pop	{r4, pc}
   34:Core/Src/SX1278_hw.c **** 
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s 			page 7
 
 
  283              		.loc 1 34 1 view .LVU50
@@ -413,25 +413,25 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 1
  331              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
  332              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
  333              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 SX1278_hw.c
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:21     .text.SX1278_hw_SetNSS:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:27     .text.SX1278_hw_SetNSS:00000000 SX1278_hw_SetNSS
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:58     .text.SX1278_hw_init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:64     .text.SX1278_hw_init:00000000 SX1278_hw_init
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:94     .text.SX1278_hw_SPICommand:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:100    .text.SX1278_hw_SPICommand:00000000 SX1278_hw_SPICommand
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:149    .text.SX1278_hw_SPIReadByte:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:155    .text.SX1278_hw_SPIReadByte:00000000 SX1278_hw_SPIReadByte
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:211    .text.SX1278_hw_DelayMs:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:217    .text.SX1278_hw_DelayMs:00000000 SX1278_hw_DelayMs
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:238    .text.SX1278_hw_Reset:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:244    .text.SX1278_hw_Reset:00000000 SX1278_hw_Reset
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:288    .text.SX1278_hw_GetDIO0:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\ccrl56cU.s:294    .text.SX1278_hw_GetDIO0:00000000 SX1278_hw_GetDIO0
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:21     .text.SX1278_hw_SetNSS:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:27     .text.SX1278_hw_SetNSS:00000000 SX1278_hw_SetNSS
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:58     .text.SX1278_hw_init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:64     .text.SX1278_hw_init:00000000 SX1278_hw_init
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:94     .text.SX1278_hw_SPICommand:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:100    .text.SX1278_hw_SPICommand:00000000 SX1278_hw_SPICommand
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:149    .text.SX1278_hw_SPIReadByte:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:155    .text.SX1278_hw_SPIReadByte:00000000 SX1278_hw_SPIReadByte
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:211    .text.SX1278_hw_DelayMs:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:217    .text.SX1278_hw_DelayMs:00000000 SX1278_hw_DelayMs
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:238    .text.SX1278_hw_Reset:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:244    .text.SX1278_hw_Reset:00000000 SX1278_hw_Reset
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:288    .text.SX1278_hw_GetDIO0:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccCLcSHZ.s:294    .text.SX1278_hw_GetDIO0:00000000 SX1278_hw_GetDIO0
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

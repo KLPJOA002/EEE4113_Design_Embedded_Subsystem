@@ -155,7 +155,7 @@ static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18]);
 // ===============================
 static uint8_t SD_Detect();
 static uint8_t SD_Write();
-static uint8_t SD_Read();
+//static uint8_t SD_Read();
 
 // ===============================
 // Atlas scientific Functions
@@ -378,6 +378,7 @@ int main(void)
   //uint16_t Counter = 0;
   char time_buffer[18];
 
+  write_OLED(4,5,"PB1 to Cal");
   HAL_Delay(1000);
   HAL_IWDG_Refresh(&hiwdg);
 
@@ -439,7 +440,7 @@ int main(void)
       else if(PB2_Flag)
       {
         write_OLED(6,5,"2");
-        PB3_Flag = 0;
+        PB2_Flag = 0;
       }
       else if(PB3_Flag)
       {
