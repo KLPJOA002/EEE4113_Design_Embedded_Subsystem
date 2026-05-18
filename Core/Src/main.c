@@ -39,6 +39,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define BUOY_ID 0;
+#define Measure_Interval 10000;
+
 #define RTC_Addr 0x68 << 1 
 
 #define RTC_Year 0x06
@@ -124,11 +127,14 @@ static void MX_ADC1_Init(void);
 // ===============================
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 
+static void I2C_BusRecovery(I2C_HandleTypeDef *hi2c, GPIO_TypeDef *scl_port, uint16_t scl_pin, GPIO_TypeDef *sda_port, uint16_t sda_pin);
+
 // ===============================
 // Lora Functions
 // ===============================
 uint8_t LoRa_Init();
-uint8_t LoRa_Detect(SX1278_t *module);
+uint8_t LoRa_Detect();
+uint8_t LoRa_Detect_Continuous();
 uint8_t LoRa_TX(const char message[50]);
 uint8_t LoRa_TX_Continuous(const char message[50]);
 static void LoRa_ArmRX();
@@ -149,6 +155,7 @@ static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, ui
 // OLED Functions
 // ===============================
 static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18]);
+uint8_t OLED_Detect();
 
 // ===============================
 // SD Card Functions
@@ -162,6 +169,7 @@ static uint8_t SD_Write();
 // ===============================
 static uint8_t Atlas_Detect(uint16_t device_addr);
 static void Atlas_Wake(uint16_t device_addr);
+static void Atlas_Send_read(uint16_t device_addr);
 static void Atlas_Sleep(uint16_t device_addr);
 static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr);
 static uint8_t Calibrate_Atlas();
@@ -236,6 +244,8 @@ uint8_t Current_Second = 0;
 // Lora Flags
 // ===============================
 uint8_t LoRa_Connected = 0;
+uint8_t LoRa_Connected_Prev = 0;
+
 uint8_t LoRa_RX_Flag = 0;
 uint8_t LoRa_RX_Mode = 0;
 uint8_t LoRa_RX_Counter = 0;
@@ -244,17 +254,21 @@ uint8_t LoRa_RX_Counter = 0;
 // OLED Flags
 // ===============================
 uint8_t OLED_Connected = 0;
+uint8_t OLED_Connected_Prev = 0;
 
 // ===============================
 // RTC Flags
 // ===============================
 uint8_t RTC_Connected = 0;
+uint8_t RTC_Connected_Prev = 0;
+
 uint8_t RTC_Update_Oled = 0;
 
 // ===============================
 // SD Flags
 // ===============================
 uint8_t SD_Connected = 0;
+uint8_t SD_Connected_Prev = 0;
 
 // ===============================
 // Atlas Flags
@@ -263,6 +277,10 @@ uint8_t Atlas1_Connected = 0;
 uint8_t Atlas2_Connected = 0;
 uint8_t Atlas3_Connected = 0;
 uint8_t Atlas4_Connected = 0;
+uint8_t Atlas1_Connected_Prev = 0;
+uint8_t Atlas2_Connected_Prev = 0;
+uint8_t Atlas3_Connected_Prev = 0;
+uint8_t Atlas4_Connected_Prev = 0;
 
 uint8_t Atlas_Send_live = 0;
 uint8_t Atlas_measure = 0;
@@ -323,10 +341,20 @@ int main(void)
   SX1278_hw.spi = Lora_SPI;
 
   SX1278.hw = &SX1278_hw;
-  LoRa_Init();
+
+  // Always init hardware first — sets NSS high and pulses reset
+  SX1278_hw_init(&SX1278_hw);
+  SX1278_hw_Reset(&SX1278_hw);
+  HAL_Delay(100);  // wait for module to boot
+
+  LoRa_Connected = LoRa_Detect();
+
+  if(LoRa_Connected) LoRa_Init();
   
   //Initilise OLED Screen
-  OLED_Connected = !ssd1306_Init(Oled_I2C); // Initilise the Oled module
+  OLED_Connected = OLED_Detect();
+  // OLED_Connected = !ssd1306_Init(Oled_I2C); // Initilise the Oled module
+  if (OLED_Connected) ssd1306_Init(Oled_I2C);
  
   //Initilise the RTC One time when the system is flashed with firmware
   RTC_Connected = RTC_Detect();
@@ -378,7 +406,7 @@ int main(void)
   //uint16_t Counter = 0;
   char time_buffer[18];
 
-  write_OLED(4,5,"PB1 to Cal");
+  write_OLED(3,5,"|PB1 to Cal|");
   HAL_Delay(1000);
   HAL_IWDG_Refresh(&hiwdg);
 
@@ -389,7 +417,44 @@ int main(void)
   while (1)
   {
 
-    SD_Detect();
+    // SD_Connected_Prev = SD_Connected;
+    RTC_Connected_Prev = RTC_Connected;
+    OLED_Connected_Prev = OLED_Connected;
+    LoRa_Connected_Prev = LoRa_Connected;
+
+    // Atlas1_Connected_Prev = Atlas1_Connected;
+    // Atlas2_Connected_Prev = Atlas2_Connected;
+    // Atlas3_Connected_Prev = Atlas3_Connected;
+    // Atlas4_Connected_Prev = Atlas4_Connected;
+
+    SD_Connected = SD_Detect();
+    RTC_Connected = RTC_Detect();
+    OLED_Connected = OLED_Detect();
+    LoRa_Connected = LoRa_Detect_Continuous();
+
+    if (!RTC_Connected)          // fire on DISCONNECT
+    {
+      write_OLED(0, 0, "RECOVERY ");
+      I2C_BusRecovery(RTC_I2C, GPIOB, GPIO_PIN_10, GPIOB, GPIO_PIN_3);  // correct handle
+    }
+
+    if (!OLED_Connected)
+    {
+      I2C_BusRecovery(Oled_I2C, GPIOB, GPIO_PIN_6, GPIOB, GPIO_PIN_7);
+    }
+
+    if (!OLED_Connected_Prev && OLED_Connected)
+    { 
+      //I2C_BusRecovery(Oled_I2C,GPIOB, GPIO_PIN_6,GPIOB,GPIO_PIN_7);
+      ssd1306_Init(Oled_I2C);   // full re-init of the display
+      ssd1306_Fill(Black);
+      write_OLED(3,5,"|PB1 to Cal|");
+    }
+
+    if (!LoRa_Connected_Prev && LoRa_Connected)
+    {
+      LoRa_Init();
+    }
 
     if (Atlas1_Connected&&Atlas3_Connected&&Calibrate_Flag&&OLED_Connected)
     {
@@ -399,6 +464,7 @@ int main(void)
       PB3_Flag = 0;
       Calibrate_Flag = 0;
       ssd1306_Fill(Black);
+      write_OLED(3,5,"|PB1 to Cal|");
     }
 
 // ====================================================================================================
@@ -424,31 +490,34 @@ int main(void)
       snprintf(connected_buffer,sizeof(connected_buffer), "L:%u,R:%u,A:%u%u%u%u,S:%u",LoRa_Connected,RTC_Connected,Atlas1_Connected,Atlas2_Connected,Atlas3_Connected,Atlas4_Connected,SD_Connected);
       write_OLED(0,1,connected_buffer);
 
-      write_OLED(0,2,Atlas_Buffer_1);
-      write_OLED(7,2,Atlas_Buffer_2);
-      write_OLED(0,3,Atlas_Buffer_3);
-      write_OLED(7,3,Atlas_Buffer_4);
+      write_OLED(0,2,"1");
+      write_OLED(0,3,"2");
+
+      write_OLED(2,2,Atlas_Buffer_1);
+      write_OLED(9,2,Atlas_Buffer_2);
+      write_OLED(2,3,Atlas_Buffer_3);
+      write_OLED(9,3,Atlas_Buffer_4);
 
 
       RTC_Update_Oled = 0;
 
-      if(PB1_Flag)
-      {
-        write_OLED(6,5,"1");
-        PB1_Flag = 0;
-      }
-      else if(PB2_Flag)
-      {
-        write_OLED(6,5,"2");
-        PB2_Flag = 0;
-      }
-      else if(PB3_Flag)
-      {
-        write_OLED(6,5,"3");
-        SD_DataDump();
-        Main_Mode = 2;
-        PB3_Flag = 0;
-      }
+      // if(PB1_Flag)
+      // {
+      //   write_OLED(6,5,"1");
+      //   PB1_Flag = 0;
+      // }
+      // else if(PB2_Flag)
+      // {
+      //   write_OLED(6,5,"2");
+      //   PB2_Flag = 0;
+      // }
+      // else if(PB3_Flag)
+      // {
+      //   write_OLED(6,5,"3");
+      //   SD_DataDump();
+      //   Main_Mode = 2;
+      //   PB3_Flag = 0;
+      // }
     }
 
 
@@ -480,7 +549,7 @@ int main(void)
 
       if (Main_Mode_Changed)
       {
-        write_OLED(15,5,mode_buffer);
+        write_OLED(16,5,mode_buffer);
         Main_Mode_Changed = 0;
       }
     }
@@ -488,14 +557,14 @@ int main(void)
 
 
 
-    if(LoRa_RX_Flag&&OLED_Connected)
+    if(LoRa_RX_Flag&&OLED_Connected&&LoRa_Connected)
     {
       //clear the OLED screen to display the new RX
       write_OLED(0,4,"                  ");
       write_OLED(0,4,LoRa_RX_Buffer);
     }
 
-    if(LoRa_RX_Flag)
+    if(LoRa_RX_Flag&&LoRa_Connected)
     {
       //Check the rx buffer to see if command sent, and respond accordingly
       if(strcmp(LoRa_RX_Buffer,"CMD:BATTERY")==0)
@@ -529,10 +598,22 @@ int main(void)
 // ====================================================================================================
     if(Atlas_measure)
     {  
-      if (Atlas1_Connected) Atlas_Wake(DO_1_Addr);
-      if (Atlas2_Connected) Atlas_Wake(RTD_1_Addr);
-      if (Atlas3_Connected) Atlas_Wake(DO_2_Addr);
-      if (Atlas4_Connected) Atlas_Wake(RTD_2_Addr);
+      // if (Atlas1_Connected) Atlas_Wake(DO_1_Addr);
+      // if (Atlas2_Connected) Atlas_Wake(RTD_1_Addr);
+      // if (Atlas3_Connected) Atlas_Wake(DO_2_Addr);
+      // if (Atlas4_Connected) Atlas_Wake(RTD_2_Addr);
+
+      Atlas1_Connected = Atlas_Detect(DO_1_Addr);
+      Atlas2_Connected = Atlas_Detect(RTD_1_Addr);
+      Atlas3_Connected = Atlas_Detect(DO_2_Addr);
+      Atlas4_Connected = Atlas_Detect(RTD_2_Addr);
+
+      HAL_Delay(600);
+
+      if (Atlas1_Connected) Atlas_Send_read(DO_1_Addr);
+      if (Atlas2_Connected) Atlas_Send_read(RTD_1_Addr);
+      if (Atlas3_Connected) Atlas_Send_read(DO_2_Addr);
+      if (Atlas4_Connected) Atlas_Send_read(RTD_2_Addr);
 
       HAL_Delay(600);
 
@@ -568,7 +649,7 @@ int main(void)
       Main_Mode = 1;
     }
     
-    if (Atlas_Send_live&&StartLive_Flag&&((Current_Second%30)==((30/Num_Buoys)*Buoy_ID)))
+    if (Atlas_Send_live&&StartLive_Flag&&((Current_Second%30)==((30/Num_Buoys)*Buoy_ID))&&LoRa_Connected)
     {
       //  // 1. Get and convert the timestamp
       // curr_time = RTC_Get_Time(RTC_I2C);
@@ -1191,38 +1272,90 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   }
 }
 
+static void I2C_BusRecovery(I2C_HandleTypeDef *hi2c, GPIO_TypeDef *scl_port, uint16_t scl_pin, GPIO_TypeDef *sda_port, uint16_t sda_pin)
+{
+    HAL_I2C_DeInit(hi2c);
+
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_OD;
+    GPIO_InitStruct.Pull  = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+
+    GPIO_InitStruct.Pin = scl_pin;
+    HAL_GPIO_Init(scl_port, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = sda_pin;
+    HAL_GPIO_Init(sda_port, &GPIO_InitStruct);
+
+    // Toggle SCL 9 times to release any stuck slave
+    for (int i = 0; i < 9; i++) {
+        HAL_GPIO_WritePin(scl_port, scl_pin, GPIO_PIN_RESET);
+        HAL_Delay(1);
+        HAL_GPIO_WritePin(scl_port, scl_pin, GPIO_PIN_SET);
+        HAL_Delay(1);
+    }
+    // Generate STOP condition
+    HAL_GPIO_WritePin(sda_port, sda_pin, GPIO_PIN_RESET);
+    HAL_Delay(1);
+    HAL_GPIO_WritePin(scl_port, scl_pin, GPIO_PIN_SET);
+    HAL_Delay(1);
+    HAL_GPIO_WritePin(sda_port, sda_pin, GPIO_PIN_SET);
+    HAL_Delay(1);
+
+    // ---- THIS IS THE KEY FIX ----
+    // Force an RCC reset to clear the hardware BUSY flag — HAL_I2C_Init alone won't do it
+    if (hi2c->Instance == I2C1)      { __HAL_RCC_I2C1_FORCE_RESET(); HAL_Delay(10); __HAL_RCC_I2C1_RELEASE_RESET(); }
+    else if (hi2c->Instance == I2C2) { __HAL_RCC_I2C2_FORCE_RESET(); HAL_Delay(10); __HAL_RCC_I2C2_RELEASE_RESET(); }
+    else if (hi2c->Instance == I2C3) { __HAL_RCC_I2C3_FORCE_RESET(); HAL_Delay(10); __HAL_RCC_I2C3_RELEASE_RESET(); }
+    // ----------------------------
+
+    HAL_I2C_Init(hi2c);
+  // if (s == HAL_OK) 
+  //     write_OLED(0, 0, "INIT OK  ");
+  // else
+  //     write_OLED(0, 0, "INIT FAIL");
+}
+
 // ===============================================================================================
 // Lora Functions
 // ===============================================================================================
 uint8_t LoRa_Init()
 {
 
-  SX1278_hw_init(&SX1278_hw);
+  // SX1278_hw_init(&SX1278_hw);
 
   // Step 2: perform a hard reset and wait for module to boot
-  SX1278_hw_Reset(&SX1278_hw);   // pulls reset low then high, waits 100ms internally
-  HAL_Delay(100);         
-  if (LoRa_Detect(&SX1278))
-  {
+  // SX1278_hw_Reset(&SX1278_hw);   // pulls reset low then high, waits 100ms internally
+  // HAL_Delay(100);         
+  // if (LoRa_Detect(&SX1278))
+  // {
     SX1278_init(&SX1278, 433175000, SX1278_POWER_17DBM, SX1278_LORA_SF_10,
     SX1278_LORA_BW_125KHZ, SX1278_LORA_CR_4_5, SX1278_LORA_CRC_EN, 100);
 
     LoRa_ArmRX();
 
-    LoRa_Connected = 1;
-    return 1;
-  }
-  else
-  {
-    LoRa_Connected = 0;
-    return 0;
-  }
+  //   LoRa_Connected = 1;
+  //   return 1;
+  // }
+  // else
+  // {
+  //   LoRa_Connected = 0;
+  //   return 0;
+  // }
 }
 
-uint8_t LoRa_Detect(SX1278_t *module)
+uint8_t LoRa_Detect(void)
 {
-  uint8_t version = SX1278_SPIRead(module, REG_LR_VERSION);
-  return (version == 0x12) ? 1 : 0;
+    // Put into FSK sleep so base register map is active
+    SX1278_SPIWrite(&SX1278, LR_RegOpMode, 0x00);
+    HAL_Delay(10);
+    uint8_t version = SX1278_SPIRead(&SX1278, REG_LR_VERSION);
+    return (version == 0x12) ? 1 : 0;
+}
+
+uint8_t LoRa_Detect_Continuous(void)
+{
+    uint8_t version = SX1278_SPIRead(&SX1278, REG_LR_VERSION);
+    return (version == 0x12) ? 1 : 0;
 }
 
 
@@ -1570,13 +1703,14 @@ static uint8_t decimalbcd(uint8_t val)
 static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c)
 {
     uint8_t Year, Month, Day, Hour, Minute, Second;
+    const uint32_t timeout = 50;
 
-    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Year,   1, &Year,   1, HAL_MAX_DELAY);
-    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Month,  1, &Month,  1, HAL_MAX_DELAY);
-    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Day,    1, &Day,    1, HAL_MAX_DELAY);
-    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Hour,   1, &Hour,   1, HAL_MAX_DELAY);
-    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Minute, 1, &Minute, 1, HAL_MAX_DELAY);
-    HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Second, 1, &Second, 1, HAL_MAX_DELAY);
+    if (HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Year,   1, &Year,   1, timeout) != HAL_OK) return 0;
+    if (HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Month,  1, &Month,  1, timeout) != HAL_OK) return 0;
+    if (HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Day,    1, &Day,    1, timeout) != HAL_OK) return 0;
+    if (HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Hour,   1, &Hour,   1, timeout) != HAL_OK) return 0;
+    if (HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Minute, 1, &Minute, 1, timeout) != HAL_OK) return 0;
+    if (HAL_I2C_Mem_Read(hi2c, RTC_Addr, RTC_Second, 1, &Second, 1, timeout) != HAL_OK) return 0;
 
     // Mask status bits BEFORE BCD conversion
     Year   = bcdtodec(Year);
@@ -1683,8 +1817,7 @@ static void RTC_Set_Time(I2C_HandleTypeDef *hi2c,char *Time)
     HAL_I2C_Mem_Write(hi2c, RTC_Addr, RTC_MAGIC_REG, 1, &reg_val, 1, HAL_MAX_DELAY);
 }
 
-static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, 
-                           uint8_t hour, uint8_t min, uint8_t sec) 
+static uint32_t get_unix_timestamp(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec) 
 {
     struct tm t;
     time_t t_of_day;
@@ -1721,14 +1854,16 @@ static void write_OLED(uint8_t pos_x, uint8_t pos_y, char text[18])
   ssd1306_UpdateScreen(Oled_I2C);
 }
 
+uint8_t OLED_Detect(){
+  return(HAL_I2C_IsDeviceReady(Oled_I2C, 0x78, 1, 10) == HAL_OK);
+}
 // ===============================================================================================
 // SD Functions
 // ===============================================================================================
 
 static uint8_t SD_Detect()
 {
-  SD_Connected = HAL_GPIO_ReadPin(SD_CD_GPIO_Port,SD_CD_Pin);
-  return SD_Connected;
+   return HAL_GPIO_ReadPin(SD_CD_GPIO_Port,SD_CD_Pin);
 }
 
 static uint8_t SD_Write(uint32_t timestamp)
@@ -1745,10 +1880,12 @@ static uint8_t SD_Write(uint32_t timestamp)
     time_t raw = (time_t)timestamp;
     struct tm *tm_info = localtime(&raw);
 
+
     // Generate the filename on the very first write of this session
 
-
-    strftime(SD_filename, sizeof(SD_filename), "%y-%m-%d-%H-%M-%S-READING.CSV", tm_info);
+    char time_part[64];
+    strftime(time_part, sizeof(time_part), "%y-%m-%d-%H-%M-%S", tm_info);
+    snprintf(SD_filename, sizeof(SD_filename), "%s-BUOY%d-READING.CSV", time_part, Buoy_ID);
 
     //if (OLED_Connected) write_OLED(0,5,"flnnm");
 
@@ -1818,6 +1955,14 @@ static void Atlas_Wake(uint16_t device_addr)
     HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)cmd, strlen(cmd), HAL_MAX_DELAY);
 }
 
+static void Atlas_Send_read(uint16_t device_addr)
+{
+    // Send "R" — this wakes the device AND queues a reading in one shot.
+    // The device needs ~600ms to wake + take the reading before you read back.
+    char cmd[] = "R";
+    HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)cmd, strlen(cmd), HAL_MAX_DELAY);
+}
+
 static void Atlas_Calibrate_Low(uint16_t device_addr)
 {
     // Send "Cal,0" This calibrates the low point
@@ -1836,10 +1981,10 @@ static void Atlas_Calibrate_High(uint16_t device_addr)
 
 static uint8_t Atlas_Read_Val(char *Output_buffer, uint16_t device_addr)
 {
-    char tx_cmd[] = "R";
-    HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)tx_cmd, strlen(tx_cmd), HAL_MAX_DELAY);
+    // char tx_cmd[] = "R";
+    // HAL_I2C_Master_Transmit(Atlas_I2C, device_addr, (uint8_t*)tx_cmd, strlen(tx_cmd), HAL_MAX_DELAY);
 
-    HAL_Delay(600);
+    // HAL_Delay(600);
 
     uint8_t raw[17];  // 1 byte response code + up to 16 bytes data
     uint8_t retries = 0;
@@ -1875,7 +2020,7 @@ static uint8_t Calibrate_Atlas()
   Atlas_Wake(RTD_2_Addr);
 
   ssd1306_Fill(Black);
-  write_OLED(0,0,"Cal Mode");
+  write_OLED(0,0,"Calibrate Mode");
   write_OLED(0,1,"PB2 for DO 1,2");
   write_OLED(0,2,"PB3 for DO 3,4");
 
@@ -1893,6 +2038,11 @@ static uint8_t Calibrate_Atlas()
 
       while(!PB2_Flag)
       {
+        Atlas_Send_read(DO_1_Addr);
+        Atlas_Send_read(RTD_1_Addr);
+
+        HAL_Delay(600);
+
         Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
         Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
 
@@ -1915,6 +2065,11 @@ static uint8_t Calibrate_Atlas()
 
       while(!PB2_Flag)
       {
+        Atlas_Send_read(DO_1_Addr);
+        Atlas_Send_read(RTD_1_Addr);
+
+        HAL_Delay(600);
+
         Atlas_Read_Val(Atlas_Buffer_1,DO_1_Addr);
         Atlas_Read_Val(Atlas_Buffer_2,RTD_1_Addr);
 
@@ -1939,6 +2094,11 @@ static uint8_t Calibrate_Atlas()
 
       while(!PB2_Flag)
       {
+        Atlas_Send_read(DO_2_Addr);
+        Atlas_Send_read(RTD_2_Addr);
+
+        HAL_Delay(600);
+
         Atlas_Read_Val(Atlas_Buffer_3,DO_2_Addr);
         Atlas_Read_Val(Atlas_Buffer_4,RTD_2_Addr);
 
@@ -1960,6 +2120,11 @@ static uint8_t Calibrate_Atlas()
 
       while(!PB2_Flag)
       {
+        Atlas_Send_read(DO_2_Addr);
+        Atlas_Send_read(RTD_2_Addr);
+
+        HAL_Delay(600);
+
         Atlas_Read_Val(Atlas_Buffer_3,DO_2_Addr);
         Atlas_Read_Val(Atlas_Buffer_4,RTD_2_Addr);
 

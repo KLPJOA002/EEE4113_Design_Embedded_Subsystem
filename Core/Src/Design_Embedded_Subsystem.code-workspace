@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "Testing",
+			"path": "../../../../../../../../../OneDrive/Documents/PlatformIO/Projects/Testing"
+		}
+	],
+	"settings": {
+		"cortex-debug.openocdPath": "c:\\Users\\joabk\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\openocd\\0.12.0-4.1\\.content\\bin\\openocd.EXE"
+	}
+}
