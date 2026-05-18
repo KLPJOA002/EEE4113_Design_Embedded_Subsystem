@@ -39,8 +39,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define BUOY_ID 0;
-#define Measure_Interval 10000;
+#define NUM_BUOYS 2
+#define BUOY_ID 0
+#define Measure_Interval 10000
 
 #define RTC_Addr 0x68 << 1 
 
@@ -135,8 +136,8 @@ static void I2C_BusRecovery(I2C_HandleTypeDef *hi2c, GPIO_TypeDef *scl_port, uin
 uint8_t LoRa_Init();
 uint8_t LoRa_Detect();
 uint8_t LoRa_Detect_Continuous();
-uint8_t LoRa_TX(const char message[50]);
-uint8_t LoRa_TX_Continuous(const char message[50]);
+uint8_t LoRa_TX(char message[50]);
+uint8_t LoRa_TX_Continuous(char message[50]);
 static void LoRa_ArmRX();
 void LoRa_RX();
 static uint8_t SD_DataDump(void);
@@ -221,8 +222,8 @@ char Atlas_Buffer_4[17];
 char mode_buffer[3];
 uint8_t Main_Mode_Changed = 0;
 uint8_t Main_Mode = 0;
-uint8_t Buoy_ID = 0;
-uint8_t Num_Buoys = 1;
+//uint8_t Buoy_ID = 0;
+//uint8_t Num_Buoys = 1;
 char connected_buffer[20];
 static char SD_filename[40] = "";  // max 8.3 = "YYMMDD.CSV\0" = 11 chars
 
@@ -284,6 +285,7 @@ uint8_t Atlas4_Connected_Prev = 0;
 
 uint8_t Atlas_Send_live = 0;
 uint8_t Atlas_measure = 0;
+uint8_t Live_Sent_This_Cycle = 0;  
 
 /* USER CODE END 0 */
 
@@ -399,7 +401,7 @@ int main(void)
   
 
   HAL_TIM_Base_Start_IT(LED_Tim); //Start the timer for the LED with interrupt mode
-  HAL_TIM_Base_Start_IT(Live_Tim); 
+  //HAL_TIM_Base_Start_IT(Live_Tim); 
   HAL_TIM_Base_Start_IT(Measure_Tim);
 
   uint32_t curr_time;
@@ -430,7 +432,7 @@ int main(void)
     SD_Connected = SD_Detect();
     RTC_Connected = RTC_Detect();
     OLED_Connected = OLED_Detect();
-    LoRa_Connected = LoRa_Detect_Continuous();
+    //LoRa_Connected = LoRa_Detect_Continuous();
 
     if (!RTC_Connected)          // fire on DISCONNECT
     {
@@ -481,6 +483,24 @@ int main(void)
       tm_info = localtime(&raw_time);
       strftime(time_buffer, sizeof(time_buffer), "%d/%m/%y %H:%M:%S", tm_info);
       Current_Second = tm_info ->tm_sec;
+
+       // --- TDMA slot entry detection ---
+      uint8_t slot_size  = 30 / NUM_BUOYS;
+      uint8_t slot_start = BUOY_ID * slot_size;
+      uint8_t pos        = Current_Second % 30;
+
+      if (StartLive_Flag && (pos >= slot_start) && (pos < slot_start + slot_size))
+      {
+        if (!Live_Sent_This_Cycle)   // rising edge: first tick inside slot
+        {
+          Atlas_Send_live = 1;
+          Live_Sent_This_Cycle = 1;
+        }
+      }
+      else
+      {
+        Live_Sent_This_Cycle = 0;   // outside slot — reset, ready for next cycle
+      }
     }
 
     if (OLED_Connected&&RTC_Update_Oled)
@@ -564,33 +584,51 @@ int main(void)
       write_OLED(0,4,LoRa_RX_Buffer);
     }
 
-    if(LoRa_RX_Flag&&LoRa_Connected)
+    if(LoRa_RX_Flag && LoRa_Connected)
     {
-      //Check the rx buffer to see if command sent, and respond accordingly
-      if(strcmp(LoRa_RX_Buffer,"CMD:BATTERY")==0)
-      {
-        LoRa_TX("TYPE:3,BUOY:0,BAT:3.99");
-        Main_Mode = 2;
-      }
-      else if (strcmp(LoRa_RX_Buffer,"CMD:DATADUMP")==0)
-      {
-        // LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:0,DO:9999,RTD:9999,TS:3999_01_01_12_30_10");
-        // LoRa_TX_Continuous("TYPE:2,BUOY:0,CHAMBER:1,DO:8888,RTD:8888,TS:3999_01_01_12_30_10");
-        // LoRa_TX("TYPE:4,BUOY:0,COUNT:2");
-        SD_DataDump();
-        Main_Mode = 2;
-      }
-      else if (strncmp(LoRa_RX_Buffer,"CMD:SYNC",8)==0)
+      // Parse the buoy ID from the received command
+      char* buoy_ptr = strstr(LoRa_RX_Buffer, "BUOY:");
+      int received_buoy_id = -1;
+
+      if(strncmp(LoRa_RX_Buffer, "CMD:SYNC", 8) == 0)
       {
         char time[19];
-        memcpy(time,LoRa_RX_Buffer+12,19);
-        RTC_Set_Time(RTC_I2C,time);
+        memcpy(time, LoRa_RX_Buffer + 12, 19);
+        RTC_Set_Time(RTC_I2C, time);
         LoRa_TX("Sync_ACK");
         StartLive_Flag = 1;
         Main_Mode = 2;
       }
-      LoRa_RX_Flag = 0;
+      
+      else if(buoy_ptr != NULL) {
+        received_buoy_id = atoi(buoy_ptr + 5);  // Skip "BUOY:"
+        
+        // Only process if buoy ID matches
+        if(received_buoy_id == BUOY_ID) {
+          // Check the rx buffer to see if command sent, and respond accordingly
+          if(strncmp(LoRa_RX_Buffer, "CMD:BATTERY", 11) == 0)
+          {
+            uint32_t raw      = ADC_ReadRaw_Averaged();
+            float adc_pin_mv  = ADC_RawToMillivolts(raw);
+            float battery_mv  = adc_pin_mv * VOLTAGE_DIVIDER_RATIO;
+            float soc_percent = ADC_CalculateSoCPercent(battery_mv);
 
+            uint32_t soc_whole = (uint32_t)soc_percent;
+            uint32_t soc_frac  = (uint32_t)((soc_percent - soc_whole) * 100.0f);
+            sprintf(LoRa_TX_Buffer, "TYPE:3,BUOY:%d,BAT:%lu.%02lu", BUOY_ID, soc_whole, soc_frac);
+
+
+            LoRa_TX(LoRa_TX_Buffer);
+            Main_Mode = 2;
+          }
+          else if(strncmp(LoRa_RX_Buffer, "CMD:DATADUMP", 12) == 0)
+          {
+            SD_DataDump();
+            Main_Mode = 2;
+          }
+        }
+      }
+      LoRa_RX_Flag = 0;
     }
 
 // ====================================================================================================
@@ -649,7 +687,11 @@ int main(void)
       Main_Mode = 1;
     }
     
-    if (Atlas_Send_live&&StartLive_Flag&&((Current_Second%30)==((30/Num_Buoys)*Buoy_ID))&&LoRa_Connected)
+    uint8_t slot_size  = 30 / NUM_BUOYS;
+    uint8_t slot_start = slot_size * BUOY_ID;
+    uint8_t current_pos = Current_Second % 30;
+
+    if (Atlas_Send_live && StartLive_Flag && LoRa_Connected)
     {
       //  // 1. Get and convert the timestamp
       // curr_time = RTC_Get_Time(RTC_I2C);
@@ -661,11 +703,13 @@ int main(void)
       // strftime(ts_buffer, sizeof(ts_buffer), "%y_%m_%d_%H_%M_%S", tm_info);
 
       // 3. Build and send the header packet with the timestamp
-      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:0,CHAMBER:0,DO:%s,RTD:%s", Atlas_Buffer_1,Atlas_Buffer_2);
+      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:%d,CHAMBER:0,DO:%s,RTD:%s", BUOY_ID, Atlas_Buffer_1,Atlas_Buffer_2);
       LoRa_TX_Continuous(LoRa_TX_Buffer);
 
-      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:0,CHAMBER:1,DO:%s,RTD:%s", Atlas_Buffer_3,Atlas_Buffer_4); // Convert object to C-string
+      snprintf(LoRa_TX_Buffer, sizeof(LoRa_TX_Buffer), "TYPE:1,BUOY:%d,CHAMBER:1,DO:%s,RTD:%s", BUOY_ID, Atlas_Buffer_3,Atlas_Buffer_4); // Convert object to C-string
       LoRa_TX(LoRa_TX_Buffer);
+      // if (sucess) write_OLED(7,5,"Suc Live");
+      // else write_OLED(7,5,"Fail Live");
       Main_Mode = 2;
 
       Atlas_Send_live=0;
@@ -747,7 +791,7 @@ static void MX_ADC1_Init(void)
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = DISABLE;
   hadc1.Init.ContinuousConvMode = DISABLE;
@@ -767,7 +811,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_2;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_84CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -1371,9 +1415,9 @@ uint8_t LoRa_Detect_Continuous(void)
 //     return result;
 //   }
 //   return 0;
-//}
+// }
 
-uint8_t LoRa_TX(const char *message)
+uint8_t LoRa_TX(char *message)
 {
     uint8_t result = LoRa_TX_Continuous(message);
     LoRa_ArmRX();
@@ -1394,7 +1438,7 @@ uint8_t LoRa_TX(const char *message)
 //   return 0;
 // }
 
-uint8_t LoRa_TX_Continuous(const char *message)
+uint8_t LoRa_TX_Continuous(char *message)
 {
     uint8_t msg_len = strlen(message);
     if (msg_len == 0 || msg_len > 100) return 0;
@@ -1591,6 +1635,7 @@ static uint8_t SD_DataDump(void)
 
     while (1)
     {
+        HAL_IWDG_Refresh(&hiwdg);
         fres = f_readdir(&dir, &fno);
         // End of directory or error
         if (fres != FR_OK || fno.fname[0] == '\0') break;
@@ -1654,13 +1699,13 @@ static uint8_t SD_DataDump(void)
 
         // Transmit Chamber 0 (DO_1 / RTD_1)
         snprintf(tx_buf, sizeof(tx_buf),
-                 "TYPE:2,BUOY:0,CHAMBER:0,DO:%s,RTD:%s,TS:%s",
+                 "TYPE:2,BUOY:%d,CHAMBER:0,DO:%s,RTD:%s,TS:%s", BUOY_ID,
                  do1, rtd1, ts_fmt);
         LoRa_TX_Continuous(tx_buf);
 
         // Transmit Chamber 1 (DO_2 / RTD_2)
         snprintf(tx_buf, sizeof(tx_buf),
-                 "TYPE:2,BUOY:0,CHAMBER:1,DO:%s,RTD:%s,TS:%s",
+                 "TYPE:2,BUOY:%d,CHAMBER:1,DO:%s,RTD:%s,TS:%s", BUOY_ID,
                  do2, rtd2, ts_fmt);
         LoRa_TX_Continuous(tx_buf);
 
@@ -1671,7 +1716,7 @@ static uint8_t SD_DataDump(void)
     f_mount(NULL, "", 0);
 
     // Send the end-of-dump summary (count = number of readings, not packets)
-    snprintf(tx_buf, sizeof(tx_buf), "TYPE:4,BUOY:0,COUNT:%u", count);
+    snprintf(tx_buf, sizeof(tx_buf), "TYPE:4,BUOY:%d,COUNT:%u", BUOY_ID, count);
     LoRa_TX(tx_buf);
 
     return count;
@@ -1885,7 +1930,7 @@ static uint8_t SD_Write(uint32_t timestamp)
 
     char time_part[64];
     strftime(time_part, sizeof(time_part), "%y-%m-%d-%H-%M-%S", tm_info);
-    snprintf(SD_filename, sizeof(SD_filename), "%s-BUOY%d-READING.CSV", time_part, Buoy_ID);
+    snprintf(SD_filename, sizeof(SD_filename), "%s-BUOY%d-READING.CSV", time_part, BUOY_ID);
 
     //if (OLED_Connected) write_OLED(0,5,"flnnm");
 
