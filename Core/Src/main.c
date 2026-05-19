@@ -227,6 +227,9 @@ uint8_t Main_Mode = 0;
 char connected_buffer[20];
 static char SD_filename[40] = "";  // max 8.3 = "YYMMDD.CSV\0" = 11 chars
 
+static FATFS FatFs;  // make this global, not local to SD_Write
+static uint8_t fs_mounted = 0;
+
 uint8_t PB1_Flag = 0;
 uint8_t PB2_Flag = 0;
 uint8_t PB3_Flag = 0;
@@ -352,6 +355,10 @@ int main(void)
   LoRa_Connected = LoRa_Detect();
 
   if(LoRa_Connected) LoRa_Init();
+
+  //LoRa TDMA calculation
+  uint8_t slot_size  = 30 / NUM_BUOYS;
+  uint8_t slot_start = BUOY_ID * slot_size;
   
   //Initilise OLED Screen
   OLED_Connected = OLED_Detect();
@@ -485,8 +492,6 @@ int main(void)
       Current_Second = tm_info ->tm_sec;
 
        // --- TDMA slot entry detection ---
-      uint8_t slot_size  = 30 / NUM_BUOYS;
-      uint8_t slot_start = BUOY_ID * slot_size;
       uint8_t pos        = Current_Second % 30;
 
       if (StartLive_Flag && (pos >= slot_start) && (pos < slot_start + slot_size))
@@ -687,9 +692,9 @@ int main(void)
       Main_Mode = 1;
     }
     
-    uint8_t slot_size  = 30 / NUM_BUOYS;
-    uint8_t slot_start = slot_size * BUOY_ID;
-    uint8_t current_pos = Current_Second % 30;
+    // uint8_t slot_size  = 30 / NUM_BUOYS;
+    // uint8_t slot_start = slot_size * BUOY_ID;
+    // uint8_t current_pos = Current_Second % 30;
 
     if (Atlas_Send_live && StartLive_Flag && LoRa_Connected)
     {
@@ -1630,7 +1635,7 @@ static uint8_t SD_DataDump(void)
     fres = f_opendir(&dir, "/");
     if (fres != FR_OK) { f_mount(NULL, "", 0); return 0; }
 
-    uint16_t count = 0;
+    uint32_t count = 0;
     char tx_buf[100];
 
     while (1)
@@ -1709,7 +1714,7 @@ static uint8_t SD_DataDump(void)
                  do2, rtd2, ts_fmt);
         LoRa_TX_Continuous(tx_buf);
 
-        count++;
+        count+=2;
     }
 
     f_closedir(&dir);
@@ -1913,8 +1918,12 @@ static uint8_t SD_Detect()
 
 static uint8_t SD_Write(uint32_t timestamp)
 {
-    SD_Detect();
-    if (!SD_Connected) return 0;
+    if (!fs_mounted)
+    {
+        if (!SD_Connected) return 0;
+        if (f_mount(&FatFs, "", 1) != FR_OK) return 0;
+        fs_mounted = 1;
+    }
 
     FATFS   FatFs;
     FIL     fil;
@@ -1940,12 +1949,14 @@ static uint8_t SD_Write(uint32_t timestamp)
 
     //if (OLED_Connected) write_OLED(0,5,"timok ");
 
-    fres = f_mount(&FatFs, "", 1);
-    if (fres != FR_OK) return 0;
-    //if (OLED_Connected) write_OLED(0,5,"mntok");
-
     fres = f_open(&fil, SD_filename, FA_WRITE | FA_CREATE_ALWAYS);
-    if (fres != FR_OK) { f_mount(NULL, "", 0); return 0; }
+    if (fres != FR_OK)
+    {
+        // Write failed — assume card was removed, force remount next time
+        f_mount(NULL, "", 0);
+        fs_mounted = 0;
+        return 0;
+    }
 
     //if (OLED_Connected) write_OLED(0,5,"opnok");
 
@@ -1970,7 +1981,7 @@ static uint8_t SD_Write(uint32_t timestamp)
 
     f_close(&fil);
     //f_unmount("");
-    f_mount(NULL, "", 0);
+    //f_mount(NULL, "", 0);
 
     //Main_Mode = 3;
     //if (OLED_Connected) write_OLED(0,5,"ST");
@@ -2125,6 +2136,7 @@ static uint8_t Calibrate_Atlas()
       if (PB3_Flag) return 0;
 
       Atlas_Calibrate_High(DO_1_Addr);
+      return 1;
 
     }
     else if (PB3_Flag)
@@ -2180,6 +2192,7 @@ static uint8_t Calibrate_Atlas()
       if (PB3_Flag) return 0;
 
       Atlas_Calibrate_High(DO_2_Addr);
+      return 1;
 
     }
   }
