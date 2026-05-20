@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
   40              		.loc 1 16 5 is_stmt 1 view .LVU2
   41              		.loc 1 16 12 is_stmt 0 view .LVU3
   42 0008 0A23     		movs	r3, #10
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 2
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 2
 
 
   43 000a 0293     		str	r3, [sp, #8]
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
   44:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, SSD1306_HEIGHT - 1);
   45:Core/Src/ssd1306.c **** 
   46:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0xA4);   // 0xa4,Output follows RAM content;0xa5,Output ig
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 3
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 3
 
 
   47:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0xD3);   // Set display offset
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
   82 0002 03E0     		b	.L4
   83              	.LVL4:
   84              	.L7:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 4
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 4
 
 
   91:Core/Src/ssd1306.c ****     {
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  129              		.loc 1 100 1 is_stmt 0 view .LVU20
  130 0000 30B5     		push	{r4, r5, lr}
  131              		.cfi_def_cfa_offset 12
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 5
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 5
 
 
  132              		.cfi_offset 4, -12
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  177              		.loc 1 103 25 discriminator 3 view .LVU29
  178 0042 0134     		adds	r4, r4, #1
  179              	.LVL13:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 6
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 6
 
 
  103:Core/Src/ssd1306.c ****         ssd1306_WriteCommand(hi2c, 0xB0 + i);
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  228              	.LVL18:
   27:Core/Src/ssd1306.c **** 
  229              		.loc 1 27 5 is_stmt 1 view .LVU38
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 7
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 7
 
 
   30:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0x20);   // Set Memory Addressing Mode
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  270 0034 2046     		mov	r0, r4
  271 0036 FFF7FEFF 		bl	ssd1306_WriteCommand
  272              	.LVL28:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 8
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 8
 
 
   34:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0x00);   // Set low column address
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
   39:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0xA1);   // Set segment re-map 0 to 127
  313              		.loc 1 39 15 is_stmt 0 view .LVU67
  314 0064 FF21     		movs	r1, #255
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 9
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 9
 
 
  315 0066 2046     		mov	r0, r4
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  356              	.LVL47:
   46:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0xD3);   // Set display offset
  357              		.loc 1 46 5 is_stmt 1 view .LVU81
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 10
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 10
 
 
   46:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0xD3);   // Set display offset
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
   50:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0xD9);   // Set pre-charge period
  399              		.loc 1 50 12 discriminator 1 view .LVU95
  400 00c6 0544     		add	r5, r5, r0
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 11
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 11
 
 
  401              	.LVL57:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  441 00f2 2046     		mov	r0, r4
  442 00f4 FFF7FEFF 		bl	ssd1306_WriteCommand
  443              	.LVL66:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 12
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 12
 
 
   57:Core/Src/ssd1306.c ****     status += ssd1306_WriteCommand(hi2c, 0x20);   // 0x20,0.77xVcc
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
   64:Core/Src/ssd1306.c ****     }
  484              		.loc 1 64 16 view .LVU124
  485 0124 0120     		movs	r0, #1
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 13
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 13
 
 
  486              	.LVL75:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  529              		.thumb_func
  531              	ssd1306_DrawPixel:
  532              	.LVL80:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 14
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 14
 
 
  533              	.LFB224:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  133:Core/Src/ssd1306.c ****     if (color == White)
  564              		.loc 1 133 5 is_stmt 1 view .LVU148
  565              		.loc 1 133 8 is_stmt 0 view .LVU149
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 15
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 15
 
 
  566 0018 012A     		cmp	r2, #1
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  608              	.LVL88:
  135:Core/Src/ssd1306.c ****     }
  609              		.loc 1 135 58 view .LVU161
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 16
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 16
 
 
  610 004a 8A40     		lsls	r2, r2, r1
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  654              		.cfi_offset 14, -4
  655 0004 82B0     		sub	sp, sp, #8
  656              		.cfi_def_cfa_offset 40
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 17
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 17
 
 
  657 0006 8146     		mov	r9, r0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  170:Core/Src/ssd1306.c ****                 ssd1306_DrawPixel(SSD1306.CurrentX + j, (SSD1306.CurrentY + i), (SSD1306_COLOR) col
  171:Core/Src/ssd1306.c ****             }
  172:Core/Src/ssd1306.c ****             else
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 18
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 18
 
 
  173:Core/Src/ssd1306.c ****             {
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  735 006c ECE7     		b	.L40
  736              	.L46:
  163:Core/Src/ssd1306.c ****     {
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 19
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 19
 
 
  737              		.loc 1 163 39 is_stmt 1 discriminator 2 view .LVU192
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  773 0090 02B0     		add	sp, sp, #8
  774              		.cfi_remember_state
  775              		.cfi_def_cfa_offset 32
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 20
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 20
 
 
  776              		@ sp needed
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  823              		.loc 1 192 11 is_stmt 0 view .LVU212
  824 000e 00E0     		b	.L51
  825              	.LVL105:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 21
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 21
 
 
  826              	.L55:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  862              		.thumb
  863              		.thumb_func
  865              	ssd1306_InvertColors:
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 22
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 22
 
 
  866              	.LFB227:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  907 0000 014B     		ldr	r3, .L60
  908 0002 1880     		strh	r0, [r3]	@ movhi
  222:Core/Src/ssd1306.c ****     SSD1306.CurrentY = y;
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 23
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 23
 
 
  909              		.loc 1 222 5 is_stmt 1 view .LVU231
@@ -1357,40 +1357,40 @@ ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 1
  941              		.file 8 "Core/Inc/fonts.h"
  942              		.file 9 "Core/Inc/ssd1306.h"
  943              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s 			page 24
+ARM GAS  C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s 			page 24
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 ssd1306.c
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:21     .text.ssd1306_WriteCommand:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:26     .text.ssd1306_WriteCommand:00000000 ssd1306_WriteCommand
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:63     .text.ssd1306_Fill:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:69     .text.ssd1306_Fill:00000000 ssd1306_Fill
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:111    .text.ssd1306_Fill:0000001c $d
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:931    .bss.SSD1306_Buffer:00000000 SSD1306_Buffer
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:116    .text.ssd1306_UpdateScreen:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:122    .text.ssd1306_UpdateScreen:00000000 ssd1306_UpdateScreen
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:197    .text.ssd1306_UpdateScreen:00000050 $d
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:202    .text.ssd1306_Init:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:208    .text.ssd1306_Init:00000000 ssd1306_Init
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:520    .text.ssd1306_Init:00000144 $d
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:925    .bss.SSD1306:00000000 SSD1306
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:525    .text.ssd1306_DrawPixel:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:531    .text.ssd1306_DrawPixel:00000000 ssd1306_DrawPixel
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:625    .text.ssd1306_DrawPixel:00000054 $d
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:631    .text.ssd1306_WriteChar:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:637    .text.ssd1306_WriteChar:00000000 ssd1306_WriteChar
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:790    .text.ssd1306_WriteChar:000000a0 $d
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:795    .text.ssd1306_WriteString:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:801    .text.ssd1306_WriteString:00000000 ssd1306_WriteString
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:859    .text.ssd1306_InvertColors:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:865    .text.ssd1306_InvertColors:00000000 ssd1306_InvertColors
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:886    .text.ssd1306_InvertColors:00000010 $d
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:891    .text.ssd1306_SetCursor:00000000 $t
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:897    .text.ssd1306_SetCursor:00000000 ssd1306_SetCursor
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:917    .text.ssd1306_SetCursor:00000008 $d
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:922    .bss.SSD1306:00000000 $d
-C:\Users\joabk\AppData\Local\Temp\cc89mVsk.s:928    .bss.SSD1306_Buffer:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:21     .text.ssd1306_WriteCommand:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:26     .text.ssd1306_WriteCommand:00000000 ssd1306_WriteCommand
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:63     .text.ssd1306_Fill:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:69     .text.ssd1306_Fill:00000000 ssd1306_Fill
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:111    .text.ssd1306_Fill:0000001c $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:931    .bss.SSD1306_Buffer:00000000 SSD1306_Buffer
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:116    .text.ssd1306_UpdateScreen:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:122    .text.ssd1306_UpdateScreen:00000000 ssd1306_UpdateScreen
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:197    .text.ssd1306_UpdateScreen:00000050 $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:202    .text.ssd1306_Init:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:208    .text.ssd1306_Init:00000000 ssd1306_Init
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:520    .text.ssd1306_Init:00000144 $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:925    .bss.SSD1306:00000000 SSD1306
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:525    .text.ssd1306_DrawPixel:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:531    .text.ssd1306_DrawPixel:00000000 ssd1306_DrawPixel
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:625    .text.ssd1306_DrawPixel:00000054 $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:631    .text.ssd1306_WriteChar:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:637    .text.ssd1306_WriteChar:00000000 ssd1306_WriteChar
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:790    .text.ssd1306_WriteChar:000000a0 $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:795    .text.ssd1306_WriteString:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:801    .text.ssd1306_WriteString:00000000 ssd1306_WriteString
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:859    .text.ssd1306_InvertColors:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:865    .text.ssd1306_InvertColors:00000000 ssd1306_InvertColors
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:886    .text.ssd1306_InvertColors:00000010 $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:891    .text.ssd1306_SetCursor:00000000 $t
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:897    .text.ssd1306_SetCursor:00000000 ssd1306_SetCursor
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:917    .text.ssd1306_SetCursor:00000008 $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:922    .bss.SSD1306:00000000 $d
+C:\Users\joabk\AppData\Local\Temp\ccYOkn37.s:928    .bss.SSD1306_Buffer:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Mem_Write

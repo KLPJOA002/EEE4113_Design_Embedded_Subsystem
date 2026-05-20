@@ -133,11 +133,11 @@ static void I2C_BusRecovery(I2C_HandleTypeDef *hi2c, GPIO_TypeDef *scl_port, uin
 // ===============================
 // Lora Functions
 // ===============================
-uint8_t LoRa_Init();
+void LoRa_Init();
 uint8_t LoRa_Detect();
 uint8_t LoRa_Detect_Continuous();
-uint8_t LoRa_TX(char message[50]);
-uint8_t LoRa_TX_Continuous(char message[50]);
+uint8_t LoRa_TX(char *message);
+uint8_t LoRa_TX_Continuous(char *message);
 static void LoRa_ArmRX();
 void LoRa_RX();
 static uint8_t SD_DataDump(void);
@@ -146,7 +146,7 @@ static uint8_t SD_DataDump(void);
 // ===============================
 static uint8_t RTC_Detect();
 static uint8_t bcdtodec(const uint8_t val);
-static uint8_t dectobcd(const uint8_t val);
+// static uint8_t dectobcd(const uint8_t val);
 static uint32_t RTC_Get_Time(I2C_HandleTypeDef *hi2c);
 static void RTC_Set_Time_Once(I2C_HandleTypeDef *hi2c);
 static void RTC_Set_Time(I2C_HandleTypeDef *hi2c,char *Time);
@@ -181,7 +181,7 @@ static uint8_t Calibrate_Atlas();
 static uint32_t ADC_ReadRaw_Averaged(void);
 static float ADC_RawToMillivolts(uint32_t raw);
 static float ADC_CalculateSoCPercent(float voltage_mv);
-static void LCD_DisplaySoC(float adc_mv, float battery_mv, float soc_percent);
+// static void LCD_DisplaySoC(float adc_mv, float battery_mv, float soc_percent);
 
 /* USER CODE END PFP */
 
@@ -227,7 +227,10 @@ uint8_t Main_Mode = 0;
 char connected_buffer[20];
 static char SD_filename[40] = "";  // max 8.3 = "YYMMDD.CSV\0" = 11 chars
 
-static FATFS FatFs;  // make this global, not local to SD_Write
+FATFS   FatFs;
+FIL     fil;
+FRESULT fres;
+UINT    bytesWrote;
 static uint8_t fs_mounted = 0;
 
 uint8_t PB1_Flag = 0;
@@ -367,7 +370,7 @@ int main(void)
  
   //Initilise the RTC One time when the system is flashed with firmware
   RTC_Connected = RTC_Detect();
-  //if (RTC_Connected) RTC_Set_Time_Once(RTC_I2C);
+  if (RTC_Connected) RTC_Set_Time_Once(RTC_I2C);
 
   
 
@@ -1367,7 +1370,7 @@ static void I2C_BusRecovery(I2C_HandleTypeDef *hi2c, GPIO_TypeDef *scl_port, uin
 // ===============================================================================================
 // Lora Functions
 // ===============================================================================================
-uint8_t LoRa_Init()
+void LoRa_Init()
 {
 
   // SX1278_hw_init(&SX1278_hw);
@@ -1721,7 +1724,7 @@ static uint8_t SD_DataDump(void)
     f_mount(NULL, "", 0);
 
     // Send the end-of-dump summary (count = number of readings, not packets)
-    snprintf(tx_buf, sizeof(tx_buf), "TYPE:4,BUOY:%d,COUNT:%u", BUOY_ID, count);
+    snprintf(tx_buf, sizeof(tx_buf), "TYPE:4,BUOY:%d,COUNT:%lu", BUOY_ID, count);
     LoRa_TX(tx_buf);
 
     return count;
@@ -1925,10 +1928,7 @@ static uint8_t SD_Write(uint32_t timestamp)
         fs_mounted = 1;
     }
 
-    FATFS   FatFs;
-    FIL     fil;
-    FRESULT fres;
-    UINT    bytesWrote;
+    
     char    row[60];
 
     time_t raw = (time_t)timestamp;
